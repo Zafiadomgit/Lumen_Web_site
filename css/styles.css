@@ -152,6 +152,9 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .tile:hover img { --ts: 1.02; }
 .tile figcaption { display: flex; justify-content: space-between; gap: 12px; font-size: var(--t-xs); padding-top: 10px; white-space: nowrap; }
 .tile figcaption span:last-child { color: var(--muted); }
+.tile figcaption { overflow: hidden; }
+.tile figcaption span:first-child { overflow: hidden; text-overflow: ellipsis; }
+.tile figcaption span:last-child { flex: none; }
 .wall:hover .tile img { filter: brightness(.6); }
 .wall:hover .tile:hover img { filter: none; }
 
