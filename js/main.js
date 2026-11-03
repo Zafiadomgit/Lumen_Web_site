@@ -1,6 +1,5 @@
 /* Lumen Studio — interacción
-   1) la luz del farol sigue al puntero  2) marquesina del nombre a velocidad constante
-   3) entradas por sección  4) demo del TPV con la carta real de California */
+   1) la luz del farol sigue al puntero  2) entradas por sección  3) demo del TPV con la carta real de California */
 (function () {
   'use strict';
   var doc = document.documentElement;
@@ -9,7 +8,7 @@
 
   /* ---------- 1. luz del farol ---------- */
   var hero = document.querySelector('.hero');
-  var win = document.querySelector('.window');
+  var win = document.querySelector('.lamp');
   function anchorLight() {
     if (!win) return;
     var r = win.getBoundingClientRect();
@@ -42,19 +41,7 @@
     });
   }
 
-  /* ---------- 2. marquesina: 40 px por segundo ---------- */
-  function tune() {
-    var t = document.querySelector('.line--lit .track');
-    if (!t) return;
-    var stage = document.querySelector('.hero-stage');
-    doc.style.setProperty('--sw', stage.clientWidth + 'px');
-    var dur = (t.scrollWidth / 2) / 40;
-    document.querySelectorAll('.track').forEach(function (el) { el.style.setProperty('--dur', dur.toFixed(2) + 's'); });
-  }
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(tune); else tune();
-  addEventListener('resize', tune);
-
-  /* ---------- 3. entradas ---------- */
+  /* ---------- 2. entradas ---------- */
   var items = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !reduce) {
     // escalonado dentro de cada sección: título, texto, imagen…
@@ -105,7 +92,7 @@
     move();
   }
 
-  /* ---------- 4. TPV ---------- */
+  /* ---------- 3. TPV ---------- */
   // carta real de California (TPV_restaurante/supabase/migration.sql)
   var MENU = [
     { id: 'kebab-ternera', n: 'Kebab de ternera', p: 4.5, img: 'kebab' },
