@@ -1,7 +1,7 @@
 # Opiniones de clientes
 
 Solo se publica en la web la opinión que cada cliente ha aprobado, con su nombre y cargo reales y su permiso.
-California y Vitrales Perafán están publicadas; Althaya está pendiente de que Laura marque su aprobación.
+Las tres (California, Vitrales Perafán y Althaya) están aprobadas y publicadas.
 
 Mensaje sugerido para enviar:
 
@@ -33,7 +33,7 @@ llegan con la idea clara después de ver la galería.»
 facilísimo, en inglés o en español.»
 
 - Nombre y cargo: Laura Mora, CEO
-- Aprobado: pendiente (sin marcar; no publicado)
+- Aprobado: sí (confirmado por el cliente; publicado)
 
 ---
 
