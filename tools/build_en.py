@@ -130,7 +130,6 @@ PAIRS = [
     ('<dt>El reto</dt>', '<dt>The challenge</dt>'),
     ('<dt>Lo que hicimos</dt>', '<dt>What we did</dt>'),
     ('<dt>Hoy</dt>', '<dt>Today</dt>'),
-    ('>Nuestro código en GitHub ↗</a>', '>Our code on GitHub ↗</a>'),
 
     # ---------- servicios ----------
     ('id="services-title" data-reveal>Qué hacemos</h2>', 'id="services-title" data-reveal>What we do</h2>'),

@@ -192,7 +192,6 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .case-facts dt { font-weight: 700; font-size: 15px; }
 .case-facts dd { margin: 2px 0 0; color: var(--muted); }
 .project-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
-.work-more { margin-top: 24px; }
 .lang {
   display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; padding: 0 10px; border-radius: 999px;
   font-weight: 800; font-size: 14px; letter-spacing: .04em; text-decoration: none; color: var(--muted); background: var(--surface-2);
