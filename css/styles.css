@@ -427,11 +427,13 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .champi-back[hidden] { display: none; }
 @media (hover: none) { .champi-close { opacity: .85; } }
 @media (max-width: 680px) {
-  .champi-body, .champi-sprite { width: 66px; height: 66px; }
-  .champi-sprite { background-size: 528px 66px; }
+  .champi-body, .champi-sprite { width: 48px; height: 48px; }
+  .champi::after { width: 30px; height: 6px; margin-left: -15px; bottom: 3px; }
+  .champi-close { width: 22px; height: 22px; font-size: 14px; top: -10px; right: -12px; }
+  .champi-sprite { background-size: 384px 48px; }
   .champi-sprite, .champi.is-walk .champi-sprite, .champi.is-wave .champi-sprite { animation-name: champi-steps-s; }
-  @keyframes champi-steps-s { to { background-position-x: -528px; } }
-  .champi-bubble { bottom: 70px; font-size: 13px; }
+  @keyframes champi-steps-s { to { background-position-x: -384px; } }
+  .champi-bubble { bottom: 52px; font-size: 13px; max-width: min(220px, calc(100vw - 32px)); }
 }
 
 /* páginas legales */

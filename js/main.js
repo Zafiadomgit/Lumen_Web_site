@@ -422,7 +422,7 @@
     };
     var POKES = [T('¡Ey, que hace cosquillas!', 'Hey, that tickles!'), T('Soy una seta, no un botón.', 'I’m a mushroom, not a button.'),
       T('¿Hablamos de tu proyecto?', 'Shall we talk about your project?'), T('Si me tocas otra vez, bailo.', 'Tap me again and I’ll dance.')];
-    var size = function () { return innerWidth <= 680 ? 66 : 88; };
+    var size = function () { return innerWidth <= 680 ? 48 : 88; };
     var x = -120, target = 24, dir = 1, walking = false, lastT = 0, bubbleTimer = 0, wanderTimer = 0, poke = 0, lastSec = '';
     var maxX = function () { return Math.max(24, innerWidth - size() - (innerWidth <= 680 ? 84 : 110)); };
     var place = function () {
