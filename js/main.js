@@ -41,6 +41,61 @@
     }, { passive: true });
   }
 
+  /* ---------- 1b. golpear el farol: se balancea como un péndulo y suelta chispas ---------- */
+  var lampBtn = $('lamp');
+  if (lampBtn) {
+    var ang = 0, vel = 0, swinging = false, last = 0;
+    var K = 55, DAMP = 2.1, MAX = 38; // rigidez del muelle, rozamiento y ángulo máximo (grados)
+    var step = function (t) {
+      var dt = Math.min(0.032, (t - last) / 1000 || 0.016); last = t;
+      vel += (-K * ang - DAMP * vel) * dt;
+      ang += vel * dt;
+      if (ang > MAX) { ang = MAX; vel *= -0.4; } else if (ang < -MAX) { ang = -MAX; vel *= -0.4; }
+      lampBtn.style.transform = 'rotate(' + ang.toFixed(2) + 'deg)';
+      if (Math.abs(ang) < 0.25 && Math.abs(vel) < 2) {
+        swinging = false; ang = 0; vel = 0;
+        lampBtn.style.transform = ''; lampBtn.classList.remove('is-hit');
+        return;
+      }
+      requestAnimationFrame(step);
+    };
+    var sparks = function (x, y, dir) {
+      if (reduce) return;
+      for (var i = 0; i < 14; i++) {
+        var sp = document.createElement('span');
+        sp.className = 'spark';
+        document.body.appendChild(sp);
+        var a = (-90 + dir * 35 + (Math.random() - 0.5) * 140) * Math.PI / 180;
+        var d = 50 + Math.random() * 110, dx = Math.cos(a) * d, dy = Math.sin(a) * d;
+        var sz = 3 + Math.random() * 5;
+        sp.style.width = sp.style.height = sz.toFixed(1) + 'px';
+        if (Math.random() < 0.35) sp.style.background = '#fff3c4';
+        var anim = sp.animate([
+          { transform: 'translate(' + x + 'px,' + y + 'px) scale(1)', opacity: 1 },
+          { transform: 'translate(' + (x + dx) + 'px,' + (y + dy + 60) + 'px) scale(.2)', opacity: 0 }
+        ], { duration: 550 + Math.random() * 450, easing: 'cubic-bezier(.16,1,.3,1)' });
+        anim.onfinish = (function (el) { return function () { el.remove(); }; })(sp);
+      }
+    };
+    var hit = function (x, y) {
+      var r = lampBtn.getBoundingClientRect();
+      var dir = x < r.left + r.width / 2 ? 1 : -1; // golpe desde la izquierda → se va a la derecha
+      var force = 0.6 + Math.min(1, Math.abs(x - (r.left + r.width / 2)) / (r.width / 2)) * 0.6;
+      if (reduce) { lampBtn.classList.add('is-hit'); setTimeout(function () { lampBtn.classList.remove('is-hit'); }, 600); return; }
+      vel += dir * 260 * force;
+      lampBtn.classList.remove('is-hit'); void lampBtn.offsetWidth; lampBtn.classList.add('is-hit'); // reinicia el destello
+      sparks(x, y, dir);
+      if (!swinging) { swinging = true; last = performance.now(); requestAnimationFrame(step); }
+    };
+    lampBtn.addEventListener('click', function (e) {
+      var r = lampBtn.getBoundingClientRect();
+      // con teclado (sin coordenadas) se golpea desde un lado al azar
+      var x = e.clientX || (r.left + r.width / 2 + (Math.random() < 0.5 ? -1 : 1) * r.width * 0.4);
+      var y = e.clientY || (r.top + r.height * 0.55);
+      hit(x, y);
+    });
+  }
+
   /* ---------- 2. barra fija ---------- */
   var bar = $('bar');
   var links = bar ? bar.querySelectorAll('.bar-links a') : [];
@@ -212,7 +267,7 @@
     });
   }
   /* ---------- 8. calculadora de presupuesto ---------- */
-  // PRECIOS ORIENTATIVOS (provisionales): cámbialos aquí. [mín, máx] en euros.
+  // PRECIOS ORIENTATIVOS: cámbialos aquí. [mín, máx] en dólares (USD).
   var WA = 'https://wa.me/573118739670';
   var CALC = {
     web: { label: 'Web', sizeLabel: '¿Qué tipo de web?', sizes: [
@@ -247,7 +302,7 @@
   };
   var calcEl = $('calc');
   if (calcEl) {
-    var eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    var eur = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }); // precios en dólares
     var typeBox = $('calcType'), sizeBox = $('calcSize'), extraBox = $('calcExtras');
     var chip = function (name, type, value, text, checked, hint) {
       return '<label class="chip"><input type="' + type + '" name="' + name + '" value="' + value + '"' + (checked ? ' checked' : '') + '><span>' + text + (hint ? ' <small>' + hint + '</small>' : '') + '</span></label>';
@@ -276,7 +331,11 @@
       $('calcMeta').textContent = meta;
       var lines = [c.label + ': ' + z.n].concat(ex.map(function (x) { return x.n; }));
       $('calcSum').innerHTML = lines.map(function (l) { return '<li>' + l + '</li>'; }).join('');
-      summary = 'Hola Lumen Studio, quiero un presupuesto.\n' + lines.join('\n') + '\nEstimación de la web: ' + $('calcPrice').textContent + ' (' + meta + ')';
+      // primera letra en minúscula, salvo nombres propios y siglas (Android, iPhone, SEO…)
+      var lc = function (t) { return /^(Android|iPhone|SEO|TPV)\b/.test(t) || /^[A-Z]{2}/.test(t) ? t : t.charAt(0).toLowerCase() + t.slice(1); };
+      var what = { web: 'una web: ', app: 'una app para ', game: 'un videojuego: ', tpv: 'un TPV para ', custom: 'un desarrollo a medida: ' }[state.type] + lc(z.n);
+      summary = 'Hola Lumen Studio, me gustaría cotizar ' + what + (ex.length ? ', con ' + ex.map(function (x) { return lc(x.n); }).join(', ') : '') + '.\n' +
+        'La calculadora de la web me da ' + $('calcPrice').textContent + ' (' + lc(meta) + ').';
       $('calcWa').href = WA + '?text=' + encodeURIComponent(summary);
     };
     calcEl.addEventListener('change', function (e) {

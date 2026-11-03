@@ -28,7 +28,7 @@ En *Settings → Environment Variables*:
 
 ## Pendiente
 
-- Precios de la calculadora: son orientativos y están en `js/main.js` (objeto `CALC`).
+- Precios de la calculadora: en dólares (USD), en `js/main.js` (objeto `CALC`).
 - Rellenar los datos marcados entre corchetes en las páginas legales.
 - Opiniones de clientes: borradores para aprobar en `docs/testimonios-borrador.md`.
 - Al tener dominio propio, cambiar `lumen-ruddy-beta.vercel.app` en `index.html`, `robots.txt` y `sitemap.xml`.
