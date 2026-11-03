@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261103-4">
+  <link rel="stylesheet" href="css/styles.css?v=20261103-6">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,6 +59,7 @@
       <a href="#tpv">TPV</a>
       <a href="#fendaria">Fendaria</a>
       <a href="#servicios">Servicios</a>
+      <a href="#casos">Casos</a>
       <a href="#presupuesto">Presupuesto</a>
     </div>
     <a class="btn btn--s" href="#contacto">Hablemos</a>
@@ -66,11 +67,16 @@
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="inicio">
-    <div class="hero-top">
-      <a class="hero-link" href="#tpv">Prueba el TPV</a>
-      <span class="hero-mark" aria-hidden="true"></span>
-      <a class="hero-link" href="#fendaria">Juega a Fendaria</a>
-    </div>
+    <nav class="hero-top" aria-label="Principal">
+      <a class="wordmark" href="#inicio" aria-label="Lumen Studio, inicio"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+      <div class="hero-links">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#casos">Casos</a>
+        <a href="#presupuesto">Presupuesto</a>
+      </div>
+      <a class="btn btn--s" href="#contacto">Hablemos</a>
+    </nav>
 
     <div class="hero-stage">
       <button class="lamp" type="button" id="lamp" aria-label="Golpea el farol">
@@ -82,11 +88,10 @@
     <div class="hero-copy">
       <p class="hero-lede">Diseñamos y programamos webs, apps, videojuegos y TPV para restaurantes.</p>
       <p class="hero-fact">Del primer boceto a la tienda de apps, con el mismo equipo.</p>
-    </div>
-
-    <div class="hero-bottom">
-      <p class="hero-loc">En remoto · en español y en inglés</p>
-      <a class="btn" href="#contacto">Cuéntanos tu proyecto</a>
+      <div class="hero-actions">
+        <a class="btn" href="#contacto">Cuéntanos tu proyecto</a>
+        <a class="btn btn--ghost" href="#proyectos">Ver proyectos</a>
+      </div>
     </div>
   </header>
 
@@ -467,6 +472,6 @@
     <iframe id="gameFrame" title="Fendaria, jugable" allow="fullscreen; autoplay; gamepad"></iframe>
   </div>
 
-  <script src="js/main.js?v=20261103-2" defer></script>
+  <script src="js/main.js?v=20261103-6" defer></script>
 </body>
 </html>

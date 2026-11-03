@@ -33,7 +33,7 @@
   addEventListener('resize', anchor);
   addEventListener('scroll', function () { if (!inHero) anchor(); }, { passive: true });
   if (finePointer && !reduce) {
-    hero.addEventListener('pointermove', function (e) { inHero = true; tx = e.clientX; ty = e.clientY; if (!raf) raf = requestAnimationFrame(loop); });
+    hero.addEventListener('pointermove', function (e) { if (!e.clientX && !e.clientY) return; inHero = true; tx = e.clientX; ty = e.clientY; if (!raf) raf = requestAnimationFrame(loop); });
     hero.addEventListener('pointerleave', function () { inHero = false; anchor(); if (!raf) raf = requestAnimationFrame(loop); });
     addEventListener('pointermove', function (e) {
       doc.style.setProperty('--mx', e.clientX + 'px');
@@ -97,10 +97,11 @@
   }
 
   /* ---------- 2. barra fija ---------- */
-  var bar = $('bar');
+  var bar = $('bar'), waFloat = document.querySelector('.wa-float');
   var links = bar ? bar.querySelectorAll('.bar-links a') : [];
   function onScroll() {
     bar.classList.toggle('is-on', scrollY > innerHeight * 0.7);
+    if (waFloat) waFloat.classList.toggle('is-on', scrollY > innerHeight * 0.7);
     var here = null;
     links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s && s.getBoundingClientRect().top < innerHeight * 0.4) here = a; });
     links.forEach(function (a) { a.classList.toggle('is-here', a === here); });
