@@ -284,6 +284,15 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .case-facts dt { font-weight: 700; font-size: 15px; }
 .case-facts dd { margin: 2px 0 0; color: var(--muted); }
 
+/* ================= OPINIONES ================= */
+.voices { padding: var(--gap) var(--m); background: var(--surface); }
+.voice-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.voice { display: grid; gap: 24px; align-content: space-between; padding: clamp(24px, 3vw, 40px); border-radius: 22px; background: var(--bg); }
+.voice blockquote { margin: 0; }
+.voice blockquote p { font: 500 clamp(19px, 1.7vw, 24px)/1.45 var(--text); }
+.voice figcaption { display: grid; gap: 2px; }
+.voice figcaption span { color: var(--muted); font-size: 15px; }
+
 /* ================= PRESUPUESTO ================= */
 .quote { padding: var(--gap) var(--m); background: var(--surface); }
 .calc { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 28px; align-items: start; }
@@ -382,7 +391,7 @@ body.no-scroll { overflow: hidden; }
 
 /* ================= TABLET ================= */
 @media (max-width: 1024px) {
-  .tpv-grid, .picker, .calc, .contact, .case { grid-template-columns: 1fr; }
+  .tpv-grid, .picker, .calc, .contact, .case, .voice-list { grid-template-columns: 1fr; }
   .case:nth-child(even) img { order: 0; }
   .calc-result { position: static; }
   .pedestal { max-width: 560px; width: 100%; margin: 0 auto; }
