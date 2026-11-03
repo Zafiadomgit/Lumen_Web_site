@@ -1,227 +1,197 @@
 /* Lumen Studio — interacción
-   1) la luz del farol sigue al puntero  2) entradas por sección  3) demo del TPV con la carta real de California */
+   1) luz del farol en el hero y luz del ratón por toda la página   2) barra fija
+   3) entradas por sección e inclinación de las capturas   4) vídeos solo en pantalla
+   5) TPV real incrustado (demos/tpv)   6) selector de héroes de Fendaria   7) juego a pantalla completa */
 (function () {
   'use strict';
   var doc = document.documentElement;
   doc.classList.add('js');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  var $ = function (id) { return document.getElementById(id); };
 
-  /* ---------- 1. luz del farol ---------- */
+  /* ---------- 1. luz ---------- */
   var hero = document.querySelector('.hero');
-  var win = document.querySelector('.lamp');
-  function anchorLight() {
-    if (!win) return;
-    var r = win.getBoundingClientRect();
-    tx = r.left + r.width / 2; ty = r.top + r.height * 0.42;
-    if (!moved) { lx = tx; ly = ty; paint(); }
+  var lamp = document.querySelector('.lamp');
+  var lx = 0, ly = 0, tx = 0, ty = 0, inHero = false, raf = 0;
+  function anchor() {
+    if (!lamp) return;
+    var r = lamp.getBoundingClientRect();
+    tx = r.left + r.width / 2; ty = r.top + r.height * 0.5;
+    if (!inHero) { lx = tx; ly = ty; paint(); }
   }
-  var lx = 0, ly = 0, tx = 0, ty = 0, moved = false, raf = 0;
   function paint() {
     doc.style.setProperty('--lx', lx.toFixed(1) + 'px');
     doc.style.setProperty('--ly', ly.toFixed(1) + 'px');
   }
   function loop() {
-    lx += (tx - lx) * 0.08; ly += (ty - ly) * 0.08;
-    paint();
-    if (Math.abs(tx - lx) > 0.5 || Math.abs(ty - ly) > 0.5) raf = requestAnimationFrame(loop); else raf = 0;
+    lx += (tx - lx) * 0.08; ly += (ty - ly) * 0.08; paint();
+    raf = (Math.abs(tx - lx) > 0.5 || Math.abs(ty - ly) > 0.5) ? requestAnimationFrame(loop) : 0;
   }
-  anchorLight();
-  addEventListener('resize', anchorLight);
-  addEventListener('scroll', function () { if (!moved) anchorLight(); }, { passive: true });
-  if (hero && !reduce) {
-    hero.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      moved = true; tx = e.clientX; ty = e.clientY;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-    hero.addEventListener('pointerleave', function () {
-      moved = false; var r = win.getBoundingClientRect();
-      tx = r.left + r.width / 2; ty = r.top + r.height * 0.42;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
+  anchor();
+  addEventListener('resize', anchor);
+  addEventListener('scroll', function () { if (!inHero) anchor(); }, { passive: true });
+  if (finePointer && !reduce) {
+    hero.addEventListener('pointermove', function (e) { inHero = true; tx = e.clientX; ty = e.clientY; if (!raf) raf = requestAnimationFrame(loop); });
+    hero.addEventListener('pointerleave', function () { inHero = false; anchor(); if (!raf) raf = requestAnimationFrame(loop); });
+    addEventListener('pointermove', function (e) {
+      doc.style.setProperty('--mx', e.clientX + 'px');
+      doc.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
   }
 
-  /* ---------- 2. entradas ---------- */
+  /* ---------- 2. barra fija ---------- */
+  var bar = $('bar');
+  var links = bar ? bar.querySelectorAll('.bar-links a') : [];
+  function onScroll() {
+    bar.classList.toggle('is-on', scrollY > innerHeight * 0.7);
+    var here = null;
+    links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s && s.getBoundingClientRect().top < innerHeight * 0.4) here = a; });
+    links.forEach(function (a) { a.classList.toggle('is-here', a === here); });
+  }
+  if (bar) { addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
+
+  /* ---------- 3. entradas e inclinación ---------- */
   var items = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !reduce) {
-    // escalonado dentro de cada sección: título, texto, imagen…
     var count = new Map();
     items.forEach(function (el) {
-      var sec = el.closest('section, .row') || document.body;
+      var sec = el.closest('.row, section') || document.body;
       var n = count.get(sec) || 0; count.set(sec, n + 1);
       el.style.setProperty('--d', Math.min(n, 6) * 75 + 'ms');
     });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
-      });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
     items.forEach(function (el) { io.observe(el); });
   } else {
     items.forEach(function (el) { el.classList.add('is-in'); });
   }
+  if (finePointer && !reduce) {
+    document.querySelectorAll('.tile').forEach(function (t) {
+      var img = t.querySelector('img');
+      t.addEventListener('pointermove', function (e) {
+        var r = img.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        img.style.setProperty('--ty', (x * 7).toFixed(2) + 'deg');
+        img.style.setProperty('--tx', (-y * 7).toFixed(2) + 'deg');
+      });
+      t.addEventListener('pointerleave', function () { img.style.removeProperty('--tx'); img.style.removeProperty('--ty'); });
+    });
+  }
 
-  /* ---------- vídeos: solo se reproducen en pantalla ---------- */
-  var vids = document.querySelectorAll('video.autoplay');
+  /* ---------- 4. vídeos ---------- */
   if ('IntersectionObserver' in window) {
-    var vo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
+    var vo = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
         var v = en.target;
-        if (en.isIntersecting && !reduce) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        else v.pause();
+        if (en.isIntersecting && !reduce) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
       });
     }, { threshold: 0.25 });
-    vids.forEach(function (v) { vo.observe(v); });
+    document.querySelectorAll('video.autoplay').forEach(function (v) { vo.observe(v); });
   }
 
-  /* ---------- deriva lenta de las capturas del juego al hacer scroll ---------- */
-  var drift = document.querySelectorAll('.portrait img');
-  if (drift.length && !reduce) {
-    var ticking = false;
-    var move = function () {
-      var vh = innerHeight;
-      drift.forEach(function (img, i) {
-        var r = img.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh) return;
-        var k = (r.top + r.height / 2 - vh / 2) / vh;
-        img.style.transform = 'translateY(' + (k * (i % 2 ? -36 : -18)).toFixed(1) + 'px) scale(1.06)';
-      });
-      ticking = false;
+  /* ---------- 5. TPV real ---------- */
+  var screen = $('tpvScreen'), frame = $('tpvFrame'), on = $('tpvOn');
+  if (screen && frame) {
+    var fit = function () { screen.style.setProperty('--k', (screen.clientWidth / 1366).toFixed(4)); };
+    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(screen); else addEventListener('resize', fit);
+    var start = function (route) {
+      if (!frame.src) frame.src = frame.dataset.src + (route || '#/');
+      else if (route) { try { frame.contentWindow.location.hash = route; } catch (e) { frame.src = frame.dataset.src + route; } }
+      screen.classList.add('is-on'); frame.tabIndex = 0;
     };
-    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(move); } }, { passive: true });
-    move();
+    on.addEventListener('click', function () { start(); });
+    var segs = Array.prototype.slice.call(document.querySelectorAll('.seg [role="tab"]'));
+    segs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        segs.forEach(function (x) { x.setAttribute('aria-selected', x === b); });
+        start(b.dataset.route);
+      });
+    });
   }
 
-  /* ---------- 3. TPV ---------- */
-  // carta real de California (TPV_restaurante/supabase/migration.sql)
-  var MENU = [
-    { id: 'kebab-ternera', n: 'Kebab de ternera', p: 4.5, img: 'kebab' },
-    { id: 'durum-mixto', n: 'Dürüm mixto', p: 6, img: 'durum' },
-    { id: 'lahmacum-mixto', n: 'Lahmacum mixto', p: 6.5, img: 'lahmacun' },
-    { id: 'plato-mixto', n: 'Plato mixto', p: 8, img: 'plato-mixto' },
-    { id: 'hamburguesa', n: 'Hamburguesa', p: 4.5, img: 'hamburguesa-clasica' },
-    { id: 'menu-doner', n: 'Menú Doner Kebab', p: 7.5, img: 'menu-doner-kebab' },
-    { id: 'patatas-m', n: 'Patatas fritas', p: 5, img: 'patatas-fritas' },
-    { id: 'refresco', n: 'Refresco lata', p: 1.8, img: 'coca-cola' }
+  /* ---------- 6. héroes de Fendaria ---------- */
+  var HEROES = [
+    { id: 'kara', n: 'Kara, la Rompeyelmos', role: 'Guerrera cuerpo a cuerpo', ult: 'Torbellino de Acero', sum: 'Guerrera de primera línea. Aguanta mucho castigo, golpea en arco a todo lo que tenga cerca y salta al centro de la pelea con su hacha.' },
+    { id: 'teo', n: 'Teo, Ojo de Halcón', role: 'Explorador a distancia', ult: 'Lluvia de Halcones', sum: 'Explorador a distancia. Dispara sin parar y castiga a los grupos desde lejos con flechas explosivas y lluvias de flechas, pero tiene poca vida.' },
+    { id: 'elara', n: 'Elara, la Runista', role: 'Mago protector', ult: 'Gran Runa Ancestral', sum: 'Arcanista de las runas. Se protege con escudos que absorben el daño, empuja a los enemigos y quema el suelo con círculos rúnicos.' },
+    { id: 'nyx', n: 'Nyx, la Sombra', role: 'Asesina de dagas', ult: 'Danza de Mil Cortes', sum: 'Asesina de dagas. Ataca rapidísimo, encadena críticos enormes y aparece a la espalda de sus presas. Muy frágil si la rodean.' },
+    { id: 'ayla', n: 'Ayla, la Domadora', role: 'Invocadora de bestias', ult: 'Estampida', sum: 'Invocadora de lobos. Su cayado de espíritus mantiene a raya a los enemigos mientras su manada los caza, y su rugido los vuelve imparables.' },
+    { id: 'brina', n: 'Brina, la Artificiera', role: 'Ingeniera explosiva', ult: 'Bombardeo', sum: 'Ingeniera de explosivos. Lanza bombas que estallan en área y planta torretas que disparan solas. Destroza grupos grandes.' },
+    { id: 'brann', n: 'Brann, el Berserker', role: 'Furia cuerpo a cuerpo', ult: 'Frenesí Rojo', sum: 'Guerrero salvaje. Cuanto más herido está, más fuerte golpea, y cada golpe le devuelve vida. Su espadón parte lo que toca.' }
   ];
-  var eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
-  var $ = function (id) { return document.getElementById(id); };
-  var menuEl = $('posMenu'), linesEl = $('posLines'), totalEl = $('posTotal'), sendEl = $('posSend');
-  var kdsEl = $('kds'), tillEl = $('till'), countEl = $('kdsCount'), whereEl = $('posWhere');
-  if (!menuEl) return;
-
-  var cart = {}, orders = [], seq = 11, table = 4;
-
-  MENU.forEach(function (d) {
-    var li = document.createElement('li');
-    li.innerHTML = '<button class="dish" type="button" data-id="' + d.id + '" aria-label="Añadir ' + d.n + ', ' + eur.format(d.p) + '">' +
-      '<img src="assets/img/menu/' + d.img + '.webp" width="360" height="225" alt="" loading="lazy">' +
-      '<span>' + d.n + '<b>' + eur.format(d.p) + '</b></span></button>';
-    menuEl.appendChild(li);
-  });
-
-  function total(c) { return Object.keys(c).reduce(function (s, id) { return s + find(id).p * c[id]; }, 0); }
-  function find(id) { return MENU.filter(function (d) { return d.id === id; })[0]; }
-
-  function renderCart() {
-    var ids = Object.keys(cart);
-    if (!ids.length) { linesEl.innerHTML = '<li class="pos-empty">Toca un plato para añadirlo</li>'; }
-    else {
-      linesEl.innerHTML = ids.map(function (id) {
-        var d = find(id);
-        return '<li><span class="qty">' + cart[id] + '</span><span>' + d.n + '</span>' +
-          '<button type="button" data-less="' + id + '" aria-label="Quitar un ' + d.n + '">−</button></li>';
-      }).join('');
+  var sprite = $('heroSprite'), roster = $('roster');
+  if (sprite && roster) {
+    var cur = 0, move = 'idle';
+    var src = function (h, m) { return 'assets/img/heroes/' + h.id + '_' + m + '.webp'; };
+    HEROES.forEach(function (h, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', i === 0); b.setAttribute('aria-label', h.n);
+      b.tabIndex = i === 0 ? 0 : -1;
+      b.innerHTML = '<img src="' + src(h, 'idle') + '" width="174" height="174" alt="" loading="lazy">';
+      b.addEventListener('click', function () { pick(i); });
+      b.addEventListener('keydown', function (e) {
+        var j = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+        if (j === null) return; e.preventDefault();
+        j = (j + HEROES.length) % HEROES.length; pick(j); roster.children[j].focus();
+      });
+      roster.appendChild(b);
+      ['attack', 'cast', 'dash'].forEach(function (m) { var im = new Image(); im.src = src(h, m); }); // precarga
+    });
+    var setSprite = function () {
+      var h = HEROES[cur];
+      sprite.src = src(h, move) + '?t=' + Date.now(); // reinicia la animación desde el primer fotograma
+      sprite.alt = h.n;
+    };
+    var pick = function (i) {
+      cur = i;
+      var h = HEROES[i];
+      Array.prototype.forEach.call(roster.children, function (b, k) { b.setAttribute('aria-selected', k === i); b.tabIndex = k === i ? 0 : -1; });
+      $('heroName').textContent = h.n; $('heroRole').textContent = h.role; $('heroSum').textContent = h.sum; $('heroUlt').textContent = h.ult;
+      sprite.classList.add('is-swap');
+      setTimeout(function () { setSprite(); sprite.classList.remove('is-swap'); }, 180);
+    };
+    var moves = Array.prototype.slice.call(document.querySelectorAll('.moves button'));
+    moves.forEach(function (b) {
+      b.addEventListener('click', function () {
+        move = b.dataset.move;
+        moves.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        setSprite();
+      });
+    });
+    // la luz del pedestal sigue al ratón
+    var ped = document.querySelector('.pedestal');
+    if (ped && finePointer && !reduce) {
+      ped.addEventListener('pointermove', function (e) {
+        var r = ped.getBoundingClientRect();
+        ped.style.setProperty('--px', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        ped.style.setProperty('--py', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
     }
-    totalEl.textContent = eur.format(total(cart));
-    sendEl.disabled = !ids.length;
   }
 
-  menuEl.addEventListener('click', function (e) {
-    var b = e.target.closest('.dish'); if (!b) return;
-    cart[b.dataset.id] = (cart[b.dataset.id] || 0) + 1;
-    renderCart();
-  });
-  linesEl.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-less]'); if (!b) return;
-    var id = b.dataset.less; cart[id]--; if (cart[id] <= 0) delete cart[id];
-    renderCart();
-  });
-
-  sendEl.addEventListener('click', function () {
-    if (!Object.keys(cart).length) return;
-    seq++;
-    orders.push({ n: seq, table: table, items: cart, at: Date.now(), done: false, paid: false });
-    cart = {}; table = table % 12 + 1; whereEl.textContent = 'Mesa ' + table;
-    renderCart(); renderKds(); renderTill();
-    sendEl.textContent = 'Enviado a cocina';
-    setTimeout(function () { sendEl.textContent = 'Enviar a cocina'; }, 1400);
-  });
-
-  function itemsList(c) {
-    return Object.keys(c).map(function (id) { return '<li>' + c[id] + ' × ' + find(id).n + '</li>'; }).join('');
+  /* ---------- 7. jugar a Fendaria ---------- */
+  var modal = $('gameModal'), gframe = $('gameFrame'), lastFocus = null;
+  function openGame() {
+    lastFocus = document.activeElement;
+    if (!gframe.src) gframe.src = 'demos/fendaria/index.html';
+    modal.hidden = false; document.body.classList.add('no-scroll');
+    setTimeout(function () { try { gframe.focus(); } catch (e) {} }, 300);
   }
-  function ago(t) { var s = Math.floor((Date.now() - t) / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
-
-  function renderKds() {
-    var open = orders.filter(function (o) { return !o.done; }).length;
-    countEl.hidden = !open; countEl.textContent = open;
-    if (!orders.length) { kdsEl.innerHTML = '<li class="pos-empty">Sin comandas. Envía un pedido desde Sala.</li>'; return; }
-    kdsEl.innerHTML = orders.slice().reverse().map(function (o) {
-      return '<li class="kds-card' + (o.done ? ' is-done' : '') + '"><p class="kds-head"><span>#' + o.n + ' · Mesa ' + o.table + '</span>' +
-        '<time data-at="' + o.at + '">' + ago(o.at) + '</time></p><ul>' + itemsList(o.items) + '</ul>' +
-        '<button type="button" data-done="' + o.n + '">' + (o.done ? 'Hecho' : 'Marcar listo') + '</button></li>';
-    }).join('');
+  function closeGame() {
+    if (document.fullscreenElement) document.exitFullscreen().catch(function () {});
+    modal.hidden = true; document.body.classList.remove('no-scroll');
+    gframe.src = 'about:blank'; gframe.removeAttribute('src'); // para el juego y su música
+    if (lastFocus) lastFocus.focus();
   }
-  kdsEl.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-done]'); if (!b) return;
-    orders.forEach(function (o) { if (o.n === +b.dataset.done) o.done = !o.done; });
-    renderKds();
-  });
-  setInterval(function () {
-    kdsEl.querySelectorAll('time[data-at]').forEach(function (t) { t.textContent = ago(+t.dataset.at); });
-  }, 1000);
-
-  function renderTill() {
-    if (!orders.length) { tillEl.innerHTML = '<p class="pos-empty">Nada por cobrar todavía.</p>'; return; }
-    tillEl.innerHTML = orders.slice().reverse().map(function (o) {
-      var t = total(o.items), base = t / 1.1;
-      return '<div class="till-order"><p class="till-row"><strong>#' + o.n + ' · Mesa ' + o.table + '</strong>' +
-        (o.paid ? '<span class="till-paid">Cobrado · ' + o.paid + '</span>' : '<span>Pendiente</span>') + '</p>' +
-        '<p class="till-row"><span>Base imponible</span><span>' + eur.format(base) + '</span></p>' +
-        '<p class="till-row"><span>IVA 10 %</span><span>' + eur.format(t - base) + '</span></p>' +
-        '<p class="till-row big"><span>Total</span><span>' + eur.format(t) + '</span></p>' +
-        (o.paid ? '' : '<div class="till-pay"><button type="button" data-pay="' + o.n + '" data-how="tarjeta">Tarjeta</button>' +
-          '<button type="button" data-pay="' + o.n + '" data-how="efectivo">Efectivo</button></div>') + '</div>';
-    }).join('');
-  }
-  tillEl.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-pay]'); if (!b) return;
-    orders.forEach(function (o) { if (o.n === +b.dataset.pay) o.paid = b.dataset.how; });
-    renderTill();
-  });
-
-  // pestañas Sala / Cocina / Caja (teclado: flechas)
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role="tab"]'));
-  function select(tab, focus) {
-    tabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
-      $(t.getAttribute('aria-controls')).hidden = !on;
+  if (modal) {
+    $('playGame').addEventListener('click', openGame);
+    $('gameClose').addEventListener('click', closeGame);
+    $('gameFull').addEventListener('click', function () {
+      var p = modal.requestFullscreen ? modal.requestFullscreen() : null;
+      if (p && p.then) p.then(function () { if (window.screen.orientation && window.screen.orientation.lock) window.screen.orientation.lock('landscape').catch(function () {}); }).catch(function () {});
     });
-    if (focus) tab.focus();
+    addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden && !document.fullscreenElement) closeGame(); });
   }
-  tabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { select(t); });
-    t.addEventListener('keydown', function (e) {
-      var k = e.key, j = k === 'ArrowRight' ? i + 1 : k === 'ArrowLeft' ? i - 1 : null;
-      if (j === null) return; e.preventDefault();
-      select(tabs[(j + tabs.length) % tabs.length], true);
-    });
-  });
-
-  $('posReset').addEventListener('click', function () {
-    cart = {}; orders = []; seq = 11; table = 4; whereEl.textContent = 'Mesa 4';
-    renderCart(); renderKds(); renderTill(); select(tabs[0]);
-  });
 })();

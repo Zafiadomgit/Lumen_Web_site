@@ -4,32 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lumen Studio — Webs, apps, videojuegos y TPV</title>
-  <meta name="description" content="Lumen Studio diseña y programa webs, apps, videojuegos y TPV para restaurantes. Del primer boceto a la tienda de apps.">
+  <meta name="description" content="Lumen Studio diseña y programa webs, apps, videojuegos y TPV para restaurantes. Prueba nuestro TPV y juega a Fendaria desde el navegador.">
   <meta name="theme-color" content="#0a090d">
   <meta property="og:title" content="Lumen Studio — Webs, apps, videojuegos y TPV">
   <meta property="og:description" content="Diseñamos y programamos webs, apps, videojuegos y TPV para restaurantes.">
-  <meta property="og:image" content="assets/img/lumen-intro.webp">
+  <meta property="og:image" content="assets/img/fx-titulo.webp">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <a class="skip" href="#proyectos">Saltar al contenido</a>
+  <div class="glow" aria-hidden="true"></div>
+
+  <!-- barra fija: aparece al bajar -->
+  <nav class="bar" id="bar" aria-label="Principal">
+    <a class="wordmark" href="#inicio" aria-label="Lumen Studio, inicio"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+    <div class="bar-links">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#tpv">TPV</a>
+      <a href="#fendaria">Fendaria</a>
+      <a href="#servicios">Servicios</a>
+    </div>
+    <a class="btn btn--s" href="#contacto">Hablemos</a>
+  </nav>
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="inicio">
-    <nav class="hero-top" aria-label="Principal">
-      <a class="hero-link" href="#proyectos">Proyectos</a>
-      <a class="wordmark" href="#inicio" aria-label="Lumen Studio, inicio">
-        <span class="farol farol--s" aria-hidden="true"></span>
-        <span>Lumen Studio</span>
-      </a>
-      <a class="hero-link" href="#contacto">Contacto</a>
-    </nav>
+    <div class="hero-top">
+      <a class="hero-link" href="#tpv">Prueba el TPV</a>
+      <span class="hero-mark" aria-hidden="true"></span>
+      <a class="hero-link" href="#fendaria">Juega a Fendaria</a>
+    </div>
 
     <div class="hero-stage">
       <div class="lamp" aria-hidden="true">
@@ -52,259 +62,204 @@
   <main>
     <!-- ============ PROYECTOS ============ -->
     <section class="work" id="proyectos" aria-labelledby="work-title">
-      <div class="work-head">
-        <h2 class="giant" id="work-title" data-reveal>Proyectos</h2>
+      <div class="head">
+        <h2 class="h-xl" id="work-title" data-reveal>Proyectos</h2>
         <a class="u-link" href="https://github.com/Zafiadomgit" target="_blank" rel="noopener" data-reveal>Nuestro código en GitHub</a>
       </div>
 
       <div class="wall">
-        <div class="row" style="--h:240px">
-          <figure class="tile" style="--r:1.778" data-reveal>
-            <img src="assets/img/fendaria-portada.webp" width="1600" height="900" alt="Pantalla de título de Fendaria: siete héroes frente a un portal rúnico" loading="lazy">
-            <figcaption><span>Fendaria · videojuego Android</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:1.6" data-reveal>
-            <img src="assets/img/vitrales-hero.webp" width="1440" height="900" alt="Portada de la web de Vitrales Perafán con un vitral de fondo" loading="lazy">
-            <figcaption><span>Vitrales Perafán · web</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:1.905" data-reveal>
-            <img src="assets/img/california-logo.webp" width="1200" height="630" alt="Logotipo de California, kebab, hamburguesería y pizzería" loading="lazy">
-            <figcaption><span>California · TPV</span><span>2026</span></figcaption>
-          </figure>
+        <div class="row" style="--h:250px">
+          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-titulo.webp" width="1280" height="720" alt="Pantalla de título de Fendaria con los siete héroes" loading="lazy"><figcaption><span>Fendaria · videojuego</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:1.6" data-reveal><img src="assets/img/vitrales-hero.webp" width="1440" height="900" alt="Portada de la web de Vitrales Perafán" loading="lazy"><figcaption><span>Vitrales Perafán · web</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:1.334" data-reveal><img src="assets/img/tpv-categorias.webp" width="1366" height="1024" alt="Kiosco del TPV de California: elegir categoría" loading="lazy"><figcaption><span>California · TPV</span><span>2026</span></figcaption></figure>
         </div>
-        <div class="row" style="--h:360px">
-          <figure class="tile" style="--r:1.778" data-reveal>
-            <img src="assets/img/fendaria-villa.webp" width="1600" height="900" alt="Villa Candela en Fendaria: plaza con portal, mercader, herrero y alquimista" loading="lazy">
-            <figcaption><span>Fendaria · Villa Candela</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:0.462" data-reveal>
-            <img src="assets/img/althaya-movil.webp" width="390" height="844" alt="Web de Althaya vista en un móvil" loading="lazy">
-            <figcaption><span>Althaya · móvil</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:1.2" data-reveal>
-            <img src="assets/img/althaya-galeria.webp" width="1440" height="1200" alt="Galería de la web de Althaya, centro de masajes en Perth" loading="lazy">
-            <figcaption><span>Althaya · web</span><span>2026</span></figcaption>
-          </figure>
+        <div class="row" style="--h:340px">
+          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-villa.webp" width="1280" height="720" alt="Villa Candela en Fendaria" loading="lazy"><figcaption><span>Fendaria · Villa Candela</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:0.462" data-reveal><img src="assets/img/althaya-movil.webp" width="390" height="844" alt="Web de Althaya en un móvil" loading="lazy"><figcaption><span>Althaya · móvil</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:1.2" data-reveal><img src="assets/img/althaya-galeria.webp" width="1440" height="1200" alt="Galería de la web de Althaya" loading="lazy"><figcaption><span>Althaya · web</span><span>2026</span></figcaption></figure>
         </div>
-        <div class="row" style="--h:200px">
-          <figure class="tile" style="--r:1.6" data-reveal>
-            <img src="assets/img/althaya-hero.webp" width="1440" height="900" alt="Portada de la web de Althaya" loading="lazy">
-            <figcaption><span>Althaya · portada</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:1.778" data-reveal>
-            <img src="assets/img/fendaria-combate.webp" width="1600" height="900" alt="Combate en una Grieta de Fendaria" loading="lazy">
-            <figcaption><span>Fendaria · combate</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:0.462" data-reveal>
-            <img src="assets/img/vitrales-movil.webp" width="390" height="844" alt="Web de Vitrales Perafán vista en un móvil" loading="lazy">
-            <figcaption><span>Vitrales · móvil</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:1.778" data-reveal>
-            <img src="assets/img/fendaria-heroes.webp" width="1600" height="900" alt="Ficha de selección de héroe en Fendaria" loading="lazy">
-            <figcaption><span>Fendaria · héroes</span><span>2026</span></figcaption>
-          </figure>
+        <div class="row" style="--h:220px">
+          <figure class="tile" style="--r:1.334" data-reveal><img src="assets/img/tpv-carta.webp" width="1366" height="1024" alt="Carta del kiosco de California con el pedido al lado" loading="lazy"><figcaption><span>California · carta</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-combate.webp" width="1280" height="720" alt="Combate en una Grieta de Fendaria" loading="lazy"><figcaption><span>Fendaria · combate</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:0.462" data-reveal><img src="assets/img/vitrales-movil.webp" width="390" height="844" alt="Web de Vitrales Perafán en un móvil" loading="lazy"><figcaption><span>Vitrales · móvil</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-heroes.webp" width="1280" height="720" alt="Selección de héroe en Fendaria" loading="lazy"><figcaption><span>Fendaria · héroes</span><span>2026</span></figcaption></figure>
         </div>
-        <div class="row" style="--h:300px">
-          <figure class="tile" style="--r:1.6" data-reveal>
-            <img src="assets/img/vitrales-taller.webp" width="1440" height="900" alt="Sección del taller en la web de Vitrales Perafán" loading="lazy">
-            <figcaption><span>Vitrales Perafán · el taller</span><span>2026</span></figcaption>
-          </figure>
-          <figure class="tile" style="--r:1.778" data-reveal>
-            <img src="assets/img/fendaria-superjefe.webp" width="1600" height="900" alt="Súper Jefe de hielo en Fendaria" loading="lazy">
-            <figcaption><span>Fendaria · Súper Jefe</span><span>2026</span></figcaption>
-          </figure>
+        <div class="row" style="--h:280px">
+          <figure class="tile" style="--r:1.6" data-reveal><img src="assets/img/vitrales-taller.webp" width="1440" height="900" alt="Sección del taller en la web de Vitrales Perafán" loading="lazy"><figcaption><span>Vitrales Perafán · el taller</span><span>2026</span></figcaption></figure>
+          <figure class="tile" style="--r:1.518" data-reveal><img src="assets/img/tpv-cocina.webp" width="1366" height="900" alt="Pantalla de cocina del TPV con una comanda" loading="lazy"><figcaption><span>California · cocina</span><span>2026</span></figcaption></figure>
         </div>
       </div>
     </section>
 
-    <!-- ============ TPV (demo en vivo) ============ -->
-    <section class="showcase" id="tpv" aria-labelledby="tpv-title">
-      <div class="plate">
-        <div class="pos" data-ui id="pos" aria-label="Demostración del TPV de California">
-          <div class="pos-bar">
-            <img src="assets/img/california-marca.webp" width="480" height="125" alt="California" class="pos-logo">
-            <span class="pos-where" id="posWhere">Mesa 4</span>
-          </div>
+    <!-- ============ TPV EN VIVO ============ -->
+    <section class="tpv" id="tpv" aria-labelledby="tpv-title">
+      <div class="head">
+        <h2 class="h-xl" id="tpv-title" data-reveal>Prueba el TPV</h2>
+        <p class="head-sub" data-reveal>Es el TPV real que usa California en sus dos locales, con datos de prueba. Pide en el kiosco y mira cómo llega la comanda a cocina.</p>
+      </div>
 
-          <div class="pos-view" id="view-sala" role="tabpanel" aria-labelledby="tab-sala">
-            <ul class="pos-menu" id="posMenu" aria-label="Carta">
-              <!-- se rellena desde js/main.js con la carta real -->
-            </ul>
-            <div class="pos-ticket">
-              <p class="pos-ticket-title">Pedido</p>
-              <ul class="pos-lines" id="posLines" aria-live="polite"><li class="pos-empty">Toca un plato para añadirlo</li></ul>
-              <p class="pos-total"><span>Total</span><strong id="posTotal">0,00 €</strong></p>
-              <button class="pos-send" id="posSend" type="button" disabled>Enviar a cocina</button>
+      <div class="tpv-grid">
+        <div class="device" data-reveal>
+          <div class="device-bar">
+            <div class="seg" role="tablist" aria-label="Pantallas del TPV">
+              <button role="tab" aria-selected="true" data-route="#/" type="button">Kiosco</button>
+              <button role="tab" aria-selected="false" data-route="#/cocina" type="button">Cocina</button>
+              <button role="tab" aria-selected="false" data-route="#/caja" type="button">Caja</button>
             </div>
+            <a class="device-full" href="demos/tpv/" target="_blank" rel="noopener">Abrir a pantalla completa ↗</a>
           </div>
-
-          <div class="pos-view" id="view-cocina" role="tabpanel" aria-labelledby="tab-cocina" hidden>
-            <ul class="kds" id="kds" aria-live="polite"><li class="pos-empty">Sin comandas. Envía un pedido desde Sala.</li></ul>
+          <div class="screen" id="tpvScreen">
+            <iframe id="tpvFrame" title="Demo del TPV de California" loading="lazy" data-src="demos/tpv/" tabindex="-1"></iframe>
+            <button class="screen-cover" id="tpvOn" type="button" aria-label="Encender la demo del TPV">
+              <img src="assets/img/tpv-salvapantallas.webp" width="1366" height="1024" alt="" loading="lazy">
+              <span class="play">Encender el TPV</span>
+            </button>
           </div>
+          <p class="device-note">Cocina y caja piden un PIN: en la demo vale cualquiera de 4 cifras.</p>
+        </div>
 
-          <div class="pos-view" id="view-caja" role="tabpanel" aria-labelledby="tab-caja" hidden>
-            <div class="till" id="till"><p class="pos-empty">Nada por cobrar todavía.</p></div>
+        <ul class="feats">
+          <li data-reveal><strong>Kiosco que vende solo.</strong> Salvapantallas en vídeo, español e inglés, y fotos de cada plato.</li>
+          <li data-reveal><strong>Cada plato a su gusto.</strong> Quitar ingredientes, extras y menú con patatas y bebida; el precio se recalcula al momento.</li>
+          <li data-reveal><strong>Cocina en tiempo real.</strong> La comanda llega con su temporizador y se marca lista con un toque.</li>
+          <li data-reveal><strong>Caja y tickets.</strong> Turnos, cobro en efectivo o tarjeta, IVA desglosado e impresión automática.</li>
+          <li data-reveal><strong>Varias sedes.</strong> Medina de Pomar y Villarcayo, cada una con su cocina y su caja.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ FENDARIA ============ -->
+    <section class="game" id="fendaria" aria-labelledby="game-title">
+      <div class="head">
+        <h2 class="h-xl game-title" id="game-title" data-reveal>Fendaria</h2>
+        <p class="head-sub" data-reveal>Nuestro hack &amp; slash: arte, música y código hechos en casa. Elige un héroe y pruébalo.</p>
+      </div>
+
+      <div class="picker" id="picker">
+        <div class="pedestal" data-reveal>
+          <img class="hero-sprite" id="heroSprite" src="assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, la Rompeyelmos">
+          <div class="moves" role="group" aria-label="Acciones">
+            <button type="button" data-move="idle" aria-pressed="true">Reposo</button>
+            <button type="button" data-move="attack" aria-pressed="false">Ataque</button>
+            <button type="button" data-move="cast" aria-pressed="false">Habilidad</button>
+            <button type="button" data-move="dash" aria-pressed="false">Esquiva</button>
+          </div>
+        </div>
+
+        <div class="hero-info">
+          <p class="hero-role" id="heroRole">Guerrera cuerpo a cuerpo</p>
+          <h3 class="hero-name" id="heroName">Kara, la Rompeyelmos</h3>
+          <p class="hero-sum" id="heroSum">Guerrera de primera línea. Aguanta mucho castigo, golpea en arco a todo lo que tenga cerca y salta al centro de la pelea con su hacha.</p>
+          <p class="hero-ult"><span>Definitiva</span> <strong id="heroUlt">Torbellino de Acero</strong></p>
+
+          <div class="roster" role="tablist" aria-label="Héroes" id="roster"></div>
+
+          <div class="play-row">
+            <button class="btn" type="button" id="playGame">Jugar ahora en el navegador</button>
+            <p class="muted">Teclado: WASD para moverte, J o espacio para atacar.</p>
           </div>
         </div>
       </div>
 
-      <div class="showcase-copy">
-        <div class="tabs" role="tablist" aria-label="Pantallas del TPV">
-          <button role="tab" id="tab-sala" aria-controls="view-sala" aria-selected="true" type="button">Sala</button>
-          <button role="tab" id="tab-cocina" aria-controls="view-cocina" aria-selected="false" tabindex="-1" type="button">Cocina <span class="badge" id="kdsCount" hidden>0</span></button>
-          <button role="tab" id="tab-caja" aria-controls="view-caja" aria-selected="false" tabindex="-1" type="button">Caja</button>
-        </div>
-
-        <div class="showcase-text">
-          <h2 class="h2" id="tpv-title" data-reveal>Un TPV que habla con cocina</h2>
-          <p data-reveal>Lo hicimos para California, kebab y pizzería. El cliente pide en pantalla, la comanda sale en cocina al instante y la caja cuadra sola, con ticket impreso y varias sedes.</p>
-          <p class="muted" data-reveal>Esta es su carta real, con sus precios. Haz un pedido, mándalo a cocina y cóbralo.</p>
-        </div>
-
-        <div class="cells">
-          <a class="cell cell--ink" href="#contacto">Quiero un TPV así</a>
-          <button class="cell cell--tone" type="button" id="posReset">Reiniciar la demo</button>
+      <div class="game-media">
+        <figure class="film" data-reveal>
+          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" poster="assets/img/fendaria-prologo-poster.webp" aria-label="Cinemática del prólogo de Fendaria">
+            <source src="assets/video/fendaria-prologo.webm" type="video/webm">
+            <source src="assets/video/fendaria-prologo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Prólogo: la Orden de las Runas, el Cerrajero y los siete héroes.</figcaption>
+        </figure>
+        <div class="shots">
+          <figure data-reveal><img src="assets/img/fx-portal.webp" width="1280" height="720" alt="El héroe ante el Portal Rúnico de la plaza" loading="lazy"><figcaption>El Portal Rúnico</figcaption></figure>
+          <figure data-reveal><img src="assets/img/fx-nivel.webp" width="1280" height="720" alt="Subida de nivel en mitad de una Grieta" loading="lazy"><figcaption>Dentro de una Grieta</figcaption></figure>
         </div>
       </div>
     </section>
 
     <!-- ============ SERVICIOS ============ -->
     <section class="services" id="servicios" aria-labelledby="services-title">
-      <h2 class="h2 services-title" id="services-title" data-reveal>Qué hacemos</h2>
-      <ul class="poster">
-        <li data-reveal><span class="poster-word">Webs</span><span class="poster-fact">Landing, corporativa y tienda</span></li>
-        <li data-reveal><span class="poster-word">Apps</span><span class="poster-fact">iOS y Android</span></li>
-        <li data-reveal><span class="poster-word">Juegos</span><span class="poster-fact">Android y navegador</span></li>
-        <li data-reveal><span class="poster-word">TPV</span><span class="poster-fact">Sala, cocina y caja</span></li>
-        <li data-reveal><span class="poster-word">A medida</span><span class="poster-fact">Paneles, facturación y SaaS</span></li>
+      <div class="head">
+        <h2 class="h-xl" id="services-title" data-reveal>Qué hacemos</h2>
+      </div>
+      <ul class="svc">
+        <li data-reveal><span class="svc-word">Webs</span><span class="svc-fact">Landing, corporativa y tienda, rápidas y a medida.</span></li>
+        <li data-reveal><span class="svc-word">Apps</span><span class="svc-fact">iOS y Android, con su ficha en las tiendas.</span></li>
+        <li data-reveal><span class="svc-word">Juegos</span><span class="svc-fact">Android y navegador, del arte a la música.</span></li>
+        <li data-reveal><span class="svc-word">TPV</span><span class="svc-fact">Kiosco, cocina y caja para restaurantes.</span></li>
+        <li data-reveal><span class="svc-word">A medida</span><span class="svc-fact">Paneles, facturación y SaaS.</span></li>
+        <li data-reveal><span class="svc-word">Y después</span><span class="svc-fact">Mantenimiento y mejoras contigo.</span></li>
       </ul>
     </section>
 
     <!-- ============ PROCESO ============ -->
     <section class="process" id="proceso" aria-labelledby="process-title">
-      <div class="process-side" aria-hidden="true">
-        <span class="farol farol--m"></span>
-      </div>
+      <div class="process-side" aria-hidden="true"><span class="farol farol--m"></span></div>
       <div class="process-col">
-        <h2 class="h2" id="process-title" data-reveal>¿Cómo trabajamos?</h2>
-
+        <h2 class="h-l" id="process-title" data-reveal>¿Cómo trabajamos?</h2>
         <div class="stage">
           <p data-reveal><strong>Para empezar,</strong> una llamada. Nos cuentas qué quieres conseguir, no qué tecnología usar, y te mandamos por escrito qué vamos a hacer, cuánto cuesta y cuándo estará.</p>
           <div class="evidence evidence--three" data-reveal>
             <img src="assets/img/vitrales-movil.webp" width="390" height="844" alt="Vitrales Perafán en móvil" loading="lazy">
             <img src="assets/img/althaya-movil.webp" width="390" height="844" alt="Althaya en móvil" loading="lazy">
-            <img src="assets/img/fendaria-p2.webp" width="800" height="1000" alt="Detalle de la ficha de héroe de Fendaria" loading="lazy">
+            <img src="assets/img/tpv-inicio.webp" width="1366" height="1024" alt="Inicio del kiosco de California" loading="lazy">
           </div>
         </div>
-
         <div class="stage">
           <p data-reveal><strong>En la primera semana,</strong> diseño. Marca, pantallas y recorrido completo antes de escribir código, para que veas tu producto y lo cambies cuando todavía es barato.</p>
           <figure class="evidence" data-reveal>
-            <video class="autoplay" width="960" height="540" muted loop playsinline preload="none" poster="assets/img/lumen-intro-poster.webp" aria-label="Animación de entrada de Lumen Studio: la luz se concentra, aparece el farol y se forja el nombre">
+            <video class="autoplay" width="960" height="540" muted loop playsinline preload="none" poster="assets/img/lumen-intro-poster.webp" aria-label="Animación de entrada de Lumen Studio">
               <source src="assets/video/lumen-intro.webm" type="video/webm">
               <source src="assets/video/lumen-intro.mp4" type="video/mp4">
             </video>
             <figcaption>Nuestra intro animada, programada en el lienzo del juego.</figcaption>
           </figure>
         </div>
-
         <div class="stage">
-          <p data-reveal><strong>Después,</strong> código propio. Nada de plantillas: cada animación, cada pantalla y cada sonido se escribe para tu proyecto. Este es el farol de nuestro logo, dibujado en el lienzo de Fendaria:</p>
-<pre class="evidence code" data-reveal><code>// emblema: farol dorado con la llama animada en 8 fotogramas
-var FAROL = new Image();
-FAROL.src = 'img/ui/lumen_farol.webp';
-var fi = Math.floor(T * 10) % 8;
-g.drawImage(FAROL, fi * 256, 0, 256, 256,
-            x0 - fh / 2, y0 - fh * 0.56, fh, fh);</code></pre>
-        </div>
-
-        <div class="stage">
-          <p data-reveal><strong>Al publicar,</strong> nos quedamos. Subimos la web a tu dominio o la app a Google Play, medimos cómo se usa y seguimos mejorándola contigo.</p>
+          <p data-reveal><strong>Después,</strong> código propio. Nada de plantillas: cada animación, cada pantalla y cada sonido se escribe para tu proyecto.</p>
           <figure class="evidence" data-reveal>
-            <img src="assets/img/fendaria-destacado.webp" width="1024" height="500" alt="Gráfico destacado de Fendaria para Google Play" loading="lazy">
+            <img src="assets/img/tpv-personalizar.webp" width="1366" height="1024" alt="Personalizar un kebab en el kiosco: quitar ingredientes y extras" loading="lazy">
           </figure>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ FENDARIA ============ -->
-    <section class="game" id="fendaria" aria-labelledby="game-title">
-      <div class="game-head">
-        <h2 class="giant game-title" id="game-title" data-reveal>Fendaria</h2>
-        <p class="game-sub" data-reveal>Nuestro hack &amp; slash para Android. Arte, música y código, todo hecho en casa.</p>
-      </div>
-      <figure class="game-film" data-reveal>
-        <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" poster="assets/img/fendaria-prologo-poster.webp" aria-label="Cinemática del prólogo de Fendaria">
-          <source src="assets/video/fendaria-prologo.webm" type="video/webm">
-          <source src="assets/video/fendaria-prologo.mp4" type="video/mp4">
-        </video>
-        <figcaption>Prólogo del juego: la Orden de las Runas, el Cerrajero y los siete héroes.</figcaption>
-      </figure>
-      <div class="game-items">
-        <figure class="portrait" data-reveal>
-          <img src="assets/img/fendaria-p1.webp" width="800" height="1000" alt="Los héroes de Fendaria ante el portal rúnico" loading="lazy">
-          <figcaption><strong>Siete héroes</strong><span>Pantalla de título</span>Rompeyelmos, Ojo de Halcón, Runista, Sombra, Domadora, Artificiera y Berserker, cada uno con su partida y su historia.</figcaption>
-        </figure>
-        <figure class="portrait" data-reveal>
-          <img src="assets/img/fendaria-p2.webp" width="800" height="1000" alt="Ficha de Brann, el Berserker" loading="lazy">
-          <figcaption><strong>Brann, el Berserker</strong><span>Ficha de personaje</span>Cuanto más herido está, más fuerte golpea. Cada clase tiene atributos, tres habilidades y una definitiva propia.</figcaption>
-        </figure>
-        <figure class="portrait" data-reveal>
-          <img src="assets/img/fendaria-p3.webp" width="800" height="1000" alt="Titán del Invierno Eterno, Súper Jefe del Glaciar Rúnico" loading="lazy">
-          <figcaption><strong>Titán del Invierno Eterno</strong><span>Súper Jefe</span>Ocho mundos con terreno, clima y Guardián propios. Al final de cada uno espera un Súper Jefe que entra en furia a media vida.</figcaption>
-        </figure>
-        <figure class="portrait" data-reveal>
-          <img src="assets/img/fendaria-p4.webp" width="800" height="1000" alt="Combate en el Bosque de Cristal" loading="lazy">
-          <figcaption><strong>Bosque de Cristal</strong><span>Acto II</span>Iluminación dinámica sobre pixel art y una banda sonora original sintetizada por código, una pista por mundo.</figcaption>
-        </figure>
+        <div class="stage">
+          <p data-reveal><strong>Al publicar,</strong> nos quedamos. Subimos la web a tu dominio o la app a Google Play, medimos cómo se usa y seguimos mejorándola contigo.</p>
+        </div>
       </div>
     </section>
 
     <!-- ============ CONTACTO ============ -->
     <section class="contact" id="contacto" aria-labelledby="contact-title">
-      <h2 class="contact-lede" id="contact-title">¿Qué quieres construir?</h2>
-      <p class="contact-sub">Web, app, juego o TPV: escríbenos y te respondemos con una propuesta.</p>
-      <a class="email" href="mailto:hola@lumenstudio.es?subject=Proyecto%20para%20Lumen%20Studio&body=Hola%2C%20quiero%20hablar%20de%20un%20proyecto%3A%20">hola@<wbr>lumenstudio.es</a>
-      <div class="contact-foot">
-        <p>En remoto · España y Latinoamérica</p>
-        <p><a href="https://github.com/Zafiadomgit" target="_blank" rel="noopener">GitHub</a></p>
+      <div>
+        <h2 class="h-l" id="contact-title">¿Qué quieres construir?</h2>
+        <p class="contact-sub">Web, app, juego o TPV: escríbenos y te respondemos con una propuesta.</p>
       </div>
+      <a class="email" href="mailto:hola@lumenstudio.es?subject=Proyecto%20para%20Lumen%20Studio&body=Hola%2C%20quiero%20hablar%20de%20un%20proyecto%3A%20">hola@lumenstudio.es</a>
     </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- ============ PIE ============ -->
   <footer class="footer">
-    <div class="foot-cols">
-      <div>
-        <p class="foot-first">Lumen Studio</p>
-        <p>Webs, apps, videojuegos</p>
-        <p>y TPV para restaurantes</p>
-      </div>
-      <nav aria-label="Pie de página">
-        <p class="foot-first">Navegación</p>
-        <p><a href="#proyectos">Proyectos</a></p>
-        <p><a href="#tpv">TPV</a></p>
-        <p><a href="#servicios">Servicios</a></p>
-        <p><a href="#fendaria">Fendaria</a></p>
-      </nav>
-      <div>
-        <p class="foot-first">Proyectos</p>
-        <p>Fendaria</p>
-        <p>Vitrales Perafán</p>
-        <p>Althaya</p>
-        <p>California TPV</p>
-      </div>
-      <div>
-        <p class="foot-first">Contacto</p>
-        <p><a href="mailto:hola@lumenstudio.es">hola@lumenstudio.es</a></p>
-        <p><a href="https://github.com/Zafiadomgit" target="_blank" rel="noopener">GitHub</a></p>
+    <a class="wordmark" href="#inicio"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+    <nav class="foot-links" aria-label="Pie de página">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#tpv">TPV</a>
+      <a href="#fendaria">Fendaria</a>
+      <a href="https://github.com/Zafiadomgit" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <p class="legal">© 2026 Lumen Studio</p>
+  </footer>
+
+  <!-- ============ JUEGO A PANTALLA COMPLETA ============ -->
+  <div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-label="Fendaria" hidden>
+    <div class="modal-bar">
+      <span class="wordmark"><span class="farol farol--s" aria-hidden="true"></span><span>Fendaria</span></span>
+      <span class="modal-hint">Gira el móvil en horizontal para jugar mejor</span>
+      <div class="modal-actions">
+        <button type="button" class="btn btn--s btn--ghost" id="gameFull">Pantalla completa</button>
+        <button type="button" class="btn btn--s" id="gameClose">Cerrar</button>
       </div>
     </div>
-    <svg class="foot-mark" viewBox="0 0 1000 200" role="img" aria-label="Lumen">
-      <text x="500" y="182" text-anchor="middle" textLength="990" lengthAdjust="spacingAndGlyphs">LUMEN</text>
-    </svg>
-    <p class="legal">© 2026 Lumen Studio. Capturas de proyectos propios y de clientes.</p>
-  </footer>
+    <iframe id="gameFrame" title="Fendaria, jugable" allow="fullscreen; autoplay; gamepad"></iframe>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>
