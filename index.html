@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lumen Studio — Webs, apps, videojuegos y TPV</title>
-  <meta name="description" content="Lumen Studio diseña y programa webs, apps, videojuegos y TPV para restaurantes. Prueba nuestro TPV y juega a Fendaria desde el navegador.">
+  <title>Lumen Studio — Encendemos tus ideas: webs, apps y TPV</title>
+  <meta name="description" content="Lumen Studio diseña y programa webs, apps y TPV para restaurantes. Prueba nuestro TPV real y nuestra app Fendaria desde el navegador.">
   <meta name="theme-color" content="#0a090d">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://lumen-ruddy-beta.vercel.app/">
+  <link rel="alternate" hreflang="es" href="https://lumen-ruddy-beta.vercel.app/">
+  <link rel="alternate" hreflang="en" href="https://lumen-ruddy-beta.vercel.app/en/">
+  <link rel="alternate" hreflang="x-default" href="https://lumen-ruddy-beta.vercel.app/">
   <meta property="og:url" content="https://lumen-ruddy-beta.vercel.app/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:title" content="Lumen Studio — Webs, apps, videojuegos y TPV">
-  <meta property="og:description" content="Diseñamos y programamos webs, apps, videojuegos y TPV para restaurantes.">
+  <meta property="og:title" content="Lumen Studio — Encendemos tus ideas">
+  <meta property="og:description" content="Diseñamos y programamos webs, apps y TPV para restaurantes.">
   <meta property="og:image" content="https://lumen-ruddy-beta.vercel.app/assets/img/og.jpg">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -19,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261103-6">
+  <link rel="stylesheet" href="css/styles.css?v=20261103-7">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,7 +31,7 @@
     "url": "https://lumen-ruddy-beta.vercel.app/",
     "logo": "https://lumen-ruddy-beta.vercel.app/assets/img/apple-touch-icon.png",
     "image": "https://lumen-ruddy-beta.vercel.app/assets/img/og.jpg",
-    "description": "Estudio que diseña y programa webs, apps, videojuegos y TPV para restaurantes.",
+    "description": "Estudio que diseña y programa webs, apps y TPV para restaurantes. Encendemos tus ideas.",
     "email": "pietersd05@gmail.com",
     "telephone": "+57 311 873 9670",
     "areaServed": ["CO", "ES", "Latinoamérica"],
@@ -40,7 +43,6 @@
       "itemListElement": [
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diseño y desarrollo web"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Desarrollo de apps iOS y Android"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Desarrollo de videojuegos"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "TPV para restaurantes con Verifactu"}}
       ]
     }
@@ -59,9 +61,9 @@
       <a href="#tpv">TPV</a>
       <a href="#fendaria">Fendaria</a>
       <a href="#servicios">Servicios</a>
-      <a href="#casos">Casos</a>
       <a href="#presupuesto">Presupuesto</a>
     </div>
+    <a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
     <a class="btn btn--s" href="#contacto">Hablemos</a>
   </nav>
 
@@ -72,9 +74,10 @@
       <div class="hero-links">
         <a href="#proyectos">Proyectos</a>
         <a href="#servicios">Servicios</a>
-        <a href="#casos">Casos</a>
+        <a href="#proceso">Proceso</a>
         <a href="#presupuesto">Presupuesto</a>
       </div>
+      <a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
       <a class="btn btn--s" href="#contacto">Hablemos</a>
     </nav>
 
@@ -83,10 +86,11 @@
         <span class="farol farol--hero" aria-hidden="true"></span>
       </button>
       <h1 class="hero-title">Lumen Studio</h1>
+      <p class="hero-slogan">Encendemos tus ideas.</p>
     </div>
 
     <div class="hero-copy">
-      <p class="hero-lede">Diseñamos y programamos webs, apps, videojuegos y TPV para restaurantes.</p>
+      <p class="hero-lede">Diseñamos y programamos webs, apps y TPV para restaurantes.</p>
       <p class="hero-fact">Del primer boceto a la tienda de apps, con el mismo equipo.</p>
       <div class="hero-actions">
         <a class="btn" href="#contacto">Cuéntanos tu proyecto</a>
@@ -100,36 +104,140 @@
     <section class="work" id="proyectos" aria-labelledby="work-title">
       <div class="head">
         <h2 class="h-xl" id="work-title" data-reveal>Proyectos</h2>
-        <a class="u-link" href="https://github.com/Zafiadomgit" target="_blank" rel="noopener" data-reveal>Nuestro código en GitHub</a>
+        <div class="filters" role="group" aria-label="Filtrar proyectos" data-reveal>
+          <button type="button" aria-pressed="true" data-filter="all">Todos</button>
+          <button type="button" aria-pressed="false" data-filter="web">Webs</button>
+          <button type="button" aria-pressed="false" data-filter="software">Apps y software</button>
+          <button type="button" aria-pressed="false" data-filter="tpv">TPV</button>
+        </div>
       </div>
+      <div class="project-list">
+        <article class="project" data-cat="tpv" data-reveal>
+          <div class="project-media">
+            <div class="project-main"><img src="assets/img/tpv-carta.webp" width="1366" height="1024" alt="California: Carta del kiosco con el pedido al lado" loading="lazy"></div>
+            <div class="project-thumbs" role="group" aria-label="Capturas de California">
+              <button type="button" aria-pressed="true" data-src="assets/img/tpv-carta.webp" data-w="1366" data-h="1024" data-alt="Carta del kiosco con el pedido al lado" aria-label="Ver: Carta del kiosco con el pedido al lado"><img src="assets/img/tpv-carta.webp" width="1366" height="1024" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/tpv-categorias.webp" data-w="1366" data-h="1024" data-alt="Elegir categoría en el kiosco" aria-label="Ver: Elegir categoría en el kiosco"><img src="assets/img/tpv-categorias.webp" width="1366" height="1024" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/tpv-personalizar.webp" data-w="1366" data-h="1024" data-alt="Personalizar un kebab: quitar ingredientes y extras" aria-label="Ver: Personalizar un kebab: quitar ingredientes y extras"><img src="assets/img/tpv-personalizar.webp" width="1366" height="1024" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/tpv-cocina.webp" data-w="1366" data-h="900" data-alt="Pantalla de cocina con una comanda" aria-label="Ver: Pantalla de cocina con una comanda"><img src="assets/img/tpv-cocina.webp" width="1366" height="900" alt="" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-kind">TPV · Restaurante</p>
+            <h3 class="project-name">California</h3>
+            <p class="project-lede">Un kiosco que pide, cobra y avisa a cocina.</p>
+            <dl class="case-facts">
+                <div><dt>El reto</dt><dd>Tomar pedidos en dos locales y en dos idiomas, y que cada comanda llegue a cocina sin pasar por papel.</dd></div>
+                <div><dt>Lo que hicimos</dt><dd>Kiosco de autoservicio en dos idiomas, pantalla de cocina, caja con turnos e impresión de tickets, todo en una sola app.</dd></div>
+                <div><dt>Hoy</dt><dd>Funciona en Medina de Pomar y Villarcayo, y cumple Verifactu.</dd></div>
+            </dl>
+            <div class="project-links"><a class="btn btn--s" href="#tpv">Pruébalo aquí</a></div>
+          </div>
+        </article>
+        <article class="project" data-cat="software" data-reveal>
+          <div class="project-media">
+            <div class="project-main"><img src="assets/img/archivum-portada.webp" width="1280" height="800" alt="Archivum: Portada de Archivum" loading="lazy"></div>
+            <div class="project-thumbs" role="group" aria-label="Capturas de Archivum">
+              <button type="button" aria-pressed="true" data-src="assets/img/archivum-portada.webp" data-w="1280" data-h="800" data-alt="Portada de Archivum" aria-label="Ver: Portada de Archivum"><img src="assets/img/archivum-portada.webp" width="1280" height="800" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/archivum-panel.webp" data-w="1280" data-h="800" data-alt="Panel con documentos, cobros y vencimientos" aria-label="Ver: Panel con documentos, cobros y vencimientos"><img src="assets/img/archivum-panel.webp" width="1280" height="800" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/archivum-verifactu.webp" data-w="1280" data-h="800" data-alt="Factura con huella y QR de VeriFactu" aria-label="Ver: Factura con huella y QR de VeriFactu"><img src="assets/img/archivum-verifactu.webp" width="1280" height="800" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/archivum-planes.webp" data-w="1280" data-h="800" data-alt="Planes de Archivum" aria-label="Ver: Planes de Archivum"><img src="assets/img/archivum-planes.webp" width="1280" height="800" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/archivum-movil.webp" data-w="390" data-h="844" data-alt="Archivum en el móvil" data-fit="contain" aria-label="Ver: Archivum en el móvil"><img src="assets/img/archivum-movil.webp" width="390" height="844" alt="" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-kind">SaaS · Web y app</p>
+            <h3 class="project-name">Archivum</h3>
+            <p class="project-lede">Facturar y archivar, preparado para Veri*Factu.</p>
+            <dl class="case-facts">
+                <div><dt>El reto</dt><dd>Las facturas de pymes y autónomos acaban repartidas entre el correo, carpetas, WhatsApp y papel.</dd></div>
+                <div><dt>Lo que hicimos</dt><dd>Un producto propio: web y apps para Android e iPhone con los mismos datos, facturas con huella encadenada y QR de la AEAT, buscador, roles por cliente y carpeta, y planes desde 0 €.</dd></div>
+                <div><dt>Hoy</dt><dd>La web funciona en archivum.es; la app de Android está en pruebas y la de iPhone, lista para publicarse.</dd></div>
+            </dl>
+            <div class="project-links"><a class="btn btn--s btn--ghost" href="https://archivum.es" target="_blank" rel="noopener">Visitar archivum.es ↗</a></div>
+          </div>
+        </article>
+        <article class="project" data-cat="software" data-reveal>
+          <div class="project-media">
+            <div class="project-main"><img src="assets/img/fx-titulo.webp" width="1280" height="720" alt="Fendaria: Pantalla de título con los siete héroes" loading="lazy"></div>
+            <div class="project-thumbs" role="group" aria-label="Capturas de Fendaria">
+              <button type="button" aria-pressed="true" data-src="assets/img/fx-titulo.webp" data-w="1280" data-h="720" data-alt="Pantalla de título con los siete héroes" aria-label="Ver: Pantalla de título con los siete héroes"><img src="assets/img/fx-titulo.webp" width="1280" height="720" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/fx-villa.webp" data-w="1280" data-h="720" data-alt="Villa Candela" aria-label="Ver: Villa Candela"><img src="assets/img/fx-villa.webp" width="1280" height="720" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/fx-combate.webp" data-w="1280" data-h="720" data-alt="Combate en una Grieta" aria-label="Ver: Combate en una Grieta"><img src="assets/img/fx-combate.webp" width="1280" height="720" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/fx-heroes.webp" data-w="1280" data-h="720" data-alt="Elegir héroe" aria-label="Ver: Elegir héroe"><img src="assets/img/fx-heroes.webp" width="1280" height="720" alt="" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-kind">App propia · Android y navegador</p>
+            <h3 class="project-name">Fendaria</h3>
+            <p class="project-lede">Nuestra app de aventuras, hecha de principio a fin.</p>
+            <dl class="case-facts">
+                <div><dt>El reto</dt><dd>Una app para móvil con el acabado de un estudio grande, hecha por un equipo pequeño.</dd></div>
+                <div><dt>Lo que hicimos</dt><dd>Siete héroes con su historia, ocho mundos, jefes, cinemáticas y una banda sonora compuesta por código.</dd></div>
+                <div><dt>Hoy</dt><dd>Se puede probar en el navegador y llegará pronto a Google Play.</dd></div>
+            </dl>
+            <div class="project-links"><a class="btn btn--s" href="#fendaria">Pruébala aquí</a></div>
+          </div>
+        </article>
+        <article class="project" data-cat="web" data-reveal>
+          <div class="project-media">
+            <div class="project-main"><img src="assets/img/vitrales-hero.webp" width="1440" height="900" alt="Vitrales Perafán: Portada de la web" loading="lazy"></div>
+            <div class="project-thumbs" role="group" aria-label="Capturas de Vitrales Perafán">
+              <button type="button" aria-pressed="true" data-src="assets/img/vitrales-hero.webp" data-w="1440" data-h="900" data-alt="Portada de la web" aria-label="Ver: Portada de la web"><img src="assets/img/vitrales-hero.webp" width="1440" height="900" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/vitrales-taller.webp" data-w="1440" data-h="900" data-alt="Sección del taller" aria-label="Ver: Sección del taller"><img src="assets/img/vitrales-taller.webp" width="1440" height="900" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/vitrales-movil.webp" data-w="390" data-h="844" data-alt="La web en el móvil" data-fit="contain" aria-label="Ver: La web en el móvil"><img src="assets/img/vitrales-movil.webp" width="390" height="844" alt="" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-kind">Web · Taller artesano</p>
+            <h3 class="project-name">Vitrales Perafán</h3>
+            <p class="project-lede">Casi 50 años de oficio, contados en una web.</p>
+            <dl class="case-facts">
+                <div><dt>El reto</dt><dd>Mostrar el trabajo de un taller fundado en 1976 y recibir encargos desde la web.</dd></div>
+                <div><dt>Lo que hicimos</dt><dd>Web con galería de obras, proceso, exposiciones y solicitud de presupuesto.</dd></div>
+                <div><dt>Hoy</dt><dd>Galería, proceso, exposiciones y presupuesto en una sola web.</dd></div>
+            </dl>
+            
+          </div>
+        </article>
+        <article class="project" data-cat="web" data-reveal>
+          <div class="project-media">
+            <div class="project-main"><img src="assets/img/althaya-hero.webp" width="1440" height="900" alt="Althaya: Portada de la web" loading="lazy"></div>
+            <div class="project-thumbs" role="group" aria-label="Capturas de Althaya">
+              <button type="button" aria-pressed="true" data-src="assets/img/althaya-hero.webp" data-w="1440" data-h="900" data-alt="Portada de la web" aria-label="Ver: Portada de la web"><img src="assets/img/althaya-hero.webp" width="1440" height="900" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/althaya-galeria.webp" data-w="1440" data-h="1200" data-alt="Galería del centro" aria-label="Ver: Galería del centro"><img src="assets/img/althaya-galeria.webp" width="1440" height="1200" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="assets/img/althaya-movil.webp" data-w="390" data-h="844" data-alt="La web en el móvil" data-fit="contain" aria-label="Ver: La web en el móvil"><img src="assets/img/althaya-movil.webp" width="390" height="844" alt="" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-kind">Web · Bienestar</p>
+            <h3 class="project-name">Althaya</h3>
+            <p class="project-lede">Un centro de masajes en Perth, en dos idiomas.</p>
+            <dl class="case-facts">
+                <div><dt>El reto</dt><dd>Transmitir calma y lujo, y que reservar fuera fácil desde el móvil.</dd></div>
+                <div><dt>Lo que hicimos</dt><dd>Web bilingüe con vídeo, tratamientos, preguntas frecuentes y reserva directa.</dd></div>
+                <div><dt>Hoy</dt><dd>Una web en inglés y en español, pensada primero para el móvil.</dd></div>
+            </dl>
+            
+          </div>
+        </article>
+      </div>
+      <p class="work-more"><a class="u-link" href="https://github.com/Zafiadomgit" target="_blank" rel="noopener">Nuestro código en GitHub ↗</a></p>
+    </section>
 
-      <div class="wall">
-        <div class="row" style="--h:250px">
-          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-titulo.webp" width="1280" height="720" alt="Pantalla de título de Fendaria con los siete héroes" loading="lazy"><figcaption><span>Fendaria · videojuego</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.6" data-reveal><img src="assets/img/vitrales-hero.webp" width="1440" height="900" alt="Portada de la web de Vitrales Perafán" loading="lazy"><figcaption><span>Vitrales Perafán · web</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.334" data-reveal><img src="assets/img/tpv-categorias.webp" width="1366" height="1024" alt="Kiosco del TPV de California: elegir categoría" loading="lazy"><figcaption><span>California · TPV</span><span>2026</span></figcaption></figure>
-        </div>
-        <div class="row" style="--h:340px">
-          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-villa.webp" width="1280" height="720" alt="Villa Candela en Fendaria" loading="lazy"><figcaption><span>Fendaria · Villa Candela</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:0.462" data-reveal><img src="assets/img/althaya-movil.webp" width="390" height="844" alt="Web de Althaya en un móvil" loading="lazy"><figcaption><span>Althaya · móvil</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.2" data-reveal><img src="assets/img/althaya-galeria.webp" width="1440" height="1200" alt="Galería de la web de Althaya" loading="lazy"><figcaption><span>Althaya · web</span><span>2026</span></figcaption></figure>
-        </div>
-        <div class="row" style="--h:220px">
-          <figure class="tile" style="--r:1.334" data-reveal><img src="assets/img/tpv-carta.webp" width="1366" height="1024" alt="Carta del kiosco de California con el pedido al lado" loading="lazy"><figcaption><span>California · carta</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-combate.webp" width="1280" height="720" alt="Combate en una Grieta de Fendaria" loading="lazy"><figcaption><span>Fendaria · combate</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:0.462" data-reveal><img src="assets/img/vitrales-movil.webp" width="390" height="844" alt="Web de Vitrales Perafán en un móvil" loading="lazy"><figcaption><span>Vitrales · móvil</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.778" data-reveal><img src="assets/img/fx-heroes.webp" width="1280" height="720" alt="Selección de héroe en Fendaria" loading="lazy"><figcaption><span>Fendaria · héroes</span><span>2026</span></figcaption></figure>
-        </div>
-        <div class="row" style="--h:300px">
-          <figure class="tile" style="--r:1.6" data-reveal><img src="assets/img/archivum-portada.webp" width="1280" height="800" alt="Portada de Archivum, facturación preparada para VeriFactu" loading="lazy"><figcaption><span>Archivum · SaaS de facturación</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:0.462" data-reveal><img src="assets/img/archivum-movil.webp" width="390" height="844" alt="Archivum en un móvil" loading="lazy"><figcaption><span>Archivum · móvil</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.6" data-reveal><img src="assets/img/archivum-verifactu.webp" width="1280" height="800" alt="Factura con huella y QR de VeriFactu en Archivum" loading="lazy"><figcaption><span>Archivum · VeriFactu</span><span>2026</span></figcaption></figure>
-        </div>
-        <div class="row" style="--h:280px">
-          <figure class="tile" style="--r:1.6" data-reveal><img src="assets/img/vitrales-taller.webp" width="1440" height="900" alt="Sección del taller en la web de Vitrales Perafán" loading="lazy"><figcaption><span>Vitrales Perafán · el taller</span><span>2026</span></figcaption></figure>
-          <figure class="tile" style="--r:1.518" data-reveal><img src="assets/img/tpv-cocina.webp" width="1366" height="900" alt="Pantalla de cocina del TPV con una comanda" loading="lazy"><figcaption><span>California · cocina</span><span>2026</span></figcaption></figure>
-        </div>
+    <!-- ============ SERVICIOS ============ -->
+    <section class="services" id="servicios" aria-labelledby="services-title">
+      <div class="head">
+        <h2 class="h-xl" id="services-title" data-reveal>Qué hacemos</h2>
       </div>
+      <ul class="svc">
+        <li data-reveal><span class="svc-word">Webs</span><span class="svc-fact">Landing, corporativa y tienda, rápidas y a medida.</span></li>
+        <li data-reveal><span class="svc-word">Apps</span><span class="svc-fact">iOS y Android, de negocio o de entretenimiento, con su ficha en las tiendas.</span></li>
+        <li data-reveal><span class="svc-word">Diseño</span><span class="svc-fact">Marca, pantallas y prototipos antes de programar.</span></li>
+        <li data-reveal><span class="svc-word">TPV</span><span class="svc-fact">Kiosco, cocina y caja para restaurantes.</span></li>
+        <li data-reveal><span class="svc-word">A medida</span><span class="svc-fact">Paneles, facturación y SaaS como Archivum.</span></li>
+        <li data-reveal><span class="svc-word">Y después</span><span class="svc-fact">Mantenimiento y mejoras contigo.</span></li>
+      </ul>
     </section>
 
     <!-- ============ TPV EN VIVO ============ -->
@@ -174,7 +282,7 @@
     <section class="game" id="fendaria" aria-labelledby="game-title">
       <div class="head">
         <h2 class="h-xl game-title" id="game-title" data-reveal>Fendaria</h2>
-        <p class="head-sub" data-reveal>Nuestro hack &amp; slash: arte, música y código hechos en casa. Elige un héroe y pruébalo.</p>
+        <p class="head-sub" data-reveal>Nuestra app de aventuras para Android: diseño, animación y código hechos en casa. Elige un personaje y pruébala.</p>
       </div>
 
       <div class="picker" id="picker">
@@ -197,9 +305,9 @@
           <div class="roster" role="tablist" aria-label="Héroes" id="roster"></div>
 
           <div class="play-row">
-            <button class="btn" type="button" id="playGame">Jugar ahora en el navegador</button>
+            <button class="btn" type="button" id="playGame">Probar la app en el navegador</button>
             <span class="soon">Próximamente en Google Play</span>
-            <p class="muted">Teclado: WASD para moverte, J o espacio para atacar.</p>
+            <p class="muted">Con teclado: WASD para moverte, J o espacio para atacar.</p>
           </div>
         </div>
       </div>
@@ -216,94 +324,6 @@
           <figure data-reveal><img src="assets/img/fx-portal.webp" width="1280" height="720" alt="El héroe ante el Portal Rúnico de la plaza" loading="lazy"><figcaption>El Portal Rúnico</figcaption></figure>
           <figure data-reveal><img src="assets/img/fx-nivel.webp" width="1280" height="720" alt="Subida de nivel en mitad de una Grieta" loading="lazy"><figcaption>Dentro de una Grieta</figcaption></figure>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ SERVICIOS ============ -->
-    <section class="services" id="servicios" aria-labelledby="services-title">
-      <div class="head">
-        <h2 class="h-xl" id="services-title" data-reveal>Qué hacemos</h2>
-      </div>
-      <ul class="svc">
-        <li data-reveal><span class="svc-word">Webs</span><span class="svc-fact">Landing, corporativa y tienda, rápidas y a medida.</span></li>
-        <li data-reveal><span class="svc-word">Apps</span><span class="svc-fact">iOS y Android, con su ficha en las tiendas.</span></li>
-        <li data-reveal><span class="svc-word">Juegos</span><span class="svc-fact">Android y navegador, del arte a la música.</span></li>
-        <li data-reveal><span class="svc-word">TPV</span><span class="svc-fact">Kiosco, cocina y caja para restaurantes.</span></li>
-        <li data-reveal><span class="svc-word">A medida</span><span class="svc-fact">Paneles, facturación y SaaS como Archivum.</span></li>
-        <li data-reveal><span class="svc-word">Y después</span><span class="svc-fact">Mantenimiento y mejoras contigo.</span></li>
-      </ul>
-    </section>
-
-    <!-- ============ CASOS ============ -->
-    <section class="cases" id="casos" aria-labelledby="cases-title">
-      <div class="head">
-        <h2 class="h-xl" id="cases-title" data-reveal>Casos</h2>
-        <p class="head-sub" data-reveal>Lo que nos pidieron y lo que entregamos.</p>
-      </div>
-      <div class="case-list">
-        <article class="case" data-reveal>
-          <img src="assets/img/tpv-carta.webp" width="1366" height="1024" alt="Carta del kiosco de California" loading="lazy">
-          <div class="case-body">
-            <p class="case-kind">TPV · California</p>
-            <h3 class="h-l">Un kiosco que pide, cobra y avisa a cocina</h3>
-            <dl class="case-facts">
-              <div><dt>El reto</dt><dd>Tomar pedidos en dos locales y en dos idiomas, y que cada comanda llegue a cocina sin pasar por papel.</dd></div>
-              <div><dt>Lo que hicimos</dt><dd>Kiosco de autoservicio en dos idiomas, pantalla de cocina, caja con turnos e impresión de tickets, todo en una sola app.</dd></div>
-              <div><dt>Hoy</dt><dd>Funciona en Medina de Pomar y Villarcayo, y cumple Verifactu.</dd></div>
-            </dl>
-            <a class="u-link" href="#tpv">Pruébalo arriba</a>
-          </div>
-        </article>
-        <article class="case" data-reveal>
-          <img src="assets/img/archivum-panel.webp" width="1280" height="800" alt="Panel de Archivum con documentos, cobros y vencimientos" loading="lazy">
-          <div class="case-body">
-            <p class="case-kind">SaaS · Archivum</p>
-            <h3 class="h-l">Facturar y archivar, preparado para Veri*Factu</h3>
-            <dl class="case-facts">
-              <div><dt>El reto</dt><dd>Las facturas de pymes y autónomos acaban repartidas entre el correo, carpetas, WhatsApp y papel.</dd></div>
-              <div><dt>Lo que hicimos</dt><dd>Un producto propio: web y apps para Android e iPhone con los mismos datos, emisión de facturas con huella encadenada y QR de la AEAT, buscador, roles por cliente y carpeta, y planes desde 0 €.</dd></div>
-              <div><dt>Hoy</dt><dd>La web funciona en archivum.es; la app de Android está en pruebas y la de iPhone, lista para publicarse.</dd></div>
-            </dl>
-            <a class="u-link" href="https://archivum.es" target="_blank" rel="noopener">Visitar archivum.es ↗</a>
-          </div>
-        </article>
-        <article class="case" data-reveal>
-          <img src="assets/img/fx-combate.webp" width="1280" height="720" alt="Combate en Fendaria" loading="lazy">
-          <div class="case-body">
-            <p class="case-kind">Videojuego · Fendaria</p>
-            <h3 class="h-l">Un hack &amp; slash hecho de principio a fin</h3>
-            <dl class="case-facts">
-              <div><dt>El reto</dt><dd>Un juego para móvil con el acabado de un estudio grande, hecho por un equipo pequeño.</dd></div>
-              <div><dt>Lo que hicimos</dt><dd>Siete héroes con su historia, ocho mundos, jefes, cinemáticas y una banda sonora compuesta por código.</dd></div>
-              <div><dt>Hoy</dt><dd>Se juega en el navegador y llegará pronto a Google Play.</dd></div>
-            </dl>
-            <a class="u-link" href="#fendaria">Juega arriba</a>
-          </div>
-        </article>
-        <article class="case" data-reveal>
-          <img src="assets/img/vitrales-hero.webp" width="1440" height="900" alt="Web de Vitrales Perafán" loading="lazy">
-          <div class="case-body">
-            <p class="case-kind">Web · Vitrales Perafán</p>
-            <h3 class="h-l">Casi 50 años de oficio, contados en una web</h3>
-            <dl class="case-facts">
-              <div><dt>El reto</dt><dd>Mostrar el trabajo de un taller fundado en 1976 y recibir encargos desde la web.</dd></div>
-              <div><dt>Lo que hicimos</dt><dd>Web con galería de obras, proceso, exposiciones y solicitud de presupuesto.</dd></div>
-              <div><dt>Hoy</dt><dd>Galería, proceso, exposiciones y presupuesto en una sola web.</dd></div>
-            </dl>
-          </div>
-        </article>
-        <article class="case" data-reveal>
-          <img src="assets/img/althaya-galeria.webp" width="1440" height="1200" alt="Web de Althaya" loading="lazy">
-          <div class="case-body">
-            <p class="case-kind">Web · Althaya</p>
-            <h3 class="h-l">Un centro de masajes en Perth, en dos idiomas</h3>
-            <dl class="case-facts">
-              <div><dt>El reto</dt><dd>Transmitir calma y lujo, y que reservar fuera fácil desde el móvil.</dd></div>
-              <div><dt>Lo que hicimos</dt><dd>Web bilingüe con vídeo, tratamientos, preguntas frecuentes y reserva directa.</dd></div>
-              <div><dt>Hoy</dt><dd>Una web en inglés y en español, pensada primero para el móvil.</dd></div>
-            </dl>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -348,7 +368,7 @@
               <source src="assets/video/lumen-intro.webm" type="video/webm">
               <source src="assets/video/lumen-intro.mp4" type="video/mp4">
             </video>
-            <figcaption>Nuestra intro animada, programada en el lienzo del juego.</figcaption>
+            <figcaption>Nuestra intro animada, programada a mano para Fendaria.</figcaption>
           </figure>
         </div>
         <div class="stage">
@@ -420,7 +440,7 @@
         <div class="field">
           <label for="cfType">Tipo de proyecto</label>
           <select id="cfType" name="tipo">
-            <option>Web</option><option>App</option><option>Videojuego</option><option>TPV</option><option>A medida</option><option>Aún no lo sé</option>
+            <option>Web</option><option>App</option><option>TPV</option><option>A medida</option><option>Aún no lo sé</option>
           </select>
         </div>
         <div class="field field--wide">
@@ -451,6 +471,8 @@
       <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>
       <a href="cookies.html">Cookies</a>
+      <button class="champi-back" id="champiBack" type="button" hidden>Volver a ver a Champi</button>
+      <a href="en/" hreflang="en" lang="en">English</a>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
@@ -459,7 +481,14 @@
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
   </a>
 
-  <!-- ============ JUEGO A PANTALLA COMPLETA ============ -->
+  <!-- ============ CHAMPI, LA MASCOTA ============ -->
+  <div class="champi" id="champi" hidden>
+    <p class="champi-bubble" id="champiBubble" aria-hidden="true"></p>
+    <button class="champi-body" id="champiBody" type="button" aria-label="Champi, la mascota de Lumen Studio: tócala"><span class="champi-sprite" aria-hidden="true"></span></button>
+    <button class="champi-close" id="champiClose" type="button" aria-label="Ocultar a Champi">×</button>
+  </div>
+
+  <!-- ============ FENDARIA A PANTALLA COMPLETA ============ -->
   <div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-label="Fendaria" hidden>
     <div class="modal-bar">
       <span class="wordmark"><span class="farol farol--s" aria-hidden="true"></span><span>Fendaria</span></span>
@@ -469,9 +498,9 @@
         <button type="button" class="btn btn--s" id="gameClose">Cerrar</button>
       </div>
     </div>
-    <iframe id="gameFrame" title="Fendaria, jugable" allow="fullscreen; autoplay; gamepad"></iframe>
+    <iframe id="gameFrame" title="Fendaria, app interactiva" allow="fullscreen; autoplay; gamepad"></iframe>
   </div>
 
-  <script src="js/main.js?v=20261103-6" defer></script>
+  <script src="js/main.js?v=20261103-7" defer></script>
 </body>
 </html>
