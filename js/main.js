@@ -1,7 +1,8 @@
 /* Lumen Studio — interacción
    1) luz del farol en el hero y luz del ratón por toda la página   2) barra fija
    3) entradas por sección e inclinación de las capturas   4) vídeos solo en pantalla
-   5) TPV real incrustado (demos/tpv)   6) selector de héroes de Fendaria   7) juego a pantalla completa */
+   5) TPV real incrustado (demos/tpv)   6) selector de héroes de Fendaria   7) juego a pantalla completa
+   8) calculadora de presupuesto   9) formulario de contacto (api/contact.js, con correo de respaldo) */
 (function () {
   'use strict';
   var doc = document.documentElement;
@@ -137,8 +138,17 @@
         j = (j + HEROES.length) % HEROES.length; pick(j); roster.children[j].focus();
       });
       roster.appendChild(b);
-      ['attack', 'cast', 'dash'].forEach(function (m) { var im = new Image(); im.src = src(h, m); }); // precarga
     });
+    // precarga las demás animaciones solo cuando el selector está a punto de verse
+    var preloaded = false;
+    var preload = function () {
+      if (preloaded) return; preloaded = true;
+      HEROES.forEach(function (h) { ['attack', 'cast', 'dash'].forEach(function (m) { var im = new Image(); im.src = src(h, m); }); });
+    };
+    if ('IntersectionObserver' in window) {
+      var po = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { preload(); po.disconnect(); } }, { rootMargin: '400px 0px' });
+      po.observe(sprite);
+    } else preload();
     var setSprite = function () {
       var h = HEROES[cur];
       sprite.src = src(h, move) + '?t=' + Date.now(); // reinicia la animación desde el primer fotograma
@@ -193,5 +203,121 @@
       if (p && p.then) p.then(function () { if (window.screen.orientation && window.screen.orientation.lock) window.screen.orientation.lock('landscape').catch(function () {}); }).catch(function () {});
     });
     addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden && !document.fullscreenElement) closeGame(); });
+    // el foco del teclado no sale de la ventana del juego mientras está abierta
+    modal.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var f = modal.querySelectorAll('button, iframe'), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+  /* ---------- 8. calculadora de presupuesto ---------- */
+  // PRECIOS ORIENTATIVOS (provisionales): cámbialos aquí. [mín, máx] en euros.
+  var WA = 'https://wa.me/573118739670';
+  var CALC = {
+    web: { label: 'Web', sizeLabel: '¿Qué tipo de web?', sizes: [
+      { id: 'landing', n: 'Landing de una página', p: [600, 1200], w: 2 },
+      { id: 'corp', n: 'Corporativa (hasta 8 páginas)', p: [1500, 3000], w: 4 },
+      { id: 'shop', n: 'Tienda online', p: [3000, 6000], w: 6 } ],
+      extras: [ { id: 'i18n', n: 'Varios idiomas', p: [300, 600] }, { id: 'blog', n: 'Blog o gestor de contenidos', p: [300, 700] },
+        { id: 'book', n: 'Reservas o citas', p: [500, 1200] }, { id: 'seo', n: 'SEO inicial', p: [300, 600] } ] },
+    app: { label: 'App', sizeLabel: '¿Para qué móviles?', sizes: [
+      { id: 'android', n: 'Android', p: [5000, 10000], w: 8 },
+      { id: 'ios', n: 'iPhone', p: [5000, 10000], w: 8 },
+      { id: 'both', n: 'Android y iPhone', p: [8000, 16000], w: 10 } ],
+      extras: [ { id: 'login', n: 'Usuarios y login', p: [800, 1600] }, { id: 'pay', n: 'Pagos dentro de la app', p: [1200, 2500] },
+        { id: 'push', n: 'Notificaciones', p: [500, 1000] }, { id: 'admin', n: 'Panel de administración', p: [1500, 3500] } ] },
+    game: { label: 'Videojuego', sizeLabel: '¿Qué alcance?', sizes: [
+      { id: 'proto', n: 'Prototipo jugable', p: [3000, 6000], w: 6 },
+      { id: 'small', n: 'Juego pequeño', p: [8000, 15000], w: 12 },
+      { id: 'full', n: 'Juego completo', p: [20000, 45000], w: 24 } ],
+      extras: [ { id: 'music', n: 'Música y sonido originales', p: [1000, 2500] }, { id: 'rank', n: 'Ranking online', p: [800, 1800] },
+        { id: 'store', n: 'Publicación en Google Play', p: [300, 700] }, { id: 'trailer', n: 'Tráiler en vídeo', p: [600, 1500] } ] },
+    tpv: { label: 'TPV', sizeLabel: '¿Cuántos locales?', monthly: 39, sizes: [
+      { id: 'one', n: '1 local', p: [500, 900], w: 2, locales: 1 },
+      { id: 'two', n: '2 locales', p: [800, 1400], w: 3, locales: 2 },
+      { id: 'more', n: '3 o más', p: [1200, 2200], w: 4, locales: 3 } ],
+      extras: [ { id: 'kiosk', n: 'Kiosco de autoservicio', p: [400, 900] }, { id: 'kds', n: 'Pantalla de cocina', p: [200, 500] },
+        { id: 'print', n: 'Impresoras de tickets', p: [150, 400] }, { id: 'online', n: 'Pedidos para recoger', p: [600, 1400] } ] },
+    custom: { label: 'A medida', sizeLabel: '¿Qué tamaño tiene?', sizes: [
+      { id: 'tool', n: 'Herramienta interna', p: [2000, 5000], w: 4 },
+      { id: 'saas', n: 'Plataforma o SaaS', p: [8000, 25000], w: 12 } ],
+      extras: [ { id: 'inv', n: 'Facturación', p: [1000, 3000] }, { id: 'dash', n: 'Panel con informes', p: [1000, 2500] },
+        { id: 'api', n: 'Conexión con otras herramientas', p: [800, 2000] } ] }
+  };
+  var calcEl = $('calc');
+  if (calcEl) {
+    var eur = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    var typeBox = $('calcType'), sizeBox = $('calcSize'), extraBox = $('calcExtras');
+    var chip = function (name, type, value, text, checked, hint) {
+      return '<label class="chip"><input type="' + type + '" name="' + name + '" value="' + value + '"' + (checked ? ' checked' : '') + '><span>' + text + (hint ? ' <small>' + hint + '</small>' : '') + '</span></label>';
+    };
+    typeBox.innerHTML = Object.keys(CALC).map(function (k, i) { return chip('tipo', 'radio', k, CALC[k].label, i === 0); }).join('');
+    var state = { type: 'web' };
+    var drawOptions = function () {
+      var c = CALC[state.type];
+      $('calcSizeLabel').textContent = c.sizeLabel;
+      sizeBox.innerHTML = c.sizes.map(function (z, i) { return chip('tam', 'radio', z.id, z.n, i === 0); }).join('');
+      extraBox.innerHTML = c.extras.map(function (x) { return chip('extra', 'checkbox', x.id, x.n, false, '+' + eur.format(x.p[0])); }).join('');
+      update();
+    };
+    var summary = '';
+    var update = function () {
+      var c = CALC[state.type];
+      var zId = (calcEl.querySelector('input[name="tam"]:checked') || {}).value;
+      var z = c.sizes.filter(function (x) { return x.id === zId; })[0] || c.sizes[0];
+      var ex = Array.prototype.map.call(calcEl.querySelectorAll('input[name="extra"]:checked'), function (i) { return c.extras.filter(function (x) { return x.id === i.value; })[0]; });
+      var lo = z.p[0], hi = z.p[1];
+      ex.forEach(function (x) { lo += x.p[0]; hi += x.p[1]; });
+      var weeks = z.w + Math.ceil(ex.length / 2);
+      $('calcPrice').textContent = eur.format(lo) + ' – ' + eur.format(hi);
+      var meta = 'Plazo estimado: ' + weeks + (weeks === 1 ? ' semana' : ' semanas');
+      if (c.monthly) meta += ' · luego ' + eur.format(c.monthly * (z.locales || 1)) + '/mes de mantenimiento';
+      $('calcMeta').textContent = meta;
+      var lines = [c.label + ': ' + z.n].concat(ex.map(function (x) { return x.n; }));
+      $('calcSum').innerHTML = lines.map(function (l) { return '<li>' + l + '</li>'; }).join('');
+      summary = 'Hola Lumen Studio, quiero un presupuesto.\n' + lines.join('\n') + '\nEstimación de la web: ' + $('calcPrice').textContent + ' (' + meta + ')';
+      $('calcWa').href = WA + '?text=' + encodeURIComponent(summary);
+    };
+    calcEl.addEventListener('change', function (e) {
+      if (e.target.name === 'tipo') { state.type = e.target.value; drawOptions(); } else update();
+    });
+    calcEl.addEventListener('submit', function (e) { e.preventDefault(); });
+    $('calcToForm').addEventListener('click', function () {
+      var t = { web: 'Web', app: 'App', game: 'Videojuego', tpv: 'TPV', custom: 'A medida' }[state.type];
+      $('cfType').value = t; $('cfMsg').value = summary + '\n\n';
+      document.getElementById('contacto').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      setTimeout(function () { $('cfName').focus({ preventScroll: true }); }, 500);
+    });
+    drawOptions();
+  }
+
+  /* ---------- 9. formulario de contacto ---------- */
+  var form = $('contactForm');
+  if (form) {
+    var status = $('cfStatus'), send = $('cfSend');
+    var mailFallback = function (d) {
+      var body = 'Nombre: ' + d.nombre + '\nEmail: ' + d.email + '\nTipo: ' + d.tipo + '\n\n' + d.mensaje;
+      location.href = 'mailto:pietersd05@gmail.com?subject=' + encodeURIComponent('Proyecto: ' + d.tipo) + '&body=' + encodeURIComponent(body);
+    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.className = 'form-status'; status.textContent = '';
+      if (!form.checkValidity()) {
+        var bad = form.querySelector(':invalid'); if (bad) bad.focus();
+        status.className = 'form-status is-err'; status.textContent = 'Revisa los campos marcados: nombre, un email válido y el mensaje.';
+        return;
+      }
+      var d = { nombre: form.nombre.value.trim(), email: form.email.value.trim(), tipo: form.tipo.value, mensaje: form.mensaje.value.trim(), web: form.web.value };
+      send.disabled = true; send.textContent = 'Enviando…';
+      fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok) { status.className = 'form-status is-ok'; status.textContent = '¡Recibido! Te respondemos lo antes posible.'; form.reset(); }
+          else { status.className = 'form-status is-err'; status.textContent = 'No se pudo enviar desde la web: abrimos tu correo con el mensaje listo.'; mailFallback(d); }
+        })
+        .catch(function () { status.className = 'form-status is-err'; status.textContent = 'Sin conexión con el servidor: abrimos tu correo con el mensaje listo.'; mailFallback(d); })
+        .then(function () { send.disabled = false; send.textContent = 'Enviar mensaje'; });
+    });
   }
 })();
