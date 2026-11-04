@@ -9,8 +9,9 @@ Sitio estático sin paso de compilación, más una función serverless:
 - `en/index.html`: la versión en inglés, **generada** con `python3 tools/build_en.py` a partir de `index.html`.
   Si cambias un texto en español, añade o corrige su par en `tools/build_en.py` y vuelve a ejecutarlo.
   Los textos que genera el JavaScript (calculadora, personajes, formulario, Champi) están traducidos en `js/main.js`.
+- Fendaria se muestra como escaparate (personajes animados, vídeo y capturas). La versión jugable se quitó mientras
+  se optimiza para PC; para volver a ponerla, copia `www/` del juego en `demos/fendaria/` y restaura el botón y la ventana del commit que la retiró.
 - `demos/tpv/`: el TPV real de California compilado en modo demo (datos de prueba en el navegador).
-- `demos/fendaria/`: la app Fendaria, copia de `www/` de Juego_Hack_and_slash (con su versión en inglés).
 - `assets/img/champi/`: Champi, la mascota que pasea por la página (la seta de Fendaria).
 - `api/contact.js`: el formulario de contacto envía un email con Resend.
 - `aviso-legal.html`, `privacidad.html`, `cookies.html`: páginas legales.

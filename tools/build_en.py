@@ -18,8 +18,8 @@ PAIRS = [
     # ---------- cabecera del documento ----------
     ('<html lang="es">', '<html lang="en" data-base="../">'),
     ('<title>Lumen Studio — Encendemos tus ideas: webs, apps y TPV</title>', '<title>Lumen Studio — We light up your ideas: websites, apps and POS</title>'),
-    ('content="Lumen Studio diseña y programa webs, apps y TPV para restaurantes. Prueba nuestro TPV real y nuestra app Fendaria desde el navegador."',
-     'content="Lumen Studio designs and builds websites, apps and restaurant POS systems. Try our real POS and our Fendaria app in your browser."'),
+    ('content="Lumen Studio diseña y programa webs, apps y TPV para restaurantes. Prueba nuestro TPV real desde el navegador y conoce nuestra app Fendaria."',
+     'content="Lumen Studio designs and builds websites, apps and restaurant POS systems. Try our real POS in your browser and meet our Fendaria app."'),
     (f'<link rel="canonical" href="{SITE}">', f'<link rel="canonical" href="{SITE}en/">'),
     (f'<meta property="og:url" content="{SITE}">', f'<meta property="og:url" content="{SITE}en/">'),
     ('<meta property="og:title" content="Lumen Studio — Encendemos tus ideas">', '<meta property="og:title" content="Lumen Studio — We light up your ideas">'),
@@ -106,8 +106,10 @@ PAIRS = [
      '<dd>A mobile app with big-studio polish, made by a small team.</dd>'),
     ('<dd>Siete héroes con su historia, ocho mundos, jefes, cinemáticas y una banda sonora compuesta por código.</dd>',
      '<dd>Seven heroes with their own stories, eight worlds, bosses, cutscenes and a soundtrack composed in code.</dd>'),
-    ('<dd>Se puede probar en el navegador y llegará pronto a Google Play.</dd>', '<dd>You can try it in the browser, and it is coming soon to Google Play.</dd>'),
-    ('>Pruébala aquí</a>', '>Try it here</a>'),
+    ('<dd>En la recta final de pruebas; llegará pronto a Google Play.</dd>', '<dd>In its final round of testing; coming soon to Google Play.</dd>'),
+    ('>Conócela</a>', '>Meet it</a>'),
+    ('>Visitar vitralesperafan.com ↗</a>', '>Visit vitralesperafan.com ↗</a>'),
+    ('>Visitar althaya.com.au ↗</a>', '>Visit althaya.com.au ↗</a>'),
     # Vitrales
     ('<p class="project-kind">Web · Taller artesano</p>', '<p class="project-kind">Website · Artisan workshop</p>'),
     ('<p class="project-lede">Casi 50 años de oficio, contados en una web.</p>', '<p class="project-lede">Nearly 50 years of craft, told in one website.</p>'),
@@ -173,8 +175,8 @@ PAIRS = [
      '<li data-reveal><strong>Verifactu compliant.</strong> Invoicing ready for Spain’s tax regulations, no surprises.</li>'),
 
     # ---------- Fendaria ----------
-    ('<p class="head-sub" data-reveal>Nuestra app de aventuras para Android: diseño, animación y código hechos en casa. Elige un personaje y pruébala.</p>',
-     '<p class="head-sub" data-reveal>Our adventure app for Android: design, animation and code made in-house. Pick a character and try it out.</p>'),
+    ('<p class="head-sub" data-reveal>Nuestra app de aventuras para Android: diseño, animación y código hechos en casa. Elige un personaje y míralo en acción.</p>',
+     '<p class="head-sub" data-reveal>Our adventure app for Android: design, animation and code made in-house. Pick a character and see it in action.</p>'),
     ('alt="Kara, la Rompeyelmos">', 'alt="Kara, the Helmbreaker">'),
     ('aria-label="Acciones"', 'aria-label="Actions"'),
     ('data-move="idle" aria-pressed="true">Reposo</button>', 'data-move="idle" aria-pressed="true">Idle</button>'),
@@ -188,9 +190,7 @@ PAIRS = [
     ('<p class="hero-ult"><span>Definitiva</span> <strong id="heroUlt">Torbellino de Acero</strong></p>',
      '<p class="hero-ult"><span>Ultimate</span> <strong id="heroUlt">Steel Whirlwind</strong></p>'),
     ('aria-label="Héroes"', 'aria-label="Heroes"'),
-    ('id="playGame">Probar la app en el navegador</button>', 'id="playGame">Try the app in your browser</button>'),
     ('<span class="soon">Próximamente en Google Play</span>', '<span class="soon">Coming soon to Google Play</span>'),
-    ('<p class="muted">Con teclado: WASD para moverte, J o espacio para atacar.</p>', '<p class="muted">With a keyboard: WASD to move, J or space to attack.</p>'),
     ('aria-label="Cinemática del prólogo de Fendaria"', 'aria-label="Fendaria prologue cutscene"'),
     ('<figcaption>Prólogo: la Orden de las Runas, el Cerrajero y los siete héroes.</figcaption>',
      '<figcaption>Prologue: the Order of Runes, the Locksmith and the seven heroes.</figcaption>'),
@@ -266,10 +266,6 @@ PAIRS = [
     ('aria-label="Escríbenos por WhatsApp"', 'aria-label="Message us on WhatsApp"'),
 
     # ---------- juego ----------
-    ('<span class="modal-hint">Gira el móvil en horizontal para jugar mejor</span>', '<span class="modal-hint">Turn your phone sideways to play</span>'),
-    ('id="gameFull">Pantalla completa</button>', 'id="gameFull">Full screen</button>'),
-    ('id="gameClose">Cerrar</button>', 'id="gameClose">Close</button>'),
-    ('title="Fendaria, app interactiva"', 'title="Fendaria, interactive app"'),
     ('aria-label="Champi, la mascota de Lumen Studio: tócala"', 'aria-label="Champi, the Lumen Studio mascot: tap it"'),
     ('aria-label="Ocultar a Champi"', 'aria-label="Hide Champi"'),
     ('id="champiBack" type="button" hidden>Volver a ver a Champi</button>', 'id="champiBack" type="button" hidden>Bring Champi back</button>'),

@@ -1,7 +1,7 @@
 /* Lumen Studio — interacción
    1) luz del farol en el hero y luz del ratón por toda la página   2) barra fija
    3) entradas por sección e inclinación de las capturas   4) vídeos solo en pantalla
-   5) TPV real incrustado (demos/tpv)   6) selector de héroes de Fendaria   7) juego a pantalla completa
+   5) TPV real incrustado (demos/tpv)   6) selector de personajes de Fendaria
    8) calculadora de presupuesto   9) formulario de contacto (api/contact.js, con correo de respaldo) */
 (function () {
   'use strict';
@@ -259,36 +259,6 @@
     }
   }
 
-  /* ---------- 7. jugar a Fendaria ---------- */
-  var modal = $('gameModal'), gframe = $('gameFrame'), lastFocus = null;
-  function openGame() {
-    lastFocus = document.activeElement;
-    if (!gframe.src) gframe.src = BASE + 'demos/fendaria/' + T('index.html', 'index_en.html');
-    modal.hidden = false; document.body.classList.add('no-scroll');
-    setTimeout(function () { try { gframe.focus(); } catch (e) {} }, 300);
-  }
-  function closeGame() {
-    if (document.fullscreenElement) document.exitFullscreen().catch(function () {});
-    modal.hidden = true; document.body.classList.remove('no-scroll');
-    gframe.src = 'about:blank'; gframe.removeAttribute('src'); // para el juego y su música
-    if (lastFocus) lastFocus.focus();
-  }
-  if (modal) {
-    $('playGame').addEventListener('click', openGame);
-    $('gameClose').addEventListener('click', closeGame);
-    $('gameFull').addEventListener('click', function () {
-      var p = modal.requestFullscreen ? modal.requestFullscreen() : null;
-      if (p && p.then) p.then(function () { if (window.screen.orientation && window.screen.orientation.lock) window.screen.orientation.lock('landscape').catch(function () {}); }).catch(function () {});
-    });
-    addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden && !document.fullscreenElement) closeGame(); });
-    // el foco del teclado no sale de la ventana del juego mientras está abierta
-    modal.addEventListener('keydown', function (e) {
-      if (e.key !== 'Tab') return;
-      var f = modal.querySelectorAll('button, iframe'), first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-  }
   /* ---------- 8. calculadora de presupuesto ---------- */
   // PRECIOS ORIENTATIVOS: cámbialos aquí. [mín, máx] en dólares (USD).
   var WA = 'https://wa.me/573118739670';
