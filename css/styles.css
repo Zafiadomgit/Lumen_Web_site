@@ -382,6 +382,11 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .foot-links { display: flex; align-items: center; gap: 4px 22px; flex-wrap: wrap; }
 .foot-links a { color: var(--muted); font-size: 15px; text-decoration: none; transition: color .2s ease; }
 .foot-links a:hover { color: var(--ink); }
+.foot-social a { display: inline-flex; align-items: center; gap: 7px; }
+.foot-social svg { flex: none; }
+.contact-social { margin-top: 18px; color: var(--paper-muted); font-size: 15px; }
+.contact-social a { color: var(--paper-ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.contact-social a:hover { text-decoration-color: var(--paper-ink); }
 .foot-legal a, .foot-legal span { font-size: var(--t-xs); color: var(--muted); }
 
 /* WhatsApp flotante */

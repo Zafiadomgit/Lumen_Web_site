@@ -528,17 +528,35 @@
   "en": "We publish the site on your domain. For domain and hosting costs in your case, ask the team on WhatsApp."
  },
  {
-  "id": "redes",
+  "id": "redes_lumen",
   "k": [
+   "redes",
    "redes sociales",
    "instagram",
-   "facebook",
    "tiktok",
+   "insta",
+   "tienen redes",
+   "seguirlos",
+   "los sigo",
+   "social media",
+   "follow you",
+   "your instagram",
+   "your tiktok"
+  ],
+  "es": "Síguenos en Instagram como @lumen_studio_tech y en TikTok como @lumenestudiotech. Ahí sale Champi casi siempre.",
+  "en": "Follow us on Instagram at @lumen_studio_tech and on TikTok at @lumenestudiotech. Champi shows up there almost every time."
+ },
+ {
+  "id": "redes",
+  "k": [
    "marketing",
    "publicidad",
    "anuncios",
    "community manager",
-   "social media",
+   "manejo de redes",
+   "manejan redes",
+   "manejar mis redes",
+   "manage my social media",
    "ads",
    "advertising"
   ],

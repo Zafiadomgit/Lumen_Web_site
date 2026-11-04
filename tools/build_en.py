@@ -15,6 +15,12 @@ SITE = 'https://lumen-ruddy-beta.vercel.app/'
 WA = 'https://wa.me/573118739670?text='
 
 PAIRS = [
+    # ---------- redes sociales ----------
+    ('<nav class="foot-links foot-social" aria-label="Redes sociales">', '<nav class="foot-links foot-social" aria-label="Social media">'),
+    ('aria-label="Lumen Studio en Instagram"', 'aria-label="Lumen Studio on Instagram"'),
+    ('aria-label="Lumen Studio en TikTok"', 'aria-label="Lumen Studio on TikTok"'),
+    ('<p class="contact-social">Síguenos en <a ', '<p class="contact-social">Follow us on <a '),
+    ('>Instagram</a> y <a ', '>Instagram</a> and <a '),
     # ---------- cabecera del documento ----------
     ('<html lang="es">', '<html lang="en" data-base="../">'),
     ('<title>Lumen Studio — Encendemos tus ideas: webs, apps y TPV</title>', '<title>Lumen Studio — We light up your ideas: websites, apps and POS</title>'),
