@@ -14,6 +14,17 @@
   // idioma de la página (index.html = es, en/index.html = en) y ruta base para los recursos
   var LANG = doc.lang === 'en' ? 'en' : 'es';
   var BASE = doc.getAttribute('data-base') || '';
+  // estadísticas (Vercel Web Analytics): eventos anónimos, sin cookies; si el script no carga, no pasa nada
+  var track = function (name, data) { try { if (window.va) window.va('event', { name: name, data: data || {} }); } catch (e) {} };
+  var where = function (el) { var sec = el.closest('section[id], footer, header, #champi'); return sec ? (sec.id || sec.tagName.toLowerCase()) : 'otro'; };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (/wa\.me\//.test(h)) track('whatsapp', { lugar: a.id === 'calcWa' ? 'calculadora' : where(a) });
+    else if (/^mailto:/.test(h)) track('email', { lugar: where(a) });
+    else if (/instagram\.com|tiktok\.com/.test(h)) track('redes', { red: /tiktok/.test(h) ? 'tiktok' : 'instagram', lugar: where(a) });
+    else if (/archivum\.es|vitralesperafan\.com|althaya\.com\.au/.test(h)) track('visita_proyecto', { web: a.hostname });
+  }, true);
   var T = function (es, en) { return LANG === 'en' ? en : es; };
   var L = function (v) { return Array.isArray(v) ? (LANG === 'en' ? v[1] : v[0]) : v; };
 
@@ -177,7 +188,7 @@
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(screen); else addEventListener('resize', fit);
     var start = function (route) {
-      if (!frame.src) frame.src = frame.dataset.src + (route || '#/');
+      if (!frame.src) { frame.src = frame.dataset.src + (route || '#/'); track('tpv_demo'); }
       else if (route) { try { frame.contentWindow.location.hash = route; } catch (e) { frame.src = frame.dataset.src + route; } }
       screen.classList.add('is-on'); frame.tabIndex = 0;
     };
@@ -332,7 +343,9 @@
       }
       $('calcWa').href = WA + '?text=' + encodeURIComponent(summary);
     };
+    var calcUsed = false;
     calcEl.addEventListener('change', function (e) {
+      if (!calcUsed) { calcUsed = true; track('calculadora'); }
       if (e.target.name === 'tipo') { state.type = e.target.value; drawOptions(); } else update();
     });
     calcEl.addEventListener('submit', function (e) { e.preventDefault(); });
@@ -366,7 +379,7 @@
       fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (res) {
-          if (res.ok) { status.className = 'form-status is-ok'; status.textContent = T('¡Recibido! Te respondemos lo antes posible.', 'Got it! We will get back to you soon.'); form.reset(); }
+          if (res.ok) { track('formulario'); status.className = 'form-status is-ok'; status.textContent = T('¡Recibido! Te respondemos lo antes posible.', 'Got it! We will get back to you soon.'); form.reset(); }
           else { status.className = 'form-status is-err'; status.textContent = T('No se pudo enviar desde la web: abrimos tu correo con el mensaje listo.', 'It could not be sent from the site: we are opening your email app with the message ready.'); mailFallback(d); }
         })
         .catch(function () { status.className = 'form-status is-err'; status.textContent = T('Sin conexión con el servidor: abrimos tu correo con el mensaje listo.', 'No connection to the server: we are opening your email app with the message ready.'); mailFallback(d); })
@@ -602,6 +615,7 @@
       };
       faqReady.then(function () {
         var saved = local(q);
+        track('champi_pregunta', { respuesta: saved ? 'guardada' : aiOff ? 'sin_ia' : 'ia' });
         if (saved || aiOff) { setTimeout(function () { finish(saved || OFF()); }, 450); return; }
         fetch('/api/champi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
           .then(function (r) {
@@ -628,7 +642,7 @@
     };
     var openChat = function () {
       if (!cChat || chatting) return;
-      chatting = true; clearTimeout(wanderTimer);
+      chatting = true; clearTimeout(wanderTimer); track('champi_chat');
       var dest = maxX();
       if (Math.abs(x - dest) < 24) { showPanel(); return; } // ya está en su rincón
       say(T('¡Dame un momento!', 'Give me a second!'), 1500);
