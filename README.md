@@ -35,6 +35,6 @@ En *Settings → Environment Variables*:
 
 - Precios de la calculadora: en dólares (USD), en `js/main.js` (objeto `CALC`).
 
-- Rellenar los datos marcados entre corchetes en las páginas legales.
+- Páginas legales: añadir el NIT (y la matrícula de la Cámara de Comercio) cuando Lumen esté constituida.
 - Opiniones de clientes: borradores para aprobar en `docs/testimonios-borrador.md`.
 - Al tener dominio propio, cambiar `lumen-ruddy-beta.vercel.app` en `index.html`, `robots.txt` y `sitemap.xml`.
