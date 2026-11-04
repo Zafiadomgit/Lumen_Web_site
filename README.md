@@ -31,7 +31,20 @@ En *Settings → Environment Variables*:
   correo del visitante con el mensaje ya escrito.
 - `CONTACT_TO` (opcional): a dónde llegan los mensajes. Por defecto `pietersd05@gmail.com`.
 - `ANTHROPIC_API_KEY` (opcional): activa las respuestas con IA de Champi. Sin ella, Champi contesta con respuestas preparadas.
-- `CHAMPI_MODEL` (opcional): modelo de Champi; por defecto `claude-opus-5-5`. Para gastar mucho menos en un chat público, `claude-haiku-5-5`.
+- `CHAMPI_MODEL` (opcional): modelo de Champi; por defecto `claude-haiku-5-5`, con esfuerzo bajo.
+- `CHAMPI_ALLOWED_ORIGINS` (opcional): dominios extra que pueden usar a Champi (p. ej. el dominio propio cuando lo tengáis).
+
+### Gasto de Champi
+
+La API de Anthropic se paga aparte del plan de Claude: con créditos prepagados en console.anthropic.com.
+
+- Coste estimado con Haiku 5.5: unos 0,0003 USD por pregunta (≈ 2.000 tokens de entrada y 200 de salida),
+  es decir, unas 3.300 preguntas por cada dólar.
+- Tope recomendado: **5 USD al mes** (unas 15.000 preguntas). En la consola: Settings → Limits → límite de gasto
+  mensual de 5 USD, y en Billing carga 5–10 USD de créditos **con la recarga automática desactivada**: así es
+  imposible gastar más de lo cargado.
+- El código añade protecciones: solo responde a peticiones desde esta web y limita a 12 preguntas por hora y 30
+  por día por visitante. Cada respuesta deja en los registros de Vercel los tokens usados.
 - `CONTACT_FROM` (opcional): remitente verificado en Resend, p. ej. `Lumen Studio <hola@tudominio.com>`.
   Sin dominio verificado, Resend solo deja enviar al email de tu propia cuenta de Resend.
 

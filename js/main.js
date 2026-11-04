@@ -573,7 +573,11 @@
       };
       if (aiOff) { setTimeout(function () { finish(local(q)); }, 450); return; }
       fetch('/api/champi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
-        .then(function (r) { if ([404, 405, 501, 503].indexOf(r.status) >= 0) aiOff = true; return r.ok ? r.json() : null; })
+        .then(function (r) {
+          if ([403, 404, 405, 501, 503].indexOf(r.status) >= 0) aiOff = true;
+          if (r.status === 429) return { reply: T('Uf, me has hecho muchas preguntas seguidas. Para seguir, escríbenos por WhatsApp al +57 311 873 9670 y te responde el equipo.', 'Phew, that’s a lot of questions in a row. To keep going, message us on WhatsApp at +57 311 873 9670 and the team will answer.') };
+          return r.ok ? r.json() : null;
+        })
         .then(function (j) { finish(j && j.reply ? j.reply : local(q)); })
         .catch(function () { aiOff = true; finish(local(q)); });
     };
