@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20261104-2">
+  <link rel="stylesheet" href="../css/styles.css?v=20261104-4">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -480,10 +480,22 @@
   <!-- ============ CHAMPI, LA MASCOTA ============ -->
   <div class="champi" id="champi" hidden>
     <p class="champi-bubble" id="champiBubble" aria-hidden="true"></p>
-    <button class="champi-body" id="champiBody" type="button" aria-label="Champi, the Lumen Studio mascot: tap it"><span class="champi-sprite" aria-hidden="true"></span></button>
+    <button class="champi-body" id="champiBody" type="button" aria-label="Champi, the Lumen Studio mascot: tap to ask a question or drag it around"><span class="champi-sprite" aria-hidden="true"></span></button>
     <button class="champi-close" id="champiClose" type="button" aria-label="Hide Champi">×</button>
+    <div class="champi-chat" id="champiChat" role="dialog" aria-labelledby="champiChatTitle" hidden>
+      <div class="champi-chat-head">
+        <strong id="champiChatTitle">Ask Champi</strong>
+        <button type="button" id="champiChatClose" aria-label="Close the chat">×</button>
+      </div>
+      <div class="champi-log" id="champiLog" aria-live="polite"></div>
+      <div class="champi-chips" id="champiChips"></div>
+      <form class="champi-form" id="champiForm">
+        <input id="champiInput" type="text" maxlength="300" autocomplete="off" placeholder="Type your question…" aria-label="Your question for Champi">
+        <button type="submit" aria-label="Send the question">→</button>
+      </form>
+    </div>
   </div>
 
-  <script src="../js/main.js?v=20261104-1" defer></script>
+  <script src="../js/main.js?v=20261104-4" defer></script>
 </body>
 </html>

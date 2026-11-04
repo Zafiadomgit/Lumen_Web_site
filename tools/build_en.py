@@ -266,7 +266,11 @@ PAIRS = [
     ('aria-label="Escríbenos por WhatsApp"', 'aria-label="Message us on WhatsApp"'),
 
     # ---------- juego ----------
-    ('aria-label="Champi, la mascota de Lumen Studio: tócala"', 'aria-label="Champi, the Lumen Studio mascot: tap it"'),
+    ('aria-label="Champi, la mascota de Lumen Studio: tócala para preguntarle o arrástrala"', 'aria-label="Champi, the Lumen Studio mascot: tap to ask a question or drag it around"'),
+    ('<strong id="champiChatTitle">Pregúntale a Champi</strong>', '<strong id="champiChatTitle">Ask Champi</strong>'),
+    ('aria-label="Cerrar el chat"', 'aria-label="Close the chat"'),
+    ('placeholder="Escribe tu pregunta…" aria-label="Tu pregunta para Champi"', 'placeholder="Type your question…" aria-label="Your question for Champi"'),
+    ('aria-label="Enviar la pregunta"', 'aria-label="Send the question"'),
     ('aria-label="Ocultar a Champi"', 'aria-label="Hide Champi"'),
     ('id="champiBack" type="button" hidden>Volver a ver a Champi</button>', 'id="champiBack" type="button" hidden>Bring Champi back</button>'),
 ]

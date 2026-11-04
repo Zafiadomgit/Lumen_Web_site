@@ -14,6 +14,8 @@ Sitio estático sin paso de compilación, más una función serverless:
 - `demos/tpv/`: el TPV real de California compilado en modo demo (datos de prueba en el navegador).
 - `assets/img/champi/`: Champi, la mascota que pasea por la página (la seta de Fendaria).
 - `api/contact.js`: el formulario de contacto envía un email con Resend.
+- `api/champi.mjs`: Champi IA, responde preguntas sobre el estudio con Claude (SDK oficial `@anthropic-ai/sdk`).
+  Solo habla de Lumen Studio y de esta web; lo demás lo rechaza. Sin clave, la web usa respuestas preparadas (`js/main.js`).
 - `aviso-legal.html`, `privacidad.html`, `cookies.html`: páginas legales.
 - `robots.txt`, `sitemap.xml`: para buscadores.
 
@@ -28,6 +30,8 @@ En *Settings → Environment Variables*:
 - `RESEND_API_KEY` (obligatoria para que el formulario envíe emails). Sin ella, el formulario abre el
   correo del visitante con el mensaje ya escrito.
 - `CONTACT_TO` (opcional): a dónde llegan los mensajes. Por defecto `pietersd05@gmail.com`.
+- `ANTHROPIC_API_KEY` (opcional): activa las respuestas con IA de Champi. Sin ella, Champi contesta con respuestas preparadas.
+- `CHAMPI_MODEL` (opcional): modelo de Champi; por defecto `claude-opus-5-5`. Para gastar mucho menos en un chat público, `claude-haiku-5-5`.
 - `CONTACT_FROM` (opcional): remitente verificado en Resend, p. ej. `Lumen Studio <hola@tudominio.com>`.
   Sin dominio verificado, Resend solo deja enviar al email de tu propia cuenta de Resend.
 

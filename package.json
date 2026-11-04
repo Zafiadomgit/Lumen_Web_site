@@ -1,0 +1,9 @@
+{
+  "name": "lumen-studio-web",
+  "private": true,
+  "description": "Web de Lumen Studio: sitio estático + funciones de Vercel (api/)",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.4.0"
+  }
+}

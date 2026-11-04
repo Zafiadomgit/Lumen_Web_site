@@ -2,7 +2,8 @@
    1) luz del farol en el hero y luz del ratón por toda la página   2) barra fija
    3) entradas por sección e inclinación de las capturas   4) vídeos solo en pantalla
    5) TPV real incrustado (demos/tpv)   6) selector de personajes de Fendaria
-   8) calculadora de presupuesto   9) formulario de contacto (api/contact.js, con correo de respaldo) */
+   8) calculadora de presupuesto   9) formulario de contacto (api/contact.js, con correo de respaldo)
+   10) Champi: pasea, comenta, se puede arrastrar y responde preguntas (api/champi.mjs o respuestas preparadas) */
 (function () {
   'use strict';
   var doc = document.documentElement;
@@ -380,7 +381,7 @@
     var store = { get: function () { try { return localStorage.getItem('champi-off'); } catch (e) { return null; } },
                   set: function (v) { try { if (v) localStorage.setItem('champi-off', '1'); else localStorage.removeItem('champi-off'); } catch (e) {} } };
     var TIPS = {
-      inicio: T('¡Hola! Soy Champi. Dale un golpe al farol, verás qué pasa.', 'Hi! I’m Champi. Give the lantern a tap and see what happens.'),
+      inicio: T('¡Hola! Soy Champi. Tócame para preguntarme algo, o cógeme y llévame a pasear.', 'Hi! I’m Champi. Tap me to ask me something, or pick me up and take me for a walk.'),
       proyectos: T('Toca las miniaturas para ver más de cada proyecto.', 'Tap the thumbnails to see more of each project.'),
       servicios: T('Webs, apps, TPV… aquí nadie se aburre.', 'Websites, apps, POS… nobody gets bored here.'),
       tpv: T('Pide un kebab en el kiosco y mira cómo llega a cocina.', 'Order a kebab at the kiosk and watch it reach the kitchen.'),
@@ -390,15 +391,21 @@
       presupuesto: T('Elige lo que necesitas y te digo cuánto cuesta.', 'Pick what you need and I’ll tell you what it costs.'),
       contacto: T('Escríbenos: yo vigilo el buzón.', 'Write to us: I keep an eye on the inbox.')
     };
-    var POKES = [T('¡Ey, que hace cosquillas!', 'Hey, that tickles!'), T('Soy una seta, no un botón.', 'I’m a mushroom, not a button.'),
-      T('¿Hablamos de tu proyecto?', 'Shall we talk about your project?'), T('Si me tocas otra vez, bailo.', 'Tap me again and I’ll dance.')];
     var size = function () { return innerWidth <= 680 ? 48 : 88; };
-    var x = -120, target = 24, dir = 1, walking = false, lastT = 0, bubbleTimer = 0, wanderTimer = 0, poke = 0, lastSec = '';
+    var x = -120, target = 24, dir = 1, walking = false, lastT = 0, bubbleTimer = 0, wanderTimer = 0, lastSec = '';
+    var cy = 0, ang = 0, held = false, falling = false; // arrastrar: altura sobre el suelo y balanceo
     var maxX = function () { return Math.max(24, innerWidth - size() - (innerWidth <= 680 ? 84 : 110)); };
+    var cChat = $('champiChat');
     var place = function () {
       champi.style.setProperty('--cx', x.toFixed(1) + 'px');
+      champi.style.setProperty('--cy', cy.toFixed(1) + 'px');
       champi.style.setProperty('--dir', dir);
       champi.classList.toggle('is-right', x > innerWidth / 2);
+      cBody.style.transform = Math.abs(ang) > 0.1 ? 'rotate(' + ang.toFixed(2) + 'deg)' : '';
+      if (cChat && !cChat.hidden) { // el chat nunca se sale de la pantalla
+        var w = cChat.offsetWidth, left = Math.max(12, Math.min(innerWidth - 12 - w, x));
+        cChat.style.left = (left - x) + 'px';
+      }
     };
     var say = function (text, ms) {
       clearTimeout(bubbleTimer);
@@ -407,6 +414,7 @@
       bubbleTimer = setTimeout(function () { cBubble.classList.remove('is-on'); }, ms || 4200);
     };
     var walk = function (t) {
+      if (held || falling) { walking = false; champi.classList.remove('is-walk'); return; } // lo han cogido: deja de andar
       var dt = Math.min(0.05, (t - lastT) / 1000 || 0.016); lastT = t;
       var d = target - x, speed = innerWidth <= 680 ? 70 : 95;
       if (Math.abs(d) < 2) { walking = false; champi.classList.remove('is-walk'); x = target; place(); return; }
@@ -416,6 +424,7 @@
       requestAnimationFrame(walk);
     };
     var goTo = function (nx) {
+      if (held || falling) return;
       target = Math.max(16, Math.min(maxX(), nx));
       if (reduce) { x = target; place(); return; }
       if (!walking) { walking = true; champi.classList.add('is-walk'); lastT = performance.now(); requestAnimationFrame(walk); }
@@ -431,7 +440,7 @@
     var sections = ['inicio', 'proyectos', 'servicios', 'tpv', 'fendaria', 'opiniones', 'proceso', 'presupuesto', 'contacto']
       .map(function (id) { return document.getElementById(id); }).filter(Boolean);
     var checkSection = function () {
-      if (champi.hidden) return;
+      if (champi.hidden || held || falling || (cChat && !cChat.hidden)) return;
       var mid = innerHeight * 0.5, cur = null;
       sections.forEach(function (sec) { var r = sec.getBoundingClientRect(); if (r.top < mid && r.bottom > mid) cur = sec.id; });
       if (cur && cur !== lastSec) {
@@ -443,11 +452,151 @@
     var sTick = false;
     addEventListener('scroll', function () { if (!sTick) { sTick = true; setTimeout(function () { sTick = false; checkSection(); }, 250); } }, { passive: true });
     addEventListener('resize', function () { if (x > maxX()) { x = maxX(); target = x; place(); } });
-    cBody.addEventListener('click', function () {
+    var wave = function () {
       champi.classList.remove('is-wave'); void champi.offsetWidth; champi.classList.add('is-wave');
       setTimeout(function () { champi.classList.remove('is-wave'); }, 800);
-      say(POKES[poke++ % POKES.length], 3000);
+    };
+
+    // --- coger y soltar: se queda colgando de la cabeza, se balancea y al soltarlo cae ---
+    var DROPS = [T('¡Uf, qué vértigo!', 'Whoa, I’m dizzy!'), T('¡Aterrizaje perfecto!', 'Perfect landing!'),
+      T('Avisa antes de volar, ¿eh?', 'Warn me before we fly, OK?'), T('Me gustan las alturas… desde abajo.', 'I like heights… from down here.')];
+    var drag = null, prevX = 0, angV = 0, swingRaf = 0;
+    var swing = function () {
+      if (!held) { swingRaf = 0; return; }
+      var vx = x - prevX; prevX = x;
+      angV += vx * 0.9 - ang * 0.1;   // muelle: el cuerpo se queda atrás al moverlo y luego oscila
+      angV *= 0.88;
+      ang = Math.max(-35, Math.min(35, ang + angV));
+      place();
+      swingRaf = requestAnimationFrame(swing);
+    };
+    var holdAt = function (px, py) {
+      var sz = size();
+      x = px - sz / 2;
+      cy = Math.min(0, py - innerHeight + sz);   // la argolla de la seta bajo el puntero
+      if (reduce) place();
+    };
+    var startHold = function () {
+      held = true; walking = false; champi.classList.remove('is-walk');
+      champi.classList.add('is-held');
+      cBubble.classList.remove('is-on'); closeChat();
+      prevX = x; angV = 0;
+      if (!reduce && !swingRaf) swingRaf = requestAnimationFrame(swing);
+    };
+    var drop = function () {
+      held = false; champi.classList.remove('is-held');
+      var land = function () {
+        falling = false; champi.classList.remove('is-falling'); cy = 0; ang = 0;
+        x = Math.max(16, Math.min(maxX(), x)); target = x; place();
+        say(DROPS[Math.floor(Math.random() * DROPS.length)], 2600);
+        wander();
+      };
+      if (reduce || cy >= 0) { land(); return; }
+      falling = true; champi.classList.add('is-falling');
+      var vy = 0, t0 = performance.now(), bounced = false;
+      var fall = function (t) {
+        var dt = Math.min(0.033, (t - t0) / 1000); t0 = t;
+        vy += 2600 * dt; cy += vy * dt; ang *= 0.86;
+        if (cy >= 0) {
+          cy = 0;
+          if (!bounced && vy > 500) { vy = -vy * 0.28; bounced = true; } else { place(); land(); return; }
+        }
+        place(); requestAnimationFrame(fall);
+      };
+      requestAnimationFrame(fall);
+    };
+    cBody.addEventListener('pointerdown', function (e) {
+      if (e.button > 0 || falling) return;
+      drag = { sx: e.clientX, sy: e.clientY, moved: false };
+      try { cBody.setPointerCapture(e.pointerId); } catch (err) {}
     });
+    cBody.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      if (!drag.moved) {
+        if (Math.abs(e.clientX - drag.sx) + Math.abs(e.clientY - drag.sy) < 8) return;
+        drag.moved = true; startHold();
+      }
+      holdAt(e.clientX, e.clientY);
+      e.preventDefault();
+    });
+    var endDrag = function (cancel) {
+      if (!drag) return;
+      var moved = drag.moved; drag = null;
+      if (moved) drop(); else if (!cancel) toggleChat();
+    };
+    cBody.addEventListener('pointerup', function () { endDrag(false); });
+    cBody.addEventListener('pointercancel', function () { endDrag(true); });
+    // con teclado (Enter/Espacio) el botón dispara click sin pointerdown
+    cBody.addEventListener('click', function (e) { if (e.detail === 0) toggleChat(); });
+
+    // --- chat: Claude si hay clave en el servidor (api/champi.mjs); si no, respuestas preparadas ---
+    var cLog = $('champiLog'), cForm = $('champiForm'), cInput = $('champiInput'), cChips = $('champiChips');
+    var chat = [], aiOff = false, busy = false;
+    var norm = function (t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+    var FAQ = [
+      { k: /(precio|cuesta|cuanto|cost|price|presupuesto|quote|budget|tarifa)/, es: 'Depende de lo que necesites: una landing va de US$ 600 a 1.200, una web corporativa de 1.500 a 3.000 y una app desde unos US$ 5.000. La calculadora de la página te da el rango al momento.', en: 'It depends on what you need: a landing page is US$ 600–1,200, a business site 1,500–3,000 and an app from about US$ 5,000. The calculator on this page gives you the range instantly.' },
+      { k: /(tpv|kiosco|restaurante|cocina|pos\b|kiosk|caja|verifactu)/, es: 'Nuestro TPV tiene kiosco de autoservicio, pantalla de cocina, caja con tickets y cumple Verifactu. Para un local va de US$ 500 a 900, más US$ 39 al mes. ¡Pruébalo en la página!', en: 'Our POS has a self-service kiosk, kitchen display, till with receipts and it complies with Verifactu. One location is US$ 500–900, plus US$ 39 a month. Try it on this page!' },
+      { k: /(app|android|iphone|ios|movil|mobile)/, es: 'Hacemos apps para Android e iPhone, de negocio o de entretenimiento. Para un solo sistema van de unos US$ 5.000 a 10.000 según lo que lleven.', en: 'We build Android and iPhone apps, for business or entertainment. For one platform they run about US$ 5,000–10,000 depending on the features.' },
+      { k: /(tarda|plazo|tiempo|semanas|how long|time|when|cuando)/, es: 'Una landing está en unas 2 semanas, una web corporativa en 4 y una app en 8 a 10. La fecha te la damos por escrito antes de empezar.', en: 'A landing page takes about 2 weeks, a business site 4 and an app 8 to 10. We put the date in writing before we start.' },
+      { k: /(web|pagina|landing|tienda|website|site|store|shop)/, es: 'Hacemos landings, webs corporativas y tiendas online, rápidas y a medida, sin plantillas. Mira Vitrales Perafán o Althaya en Proyectos.', en: 'We build landing pages, business sites and online stores, fast and tailor-made, no templates. Check out Vitrales Perafán or Althaya in Projects.' },
+      { k: /(contact|whatsapp|email|correo|llamar|hablar|call|talk|phone|telefono)/, es: 'Escríbenos por WhatsApp al +57 311 873 9670 o a pietersd05@gmail.com. También tienes el formulario más abajo.', en: 'Message us on WhatsApp at +57 311 873 9670 or email pietersd05@gmail.com. There is also a form further down.' },
+      { k: /(donde|bogota|colombia|pais|where|located|based)/, es: 'Estamos en Bogotá, Colombia, y trabajamos en remoto con clientes de cualquier país, en español y en inglés.', en: 'We are in Bogotá, Colombia, and work remotely with clients anywhere, in Spanish and English.' },
+      { k: /(fendaria|juego|game|heroe|hero)/, es: 'Fendaria es nuestra app de aventuras para Android, con siete personajes. Llega pronto a Google Play… ¡y yo salgo en ella!', en: 'Fendaria is our adventure app for Android, with seven characters. It’s coming soon to Google Play… and I’m in it!' },
+      { k: /(archivum|factura|invoice|billing)/, es: 'Archivum es nuestro programa de facturación y archivo para pymes y autónomos, preparado para Veri*Factu. Lo tienes en archivum.es.', en: 'Archivum is our invoicing and archiving software for small businesses and freelancers, ready for Veri*Factu. It’s at archivum.es.' },
+      { k: /(mantenimiento|soporte|despues|support|maintenance|after)/, es: 'Después de publicar seguimos contigo: mantenimiento, mejoras y soporte.', en: 'After launch we stay with you: maintenance, improvements and support.' },
+      { k: /(champi|quien eres|who are you|seta|mushroom)/, es: 'Soy Champi, la seta de Fendaria y la mascota de Lumen Studio. Puedes cogerme y moverme por la pantalla… ¡con cuidado!', en: 'I’m Champi, the Fendaria mushroom and Lumen Studio’s mascot. You can pick me up and move me around… gently!' },
+      { k: /^(hola|buenas|hey|hi|hello|ola)\b/, es: '¡Hola! Pregúntame por webs, apps, el TPV o precios.', en: 'Hi! Ask me about websites, apps, the POS or prices.' }
+    ];
+    var local = function (q) {
+      var n = norm(q);
+      for (var i = 0; i < FAQ.length; i++) if (FAQ[i].k.test(n)) return T(FAQ[i].es, FAQ[i].en);
+      return T('Solo puedo ayudarte con lo que tiene que ver con Lumen Studio: webs, apps, el TPV, precios o contacto. Si es algo de tu proyecto, el equipo te responde por WhatsApp al +57 311 873 9670.', 'I can only help with things about Lumen Studio: websites, apps, the POS, prices or contact. If it’s about your project, the team will answer on WhatsApp at +57 311 873 9670.');
+    };
+    var add = function (text, who) {
+      var p = document.createElement('p');
+      p.className = 'champi-msg champi-msg--' + who;
+      p.textContent = text;
+      cLog.appendChild(p); cLog.scrollTop = cLog.scrollHeight;
+      return p;
+    };
+    var CHIPS = [T('¿Cuánto cuesta una web?', 'How much is a website?'), T('¿Qué incluye el TPV?', 'What does the POS include?'),
+      T('¿Hacéis apps?', 'Do you build apps?'), T('¿Cómo os contacto?', 'How do I contact you?')];
+    var ask = function (q) {
+      q = q.trim(); if (!q || busy) return;
+      busy = true; cChips.hidden = true;
+      add(q, 'me'); chat.push({ role: 'user', content: q });
+      var typing = add('…', 'bot'); typing.classList.add('champi-msg--typing');
+      wave();
+      var finish = function (reply) {
+        typing.remove(); add(reply, 'bot');
+        chat.push({ role: 'assistant', content: reply }); chat = chat.slice(-8); busy = false;
+      };
+      if (aiOff) { setTimeout(function () { finish(local(q)); }, 450); return; }
+      fetch('/api/champi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
+        .then(function (r) { if ([404, 405, 501, 503].indexOf(r.status) >= 0) aiOff = true; return r.ok ? r.json() : null; })
+        .then(function (j) { finish(j && j.reply ? j.reply : local(q)); })
+        .catch(function () { aiOff = true; finish(local(q)); });
+    };
+    var openChat = function () {
+      if (!cChat) return;
+      cBubble.classList.remove('is-on'); clearTimeout(bubbleTimer);
+      cChat.hidden = false;
+      if (!cLog.childElementCount) {
+        add(T('¡Hola! Soy Champi. Pregúntame lo que quieras sobre webs, apps, el TPV o precios.', 'Hi! I’m Champi. Ask me anything about websites, apps, the POS or prices.'), 'bot');
+        cChips.innerHTML = '';
+        CHIPS.forEach(function (c) { var b = document.createElement('button'); b.type = 'button'; b.textContent = c; b.addEventListener('click', function () { ask(c); }); cChips.appendChild(b); });
+      }
+      place(); wave();
+      if (finePointer) cInput.focus({ preventScroll: true });
+    };
+    var closeChat = function () { if (cChat && !cChat.hidden) { cChat.hidden = true; } };
+    var toggleChat = function () { if (cChat && !cChat.hidden) closeChat(); else openChat(); };
+    if (cChat) {
+      cForm.addEventListener('submit', function (e) { e.preventDefault(); var q = cInput.value; cInput.value = ''; ask(q); });
+      $('champiChatClose').addEventListener('click', function () { closeChat(); cBody.focus(); });
+      cChat.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeChat(); cBody.focus(); } });
+    }
+
     var show = function () {
       champi.hidden = false; if (cBack) cBack.hidden = true;
       x = -size() - 20; place();
@@ -455,7 +604,7 @@
       wander();
     };
     $('champiClose').addEventListener('click', function () {
-      champi.hidden = true; store.set(true); clearTimeout(wanderTimer);
+      champi.hidden = true; store.set(true); clearTimeout(wanderTimer); closeChat();
       if (cBack) { cBack.hidden = false; }
     });
     if (cBack) cBack.addEventListener('click', function () { store.set(false); show(); });
