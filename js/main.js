@@ -394,6 +394,7 @@
     var size = function () { return innerWidth <= 680 ? 48 : 88; };
     var x = -120, target = 24, dir = 1, walking = false, lastT = 0, bubbleTimer = 0, wanderTimer = 0, lastSec = '';
     var cy = 0, ang = 0, held = false, falling = false; // arrastrar: altura sobre el suelo y balanceo
+    var running = false, arrive = null, chatting = false, runSpeed = 320; // correr a su rincón mientras el chat está abierto
     var maxX = function () { return Math.max(24, innerWidth - size() - (innerWidth <= 680 ? 84 : 110)); };
     var cChat = $('champiChat');
     var place = function () {
@@ -416,17 +417,26 @@
     var walk = function (t) {
       if (held || falling) { walking = false; champi.classList.remove('is-walk'); return; } // lo han cogido: deja de andar
       var dt = Math.min(0.05, (t - lastT) / 1000 || 0.016); lastT = t;
-      var d = target - x, speed = innerWidth <= 680 ? 70 : 95;
-      if (Math.abs(d) < 2) { walking = false; champi.classList.remove('is-walk'); x = target; place(); return; }
+      var d = target - x, speed = running ? runSpeed : (innerWidth <= 680 ? 70 : 95);
+      if (Math.abs(d) < 2) {
+        walking = false; running = false; champi.classList.remove('is-walk', 'is-run'); x = target; place();
+        var cb = arrive; arrive = null; if (cb) cb();
+        return;
+      }
       dir = d > 0 ? 1 : -1;
       x += dir * Math.min(Math.abs(d), speed * dt);
       place();
       requestAnimationFrame(walk);
     };
-    var goTo = function (nx) {
+    var goTo = function (nx, opts) {
+      opts = opts || {};
       if (held || falling) return;
+      if (chatting && !opts.force) return; // con el chat abierto se queda quieto en su rincón
       target = Math.max(16, Math.min(maxX(), nx));
-      if (reduce) { x = target; place(); return; }
+      running = !!opts.run; arrive = opts.done || null;
+      if (running) runSpeed = Math.max(innerWidth <= 680 ? 190 : 320, Math.abs(target - x) / 1.3); // la carrera dura como mucho 1,3 s
+      champi.classList.toggle('is-run', running);
+      if (reduce) { x = target; place(); var cb = arrive; arrive = null; if (cb) cb(); return; }
       if (!walking) { walking = true; champi.classList.add('is-walk'); lastT = performance.now(); requestAnimationFrame(walk); }
     };
     var wander = function () {
@@ -440,13 +450,13 @@
     var sections = ['inicio', 'proyectos', 'servicios', 'tpv', 'fendaria', 'opiniones', 'proceso', 'presupuesto', 'contacto']
       .map(function (id) { return document.getElementById(id); }).filter(Boolean);
     var checkSection = function () {
-      if (champi.hidden || held || falling || (cChat && !cChat.hidden)) return;
+      if (champi.hidden || held || falling || chatting) return;
       var mid = innerHeight * 0.5, cur = null;
       sections.forEach(function (sec) { var r = sec.getBoundingClientRect(); if (r.top < mid && r.bottom > mid) cur = sec.id; });
       if (cur && cur !== lastSec) {
         lastSec = cur;
         goTo(16 + Math.random() * (maxX() - 16));
-        setTimeout(function () { say(TIPS[cur]); }, reduce ? 0 : 500);
+        setTimeout(function () { if (!chatting && !held) say(TIPS[cur]); }, reduce ? 0 : 500);
       }
     };
     var sTick = false;
@@ -477,7 +487,7 @@
       if (reduce) place();
     };
     var startHold = function () {
-      held = true; walking = false; champi.classList.remove('is-walk');
+      held = true; walking = false; running = false; arrive = null; champi.classList.remove('is-walk', 'is-run');
       champi.classList.add('is-held');
       cBubble.classList.remove('is-on'); closeChat();
       prevX = x; angV = 0;
@@ -581,8 +591,9 @@
         .then(function (j) { finish(j && j.reply ? j.reply : local(q)); })
         .catch(function () { aiOff = true; finish(local(q)); });
     };
-    var openChat = function () {
-      if (!cChat) return;
+    // al tocarlo: «dame un momento», corre a la esquina derecha, resopla y abre el chat ahí
+    var showPanel = function () {
+      if (!chatting || !cChat) return; // lo cerraron o lo cogieron mientras corría
       cBubble.classList.remove('is-on'); clearTimeout(bubbleTimer);
       cChat.hidden = false;
       if (!cLog.childElementCount) {
@@ -593,8 +604,29 @@
       place(); wave();
       if (finePointer) cInput.focus({ preventScroll: true });
     };
-    var closeChat = function () { if (cChat && !cChat.hidden) { cChat.hidden = true; } };
-    var toggleChat = function () { if (cChat && !cChat.hidden) closeChat(); else openChat(); };
+    var openChat = function () {
+      if (!cChat || chatting) return;
+      chatting = true; clearTimeout(wanderTimer);
+      var dest = maxX();
+      if (Math.abs(x - dest) < 24) { showPanel(); return; } // ya está en su rincón
+      say(T('¡Dame un momento!', 'Give me a second!'), 1500);
+      setTimeout(function () {
+        if (!chatting) return;
+        goTo(dest, { run: true, force: true, done: function () {
+          if (!chatting) return;
+          dir = -1; place(); // mira hacia la página
+          say(T('Uff, me cansé… Aquí no te molesto.', 'Phew, I’m tired… I won’t get in your way here.'), 1600);
+          setTimeout(showPanel, reduce ? 0 : 1300);
+        } });
+      }, reduce ? 0 : 450);
+    };
+    var closeChat = function () {
+      if (!chatting && (!cChat || cChat.hidden)) return;
+      chatting = false;
+      if (cChat) cChat.hidden = true;
+      if (!champi.hidden && !held) wander(); // vuelve a pasear como siempre
+    };
+    var toggleChat = function () { if (chatting) closeChat(); else openChat(); };
     if (cChat) {
       cForm.addEventListener('submit', function (e) { e.preventDefault(); var q = cInput.value; cInput.value = ''; ask(q); });
       $('champiChatClose').addEventListener('click', function () { closeChat(); cBody.focus(); });

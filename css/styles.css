@@ -413,6 +413,7 @@ main, .footer, .hero { position: relative; z-index: 2; }
 /* andar: solo los 6 fotogramas de perfil (los 2 primeros de la tira original miran de frente y parecían un paso atrás) */
 .champi.is-walk .champi-sprite { background-image: url("../assets/img/champi/walk.webp"); background-size: 528px 88px; animation: champi-walk .6s steps(6) infinite; }
 @keyframes champi-walk { to { background-position-x: -528px; } }
+.champi.is-run .champi-sprite { animation-duration: .32s; } /* corriendo a su rincón */
 .champi.is-wave .champi-sprite { background-image: url("../assets/img/champi/attack.webp"); animation: champi-steps .8s steps(8) 1; }
 @keyframes champi-steps { to { background-position-x: -704px; } }
 .champi-bubble {
