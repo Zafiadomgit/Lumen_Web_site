@@ -378,10 +378,10 @@
   var champi = $('champi');
   if (champi) {
     var cBody = $('champiBody'), cBubble = $('champiBubble'), cBack = $('champiBack');
-    var store = { get: function () { try { return localStorage.getItem('champi-off'); } catch (e) { return null; } },
-                  set: function (v) { try { if (v) localStorage.setItem('champi-off', '1'); else localStorage.removeItem('champi-off'); } catch (e) {} } };
+    // la ✕ solo lo esconde hasta recargar; se borra lo que guardaban las versiones anteriores
+    try { localStorage.removeItem('champi-off'); } catch (e) {}
     var TIPS = {
-      inicio: T('¡Hola! Soy Champi. Tócame para preguntarme algo, o cógeme y llévame a pasear.', 'Hi! I’m Champi. Tap me to ask me something, or pick me up and take me for a walk.'),
+      inicio: T('¡Hola! Soy Champi. Tócame para preguntarme algo, o agárrame y llévame a pasear.', 'Hi! I’m Champi. Tap me to ask me something, or pick me up and take me for a walk.'),
       proyectos: T('Toca las miniaturas para ver más de cada proyecto.', 'Tap the thumbnails to see more of each project.'),
       servicios: T('Webs, apps, TPV… aquí nadie se aburre.', 'Websites, apps, POS… nobody gets bored here.'),
       tpv: T('Pide un kebab en el kiosco y mira cómo llega a cocina.', 'Order a kebab at the kiosk and watch it reach the kitchen.'),
@@ -589,7 +589,7 @@
       return p;
     };
     var CHIPS = [T('¿Cuánto cuesta una web?', 'How much is a website?'), T('¿Qué incluye el TPV?', 'What does the POS include?'),
-      T('¿Hacéis apps?', 'Do you build apps?'), T('¿Cómo os contacto?', 'How do I contact you?')];
+      T('¿Hacen apps?', 'Do you build apps?'), T('¿Cómo los contacto?', 'How do I contact you?')];
     var ask = function (q) {
       q = q.trim(); if (!q || busy) return;
       busy = true; cChips.hidden = true;
@@ -662,11 +662,10 @@
       wander();
     };
     $('champiClose').addEventListener('click', function () {
-      champi.hidden = true; store.set(true); clearTimeout(wanderTimer); closeChat();
+      champi.hidden = true; clearTimeout(wanderTimer); closeChat();
       if (cBack) { cBack.hidden = false; }
     });
-    if (cBack) cBack.addEventListener('click', function () { store.set(false); show(); });
-    if (store.get()) { if (cBack) cBack.hidden = false; }
-    else setTimeout(show, 1200);
+    if (cBack) cBack.addEventListener('click', show);
+    setTimeout(show, 1200);
   }
 })();

@@ -137,7 +137,7 @@
    "visit you",
    "meet in person"
   ],
-  "es": "Trabajamos en remoto: las reuniones son por videollamada o WhatsApp. Escríbenos al +57 311 873 9670 y cuadramos una.",
+  "es": "Trabajamos en remoto: las reuniones son por videollamada o WhatsApp. Escríbenos al +57 311 873 9670 y agendamos una.",
   "en": "We work remotely: meetings are by video call or WhatsApp. Message us at +57 311 873 9670 and we’ll set one up."
  },
  {
@@ -287,6 +287,9 @@
   "id": "app",
   "k": [
    "app",
+   "app para celular",
+   "aplicacion para celular",
+   "celular",
    "aplicacion",
    "aplicacion movil",
    "app movil",
@@ -979,7 +982,7 @@
    "try the pos",
    "demo pos"
   ],
-  "es": "Baja a «Prueba el TPV» y pulsa «Encender el TPV». Pide en el kiosco y luego cambia a «Cocina» para ver llegar la comanda.",
+  "es": "Baja a «Prueba el TPV» y toca «Encender el TPV». Pide en el kiosco y luego cambia a «Cocina» para ver llegar la comanda.",
   "en": "Scroll to “Try the POS” and press “Turn on the POS”. Order at the kiosk, then switch to “Kitchen” to watch the ticket arrive."
  },
  {
@@ -1153,7 +1156,7 @@
    "invoice",
    "invoicing"
   ],
-  "es": "Archivum es nuestro programa de facturación y archivo para pymes y autónomos, preparado para Veri*Factu y con planes desde 0 €. Lo tienes en archivum.es.",
+  "es": "Archivum es nuestro programa de facturación y archivo para pequeñas empresas e independientes, preparado para Veri*Factu y con planes desde 0 €. Lo tienes en archivum.es.",
   "en": "Archivum is our invoicing and archiving software for small businesses and freelancers, ready for Veri*Factu, with plans from €0. It’s at archivum.es."
  },
  {
@@ -1248,7 +1251,7 @@
    "video call",
    "schedule a call"
   ],
-  "es": "Claro: escríbenos por WhatsApp al +57 311 873 9670 y cuadramos una videollamada.",
+  "es": "Claro: escríbenos por WhatsApp al +57 311 873 9670 y agendamos una videollamada.",
   "en": "Sure: message us on WhatsApp at +57 311 873 9670 and we’ll set up a video call."
  },
  {
@@ -1315,7 +1318,7 @@
    "cambiar idioma",
    "change language"
   ],
-  "es": "Pulsa «EN» arriba a la derecha para ver la web en inglés, o «ES» para volver al español.",
+  "es": "Toca «EN» arriba a la derecha para ver la web en inglés, o «ES» para volver al español.",
   "en": "Press “EN” at the top right to see the site in English, or “ES” to switch back to Spanish."
  },
  {
@@ -1343,7 +1346,7 @@
    "your name",
    "mushroom"
   ],
-  "es": "Soy Champi, la seta de Fendaria y la mascota de Lumen Studio. Puedes cogerme y moverme por la pantalla… ¡con cuidado!",
+  "es": "Soy Champi, la seta de Fendaria y la mascota de Lumen Studio. Puedes agarrarme y moverme por la pantalla… ¡con cuidado!",
   "en": "I’m Champi, the Fendaria mushroom and Lumen Studio’s mascot. You can pick me up and move me around… gently!"
  },
  {
@@ -1365,15 +1368,20 @@
   "id": "champi_mover",
   "k": [
    "moverte",
+   "te muevo",
+   "muevo a champi",
    "arrastrarte",
+   "te arrastro",
    "cogerte",
+   "agarrarte",
+   "te agarro",
    "esconderte",
    "ocultarte",
    "drag you",
    "move you",
    "hide you"
   ],
-  "es": "Cógeme con el ratón o el dedo y suéltame donde quieras. Si te molesto, pulsa la ✕ junto a mí; al pie de la página tienes «Volver a ver a Champi».",
+  "es": "Agárrame con el mouse o con el dedo y suéltame donde quieras. Si te molesto, toca la ✕ junto a mí; al pie de la página tienes «Volver a ver a Champi».",
   "en": "Grab me with your mouse or finger and drop me anywhere. If I’m in the way, press the ✕ next to me; you can bring me back from the bottom of the page."
  }
 ]
