@@ -4,7 +4,8 @@
 //   CHAMPI_MODEL       (opcional)     modelo; por defecto claude-haiku-5-5 (barato y de sobra para respuestas cortas)
 //   CHAMPI_ALLOWED_ORIGINS (opcional) dominios extra que pueden usar a Champi, separados por comas
 //                                     (p. ej. https://lumenstudio.co cuando tengáis dominio propio)
-// Sin ANTHROPIC_API_KEY responde 503 y la web usa las respuestas preparadas de js/main.js.
+// La web responde primero con las preguntas guardadas en assets/data/champi-faq.json (gratis);
+// solo llama aquí cuando ninguna encaja. Sin ANTHROPIC_API_KEY responde 503 y Champi deriva a WhatsApp.
 // El tope de gasto real se pone en console.anthropic.com (ver README): este código solo evita abusos.
 import Anthropic from '@anthropic-ai/sdk';
 

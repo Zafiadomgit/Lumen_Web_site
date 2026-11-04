@@ -542,25 +542,44 @@
     // --- chat: Claude si hay clave en el servidor (api/champi.mjs); si no, respuestas preparadas ---
     var cLog = $('champiLog'), cForm = $('champiForm'), cInput = $('champiInput'), cChips = $('champiChips');
     var chat = [], aiOff = false, busy = false;
-    var norm = function (t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
-    var FAQ = [
-      { k: /(precio|cuesta|cuanto|cost|price|presupuesto|quote|budget|tarifa)/, es: 'Depende de lo que necesites: una landing va de US$ 600 a 1.200, una web corporativa de 1.500 a 3.000 y una app desde unos US$ 5.000. La calculadora de la página te da el rango al momento.', en: 'It depends on what you need: a landing page is US$ 600–1,200, a business site 1,500–3,000 and an app from about US$ 5,000. The calculator on this page gives you the range instantly.' },
-      { k: /(tpv|kiosco|restaurante|cocina|pos\b|kiosk|caja|verifactu)/, es: 'Nuestro TPV tiene kiosco de autoservicio, pantalla de cocina, caja con tickets y cumple Verifactu. Para un local va de US$ 500 a 900, más US$ 39 al mes. ¡Pruébalo en la página!', en: 'Our POS has a self-service kiosk, kitchen display, till with receipts and it complies with Verifactu. One location is US$ 500–900, plus US$ 39 a month. Try it on this page!' },
-      { k: /(app|android|iphone|ios|movil|mobile)/, es: 'Hacemos apps para Android e iPhone, de negocio o de entretenimiento. Para un solo sistema van de unos US$ 5.000 a 10.000 según lo que lleven.', en: 'We build Android and iPhone apps, for business or entertainment. For one platform they run about US$ 5,000–10,000 depending on the features.' },
-      { k: /(tarda|plazo|tiempo|semanas|how long|time|when|cuando)/, es: 'Una landing está en unas 2 semanas, una web corporativa en 4 y una app en 8 a 10. La fecha te la damos por escrito antes de empezar.', en: 'A landing page takes about 2 weeks, a business site 4 and an app 8 to 10. We put the date in writing before we start.' },
-      { k: /(web|pagina|landing|tienda|website|site|store|shop)/, es: 'Hacemos landings, webs corporativas y tiendas online, rápidas y a medida, sin plantillas. Mira Vitrales Perafán o Althaya en Proyectos.', en: 'We build landing pages, business sites and online stores, fast and tailor-made, no templates. Check out Vitrales Perafán or Althaya in Projects.' },
-      { k: /(contact|whatsapp|email|correo|llamar|hablar|call|talk|phone|telefono)/, es: 'Escríbenos por WhatsApp al +57 311 873 9670 o a pietersd05@gmail.com. También tienes el formulario más abajo.', en: 'Message us on WhatsApp at +57 311 873 9670 or email pietersd05@gmail.com. There is also a form further down.' },
-      { k: /(donde|bogota|colombia|pais|where|located|based)/, es: 'Estamos en Bogotá, Colombia, y trabajamos en remoto con clientes de cualquier país, en español y en inglés.', en: 'We are in Bogotá, Colombia, and work remotely with clients anywhere, in Spanish and English.' },
-      { k: /(fendaria|juego|game|heroe|hero)/, es: 'Fendaria es nuestra app de aventuras para Android, con siete personajes. Llega pronto a Google Play… ¡y yo salgo en ella!', en: 'Fendaria is our adventure app for Android, with seven characters. It’s coming soon to Google Play… and I’m in it!' },
-      { k: /(archivum|factura|invoice|billing)/, es: 'Archivum es nuestro programa de facturación y archivo para pymes y autónomos, preparado para Veri*Factu. Lo tienes en archivum.es.', en: 'Archivum is our invoicing and archiving software for small businesses and freelancers, ready for Veri*Factu. It’s at archivum.es.' },
-      { k: /(mantenimiento|soporte|despues|support|maintenance|after)/, es: 'Después de publicar seguimos contigo: mantenimiento, mejoras y soporte.', en: 'After launch we stay with you: maintenance, improvements and support.' },
-      { k: /(champi|quien eres|who are you|seta|mushroom)/, es: 'Soy Champi, la seta de Fendaria y la mascota de Lumen Studio. Puedes cogerme y moverme por la pantalla… ¡con cuidado!', en: 'I’m Champi, the Fendaria mushroom and Lumen Studio’s mascot. You can pick me up and move me around… gently!' },
-      { k: /^(hola|buenas|hey|hi|hello|ola)\b/, es: '¡Hola! Pregúntame por webs, apps, el TPV o precios.', en: 'Hi! Ask me about websites, apps, the POS or prices.' }
-    ];
-    var local = function (q) {
-      var n = norm(q);
-      for (var i = 0; i < FAQ.length; i++) if (FAQ[i].k.test(n)) return T(FAQ[i].es, FAQ[i].en);
+    // --- respuestas guardadas (assets/data/champi-faq.json): se responden al momento y sin gastar créditos ---
+    // Cada entrada tiene palabras clave (k), respuesta en es/en y, si es de precio o de plazo, su «intent».
+    // Solo si ninguna encaja se pregunta a la IA (api/champi.mjs).
+    var norm = function (t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim(); };
+    var esc = function (t) { return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); };
+    var FAQ = null;
+    var faqReady = fetch(BASE + 'assets/data/champi-faq.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })
+      .then(function (list) {
+        FAQ = list.map(function (e) {
+          e.re = e.k.map(function (k) { k = norm(k); return { re: new RegExp('\\b' + esc(k) + '(s|es)?\\b'), w: k.split(' ').length }; });
+          return e;
+        });
+      });
+    var INTENT = {
+      price: /\b(precios?|cuanto (cuesta|cuestan|vale|valen|cobran|cobrais|sale|salen)|cuesta|costos?|coste|tarifas?|presupuestos?|cotiza\w*|price\w*|cost\w*|how much|quotes?|rates?|budget)\b/,
+      time: /\b(cuanto tiempo|tarda|tardan|tardais|tardaria|demora|demoran|plazos?|semanas|tiempo de entrega|cuando (sale|salen|estara|estaria|lanzan|llega|sera)|how long|timeline|when|weeks?)\b/
+    };
+    var OFF = function () {
       return T('Solo puedo ayudarte con lo que tiene que ver con Lumen Studio: webs, apps, el TPV, precios o contacto. Si es algo de tu proyecto, el equipo te responde por WhatsApp al +57 311 873 9670.', 'I can only help with things about Lumen Studio: websites, apps, the POS, prices or contact. If it’s about your project, the team will answer on WhatsApp at +57 311 873 9670.');
+    };
+    // la entrada que mejor encaja, o null si ninguna
+    var local = function (q) {
+      if (!FAQ || !FAQ.length) return null;
+      var n = norm(q), intent = INTENT.price.test(n) ? 'price' : INTENT.time.test(n) ? 'time' : null;
+      var best = null, top = 0, base = null;
+      FAQ.forEach(function (e) {
+        if (e.intent && e.intent !== intent) return;
+        if (e.base) { base = e; return; }
+        var sc = 0;
+        e.re.forEach(function (r) { if (r.re.test(n)) sc += r.w * 2; });
+        if (!sc) return;
+        if (e.intent) sc += 0.5;           // «¿cuánto cuesta una app?» → el precio de la app, no «hacemos apps»
+        if (e.weak) sc *= 0.4;             // un «hola» no gana a una pregunta de verdad
+        if (sc > top) { top = sc; best = e; }
+      });
+      if (best && best.weak && n.split(' ').length > 3) best = null; // «hola, ¿…algo raro…?» → que lo vea la IA
+      if (!best && intent) best = base;
+      return best ? T(best.es, best.en) : null;
     };
     var add = function (text, who) {
       var p = document.createElement('p');
@@ -581,15 +600,18 @@
         typing.remove(); add(reply, 'bot');
         chat.push({ role: 'assistant', content: reply }); chat = chat.slice(-8); busy = false;
       };
-      if (aiOff) { setTimeout(function () { finish(local(q)); }, 450); return; }
-      fetch('/api/champi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
-        .then(function (r) {
-          if ([403, 404, 405, 501, 503].indexOf(r.status) >= 0) aiOff = true;
-          if (r.status === 429) return { reply: T('Uf, me has hecho muchas preguntas seguidas. Para seguir, escríbenos por WhatsApp al +57 311 873 9670 y te responde el equipo.', 'Phew, that’s a lot of questions in a row. To keep going, message us on WhatsApp at +57 311 873 9670 and the team will answer.') };
-          return r.ok ? r.json() : null;
-        })
-        .then(function (j) { finish(j && j.reply ? j.reply : local(q)); })
-        .catch(function () { aiOff = true; finish(local(q)); });
+      faqReady.then(function () {
+        var saved = local(q);
+        if (saved || aiOff) { setTimeout(function () { finish(saved || OFF()); }, 450); return; }
+        fetch('/api/champi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: chat }) })
+          .then(function (r) {
+            if ([403, 404, 405, 501, 503].indexOf(r.status) >= 0) aiOff = true;
+            if (r.status === 429) return { reply: T('Uf, me has hecho muchas preguntas seguidas. Para seguir, escríbenos por WhatsApp al +57 311 873 9670 y te responde el equipo.', 'Phew, that’s a lot of questions in a row. To keep going, message us on WhatsApp at +57 311 873 9670 and the team will answer.') };
+            return r.ok ? r.json() : null;
+          })
+          .then(function (j) { finish(j && j.reply ? j.reply : OFF()); })
+          .catch(function () { aiOff = true; finish(OFF()); });
+      });
     };
     // al tocarlo: «dame un momento», corre a la esquina derecha, resopla y abre el chat ahí
     var showPanel = function () {
