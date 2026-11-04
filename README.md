@@ -51,6 +51,24 @@ La API de Anthropic se paga aparte del plan de Claude: con créditos prepagados 
 - `CONTACT_FROM` (opcional): remitente verificado en Resend, p. ej. `Lumen Studio <hola@tudominio.com>`.
   Sin dominio verificado, Resend solo deja enviar al email de tu propia cuenta de Resend.
 
+### Estadísticas (Vercel Web Analytics)
+
+Activado en el proyecto `lumen` (Analytics). Cuenta visitas sin cookies y estos eventos, que envía `js/main.js` con `track()`:
+
+| Evento | Cuándo | Datos |
+| --- | --- | --- |
+| `whatsapp` | clic a WhatsApp | `lugar` (calculadora, contacto, footer…) |
+| `email` | clic al correo | `lugar` |
+| `redes` | clic a Instagram o TikTok | `red`, `lugar` |
+| `visita_proyecto` | clic a archivum.es, vitralesperafan.com o althaya.com.au | `web` |
+| `calculadora` | primer uso de la calculadora | — |
+| `tpv_demo` | se enciende la demo del TPV | — |
+| `formulario` | formulario enviado | — |
+| `champi_chat` | se abre el chat de Champi | — |
+| `champi_pregunta` | pregunta a Champi | `respuesta`: guardada, ia o sin_ia |
+
+Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`). Los eventos personalizados pueden necesitar el plan Pro de Vercel; las visitas funcionan en el plan gratuito.
+
 ## Pendiente
 
 - Precios de la calculadora: en dólares (USD), en `js/main.js` (objeto `CALC`).
