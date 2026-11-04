@@ -1,0 +1,31 @@
+/* Plantilla de carruseles de Lumen Studio (1080×1350). Se usa desde docs/redes/semanas/<lunes>/carrusel/<id>/index.html */
+:root { --bg: #0a090d; --accent: #e8b64c; --paper: #ebeae6; --ink: #f3efe6; --muted: #b9b2a3; }
+* { box-sizing: border-box; margin: 0; }
+body { background: #222; font-family: Manrope, system-ui, sans-serif; color: var(--ink); }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; justify-content: center; padding: 110px 96px; margin: 0 0 40px; }
+.slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(700px 520px at 50% 18%, rgba(232,182,76,.22), transparent 70%); pointer-events: none; }
+.slide > * { position: relative; }
+.paper { background: var(--paper); color: #0a090d; }
+.paper::before { background: radial-gradient(700px 520px at 50% 10%, rgba(232,182,76,.25), transparent 70%); }
+.paper .sub { color: #4a463f; }
+.kicker { font-size: 30px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+.paper .kicker { color: #9a6d12; }
+h1 { font-family: Cinzel, serif; font-weight: 700; font-size: 92px; line-height: 1.05; font-variant: small-caps; letter-spacing: .01em; }
+h1.xl { font-size: 116px; }
+.sub { margin-top: 34px; font-size: 42px; line-height: 1.35; color: var(--muted); max-width: 26ch; }
+.price { margin-top: 40px; font-family: Cinzel, serif; font-size: 76px; color: var(--accent); }
+.paper .price { color: #9a6d12; }
+.shot { margin-top: 56px; width: 100%; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); border: 2px solid rgba(232,182,76,.35); }
+.shot.phone { width: 52%; align-self: center; }
+.foot { position: absolute; left: 96px; right: 96px; bottom: 64px; display: flex; justify-content: space-between; align-items: center; font-size: 28px; color: var(--muted); }
+.paper .foot { color: #4a463f; }
+.foot b { color: var(--accent); font-weight: 700; }
+.paper .foot b { color: #9a6d12; }
+.farol { width: 150px; height: 150px; background: url(../../../assets/img/farol-tira.webp) 0 0 / auto 100% no-repeat; image-rendering: pixelated; margin-bottom: 40px; }
+.champi { width: 260px; height: 260px; background: url(../../../assets/img/champi/idle.webp) 0 0 / auto 100% no-repeat; image-rendering: pixelated; }
+.champi.r { position: absolute; right: 70px; bottom: 120px; }
+.quote { font-family: Cinzel, serif; font-size: 66px; line-height: 1.2; }
+.quote::before { content: '«'; color: var(--accent); } .quote::after { content: '»'; color: var(--accent); }
+.who { margin-top: 44px; font-size: 36px; color: var(--muted); } .who b { color: var(--ink); }
+.cta { margin-top: 56px; display: inline-block; align-self: flex-start; background: var(--accent); color: #0a090d; font-weight: 800; font-size: 38px; padding: 26px 44px; border-radius: 999px; }
+.dots { position: absolute; top: 64px; right: 96px; font-size: 26px; color: var(--muted); letter-spacing: .1em; }

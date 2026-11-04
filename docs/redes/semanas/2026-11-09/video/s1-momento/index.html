@@ -1,0 +1,23 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>s1-momento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../../plantilla/video.css"><style>.b1{left:250px;top:700px}.b2{left:110px;top:640px;max-width:620px}.b2::after{left:auto;right:90px}
+.chat{left:60px;top:430px;width:600px;background:#16141b;border:2px solid rgba(232,182,76,.45);border-radius:36px;padding:34px;display:flex;flex-direction:column;gap:22px;font-size:38px;line-height:1.3}
+.chat .me{align-self:flex-end;background:#e8b64c;color:#0a090d;font-weight:700;padding:18px 26px;border-radius:26px 26px 6px 26px;max-width:88%}
+.chat .bot{background:#2a2630;padding:18px 26px;border-radius:26px 26px 26px 6px}</style></head><body><div class="stage">
+<div class="el ch walk" id="ch" style="left:-200px;top:1000px"></div><svg class="el cursor" id="cur" style="left:820px;top:1600px" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#0a090d" stroke-width="1.5" stroke-linejoin="round"/></svg>
+<div class="el bubble pop b1" id="b1">¡Dame un momento!</div>
+<div class="el bubble pop b2" id="b2">Uff, me cansé… Aquí no te molesto.</div>
+<div class="el chat up" id="chat"><div class="me">¿Cuánto cuesta una web?</div><div class="bot">Una landing va de US$ 600 a 1.200, una web corporativa de 1.500 a 3.000… y la calculadora te da el rango al momento.</div></div>
+<div class="cap" id="cap"></div>
+<div class="el outro" id="outro"><div class="farol"></div><p>Encendemos<br>tus ideas.</p><small>Lumen Studio · @lumen_studio_tech</small></div>
+</div><script src="../../../../plantilla/video.js"></script><script>window.DURATION=14;window.TIMELINE=[
+[0,function(){V.move('ch',80,null,1.8);V.on('cur')}],
+[0.6,function(){V.move('cur',300,1150,1)}],
+[1.8,function(){document.getElementById('cur').classList.add('tap');V.pose('ch','')}],
+[2,function(){document.getElementById('cur').classList.remove('tap');V.on('b1')}],
+[2.6,function(){V.off('cur')}],
+[4,function(){V.off('b1');V.pose('ch','run',1);V.move('ch',664,null,2.4)}],
+[6.4,function(){V.pose('ch','')}],
+[7,function(){V.on('b2')}],
+[10,function(){V.off('b2');V.on('chat');V.cap('Pregúntale lo que quieras')}],
+[12.5,function(){V.cap('');V.on('outro')}]];</script></body></html>

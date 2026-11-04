@@ -1,0 +1,38 @@
+/* Plantilla de videos verticales de Lumen Studio (1080×1920). */
+:root { --bg: #0a090d; --accent: #e8b64c; --ink: #f3efe6; --muted: #b9b2a3; --S: 376px; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); font-family: Manrope, system-ui, sans-serif; color: var(--ink); }
+.stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+.stage::before { content: ''; position: absolute; inset: 0; background: radial-gradient(760px 640px at 50% 34%, rgba(232,182,76,.2), transparent 70%); }
+.stage::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 520px; background: linear-gradient(transparent, rgba(0,0,0,.35)); }
+.el { position: absolute; opacity: 0; transition: opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+.el.on { opacity: 1; }
+.pop { transform: scale(.85); } .pop.on { transform: none; }
+.up { transform: translateY(40px); } .up.on { transform: none; }
+/* subtítulos: tercio inferior */
+.cap { position: absolute; left: 80px; right: 80px; bottom: 300px; text-align: center; font-weight: 800; font-size: 76px; line-height: 1.15; color: #fff;
+  -webkit-text-stroke: 3px #0a090d; paint-order: stroke fill; text-shadow: 0 6px 24px rgba(0,0,0,.6); z-index: 20; }
+.title { font-family: Cinzel, serif; font-weight: 700; font-variant: small-caps; text-align: center; left: 60px; right: 60px; font-size: 96px; line-height: 1.08; }
+/* Champi: sprites de 94 px a escala 4 */
+.ch { width: var(--S); height: var(--S); background: url(../../../assets/img/champi/idle.webp) 0 0 / calc(var(--S) * 8) var(--S) no-repeat; image-rendering: pixelated;
+  animation: st8 1s steps(8) infinite; transform: scaleX(var(--dir, 1)); z-index: 10; opacity: 1; transition: none; }
+.ch.walk { background-image: url(../../../assets/img/champi/walk.webp); background-size: calc(var(--S) * 6) var(--S); animation: st6 .6s steps(6) infinite; }
+.ch.run { background-image: url(../../../assets/img/champi/walk.webp); background-size: calc(var(--S) * 6) var(--S); animation: st6 .3s steps(6) infinite; }
+.ch.wave { background-image: url(../../../assets/img/champi/attack.webp); animation: st8 .8s steps(8) infinite; }
+@keyframes st8 { to { background-position-x: calc(var(--S) * -8); } }
+@keyframes st6 { to { background-position-x: calc(var(--S) * -6); } }
+.bubble { background: #f3efe6; color: #0a090d; font-weight: 800; font-size: 54px; padding: 30px 40px; border-radius: 40px; max-width: 760px; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+.bubble::after { content: ''; position: absolute; left: 90px; bottom: -26px; border: 18px solid transparent; border-top: 26px solid #f3efe6; border-bottom: 0; }
+.card { background: #16141b; border: 2px solid rgba(232,182,76,.45); border-radius: 36px; padding: 40px 52px; font-family: Cinzel, serif; font-variant: small-caps; font-size: 70px; color: var(--accent); }
+.shot { left: 60px; right: 60px; top: 380px; width: 960px; border-radius: 36px; border: 3px solid rgba(232,182,76,.4); box-shadow: 0 40px 100px rgba(0,0,0,.6); }
+.label { left: 60px; right: 60px; top: 240px; text-align: center; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 40px; color: var(--accent); }
+/* cierre: farol encendido */
+.farol { width: 384px; height: 384px; background: url(../../../assets/img/farol-tira.webp) 0 0 / 3072px 384px no-repeat; image-rendering: pixelated; animation: llama .9s steps(8) infinite; }
+@keyframes llama { to { background-position-x: -3072px; } }
+.outro { inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 60px; background: var(--bg); z-index: 30; }
+.outro p { font-family: Cinzel, serif; font-weight: 700; font-variant: small-caps; font-size: 92px; text-align: center; line-height: 1.05; }
+.outro small { font-size: 40px; color: var(--muted); }
+.cursor { width: 90px; height: 90px; z-index: 25; opacity: 1; transition: left .5s ease, top .5s ease, transform .12s ease; }
+.cursor.tap { transform: scale(.8); }
+.spark { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 24px 8px rgba(232,182,76,.8); z-index: 15; animation: spark .9s ease-out forwards; }
+@keyframes spark { to { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; } }

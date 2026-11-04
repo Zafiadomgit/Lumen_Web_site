@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>s1-farol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../../plantilla/video.css"><style>.f{left:348px;top:420px;width:384px;height:384px;opacity:1;transform-origin:50% 0}
+.f.swing{animation:swing 1.6s ease-out}
+@keyframes swing{0%{transform:rotate(0)}15%{transform:rotate(26deg)}35%{transform:rotate(-18deg)}55%{transform:rotate(11deg)}75%{transform:rotate(-6deg)}100%{transform:rotate(0)}}
+.rope{left:538px;top:0;width:4px;height:430px;background:linear-gradient(#0a090d,#5a4a2a);opacity:1}
+.shot{top:520px}</style></head><body><div class="stage">
+<div class="el rope"></div><div class="el f farol" id="f"></div><svg class="el cursor" id="cur" style="left:860px;top:1300px" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#0a090d" stroke-width="1.5" stroke-linejoin="round"/></svg>
+<div class="el label" id="lw">lumen-ruddy-beta.vercel.app</div><img class="el shot pop" id="web" src="web.png" alt="">
+<div class="cap" id="cap"></div>
+<div class="el outro" id="outro"><div class="farol"></div><p>Encendemos<br>tus ideas.</p><small>Lumen Studio · @lumen_studio_tech</small></div>
+</div><script src="../../../../plantilla/video.js"></script><script>function hit(){var f=document.getElementById('f'),c=document.getElementById('cur');c.classList.add('tap');f.classList.remove('swing');void f.offsetWidth;f.classList.add('swing');V.sparks(540,640,16);setTimeout(function(){c.classList.remove('tap')},150)}
+window.DURATION=10;window.TIMELINE=[
+[0,function(){V.on('cur');V.cap('Golpea el farol');V.move('cur',600,640,0.5)}],
+[0.6,hit],
+[2,function(){V.cap('¿Cuántas veces lo haces balancear?')}],
+[2.4,hit],[3.3,hit],[4.1,hit],[4.8,hit],
+[6,function(){V.off('cur','f');document.getElementById('f').style.visibility='hidden';document.querySelector('.rope').style.opacity=0;V.on('lw','web');V.cap('Está en nuestra web')}],
+[8.5,function(){V.cap('');V.on('outro')}]];</script></body></html>

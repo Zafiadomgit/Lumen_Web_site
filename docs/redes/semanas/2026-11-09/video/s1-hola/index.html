@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>s1-hola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../../plantilla/video.css"><style>.cards{left:60px;right:60px;top:560px;display:flex;justify-content:center;gap:28px;opacity:1}
+.cards .card{opacity:0;transform:scale(.8);transition:all .35s cubic-bezier(.2,.8,.2,1)} .cards .card.on{opacity:1;transform:none}</style></head><body><div class="stage">
+<div class="el ch walk" id="ch" style="left:-420px;top:960px"></div>
+<div class="el cards"><div class="card" id="c1">Webs</div><div class="card" id="c2">Apps</div><div class="card" id="c3">TPV</div></div>
+<div class="cap" id="cap"></div>
+<div class="el outro" id="outro"><div class="farol"></div><p>Encendemos<br>tus ideas.</p><small>Lumen Studio · @lumen_studio_tech</small></div>
+</div><script src="../../../../plantilla/video.js"></script><script>window.DURATION=12;window.TIMELINE=[
+[0,function(){V.cap('¿Me ves? Soy Champi.');V.move('ch',352,null,2)}],
+[2,function(){V.pose('ch','');V.cap('Vivo en la web de Lumen Studio')}],
+[2.6,function(){V.pose('ch','wave')}],[3.4,function(){V.pose('ch','')}],
+[5,function(){V.cap('Hacemos webs, apps y TPV');V.on('c1')}],[5.4,function(){V.on('c2')}],[5.8,function(){V.on('c3')}],
+[8,function(){V.cap('Ven a buscarme. Link en la bio');V.pose('ch','wave')}],[9,function(){V.pose('ch','')}],
+[10.5,function(){V.cap('');V.on('outro')}]];</script></body></html>
