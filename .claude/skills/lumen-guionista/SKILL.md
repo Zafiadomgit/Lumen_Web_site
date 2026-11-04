@@ -27,4 +27,4 @@ description: Escribe los guiones de video, los textos de carrusel y las descripc
 ## Reglas
 - Textos en pantalla de máximo 7 palabras por toma; se tienen que leer en 1,5 s.
 - Champi habla como en la guía: corto, simpático, sin prometer precios cerrados ni fechas.
-- Si la pieza necesita la voz o la cara de una persona, márcalo con **[GRABAR]**.
+- Nunca uses la voz ni la cara de una persona: todo se cuenta con Champi, textos en pantalla y capturas.

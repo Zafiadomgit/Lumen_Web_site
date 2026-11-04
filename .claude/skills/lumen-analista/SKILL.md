@@ -37,6 +37,7 @@ description: Resume cada viernes cómo le fue a las redes y a la web de Lumen St
    - un formato que en 3 publicaciones no supera la media se cambia;
    - el que la duplica se repite cada semana.
 4. **Tres cambios concretos** para el plan del lunes.
+   Y, si una pieza destaca, propón promocionarla con 10–20 USD (máximo 3 piezas al mes).
 5. **Champi:** cuántas preguntas fueron a la IA. Si alguna se repite, propón añadirla a `assets/data/champi-faq.json`.
 
 ## Reglas

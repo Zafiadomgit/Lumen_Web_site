@@ -24,5 +24,6 @@ Primera semana: aún no hay datos. El viernes 13 el analista mide la base.
 - Poner el enlace de la web en la bio de TikTok e Instagram.
 - Aprobar o cambiar el plan.
 - Música: elegirla en cada red al publicar; los videos van sin música.
+- Todo va con Champi y pantallas, sin voz ni cara.
 
 **Resumen para WhatsApp:** Semana 1, presentamos a Champi: 4 videos, 2 carruseles, el lanzamiento en LinkedIn y la primera publicación de Google. Todo lleva a la web con su enlace medido. Solo falta tu visto bueno y poner la web en la bio.

@@ -46,6 +46,7 @@ const allowedOrigin = (req) => {
   let host;
   try { host = new URL(src).host; } catch { return false; }
   if (host === 'lumen-ruddy-beta.vercel.app') return true;
+  if (host === 'lumenestudio.tech' || host === 'www.lumenestudio.tech') return true; // dominio propio
   if (/^lumen-[a-z0-9-]+-davidpieters12-gmailcoms-projects\.vercel\.app$/.test(host)) return true;
   if (/^(localhost|127\.0\.0\.1)(:\d+)?$/.test(host)) return true;
   return EXTRA_ORIGINS.some((o) => { try { return new URL(o).host === host; } catch { return false; } });

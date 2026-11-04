@@ -8,7 +8,7 @@ Lumen Studio diseña y programa webs, apps y TPV para restaurantes, desde Bogot�
 
 ## Cuentas y enlaces
 
-- Web: https://lumen-ruddy-beta.vercel.app (cambiará cuando haya dominio propio)
+- Web: https://lumen-ruddy-beta.vercel.app (pasará a lumenestudio.tech cuando se compre el dominio)
 - Instagram: @lumen_studio_tech
 - TikTok: @lumenestudiotech
 - Perfil de Empresa de Google: Lumen Studio (en verificación)
@@ -31,6 +31,11 @@ Para llevar a una sección: añade `#tpv`, `#presupuesto` (calculadora), `#proye
 
 Palabras que sí: encender, idea, a medida, probar, en minutos, de verdad, tu negocio.
 Palabras que no: barato, low cost, «el mejor», «líderes», «soluciones integrales», «sinergia», «disruptivo».
+
+## Formato de las piezas
+
+- **Todo con Champi y pantallas**: nunca se graba la voz ni la cara de una persona. Lo que haría falta decir en voz, va en texto en pantalla o en la voz de Champi como texto.
+- **Promoción pagada**: cada mes se promocionan las 2–3 piezas que mejor funcionaron, con 10–20 USD cada una. Las propone el analista y las aprueba la persona; los agentes nunca pagan nada.
 
 ## Champi
 
