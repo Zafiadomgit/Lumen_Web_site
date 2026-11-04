@@ -406,7 +406,9 @@ main, .footer, .hero { position: relative; z-index: 2; }
   background: url("../assets/img/champi/idle.webp") 0 0 / 704px 88px no-repeat; image-rendering: pixelated;
   animation: champi-steps 1s steps(8) infinite;
 }
-.champi.is-walk .champi-sprite { background-image: url("../assets/img/champi/move.webp"); animation-duration: .75s; }
+/* andar: solo los 6 fotogramas de perfil (los 2 primeros de la tira original miran de frente y parecían un paso atrás) */
+.champi.is-walk .champi-sprite { background-image: url("../assets/img/champi/walk.webp"); background-size: 528px 88px; animation: champi-walk .6s steps(6) infinite; }
+@keyframes champi-walk { to { background-position-x: -528px; } }
 .champi.is-wave .champi-sprite { background-image: url("../assets/img/champi/attack.webp"); animation: champi-steps .8s steps(8) 1; }
 @keyframes champi-steps { to { background-position-x: -704px; } }
 .champi-bubble {
@@ -430,8 +432,10 @@ main, .footer, .hero { position: relative; z-index: 2; }
   .champi::after { width: 30px; height: 6px; margin-left: -15px; bottom: 3px; }
   .champi-close { width: 22px; height: 22px; font-size: 14px; top: -10px; right: -12px; }
   .champi-sprite { background-size: 384px 48px; }
-  .champi-sprite, .champi.is-walk .champi-sprite, .champi.is-wave .champi-sprite { animation-name: champi-steps-s; }
+  .champi-sprite, .champi.is-wave .champi-sprite { animation-name: champi-steps-s; }
   @keyframes champi-steps-s { to { background-position-x: -384px; } }
+  .champi.is-walk .champi-sprite { background-size: 288px 48px; animation-name: champi-walk-s; }
+  @keyframes champi-walk-s { to { background-position-x: -288px; } }
   .champi-bubble { bottom: 52px; font-size: 13px; max-width: min(220px, calc(100vw - 32px)); }
 }
 
