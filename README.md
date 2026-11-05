@@ -14,7 +14,7 @@ Sitio estático sin paso de compilación, más una función serverless:
 - `demos/tpv/`: el TPV real de California compilado en modo demo (datos de prueba en el navegador).
 - `assets/img/champi/`: Champi, la mascota que pasea por la página (la seta de Fendaria).
 - `api/contact.js`: el formulario de contacto envía un email con Resend.
-- `assets/data/champi-faq.json`: las preguntas guardadas de Champi (unas 90, en español e inglés). Champi las responde al momento y sin gastar créditos; solo pregunta a la IA cuando ninguna encaja. Para añadir una: copia una entrada, cambia `k` (palabras clave, sin tildes) y las respuestas `es`/`en`. Las de precio o plazo llevan `"intent": "price"` o `"time"`.
+- `assets/data/champi-faq.json`: las preguntas guardadas de Champi (unas 90, en español e inglés). Champi las responde al momento y sin gastar créditos; solo pregunta a la IA cuando ninguna encaja. Se generan con `python3 tools/champi_faq.py`: añade ahí una línea `a(...)` con las palabras clave (sin tildes) y las respuestas en español e inglés.
 - `api/champi.mjs`: Champi IA, responde preguntas sobre el estudio con Claude (SDK oficial `@anthropic-ai/sdk`).
   Solo habla de Lumen Studio y de esta web; lo demás lo rechaza. Sin clave, la web usa respuestas preparadas (`js/main.js`).
 - `aviso-legal.html`, `privacidad.html`, `cookies.html`: páginas legales.

@@ -1352,6 +1352,31 @@
   "en": "The lantern is Lumen’s logo. Give it a tap at the very top: it swings and throws sparks."
  },
  {
+  "id": "modo_claro",
+  "k": [
+   "modo claro",
+   "modo oscuro",
+   "boton del sol",
+   "el sol",
+   "la luna",
+   "tema",
+   "mas profesional",
+   "version profesional",
+   "otro estilo",
+   "cambiar el diseno",
+   "traje",
+   "gafas",
+   "light mode",
+   "dark mode",
+   "theme",
+   "more professional",
+   "suit",
+   "glasses"
+  ],
+  "es": "Arriba tienes un botón ☀️: cambia la web a un estilo claro y más profesional, con nuestro logo moderno… y yo me pongo traje y gafas. Con la 🌙 vuelves al farol.",
+  "en": "Up top there’s a ☀️ button: it switches the site to a lighter, more professional style with our modern logo… and I put on a suit and glasses. The 🌙 takes you back to the lantern."
+ },
+ {
   "id": "champi",
   "k": [
    "champi",

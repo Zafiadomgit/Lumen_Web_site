@@ -55,6 +55,7 @@ PAIRS = [
     ('aria-label="Cambiar a modo claro"', 'aria-label="Switch to light mode"'),
 
     # ---------- hero ----------
+    ('<p class="hero-badge"><span aria-hidden="true"></span>Estudio digital en Bogotá</p>', '<p class="hero-badge"><span aria-hidden="true"></span>Digital studio in Bogotá</p>'),
     ('aria-label="Golpea el farol"', 'aria-label="Hit the lantern"'),
     ('<p class="hero-slogan">Encendemos tus ideas.</p>', '<p class="hero-slogan">We light up your ideas.</p>'),
     ('<p class="hero-lede">Diseñamos y programamos webs, apps y TPV para restaurantes.</p>',

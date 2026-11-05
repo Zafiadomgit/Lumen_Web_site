@@ -130,6 +130,7 @@
       if (light) doc.setAttribute('data-theme', 'light'); else doc.removeAttribute('data-theme');
       try { localStorage.setItem('lumen-theme', light ? 'light' : 'dark'); } catch (e) {}
       paint();
+      document.dispatchEvent(new CustomEvent('lumen:theme', { detail: { light: light } }));
       var lb = $('lamp'); if (lb) { lb.classList.remove('is-hit'); void lb.offsetWidth; lb.classList.add('is-hit'); setTimeout(function () { lb.classList.remove('is-hit'); }, 700); }
     };
     var switching = false;
@@ -629,6 +630,29 @@
     var sTick = false;
     addEventListener('scroll', function () { if (!sTick) { sTick = true; setTimeout(function () { sTick = false; checkSection(); }, 250); } }, { passive: true });
     addEventListener('resize', function () { if (x > maxX()) { x = maxX(); target = x; place(); } });
+    // sugerencia del botón de modo: una vez por visita, con el botón latiendo para que se vea dónde está
+    var themeHinted = false;
+    var hintTheme = function () {
+      if (themeHinted || champi.hidden || held || falling || chatting) return;
+      var btn = document.querySelector((document.getElementById('bar') && document.getElementById('bar').classList.contains('is-on') ? '.bar' : '.hero-top') + ' .theme-btn')
+        || document.querySelector('.theme-btn');
+      if (!btn) return;
+      themeHinted = true;
+      var light = doc.getAttribute('data-theme') === 'light';
+      say(light ? T('¿Extrañas el farol? Toca la 🌙 de arriba y vuelvo a mi ropa de siempre.', 'Miss the lantern? Tap the 🌙 up top and I’ll go back to my usual look.')
+                : T('¿Buscas algo más profesional? Toca el ☀️ de arriba… hasta me pongo traje.', 'Looking for something more professional? Tap the ☀️ up top… I even put on a suit.'), 6500);
+      btn.classList.remove('is-hint'); void btn.offsetWidth; btn.classList.add('is-hint');
+      setTimeout(function () { btn.classList.remove('is-hint'); }, 6500);
+    };
+    setTimeout(hintTheme, 11000);
+    document.addEventListener('lumen:theme', function (e) {
+      themeHinted = true; // ya lo descubrió
+      if (champi.hidden || held || chatting) return;
+      setTimeout(function () {
+        say(e.detail.light ? T('¿Qué tal me queda el traje? 😎', 'How do I look in a suit? 😎') : T('¡Uf, qué alivio! El traje apretaba.', 'Phew, what a relief! That suit was tight.'), 3500);
+        wave();
+      }, 700);
+    });
     var wave = function () {
       champi.classList.remove('is-wave'); void champi.offsetWidth; champi.classList.add('is-wave');
       setTimeout(function () { champi.classList.remove('is-wave'); }, 800);
