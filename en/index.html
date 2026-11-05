@@ -6,6 +6,7 @@
   <title>Lumen Studio — We light up your ideas: websites, apps and POS</title>
   <meta name="description" content="Lumen Studio designs and builds websites, apps and restaurant POS systems. Try our real POS in your browser and meet our Fendaria app.">
   <meta name="theme-color" content="#0a090d">
+  <script>try { if (localStorage.getItem("lumen-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}</script>
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://lumen-ruddy-beta.vercel.app/en/">
   <link rel="alternate" hreflang="es" href="https://lumen-ruddy-beta.vercel.app/">
@@ -21,8 +22,8 @@
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20261104-10">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=20261105-1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,12 +52,19 @@
   </script>
 </head>
 <body>
+  <!-- logo del modo claro: la llama del farol en un círculo -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="llama-g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e2742a"/><stop offset=".55" stop-color="#f2a93b"/><stop offset="1" stop-color="#ffd27a"/></linearGradient>
+      <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)"/><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc"/></symbol>
+    </defs>
+  </svg>
   <a class="skip" href="#proyectos">Skip to content</a>
   <div class="glow" aria-hidden="true"></div>
 
   <!-- barra fija: aparece al bajar -->
   <nav class="bar" id="bar" aria-label="Main">
-    <a class="wordmark" href="#inicio" aria-label="Lumen Studio, home"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+    <a class="wordmark" href="#inicio" aria-label="Lumen Studio, home"><span class="farol farol--s" aria-hidden="true"></span><svg class="mark" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg><span>Lumen <span class="wm-b">Studio</span></span></a>
     <div class="bar-links">
       <a href="#proyectos">Projects</a>
       <a href="#tpv">POS</a>
@@ -64,6 +72,7 @@
       <a href="#servicios">Services</a>
       <a href="#presupuesto">Pricing</a>
     </div>
+    <button class="theme-btn" type="button" aria-label="Switch to light mode" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
     <a class="lang" href="../" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
     <a class="btn btn--s" href="#contacto">Let’s talk</a>
   </nav>
@@ -71,22 +80,23 @@
   <!-- ============ HERO ============ -->
   <header class="hero" id="inicio">
     <nav class="hero-top" aria-label="Main">
-      <a class="wordmark" href="#inicio" aria-label="Lumen Studio, home"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+      <a class="wordmark" href="#inicio" aria-label="Lumen Studio, home"><span class="farol farol--s" aria-hidden="true"></span><svg class="mark" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg><span>Lumen <span class="wm-b">Studio</span></span></a>
       <div class="hero-links">
         <a href="#proyectos">Projects</a>
         <a href="#servicios">Services</a>
         <a href="#proceso">Process</a>
         <a href="#presupuesto">Pricing</a>
       </div>
+      <button class="theme-btn" type="button" aria-label="Switch to light mode" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
       <a class="lang" href="../" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
       <a class="btn btn--s" href="#contacto">Let’s talk</a>
     </nav>
 
     <div class="hero-stage">
       <button class="lamp" type="button" id="lamp" aria-label="Hit the lantern">
-        <span class="farol farol--hero" aria-hidden="true"></span>
+        <span class="farol farol--hero" aria-hidden="true"></span><svg class="mark mark--hero" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg>
       </button>
-      <h1 class="hero-title">Lumen Studio</h1>
+      <h1 class="hero-title">Lumen <span class="wm-b">Studio</span></h1>
       <p class="hero-slogan">We light up your ideas.</p>
     </div>
 
@@ -348,7 +358,7 @@
 
     <!-- ============ PROCESO ============ -->
     <section class="process" id="proceso" aria-labelledby="process-title">
-      <div class="process-side" aria-hidden="true"><span class="farol farol--m"></span></div>
+      <div class="process-side" aria-hidden="true"><span class="farol farol--m"></span><svg class="mark mark--m" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg></div>
       <div class="process-col">
         <h2 class="h-l" id="process-title" data-reveal>How do we work?</h2>
         <div class="stage">
@@ -458,7 +468,7 @@
 
   <!-- ============ PIE ============ -->
   <footer class="footer">
-    <a class="wordmark" href="#inicio"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+    <a class="wordmark" href="#inicio"><span class="farol farol--s" aria-hidden="true"></span><svg class="mark" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg><span>Lumen <span class="wm-b">Studio</span></span></a>
     <nav class="foot-links" aria-label="Footer">
       <a href="#proyectos">Projects</a>
       <a href="#tpv">POS</a>
@@ -504,6 +514,6 @@
 
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
-  <script src="../js/main.js?v=20261104-10" defer></script>
+  <script src="../js/main.js?v=20261105-1" defer></script>
 </body>
 </html>

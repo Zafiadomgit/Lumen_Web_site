@@ -52,6 +52,8 @@ PAIRS = [
      '<a class="lang" href="../" hreflang="es" lang="es" aria-label="Versión en español">ES</a>'),
     ('<a class="btn btn--s" href="#contacto">Hablemos</a>', '<a class="btn btn--s" href="#contacto">Let’s talk</a>'),
 
+    ('aria-label="Cambiar a modo claro"', 'aria-label="Switch to light mode"'),
+
     # ---------- hero ----------
     ('aria-label="Golpea el farol"', 'aria-label="Hit the lantern"'),
     ('<p class="hero-slogan">Encendemos tus ideas.</p>', '<p class="hero-slogan">We light up your ideas.</p>'),

@@ -69,6 +69,10 @@ Activado en el proyecto `lumen` (Analytics). Cuenta visitas sin cookies y estos 
 
 Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`). Los eventos personalizados pueden necesitar el plan Pro de Vercel; las visitas funcionan en el plan gratuito.
 
+### Modo claro (Lumen moderno)
+
+El botón ☀️/🌙 de la barra cambia entre el estilo oscuro (el farol pixelado, principal) y uno claro y moderno: logo de la llama en un círculo (`#lumen-mark` en `index.html`), letra Plus Jakarta Sans, botones de tinta y tarjetas blancas. La transición es un velo de píxeles que nace del farol (`js/main.js`, sección 1c). El estilo está al final de `css/styles.css` bajo `[data-theme="light"]`. La elección se recuerda en el navegador; por defecto siempre se abre en oscuro.
+
 ## Pendiente
 
 - Precios de la calculadora: en dólares (USD), en `js/main.js` (objeto `CALC`).

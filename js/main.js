@@ -98,7 +98,8 @@
       var r = lampBtn.getBoundingClientRect();
       var dir = x < r.left + r.width / 2 ? 1 : -1; // golpe desde la izquierda → se va a la derecha
       var force = 0.6 + Math.min(1, Math.abs(x - (r.left + r.width / 2)) / (r.width / 2)) * 0.6;
-      if (reduce) { lampBtn.classList.add('is-hit'); setTimeout(function () { lampBtn.classList.remove('is-hit'); }, 600); return; }
+      var modern = doc.getAttribute('data-theme') === 'light'; // el logo moderno no se balancea: late
+      if (reduce || modern) { lampBtn.classList.remove('is-hit'); void lampBtn.offsetWidth; lampBtn.classList.add('is-hit'); setTimeout(function () { lampBtn.classList.remove('is-hit'); }, 600); if (modern) sparks(x, y, dir); return; }
       vel += dir * 260 * force;
       lampBtn.classList.remove('is-hit'); void lampBtn.offsetWidth; lampBtn.classList.add('is-hit'); // reinicia el destello
       sparks(x, y, dir);
@@ -111,6 +112,72 @@
       var y = e.clientY || (r.top + r.height * 0.55);
       hit(x, y);
     });
+  }
+
+  /* ---------- 1c. modo claro (Lumen moderno) con transición de píxeles que nace del farol ---------- */
+  var themeBtns = document.querySelectorAll('.theme-btn');
+  if (themeBtns.length) {
+    var metaTheme = document.querySelector('meta[name="theme-color"]');
+    var paint = function () {
+      var light = doc.getAttribute('data-theme') === 'light';
+      Array.prototype.forEach.call(themeBtns, function (b) {
+        b.setAttribute('aria-pressed', light ? 'true' : 'false');
+        b.setAttribute('aria-label', light ? T('Cambiar a modo oscuro', 'Switch to dark mode') : T('Cambiar a modo claro', 'Switch to light mode'));
+      });
+      if (metaTheme) metaTheme.setAttribute('content', light ? '#f6f4ef' : '#0a090d');
+    };
+    var apply = function (light) {
+      if (light) doc.setAttribute('data-theme', 'light'); else doc.removeAttribute('data-theme');
+      try { localStorage.setItem('lumen-theme', light ? 'light' : 'dark'); } catch (e) {}
+      paint();
+      var lb = $('lamp'); if (lb) { lb.classList.remove('is-hit'); void lb.offsetWidth; lb.classList.add('is-hit'); setTimeout(function () { lb.classList.remove('is-hit'); }, 700); }
+    };
+    var switching = false;
+    var toggleTheme = function (btn) {
+      if (switching) return;
+      var toLight = doc.getAttribute('data-theme') !== 'light';
+      track('tema', { modo: toLight ? 'claro' : 'oscuro' });
+      if (reduce) { apply(toLight); return; }
+      switching = true;
+      var w = innerWidth, h = innerHeight, cell = Math.max(18, Math.round(Math.min(w, h) / 26));
+      var cv = document.createElement('canvas'); cv.className = 'pixel-veil'; cv.width = w; cv.height = h;
+      document.body.appendChild(cv);
+      var ctx = cv.getContext('2d');
+      // los píxeles salen del farol si se ve; si no, del botón
+      var src = $('lamp'), r = src && src.getBoundingClientRect();
+      if (!r || r.bottom < 0 || r.top > h) r = btn.getBoundingClientRect();
+      var ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+      var cols = Math.ceil(w / cell), rows = Math.ceil(h / cell), cells = [];
+      for (var cy = 0; cy < rows; cy++) for (var cx = 0; cx < cols; cx++) {
+        var px = cx * cell, py = cy * cell;
+        cells.push({ x: px, y: py, d: Math.hypot(px + cell / 2 - ox, py + cell / 2 - oy) + Math.random() * cell * 4, g: Math.random() < 0.07 });
+      }
+      cells.sort(function (a, b) { return a.d - b.d; });
+      var fill = toLight ? '#f6f4ef' : '#0a090d', gold = toLight ? '#e8a33a' : '#e8b64c';
+      var IN = 420, OUT = 460, t0 = performance.now(), drawn = 0, phase = 0, cleared = 0;
+      var frame = function (t) {
+        var k;
+        if (phase === 0) {
+          k = Math.min(1, (t - t0) / IN);
+          var upto = Math.floor(cells.length * k * k);
+          for (; drawn < upto; drawn++) { var c = cells[drawn]; ctx.fillStyle = c.g ? gold : fill; ctx.fillRect(c.x, c.y, cell, cell); }
+          if (k >= 1) {
+            ctx.fillStyle = fill;
+            for (var i = 0; i < cells.length; i++) if (cells[i].g) ctx.fillRect(cells[i].x, cells[i].y, cell, cell);
+            apply(toLight); phase = 1; t0 = t;
+          }
+        } else {
+          k = Math.min(1, (t - t0) / OUT);
+          var until = Math.floor(cells.length * (1 - Math.pow(1 - k, 2)));
+          for (; cleared < until; cleared++) { var e = cells[cleared]; ctx.clearRect(e.x, e.y, cell, cell); }
+          if (k >= 1) { cv.remove(); switching = false; return; }
+        }
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+    Array.prototype.forEach.call(themeBtns, function (b) { b.addEventListener('click', function () { toggleTheme(b); }); });
+    paint();
   }
 
   /* ---------- 2. barra fija ---------- */

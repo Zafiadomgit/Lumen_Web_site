@@ -538,3 +538,97 @@ main, .footer, .hero { position: relative; z-index: 2; }
   .js [data-reveal] { opacity: 1; transform: none; transition: none; }
   * { transition-duration: .01ms !important; }
 }
+
+/* ================= BOTÓN DE MODO Y LOGO MODERNO ================= */
+.mark { display: none; flex: none; color: var(--ink); }
+.wordmark .mark { width: 30px; height: 30px; }
+.mark--hero { width: clamp(140px, 14vw, 200px); height: clamp(140px, 14vw, 200px); }
+.mark--m { width: clamp(110px, 11vw, 170px); height: clamp(110px, 11vw, 170px); position: sticky; top: 20svh; }
+.theme-btn {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; flex: none; border: 0; border-radius: 999px; cursor: pointer;
+  color: var(--muted); background: var(--surface-2); transition: color .2s ease, background-color .2s ease, transform .3s var(--ease);
+}
+.theme-btn:hover { color: var(--ink); background: var(--surface-3); transform: rotate(-12deg); }
+.theme-btn svg { width: 20px; height: 20px; grid-area: 1 / 1; }
+.theme-btn .i-moon { display: none; }
+.pixel-veil { position: fixed; inset: 0; z-index: 200; pointer-events: none; width: 100vw; height: 100vh; image-rendering: pixelated; }
+
+/* ================= MODO CLARO: Lumen moderno ================= */
+html[data-theme="light"] {
+  --bg: #f6f4ef; --surface: #ffffff; --surface-2: #efebe3; --surface-3: #e5dfd3;
+  --ink: #141218; --muted: #635b4f; --accent: #e8a33a; --accent-ink: #141218;
+  --paper: #ece6da; --paper-ink: #141218; --paper-muted: #5a5144;
+  --display: "Plus Jakarta Sans", "Manrope", system-ui, sans-serif;
+  --line: #e6e0d4; --gold-text: #9a6a10;
+  color-scheme: light;
+}
+[data-theme="light"] .farol { display: none; }
+[data-theme="light"] .mark { display: inline-block; }
+[data-theme="light"] .theme-btn .i-sun { display: none; }
+[data-theme="light"] .theme-btn .i-moon { display: block; }
+
+/* letras: geométricas y compactas */
+[data-theme="light"] .h-xl, [data-theme="light"] .h-l, [data-theme="light"] .project-name, [data-theme="light"] .svc-word,
+[data-theme="light"] .hero-name, [data-theme="light"] .legal-page h1, [data-theme="light"] .legal-page h2 { font-weight: 700; letter-spacing: -0.03em; }
+[data-theme="light"] .wordmark { font: 700 19px/1 var(--display); letter-spacing: -0.03em; text-transform: lowercase; }
+[data-theme="light"] .wm-b { font-weight: 400; opacity: .55; }
+[data-theme="light"] .hero-title {
+  color: var(--ink); background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  text-transform: lowercase; letter-spacing: -0.045em; font-weight: 700; font-size: clamp(48px, 7vw, 104px);
+}
+[data-theme="light"] .hero-title .wm-b { color: var(--muted); opacity: 1; }
+[data-theme="light"] .hero-slogan, [data-theme="light"] .project-kind, [data-theme="light"] .hero-role, [data-theme="light"] .game-title,
+[data-theme="light"] .calc-price, [data-theme="light"] .calc-sum li::before, [data-theme="light"] .u-link:hover,
+[data-theme="light"] .svc li:hover .svc-word { color: var(--gold-text); }
+
+/* fondo: rejilla fina en la portada en vez de la luz del farol */
+[data-theme="light"] .hero::before {
+  background:
+    radial-gradient(circle at var(--lx) var(--ly), rgba(232, 163, 58, .16), rgba(232, 163, 58, 0) 34vw),
+    linear-gradient(rgba(20, 18, 24, .055) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, rgba(20, 18, 24, .055) 1px, transparent 1px) 0 0 / 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 42%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 42%, #000 40%, transparent 100%);
+}
+[data-theme="light"] .glow { background: radial-gradient(520px circle at var(--mx) var(--my), rgba(232, 163, 58, .08), transparent 70%); }
+
+/* el logo de la portada no se balancea: respira */
+[data-theme="light"] .lamp { animation: none; border-radius: 40px; }
+[data-theme="light"] .lamp::before { background: radial-gradient(circle, rgba(232, 163, 58, .22) 0, rgba(232, 163, 58, 0) 60%); }
+[data-theme="light"] .lamp.is-hit .mark { animation: late .5s var(--ease); }
+@keyframes late { 30% { transform: scale(.92); } 65% { transform: scale(1.05); } }
+
+/* botones: tinta sólida, el dorado queda de acento */
+[data-theme="light"] .btn { background: var(--ink); color: #fff; }
+[data-theme="light"] .btn:hover { background: #2c2733; }
+[data-theme="light"] .btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+[data-theme="light"] .btn--ghost:hover { background: var(--surface-2); }
+[data-theme="light"] .btn--wa { background: #1f8f4e; color: #fff; }
+[data-theme="light"] .btn--mail { background: transparent; color: var(--paper-ink); }
+[data-theme="light"] .btn--mail:hover { background: var(--paper-ink); color: #fff; }
+[data-theme="light"] .legal-top { background: rgba(255, 255, 255, .92); box-shadow: 0 1px 0 var(--line); }
+
+/* tarjetas: blancas, borde fino y sombra suave */
+[data-theme="light"] .bar { background: rgba(255, 255, 255, .9); box-shadow: 0 12px 32px rgba(40, 30, 10, .1), 0 0 0 1px var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+[data-theme="light"] .project, [data-theme="light"] .svc li, [data-theme="light"] .voice, [data-theme="light"] .calc-result, [data-theme="light"] .device {
+  box-shadow: 0 0 0 1px var(--line), 0 18px 40px -24px rgba(40, 30, 10, .18);
+}
+[data-theme="light"] .svc li { background: var(--surface); }
+[data-theme="light"] .services, [data-theme="light"] .process { background: var(--bg); }
+[data-theme="light"] .footer { border-top: 1px solid var(--line); }
+[data-theme="light"] .lang { background: var(--surface-2); }
+
+@media (prefers-reduced-motion: reduce) { .theme-btn:hover { transform: none; } }
+
+/* barras en celular: con el botón de modo, todo en una línea */
+.hero-top .btn, .bar .btn, .wordmark { white-space: nowrap; }
+@media (max-width: 680px) {
+  .hero-top { gap: 8px; justify-content: flex-start; }
+  .hero-top .wordmark { margin-right: auto; }
+  .bar { gap: 8px; }
+  .bar .lang { margin-left: 0; }
+  .bar .theme-btn { margin-left: auto; }
+}
+@media (max-width: 430px) {
+  .hero-top .wordmark > span:last-child, .bar .wordmark > span:last-child { display: none; } /* solo el símbolo */
+}

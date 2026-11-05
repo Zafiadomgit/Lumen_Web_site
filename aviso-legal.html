@@ -6,16 +6,24 @@
   <title>Aviso legal — Lumen Studio</title>
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#0a090d">
+  <script>try { if (localStorage.getItem("lumen-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}</script>
   <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261104-10">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20261105-1">
 </head>
 <body>
+  <!-- logo del modo claro: la llama del farol en un círculo -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="llama-g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e2742a"/><stop offset=".55" stop-color="#f2a93b"/><stop offset="1" stop-color="#ffd27a"/></linearGradient>
+      <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)"/><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc"/></symbol>
+    </defs>
+  </svg>
   <header class="legal-top">
-    <a class="wordmark" href="./"><span class="farol farol--s" aria-hidden="true"></span><span>Lumen Studio</span></a>
+    <a class="wordmark" href="./"><span class="farol farol--s" aria-hidden="true"></span><svg class="mark" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg><span>Lumen <span class="wm-b">Studio</span></span></a>
     <a class="u-link" href="./">Volver a la web</a>
   </header>
   <main class="legal-page">
