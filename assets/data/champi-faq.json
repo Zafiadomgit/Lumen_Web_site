@@ -1359,6 +1359,9 @@
    "boton del sol",
    "el sol",
    "la luna",
+   "boton de la luna",
+   "algo diferente",
+   "otro modo",
    "tema",
    "mas profesional",
    "version profesional",
@@ -1376,8 +1379,8 @@
    "suit",
    "glasses"
   ],
-  "es": "Arriba tienes un botón ☀️: cambia la web a un estilo claro y más profesional, con nuestro logo moderno… y yo me pongo traje y gafas. Con la 🌙 vuelves al farol.",
-  "en": "Up top there’s a ☀️ button: it switches the site to a lighter, more professional style with our modern logo… and I put on a suit and glasses. The 🌙 takes you back to the lantern."
+  "es": "La web tiene dos modos. El formal, el de inicio, está pensado para webs y negocios, y ahí llevo traje. Con la 🌙 de arriba pasas al modo oscuro: el farol, Fendaria y mi ropa de siempre. El ☀️ te devuelve al formal.",
+  "en": "The site has two modes. The formal one, the default, is built around websites and businesses, and I wear a suit there. The 🌙 up top switches to dark mode: the lantern, Fendaria and my usual look. The ☀️ takes you back to formal."
  },
  {
   "id": "champi",

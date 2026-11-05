@@ -126,8 +126,15 @@
       });
       if (metaTheme) metaTheme.setAttribute('content', light ? '#f6f4ef' : '#0a090d');
     };
+    // formal (claro): webs y negocios primero, Fendaria al final; oscuro: Fendaria es lo principal
+    var arrange = function (light) {
+      var main = document.querySelector('main'), game = $('fendaria'), card = document.querySelector('.project[data-game]');
+      if (game && main) { if (light) main.appendChild(game); else main.insertBefore(game, main.firstElementChild); }
+      if (card) { var list = card.parentNode; if (light) list.appendChild(card); else list.insertBefore(card, list.firstElementChild); }
+    };
     var apply = function (light) {
       if (light) doc.setAttribute('data-theme', 'light'); else doc.removeAttribute('data-theme');
+      arrange(light);
       try { localStorage.setItem('lumen-theme', light ? 'light' : 'dark'); } catch (e) {}
       paint();
       document.dispatchEvent(new CustomEvent('lumen:theme', { detail: { light: light } }));
@@ -641,7 +648,7 @@
       themeHinted = true;
       var light = doc.getAttribute('data-theme') === 'light';
       hushUntil = Date.now() + 6500; // que ningún otro comentario lo tape mientras se lee
-      say(light ? T('¿Extrañas el farol? Toca la 🌙 de arriba y vuelvo a mi ropa de siempre.', 'Miss the lantern? Tap the 🌙 up top and I’ll go back to my usual look.')
+      say(light ? T('Si quieres ver algo… diferente, toca la 🌙 de arriba y pasa al otro modo.', 'Want to see something… different? Tap the 🌙 up top and switch modes.')
                 : T('¿Quieres algo más formal? Toca el ☀️ de arriba… hasta me pongo traje.', 'Want something more formal? Tap the ☀️ up top… I even put on a suit.'), 6500);
       btn.classList.remove('is-hint'); void btn.offsetWidth; btn.classList.add('is-hint');
       setTimeout(function () { btn.classList.remove('is-hint'); }, 6500);

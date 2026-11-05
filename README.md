@@ -71,7 +71,7 @@ Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`). Los eventos
 
 ### Modo claro (Lumen moderno)
 
-El botón ☀️/🌙 de la barra cambia entre el estilo oscuro (el farol pixelado, principal) y uno claro y moderno: logo de la llama en un círculo (`#lumen-mark` en `index.html`), letra Plus Jakarta Sans, botones de tinta y tarjetas blancas. Las transiciones nacen del centro del farol (`js/main.js`, sección 1c): a claro, bloques redondeados que crecen en ola; a oscuro, la página se agrieta y los pedazos caen. El estilo está al final de `css/styles.css` bajo `[data-theme="light"]`. La elección se recuerda en el navegador; por defecto siempre se abre en oscuro.
+El botón ☀️/🌙 de la barra cambia entre el estilo oscuro (el farol pixelado, principal) y uno claro y moderno: logo de la llama en un círculo (`#lumen-mark` en `index.html`), letra Plus Jakarta Sans, botones de tinta y tarjetas blancas. Las transiciones nacen del centro del farol (`js/main.js`, sección 1c): a claro, bloques redondeados que crecen en ola; a oscuro, la página se agrieta y los pedazos caen. El estilo está al final de `css/styles.css` bajo `[data-theme="light"]`. La web abre en el modo formal (claro), con webs y negocios primero y Fendaria al final; el oscuro pone Fendaria primero. La elección se recuerda en el navegador.
 
 ## Pendiente
 

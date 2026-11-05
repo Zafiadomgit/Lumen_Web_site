@@ -6,7 +6,7 @@
   <title>Lumen Studio — We light up your ideas: websites, apps and POS</title>
   <meta name="description" content="Lumen Studio designs and builds websites, apps and restaurant POS systems. Try our real POS in your browser and meet our Fendaria app.">
   <meta name="theme-color" content="#0a090d">
-  <script>try { if (localStorage.getItem("lumen-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}</script>
+  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") document.documentElement.setAttribute("data-theme", "light"); })();</script>
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://lumen-ruddy-beta.vercel.app/en/">
   <link rel="alternate" hreflang="es" href="https://lumen-ruddy-beta.vercel.app/">
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20261105-8">
+  <link rel="stylesheet" href="../css/styles.css?v=20261105-9">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -169,28 +169,6 @@
             <div class="project-links"><a class="btn btn--s btn--ghost" href="https://archivum.es" target="_blank" rel="noopener">Visit archivum.es ↗</a></div>
           </div>
         </article>
-        <article class="project" data-cat="software" data-reveal>
-          <div class="project-media">
-            <div class="project-main"><img src="../assets/img/fx-titulo.webp" width="1280" height="720" alt="Fendaria: Title screen with the seven heroes" loading="lazy"></div>
-            <div class="project-thumbs" role="group" aria-label="Screenshots of Fendaria">
-              <button type="button" aria-pressed="true" data-src="../assets/img/fx-titulo.webp" data-w="1280" data-h="720" data-alt="Title screen with the seven heroes" aria-label="View: Title screen with the seven heroes"><img src="../assets/img/fx-titulo.webp" width="1280" height="720" alt="" loading="lazy"></button>
-              <button type="button" aria-pressed="false" data-src="../assets/img/fx-villa.webp" data-w="1280" data-h="720" data-alt="Candela Village" aria-label="View: Candela Village"><img src="../assets/img/fx-villa.webp" width="1280" height="720" alt="" loading="lazy"></button>
-              <button type="button" aria-pressed="false" data-src="../assets/img/fx-combate.webp" data-w="1280" data-h="720" data-alt="Combat inside a Rift" aria-label="View: Combat inside a Rift"><img src="../assets/img/fx-combate.webp" width="1280" height="720" alt="" loading="lazy"></button>
-              <button type="button" aria-pressed="false" data-src="../assets/img/fx-heroes.webp" data-w="1280" data-h="720" data-alt="Choosing a hero" aria-label="View: Choosing a hero"><img src="../assets/img/fx-heroes.webp" width="1280" height="720" alt="" loading="lazy"></button>
-            </div>
-          </div>
-          <div class="project-body">
-            <p class="project-kind">Our own app · Android and browser</p>
-            <h3 class="project-name">Fendaria</h3>
-            <p class="project-lede">Our adventure app, built from start to finish.</p>
-            <dl class="case-facts">
-                <div><dt>The challenge</dt><dd>A mobile app with big-studio polish, made by a small team.</dd></div>
-                <div><dt>What we did</dt><dd>Seven heroes with their own stories, eight worlds, bosses, cutscenes and a soundtrack composed in code.</dd></div>
-                <div><dt>Today</dt><dd>In its final round of testing; coming soon to Google Play.</dd></div>
-            </dl>
-            <div class="project-links"><a class="btn btn--s" href="#fendaria">Meet it</a></div>
-          </div>
-        </article>
         <article class="project" data-cat="web" data-reveal>
           <div class="project-media">
             <div class="project-main"><img src="../assets/img/vitrales-hero.webp" width="1440" height="900" alt="Vitrales Perafán: Website home page" loading="lazy"></div>
@@ -231,6 +209,28 @@
                 <div><dt>Today</dt><dd>A website in English and Spanish, designed mobile-first.</dd></div>
             </dl>
             <div class="project-links"><a class="btn btn--s btn--ghost" href="https://althaya.com.au" target="_blank" rel="noopener">Visit althaya.com.au ↗</a></div>
+          </div>
+        </article>
+        <article class="project" data-game data-cat="software" data-reveal>
+          <div class="project-media">
+            <div class="project-main"><img src="../assets/img/fx-titulo.webp" width="1280" height="720" alt="Fendaria: Title screen with the seven heroes" loading="lazy"></div>
+            <div class="project-thumbs" role="group" aria-label="Screenshots of Fendaria">
+              <button type="button" aria-pressed="true" data-src="../assets/img/fx-titulo.webp" data-w="1280" data-h="720" data-alt="Title screen with the seven heroes" aria-label="View: Title screen with the seven heroes"><img src="../assets/img/fx-titulo.webp" width="1280" height="720" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="../assets/img/fx-villa.webp" data-w="1280" data-h="720" data-alt="Candela Village" aria-label="View: Candela Village"><img src="../assets/img/fx-villa.webp" width="1280" height="720" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="../assets/img/fx-combate.webp" data-w="1280" data-h="720" data-alt="Combat inside a Rift" aria-label="View: Combat inside a Rift"><img src="../assets/img/fx-combate.webp" width="1280" height="720" alt="" loading="lazy"></button>
+              <button type="button" aria-pressed="false" data-src="../assets/img/fx-heroes.webp" data-w="1280" data-h="720" data-alt="Choosing a hero" aria-label="View: Choosing a hero"><img src="../assets/img/fx-heroes.webp" width="1280" height="720" alt="" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-kind">Our own app · Android and browser</p>
+            <h3 class="project-name">Fendaria</h3>
+            <p class="project-lede">Our adventure app, built from start to finish.</p>
+            <dl class="case-facts">
+                <div><dt>The challenge</dt><dd>A mobile app with big-studio polish, made by a small team.</dd></div>
+                <div><dt>What we did</dt><dd>Seven heroes with their own stories, eight worlds, bosses, cutscenes and a soundtrack composed in code.</dd></div>
+                <div><dt>Today</dt><dd>In its final round of testing; coming soon to Google Play.</dd></div>
+            </dl>
+            <div class="project-links"><a class="btn btn--s" href="#fendaria">Meet it</a></div>
           </div>
         </article>
       </div>
@@ -286,53 +286,6 @@
           <li data-reveal><strong>Multiple locations.</strong> Medina de Pomar and Villarcayo, each with its own kitchen and till.</li>
           <li data-reveal><strong>Verifactu compliant.</strong> Invoicing ready for Spain’s tax regulations, no surprises.</li>
         </ul>
-      </div>
-    </section>
-
-    <!-- ============ FENDARIA ============ -->
-    <section class="game" id="fendaria" aria-labelledby="game-title">
-      <div class="head">
-        <h2 class="h-xl game-title" id="game-title" data-reveal>Fendaria</h2>
-        <p class="head-sub" data-reveal>Our adventure app for Android: design, animation and code made in-house. Pick a character and see it in action.</p>
-      </div>
-
-      <div class="picker" id="picker">
-        <div class="pedestal" data-reveal>
-          <img class="hero-sprite" id="heroSprite" src="../assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, the Helmbreaker">
-          <div class="moves" role="group" aria-label="Actions">
-            <button type="button" data-move="idle" aria-pressed="true">Idle</button>
-            <button type="button" data-move="attack" aria-pressed="false">Attack</button>
-            <button type="button" data-move="cast" aria-pressed="false">Skill</button>
-            <button type="button" data-move="dash" aria-pressed="false">Dodge</button>
-          </div>
-        </div>
-
-        <div class="hero-info">
-          <p class="hero-role" id="heroRole">Melee warrior</p>
-          <h3 class="hero-name" id="heroName">Kara, the Helmbreaker</h3>
-          <p class="hero-sum" id="heroSum">Front-line warrior. She takes a beating, swings in an arc at everything nearby and leaps into the thick of the fight with her axe.</p>
-          <p class="hero-ult"><span>Ultimate</span> <strong id="heroUlt">Steel Whirlwind</strong></p>
-
-          <div class="roster" role="tablist" aria-label="Heroes" id="roster"></div>
-
-          <div class="play-row">
-            <span class="soon">Coming soon to Google Play</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="game-media">
-        <figure class="film" data-reveal>
-          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" poster="../assets/img/fendaria-prologo-poster.webp" aria-label="Fendaria prologue cutscene">
-            <source src="../assets/video/fendaria-prologo.webm" type="video/webm">
-            <source src="../assets/video/fendaria-prologo.mp4" type="video/mp4">
-          </video>
-          <figcaption>Prologue: the Order of Runes, the Locksmith and the seven heroes.</figcaption>
-        </figure>
-        <div class="shots">
-          <figure data-reveal><img src="../assets/img/fx-portal.webp" width="1280" height="720" alt="The hero in front of the Rune Portal in the square" loading="lazy"><figcaption>The Rune Portal</figcaption></figure>
-          <figure data-reveal><img src="../assets/img/fx-nivel.webp" width="1280" height="720" alt="Levelling up in the middle of a Rift" loading="lazy"><figcaption>Inside a Rift</figcaption></figure>
-        </div>
       </div>
     </section>
 
@@ -465,7 +418,63 @@
         </div>
       </form>
     </section>
+
+    <!-- ============ FENDARIA ============ -->
+    <section class="game" data-game id="fendaria" aria-labelledby="game-title">
+      <div class="head">
+        <h2 class="h-xl game-title" id="game-title" data-reveal>Fendaria</h2>
+        <p class="head-sub" data-reveal>Our adventure app for Android: design, animation and code made in-house. Pick a character and see it in action.</p>
+      </div>
+
+      <div class="picker" id="picker">
+        <div class="pedestal" data-reveal>
+          <img class="hero-sprite" id="heroSprite" src="../assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, the Helmbreaker">
+          <div class="moves" role="group" aria-label="Actions">
+            <button type="button" data-move="idle" aria-pressed="true">Idle</button>
+            <button type="button" data-move="attack" aria-pressed="false">Attack</button>
+            <button type="button" data-move="cast" aria-pressed="false">Skill</button>
+            <button type="button" data-move="dash" aria-pressed="false">Dodge</button>
+          </div>
+        </div>
+
+        <div class="hero-info">
+          <p class="hero-role" id="heroRole">Melee warrior</p>
+          <h3 class="hero-name" id="heroName">Kara, the Helmbreaker</h3>
+          <p class="hero-sum" id="heroSum">Front-line warrior. She takes a beating, swings in an arc at everything nearby and leaps into the thick of the fight with her axe.</p>
+          <p class="hero-ult"><span>Ultimate</span> <strong id="heroUlt">Steel Whirlwind</strong></p>
+
+          <div class="roster" role="tablist" aria-label="Heroes" id="roster"></div>
+
+          <div class="play-row">
+            <span class="soon">Coming soon to Google Play</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-media">
+        <figure class="film" data-reveal>
+          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" poster="../assets/img/fendaria-prologo-poster.webp" aria-label="Fendaria prologue cutscene">
+            <source src="../assets/video/fendaria-prologo.webm" type="video/webm">
+            <source src="../assets/video/fendaria-prologo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Prologue: the Order of Runes, the Locksmith and the seven heroes.</figcaption>
+        </figure>
+        <div class="shots">
+          <figure data-reveal><img src="../assets/img/fx-portal.webp" width="1280" height="720" alt="The hero in front of the Rune Portal in the square" loading="lazy"><figcaption>The Rune Portal</figcaption></figure>
+          <figure data-reveal><img src="../assets/img/fx-nivel.webp" width="1280" height="720" alt="Levelling up in the middle of a Rift" loading="lazy"><figcaption>Inside a Rift</figcaption></figure>
+        </div>
+      </div>
+    </section>
   </main>
+  <script>
+    // en modo oscuro Fendaria es lo principal: va justo después de la portada y como primer proyecto (antes de pintar)
+    (function () {
+      if (document.documentElement.getAttribute("data-theme") === "light") return;
+      var main = document.querySelector("main"), game = document.getElementById("fendaria"), card = document.querySelector(".project[data-game]");
+      if (game) main.insertBefore(game, main.firstElementChild);
+      if (card) card.parentNode.insertBefore(card, card.parentNode.firstElementChild);
+    })();
+  </script>
 
   <!-- ============ PIE ============ -->
   <footer class="footer">
@@ -515,6 +524,6 @@
 
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
-  <script src="../js/main.js?v=20261105-8" defer></script>
+  <script src="../js/main.js?v=20261105-9" defer></script>
 </body>
 </html>

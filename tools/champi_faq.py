@@ -212,8 +212,8 @@ a('ingles_web',['version en ingles','english version','cambiar idioma','change l
 a('farol',['farol','linterna','lampara','lantern','lamp'],
   'El farol es el logo de Lumen. Dale un golpe arriba del todo: se balancea y suelta chispas.','The lantern is Lumen’s logo. Give it a tap at the very top: it swings and throws sparks.')
 
-a('modo_claro',['modo claro','modo oscuro','boton del sol','el sol','la luna','tema','mas profesional','version profesional','mas formal','formal','serio','otro estilo','cambiar el diseno','traje','gafas','light mode','dark mode','theme','more professional','suit','glasses'],
-  'Arriba tienes un botón ☀️: cambia la web a un estilo claro y más profesional, con nuestro logo moderno… y yo me pongo traje y gafas. Con la 🌙 vuelves al farol.','Up top there’s a ☀️ button: it switches the site to a lighter, more professional style with our modern logo… and I put on a suit and glasses. The 🌙 takes you back to the lantern.')
+a('modo_claro',['modo claro','modo oscuro','boton del sol','el sol','la luna','boton de la luna','algo diferente','otro modo','tema','mas profesional','version profesional','mas formal','formal','serio','otro estilo','cambiar el diseno','traje','gafas','light mode','dark mode','theme','more professional','suit','glasses'],
+  'La web tiene dos modos. El formal, el de inicio, está pensado para webs y negocios, y ahí llevo traje. Con la 🌙 de arriba pasas al modo oscuro: el farol, Fendaria y mi ropa de siempre. El ☀️ te devuelve al formal.','The site has two modes. The formal one, the default, is built around websites and businesses, and I wear a suit there. The 🌙 up top switches to dark mode: the lantern, Fendaria and my usual look. The ☀️ takes you back to formal.')
 
 # ---------- Champi ----------
 a('champi',['champi','quien eres','como te llamas','que eres','seta','hongo','who are you','your name','mushroom'],
