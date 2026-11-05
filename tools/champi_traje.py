@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Viste a Champi para el modo moderno con el traje del diseño de assets/img/champi/fuente-traje-idle.png.
+"""Prepara los sprites de Champi de traje (modo moderno) a partir de los diseños fuente-traje-*.png.
 
 idle-traje.webp sale de ese diseño (16 cuadros de 82 px, centrados en cuadros de 94 px como los originales).
-Por ahora es el único diseño: la web lo usa también al caminar y al agarrarlo.
+Cada tira fuente tiene 16 cuadros de 82 px con fondo transparente.
 
 Uso:  python3 tools/champi_traje.py
 Lee assets/img/champi/{idle,walk,attack}.webp (cuadros de 94 px) y escribe *-traje.webp al lado.
@@ -108,13 +108,14 @@ def dress(fr):
             if 0 <= x < F and px[x, ey - 2][3] > 128: px[x, ey - 2] = RIM + (255,)
     return fr
 
-# quieto: el diseño, centrado en cuadros de 94 px con los pies abajo (como los originales)
-src = Image.open(D / 'fuente-traje-idle.png').convert('RGBA')
-n = src.width // 82
-idle = Image.new('RGBA', (n * F, F))
-for i in range(n):
-    idle.paste(src.crop((i * 82, 0, (i + 1) * 82, 82)), (i * F + 6, F - 82))
-idle.save(D / 'idle-traje.webp', lossless=True)
-print('ok idle', n, 'cuadros')
-
-# caminar y agarrarlo: cuando existan sus diseños, se añaden aquí igual que el de reposo
+# cada animación: el diseño de 82 px, centrado en cuadros de 94 px con los pies abajo (como los originales)
+for fuente, salida in (('fuente-traje-idle.png', 'idle-traje.webp'),       # quieto
+                       ('fuente-traje-walk.png', 'walk-traje.webp'),       # caminando
+                       ('fuente-traje-agarrado.png', 'attack-traje.webp')):  # agarrado y saludando
+    src = Image.open(D / fuente).convert('RGBA')
+    n = src.width // 82
+    out = Image.new('RGBA', (n * F, F))
+    for i in range(n):
+        out.paste(src.crop((i * 82, 0, (i + 1) * 82, 82)), (i * F + 6, F - 82))
+    out.save(D / salida, lossless=True)
+    print('ok', salida, n, 'cuadros')
