@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Viste a Champi para el modo moderno: gafas oscuras, traje azul marino, camisa, corbata dorada y zapatos.
+"""Viste a Champi para el modo moderno con el traje del diseño de assets/img/champi/fuente-traje-idle.png.
+
+idle-traje.webp sale de ese diseño (16 cuadros de 82 px, centrados en cuadros de 94 px como los originales).
+walk-traje.webp y attack-traje.webp se pintan sobre los sprites originales con sus mismos colores:
+traje azul, camisa blanca, corbata roja y gafas de montura fina.
 
 Uso:  python3 tools/champi_traje.py
 Lee assets/img/champi/{idle,walk,attack}.webp (cuadros de 94 px) y escribe *-traje.webp al lado.
@@ -11,11 +15,11 @@ from PIL import Image
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 D = ROOT / 'assets/img/champi'
 F = 94
-NAVY = [(22, 27, 44), (33, 41, 66), (44, 55, 88), (56, 69, 108)]  # de sombra a luz
-SHIRT, SHIRT_S = (242, 239, 232), (205, 200, 190)
-TIE, TIE_K = (232, 163, 58), (176, 112, 26)
+NAVY = [(18, 26, 44), (36, 49, 73), (58, 74, 100), (70, 88, 116)]  # de sombra a luz (colores del diseño)
+SHIRT, SHIRT_S = (251, 251, 251), (197, 198, 206)
+TIE, TIE_K = (179, 77, 54), (124, 48, 36)
 SHOE, SHOE_L = (20, 18, 24), (60, 56, 66)
-LENS, RIM, SHINE = (16, 14, 22), (8, 7, 12), (150, 170, 205)
+RIM, SHINE = (13, 6, 4), (251, 251, 251)
 
 # centro de cada ojo en cada cuadro (x, y dentro del cuadro de 94 px), medido sobre los sprites originales
 EYES = {
@@ -63,9 +67,7 @@ def dress(fr):
     for x, y in solid:
         if y < neck: continue
         p = px[x, y]
-        if y >= feet and (is_skin(p) or is_dark(p)):
-            px[x, y] = SHOE + (255,) if (sum(p[:3]) < 420 or y == bottom) else SHOE_L + (255,)
-            continue
+        if y >= feet: continue  # pies descalzos, como en el diseño
         if not is_skin(p) and p[0] < 175 and p[0] > p[2]:  # contornos y costuras marrones → azul muy oscuro
             px[x, y] = (12, 14, 26, 255) if sum(p[:3]) < 200 else NAVY[0] + (255,)
             continue
@@ -90,27 +92,33 @@ def dress(fr):
         for x in (cx, cx + 1):  # corbata de 2 píxeles con nudo
             if x in row and y <= neck + V - 2:
                 px[x, y] = (TIE_K if y <= neck + 1 else TIE) + (255,)
-    # gafas oscuras sobre cada ojo y puente entre ellas
+    # gafas de montura fina: solo el marco, los ojos se ven por dentro
     for ex, ey in centers:
-        for y in range(ey - 2, ey + 3):
+        for y in range(ey - 3, ey + 3):
             for x in range(ex - 4, ex + 4):
-                if px[x, y][3] > 128:
-                    edge = y in (ey - 2, ey + 2) or x in (ex - 4, ex + 3)
-                    px[x, y] = (RIM if edge else LENS) + (255,)
-        for sx, sy in ((ex - 2, ey - 1), (ex - 1, ey - 1), (ex - 2, ey)):
-            if px[sx, sy][3] > 128: px[sx, sy] = SHINE + (255,)
+                if px[x, y][3] > 128 and (y in (ey - 3, ey + 2) or x in (ex - 4, ex + 3)):
+                    px[x, y] = RIM + (255,)
     if len(centers) >= 2:
         (ax, ay), (bx, by) = sorted(centers)[:2]
         for x in range(ax + 4, bx - 3):
-            y = round(ay + (by - ay) * (x - ax) / max(1, bx - ax)) - 1
+            y = round(ay + (by - ay) * (x - ax) / max(1, bx - ax)) - 2
             if px[x, y][3] > 128: px[x, y] = RIM + (255,)
     elif centers:  # de perfil: una patilla hacia atrás
         ex, ey = centers[0]
         for x in range(ex - 8, ex - 4):
-            if 0 <= x < F and px[x, ey - 1][3] > 128: px[x, ey - 1] = RIM + (255,)
+            if 0 <= x < F and px[x, ey - 2][3] > 128: px[x, ey - 2] = RIM + (255,)
     return fr
 
-for name in ('idle', 'walk', 'attack'):
+# quieto: el diseño, centrado en cuadros de 94 px con los pies abajo (como los originales)
+src = Image.open(D / 'fuente-traje-idle.png').convert('RGBA')
+n = src.width // 82
+idle = Image.new('RGBA', (n * F, F))
+for i in range(n):
+    idle.paste(src.crop((i * 82, 0, (i + 1) * 82, 82)), (i * F + 6, F - 82))
+idle.save(D / 'idle-traje.webp', lossless=True)
+print('ok idle', n, 'cuadros')
+
+for name in ('walk', 'attack'):
     im = Image.open(D / f'{name}.webp').convert('RGBA')
     out = Image.new('RGBA', im.size)
     NAME = name

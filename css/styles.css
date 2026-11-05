@@ -633,60 +633,17 @@ html[data-theme="light"] {
   .hero-top .wordmark > span:last-child, .bar .wordmark > span:last-child { display: none; } /* solo el símbolo */
 }
 
-/* Champi de traje y gafas en el modo moderno (sprites de tools/champi_traje.py) */
-[data-theme="light"] .champi-sprite { background-image: url("../assets/img/champi/idle-traje.webp"); }
+/* Champi de traje y gafas en el modo moderno (tools/champi_traje.py): quieto tiene 16 cuadros */
+[data-theme="light"] .champi-sprite { background-image: url("../assets/img/champi/idle-traje.webp"); background-size: 1408px 88px; animation: champi-steps16 2s steps(16) infinite; }
+@keyframes champi-steps16 { to { background-position-x: -1408px; } }
 [data-theme="light"] .champi.is-walk .champi-sprite { background-image: url("../assets/img/champi/walk-traje.webp"); }
-[data-theme="light"] .champi.is-held .champi-sprite, [data-theme="light"] .champi.is-wave .champi-sprite { background-image: url("../assets/img/champi/attack-traje.webp"); }
-
-/* ================= MODO CLARO · acabado refinado ================= */
-.hero-badge { display: none; }
-[data-theme="light"] .hero-badge {
-  display: inline-flex; align-items: center; gap: 10px; margin: 6px 0 4px; padding: 7px 14px 7px 10px; border-radius: 999px;
-  font: 600 13px/1 var(--text); letter-spacing: .02em; color: var(--muted); background: rgba(255, 255, 255, .75);
-  box-shadow: 0 0 0 1px var(--line), 0 6px 18px -10px rgba(40, 30, 10, .25);
+[data-theme="light"] .champi.is-held .champi-sprite, [data-theme="light"] .champi.is-wave .champi-sprite { background-image: url("../assets/img/champi/attack-traje.webp"); background-size: 704px 88px; }
+@media (max-width: 680px) {
+  [data-theme="light"] .champi-sprite { background-size: 768px 48px; animation-name: champi-steps16-s; }
+  @keyframes champi-steps16-s { to { background-position-x: -768px; } }
+  [data-theme="light"] .champi.is-held .champi-sprite, [data-theme="light"] .champi.is-wave .champi-sprite { background-size: 384px 48px; animation-name: champi-steps-s; }
 }
-[data-theme="light"] .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #ffd27a, #e2742a); box-shadow: 0 0 0 4px rgba(232, 163, 58, .18); }
-[data-theme="light"] .mark--hero { width: clamp(96px, 9vw, 132px); height: clamp(96px, 9vw, 132px); filter: drop-shadow(0 18px 30px rgba(226, 116, 42, .25)); }
-[data-theme="light"] .hero-title { font-size: clamp(52px, 8vw, 120px); line-height: .95; margin-top: 6px; }
-[data-theme="light"] .hero-slogan { font-weight: 600; letter-spacing: -0.01em; }
-[data-theme="light"] .hero-lede { letter-spacing: -0.01em; }
-[data-theme="light"] .hero-actions .btn:first-child::after { content: "→"; font-weight: 700; transition: transform .3s var(--ease); }
-[data-theme="light"] .hero-actions .btn:first-child:hover::after { transform: translateX(4px); }
 
-/* títulos de sección: rótulo numerado y letra grande y compacta */
-[data-theme="light"] main { counter-reset: sec; }
-[data-theme="light"] .h-xl { font-size: clamp(38px, 4.6vw, 68px); letter-spacing: -0.045em; line-height: 1; }
-[data-theme="light"] section .h-xl::before {
-  counter-increment: sec; content: counter(sec, decimal-leading-zero);
-  display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
-  font: 700 13px/1 var(--text); letter-spacing: .14em; color: var(--gold-text);
-}
-[data-theme="light"] section .h-xl::after { content: none; }
-[data-theme="light"] .game-title { color: var(--ink); }
-[data-theme="light"] .work, [data-theme="light"] .services, [data-theme="light"] .tpv, [data-theme="light"] .game,
-[data-theme="light"] .voices, [data-theme="light"] .process, [data-theme="light"] .quote { border-top: 1px solid var(--line); }
-
-/* filtros: control segmentado */
-[data-theme="light"] .filters { padding: 4px; gap: 2px; border-radius: 999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
-[data-theme="light"] .filters button { background: transparent; }
-[data-theme="light"] .filters button[aria-pressed="true"] { background: var(--ink); color: #fff; }
-
-/* tarjetas: se elevan con suavidad */
-[data-theme="light"] .project, [data-theme="light"] .svc li, [data-theme="light"] .voice { background: var(--surface); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
-[data-theme="light"] .project:hover, [data-theme="light"] .svc li:hover, [data-theme="light"] .voice:hover {
-  transform: translateY(-4px); box-shadow: 0 0 0 1px var(--line), 0 30px 60px -30px rgba(40, 30, 10, .3);
-}
-[data-theme="light"] .project-main, [data-theme="light"] .device { border-radius: 16px; box-shadow: 0 0 0 1px var(--line); }
-[data-theme="light"] .work { background: var(--bg); }
-[data-theme="light"] .svc { counter-reset: svc; gap: 14px; }
-[data-theme="light"] .svc li { position: relative; padding: 30px 28px; border-radius: 20px; }
-[data-theme="light"] .svc li::after { counter-increment: svc; content: counter(svc, decimal-leading-zero); position: absolute; top: 28px; right: 26px; font: 600 12px/1 var(--text); letter-spacing: .1em; color: var(--muted); opacity: .7; }
-[data-theme="light"] .voice { border-radius: 22px; }
-[data-theme="light"] .voice blockquote p { letter-spacing: -0.01em; }
-[data-theme="light"] .calc-result { background: var(--surface); }
-[data-theme="light"] .contact { box-shadow: 0 0 0 1px var(--line); }
-[data-theme="light"] .footer { background: var(--surface); }
-[data-theme="light"] .chip input:checked + span, [data-theme="light"] .seg button[aria-selected="true"] { background: var(--ink); color: #fff; }
 /* Champi señala el botón de modo */
 .theme-btn.is-hint { color: var(--ink); animation: hint-ring 1.3s ease-out 4; }
 @keyframes hint-ring { 0% { box-shadow: 0 0 0 0 rgba(232, 163, 58, .75); } 100% { box-shadow: 0 0 0 16px rgba(232, 163, 58, 0); } }
