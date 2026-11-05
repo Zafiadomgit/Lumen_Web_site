@@ -2,8 +2,7 @@
 """Viste a Champi para el modo moderno con el traje del diseño de assets/img/champi/fuente-traje-idle.png.
 
 idle-traje.webp sale de ese diseño (16 cuadros de 82 px, centrados en cuadros de 94 px como los originales).
-walk-traje.webp y attack-traje.webp se pintan sobre los sprites originales con sus mismos colores:
-traje azul, camisa blanca, corbata roja y gafas de montura fina.
+Por ahora es el único diseño: la web lo usa también al caminar y al agarrarlo.
 
 Uso:  python3 tools/champi_traje.py
 Lee assets/img/champi/{idle,walk,attack}.webp (cuadros de 94 px) y escribe *-traje.webp al lado.
@@ -118,12 +117,4 @@ for i in range(n):
 idle.save(D / 'idle-traje.webp', lossless=True)
 print('ok idle', n, 'cuadros')
 
-for name in ('walk', 'attack'):
-    im = Image.open(D / f'{name}.webp').convert('RGBA')
-    out = Image.new('RGBA', im.size)
-    NAME = name
-    for i in range(im.width // F):
-        IDX = i
-        out.paste(dress(im.crop((i * F, 0, (i + 1) * F, F))), (i * F, 0))
-    out.save(D / f'{name}-traje.webp', lossless=True)
-    print('ok', name)
+# caminar y agarrarlo: cuando existan sus diseños, se añaden aquí igual que el de reposo
