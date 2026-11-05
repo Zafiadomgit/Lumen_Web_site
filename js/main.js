@@ -114,7 +114,7 @@
     });
   }
 
-  /* ---------- 1c. modo claro (Lumen moderno) con transición de píxeles que nace del farol ---------- */
+  /* ---------- 1c. modo claro (Lumen moderno): a claro con bloques, a oscuro rompiéndose; todo nace del farol ---------- */
   var themeBtns = document.querySelectorAll('.theme-btn');
   if (themeBtns.length) {
     var metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -139,38 +139,125 @@
       track('tema', { modo: toLight ? 'claro' : 'oscuro' });
       if (reduce) { apply(toLight); return; }
       switching = true;
-      var w = innerWidth, h = innerHeight, cell = Math.max(18, Math.round(Math.min(w, h) / 26));
-      var cv = document.createElement('canvas'); cv.className = 'pixel-veil'; cv.width = w; cv.height = h;
+      var w = innerWidth, h = innerHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+      var cv = document.createElement('canvas'); cv.className = 'pixel-veil';
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       document.body.appendChild(cv);
-      var ctx = cv.getContext('2d');
-      // los píxeles salen del farol si se ve; si no, del botón
-      var src = $('lamp'), r = src && src.getBoundingClientRect();
-      if (!r || r.bottom < 0 || r.top > h) r = btn.getBoundingClientRect();
-      var ox = r.left + r.width / 2, oy = r.top + r.height / 2;
-      var cols = Math.ceil(w / cell), rows = Math.ceil(h / cell), cells = [];
-      for (var cy = 0; cy < rows; cy++) for (var cx = 0; cx < cols; cx++) {
-        var px = cx * cell, py = cy * cell;
-        cells.push({ x: px, y: py, d: Math.hypot(px + cell / 2 - ox, py + cell / 2 - oy) + Math.random() * cell * 4, g: Math.random() < 0.07 });
+      var ctx = cv.getContext('2d'); ctx.scale(dpr, dpr);
+      // todo nace del centro del farol (aunque esté fuera de la pantalla); si no hay farol, del botón
+      var src = $('lamp'), r = (src || btn).getBoundingClientRect();
+      var ox = r.left + r.width / 2, oy = r.top + r.height * 0.55;
+      var done = function () { cv.remove(); switching = false; };
+      (toLight ? blocks : shatter)(ctx, w, h, ox, oy, function () { apply(toLight); }, done);
+    };
+    var ease = function (t) { return t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3); };
+    var rrect = function (c, x, y, ww, hh, rad) {
+      rad = Math.min(rad, ww / 2, hh / 2);
+      c.beginPath(); c.moveTo(x + rad, y); c.arcTo(x + ww, y, x + ww, y + hh, rad); c.arcTo(x + ww, y + hh, x, y + hh, rad);
+      c.arcTo(x, y + hh, x, y, rad); c.arcTo(x, y, x + ww, y, rad); c.closePath();
+    };
+    // oscuro → claro: bloques redondeados que crecen en ola desde el farol y luego se retiran
+    var blocks = function (ctx, w, h, ox, oy, swap, done) {
+      var size = Math.max(64, Math.round(Math.min(w, h) / 6.5)), gap = 6;
+      var cols = Math.ceil(w / size) + 1, rows = Math.ceil(h / size) + 1, list = [], maxD = 0;
+      for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
+        var cx = x * size + size / 2, cy = y * size + size / 2, d = Math.hypot(cx - ox, cy - oy);
+        var roll = Math.random();
+        list.push({ x: x * size, y: y * size, d: d, c: roll < 0.1 ? '#e8a33a' : roll < 0.16 ? '#141218' : '#f6f4ef' });
+        if (d > maxD) maxD = d;
       }
-      cells.sort(function (a, b) { return a.d - b.d; });
-      var fill = toLight ? '#f6f4ef' : '#0a090d', gold = toLight ? '#e8a33a' : '#e8b64c';
-      var IN = 420, OUT = 460, t0 = performance.now(), drawn = 0, phase = 0, cleared = 0;
+      var WAVE = 900, GROW = 520, HOLD = 160, t0 = performance.now(), swapped = false;
+      var draw = function (k, out) {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < list.length; i++) {
+          var c = list[i], local = (k - (c.d / maxD) * WAVE) / GROW, e = ease(local);
+          if (out) e = 1 - e;
+          if (e <= 0.001) continue;
+          var full = size + 1, s = (out ? full : full - gap * (1 - e)) * e, inset = (full - s) / 2;
+          ctx.fillStyle = out ? '#f6f4ef' : (e > 0.999 ? '#f6f4ef' : c.c);
+          rrect(ctx, c.x + inset, c.y + inset, s, s, 18 * (1 - e) + (out ? 18 * (1 - e) : 2));
+          ctx.fill();
+        }
+      };
       var frame = function (t) {
-        var k;
-        if (phase === 0) {
-          k = Math.min(1, (t - t0) / IN);
-          var upto = Math.floor(cells.length * k * k);
-          for (; drawn < upto; drawn++) { var c = cells[drawn]; ctx.fillStyle = c.g ? gold : fill; ctx.fillRect(c.x, c.y, cell, cell); }
-          if (k >= 1) {
-            ctx.fillStyle = fill;
-            for (var i = 0; i < cells.length; i++) if (cells[i].g) ctx.fillRect(cells[i].x, cells[i].y, cell, cell);
-            apply(toLight); phase = 1; t0 = t;
-          }
+        var k = t - t0;
+        if (!swapped) {
+          draw(k, false);
+          if (k >= WAVE + GROW + HOLD) { ctx.fillStyle = '#f6f4ef'; ctx.fillRect(0, 0, w, h); swap(); swapped = true; t0 = t; }
         } else {
-          k = Math.min(1, (t - t0) / OUT);
-          var until = Math.floor(cells.length * (1 - Math.pow(1 - k, 2)));
-          for (; cleared < until; cleared++) { var e = cells[cleared]; ctx.clearRect(e.x, e.y, cell, cell); }
-          if (k >= 1) { cv.remove(); switching = false; return; }
+          draw(k, true);
+          if (k >= WAVE + GROW) return done();
+        }
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+    // claro → oscuro: la página se agrieta desde el farol y los pedazos caen dejando ver el estilo oscuro
+    var shatter = function (ctx, w, h, ox, oy, swap, done) {
+      var R = Math.hypot(Math.max(ox, w - ox), Math.max(oy, h - oy)) + 80;
+      var N = 16, angles = [], rings = [0, 70, 170, 300, 470, 680, 940, 1250, 1650, 2200].filter(function (v, i, arr) { return i === 0 || arr[i - 1] < R; });
+      rings.push(rings[rings.length - 1] * 1.4 + 200); // anillo de sobra: ninguna esquina queda sin cubrir
+      for (var i = 0; i < N; i++) angles.push((i + 0.25 + Math.random() * 0.5) / N * Math.PI * 2);
+      // vértices con algo de azar para que las grietas no sean perfectas
+      var pt = function (ri, ai) {
+        var rad = rings[ri] * (ri ? 0.72 + Math.random() * 0.5 : 0), a = angles[ai % N] + (ri ? (Math.random() - 0.5) * 0.22 : 0);
+        return [ox + Math.cos(a) * rad, oy + Math.sin(a) * rad];
+      };
+      var grid = rings.map(function (_, ri) { return angles.map(function (_, ai) { return pt(ri, ai); }); });
+      // como en un vidrio: solo algunos tramos de cada anillo se ven agrietados, y las grietas radiales van quebradas
+      var ringSeg = rings.map(function (_, ri) { return angles.map(function () { return ri > 0 && Math.random() < (ri < 3 ? 0.75 : 0.42); }); });
+      var kink = rings.map(function () { return angles.map(function () { return (Math.random() - 0.5) * 26; }); });
+      var shards = [];
+      for (var ri = 0; ri < rings.length - 1; ri++) for (var ai = 0; ai < N; ai++) {
+        var poly = [grid[ri][ai], grid[ri][(ai + 1) % N], grid[ri + 1][(ai + 1) % N], grid[ri + 1][ai]];
+        var mx = 0, my = 0; poly.forEach(function (p) { mx += p[0] / 4; my += p[1] / 4; });
+        var dir = Math.atan2(my - oy, mx - ox);
+        shards.push({ p: poly, cx: mx, cy: my, d: Math.hypot(mx - ox, my - oy), vx: Math.cos(dir) * (60 + Math.random() * 140), vy: Math.sin(dir) * 80 - 120 - Math.random() * 120, rot: (Math.random() - 0.5) * 2.4 });
+      }
+      var CRACK = 750, FALL = 1200, t0 = performance.now(), swapped = false;
+      var cracks = function (k) { // grietas que avanzan desde el farol
+        var reach = ease(k) * R;
+        ctx.lineWidth = 1.6; ctx.strokeStyle = 'rgba(20,18,24,.55)'; ctx.beginPath();
+        for (var ai = 0; ai < N; ai++) {
+          ctx.moveTo(ox, oy);
+          for (var ri = 1; ri < rings.length; ri++) {
+            if (rings[ri - 1] > reach) break;
+            var p0 = grid[ri - 1][ai], q = grid[ri][ai];
+            ctx.lineTo((p0[0] + q[0]) / 2 + kink[ri][ai], (p0[1] + q[1]) / 2 - kink[ri][ai] * 0.6); ctx.lineTo(q[0], q[1]);
+          }
+        }
+        for (var rj = 1; rj < rings.length; rj++) {
+          if (rings[rj] > reach) break;
+          for (var aj = 0; aj < N; aj++) {
+            if (!ringSeg[rj][aj]) continue;
+            var a1 = grid[rj][aj], a2 = grid[rj][(aj + 1) % N];
+            ctx.moveTo(a1[0], a1[1]); ctx.lineTo(a2[0], a2[1]);
+          }
+        }
+        ctx.stroke();
+      };
+      var frame = function (t) {
+        var k = t - t0;
+        ctx.clearRect(0, 0, w, h);
+        if (!swapped) {
+          var f = Math.min(1, k / CRACK);
+          ctx.fillStyle = 'rgba(246,244,239,' + (ease(f) * 0.96).toFixed(3) + ')'; ctx.fillRect(0, 0, w, h); // la página se apaga bajo las grietas
+          cracks(f);
+          if (f >= 1) { swap(); swapped = true; t0 = t; }
+        } else {
+          var allGone = true;
+          for (var i = 0; i < shards.length; i++) {
+            var sh = shards[i], delay = (sh.d / R) * 380, tt = Math.max(0, (k - delay) / 1000);
+            if (k - delay < FALL) allGone = false;
+            var life = tt / (FALL / 1000), dx = sh.vx * tt, dy = sh.vy * tt + 0.5 * 3000 * tt * tt, ang = sh.rot * tt, alpha = life < 0.7 ? 1 : 1 - Math.min(1, (life - 0.7) / 0.3);
+            if (alpha <= 0) continue;
+            ctx.save(); ctx.globalAlpha = alpha;
+            ctx.translate(sh.cx + dx, sh.cy + dy); ctx.rotate(ang); ctx.translate(-sh.cx, -sh.cy);
+            ctx.beginPath(); ctx.moveTo(sh.p[0][0], sh.p[0][1]); for (var j = 1; j < 4; j++) ctx.lineTo(sh.p[j][0], sh.p[j][1]); ctx.closePath();
+            ctx.fillStyle = '#f6f4ef'; ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = 'rgba(20,18,24,.35)'; ctx.stroke();
+            ctx.restore();
+          }
+          if (allGone) return done();
         }
         requestAnimationFrame(frame);
       };
