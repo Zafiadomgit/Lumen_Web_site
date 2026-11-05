@@ -624,27 +624,29 @@
       if (cur && cur !== lastSec) {
         lastSec = cur;
         goTo(16 + Math.random() * (maxX() - 16));
-        setTimeout(function () { if (!chatting && !held) say(TIPS[cur]); }, reduce ? 0 : 500);
+        setTimeout(function () { if (!chatting && !held && Date.now() > hushUntil) say(TIPS[cur]); }, reduce ? 0 : 500);
       }
     };
     var sTick = false;
     addEventListener('scroll', function () { if (!sTick) { sTick = true; setTimeout(function () { sTick = false; checkSection(); }, 250); } }, { passive: true });
     addEventListener('resize', function () { if (x > maxX()) { x = maxX(); target = x; place(); } });
     // sugerencia del botón de modo: una vez por visita, con el botón latiendo para que se vea dónde está
-    var themeHinted = false;
+    var themeHinted = false, hushUntil = 0;
     var hintTheme = function () {
-      if (themeHinted || champi.hidden || held || falling || chatting) return;
+      if (themeHinted) return;
+      if (champi.hidden || held || falling || chatting || running) { setTimeout(hintTheme, 4000); return; } // ocupado: lo intenta luego
       var btn = document.querySelector((document.getElementById('bar') && document.getElementById('bar').classList.contains('is-on') ? '.bar' : '.hero-top') + ' .theme-btn')
         || document.querySelector('.theme-btn');
       if (!btn) return;
       themeHinted = true;
       var light = doc.getAttribute('data-theme') === 'light';
+      hushUntil = Date.now() + 6500; // que ningún otro comentario lo tape mientras se lee
       say(light ? T('¿Extrañas el farol? Toca la 🌙 de arriba y vuelvo a mi ropa de siempre.', 'Miss the lantern? Tap the 🌙 up top and I’ll go back to my usual look.')
-                : T('¿Buscas algo más profesional? Toca el ☀️ de arriba… hasta me pongo traje.', 'Looking for something more professional? Tap the ☀️ up top… I even put on a suit.'), 6500);
+                : T('¿Quieres algo más formal? Toca el ☀️ de arriba… hasta me pongo traje.', 'Want something more formal? Tap the ☀️ up top… I even put on a suit.'), 6500);
       btn.classList.remove('is-hint'); void btn.offsetWidth; btn.classList.add('is-hint');
       setTimeout(function () { btn.classList.remove('is-hint'); }, 6500);
     };
-    setTimeout(hintTheme, 11000);
+    setTimeout(hintTheme, 8000);
     document.addEventListener('lumen:theme', function (e) {
       themeHinted = true; // ya lo descubrió
       if (champi.hidden || held || chatting) return;

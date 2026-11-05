@@ -212,7 +212,7 @@ a('ingles_web',['version en ingles','english version','cambiar idioma','change l
 a('farol',['farol','linterna','lampara','lantern','lamp'],
   'El farol es el logo de Lumen. Dale un golpe arriba del todo: se balancea y suelta chispas.','The lantern is Lumen’s logo. Give it a tap at the very top: it swings and throws sparks.')
 
-a('modo_claro',['modo claro','modo oscuro','boton del sol','el sol','la luna','tema','mas profesional','version profesional','otro estilo','cambiar el diseno','traje','gafas','light mode','dark mode','theme','more professional','suit','glasses'],
+a('modo_claro',['modo claro','modo oscuro','boton del sol','el sol','la luna','tema','mas profesional','version profesional','mas formal','formal','serio','otro estilo','cambiar el diseno','traje','gafas','light mode','dark mode','theme','more professional','suit','glasses'],
   'Arriba tienes un botón ☀️: cambia la web a un estilo claro y más profesional, con nuestro logo moderno… y yo me pongo traje y gafas. Con la 🌙 vuelves al farol.','Up top there’s a ☀️ button: it switches the site to a lighter, more professional style with our modern logo… and I put on a suit and glasses. The 🌙 takes you back to the lantern.')
 
 # ---------- Champi ----------

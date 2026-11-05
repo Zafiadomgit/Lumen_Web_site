@@ -634,8 +634,9 @@ html[data-theme="light"] {
 }
 
 /* Champi de traje y gafas en el modo moderno (tools/champi_traje.py): tres animaciones de 16 cuadros */
-[data-theme="light"] .champi-sprite { background-image: url("../assets/img/champi/idle-traje.webp"); background-size: 1408px 88px; animation: champi-steps16 2s steps(16) infinite; }
+[data-theme="light"] .champi-sprite { background-image: url("../assets/img/champi/idle-traje.webp"); background-size: 1408px 88px; background-position: 0 0; animation: none; } /* en reposo, quieto */
 [data-theme="light"] .champi.is-walk .champi-sprite { background-image: url("../assets/img/champi/walk-traje.webp"); background-size: 1408px 88px; animation: champi-steps16 1s steps(16) infinite; }
+[data-theme="light"] .champi.is-walk .champi-sprite { transform: scaleX(calc(var(--dir) * -1)); } /* este diseño camina mirando a la izquierda */
 [data-theme="light"] .champi.is-run .champi-sprite { animation-duration: .55s; }
 [data-theme="light"] .champi.is-held .champi-sprite { background-image: url("../assets/img/champi/attack-traje.webp"); background-size: 1408px 88px; animation: champi-steps16 1s steps(16) infinite; }
 [data-theme="light"] .champi.is-wave .champi-sprite { background-image: url("../assets/img/champi/attack-traje.webp"); background-size: 1408px 88px; animation: champi-steps16 1.1s steps(16) 1; }
