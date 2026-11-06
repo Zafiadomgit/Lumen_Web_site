@@ -119,6 +119,7 @@ PAIRS = [
     ('>Conócela</a>', '>Meet it</a>'),
     ('>Visitar vitralesperafan.com ↗</a>', '>Visit vitralesperafan.com ↗</a>'),
     ('>Visitar althaya.com.au ↗</a>', '>Visit althaya.com.au ↗</a>'),
+    ('>Visitar amievacleaning.com ↗</a>', '>Visit amievacleaning.com ↗</a>'),
     # Vitrales
     ('<p class="project-kind">Web · Taller artesano</p>', '<p class="project-kind">Website · Artisan workshop</p>'),
     ('<p class="project-lede">Casi 50 años de oficio, contados en una web.</p>', '<p class="project-lede">Nearly 50 years of craft, told in one website.</p>'),
