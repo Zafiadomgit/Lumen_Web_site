@@ -104,8 +104,8 @@
    "usa",
    "australia"
   ],
-  "es": "Sí, trabajamos en remoto con clientes de cualquier país. Por ejemplo, Althaya está en Perth (Australia) y California en España.",
-  "en": "Yes, we work remotely with clients anywhere. For example, Althaya is in Perth (Australia) and California is in Spain."
+  "es": "Sí, trabajamos en remoto con clientes de cualquier país. Por ejemplo, Althaya está en Perth (Australia), Amieva en Florida (Estados Unidos) y California en España.",
+  "en": "Yes, we work remotely with clients anywhere. For example, Althaya is in Perth (Australia), Amieva is in Florida (USA) and California is in Spain."
  },
  {
   "id": "idiomas",
@@ -229,8 +229,8 @@
    "landing page",
    "single page"
   ],
-  "es": "Una landing es una web de una sola página para presentar tu negocio o un producto y que te contacten. Suele estar en unas 2 semanas.",
-  "en": "A landing page is a one-page site to present your business or a product and get people to contact you. It usually takes about 2 weeks."
+  "es": "Una landing es una web de una sola página para presentar tu negocio y que te contacten, como la de Amieva Cleaning Service. Suele estar en unas 2 semanas.",
+  "en": "A landing page is a one-page site to present your business and get people to contact you, like Amieva Cleaning Service’s. It usually takes about 2 weeks."
  },
  {
   "id": "tienda",
@@ -360,8 +360,8 @@
    "internal tool",
    "platform"
   ],
-  "es": "Sí, hacemos software a medida: herramientas internas, paneles con informes, facturación o plataformas SaaS como Archivum.",
-  "en": "Yes, we build custom software: internal tools, reporting dashboards, invoicing or SaaS platforms like Archivum."
+  "es": "Sí, hacemos plataformas a medida: herramientas internas, paneles con informes, facturación o plataformas como EasyClase y Archivum.",
+  "en": "Yes, we build custom platforms: internal tools, reporting dashboards, invoicing or platforms like EasyClase and Archivum."
  },
  {
   "id": "diseno",
@@ -1152,8 +1152,8 @@
    "examples",
    "clients"
   ],
-  "es": "Algunos proyectos: el TPV de California, Archivum (facturación), Fendaria (nuestra app), y las webs de Vitrales Perafán y Althaya. Los tienes en la sección Proyectos.",
-  "en": "Some projects: California’s POS, Archivum (invoicing), Fendaria (our app), and the websites for Vitrales Perafán and Althaya. They’re in the Projects section."
+  "es": "Algunos proyectos: el TPV de California, Archivum (facturación), EasyClase (plataforma de clases), Fendaria (nuestra app), las webs de Vitrales Perafán y Althaya, y la landing de Amieva. Los tienes en la sección Proyectos.",
+  "en": "Some projects: California’s POS, Archivum (invoicing), EasyClase (a tutoring platform), Fendaria (our app), the websites for Vitrales Perafán and Althaya, and Amieva’s landing page. They’re in the Projects section."
  },
  {
   "id": "california",
@@ -1221,6 +1221,34 @@
   ],
   "es": "Althaya es un centro de masajes en Perth (Australia). Su web es bilingüe, con vídeo, tratamientos y reserva directa: althaya.com.au.",
   "en": "Althaya is a massage studio in Perth (Australia). Its site is bilingual, with video, treatments and direct booking: althaya.com.au."
+ },
+ {
+  "id": "easyclase",
+  "k": [
+   "easyclase",
+   "easy clase",
+   "clases particulares",
+   "profesores",
+   "tutorias",
+   "tutoring",
+   "teachers"
+  ],
+  "es": "EasyClase es una plataforma de clases particulares que conecta estudiantes con profesores verificados: búsqueda, reservas, pagos con Mercado Pago, retiro de ganancias, calificaciones y membresías premium.",
+  "en": "EasyClase is a private-lessons platform that connects students with verified teachers: search, bookings, Mercado Pago payments, earnings payouts, ratings and premium memberships."
+ },
+ {
+  "id": "amieva",
+  "k": [
+   "amieva",
+   "limpieza",
+   "cleaning",
+   "construccion en florida",
+   "florida",
+   "naples",
+   "fort myers"
+  ],
+  "es": "Amieva Cleaning Service es una empresa de limpieza y construcción en el suroeste de Florida. Le hicimos una landing bilingüe con servicios, galería, zona de servicio, presupuesto y WhatsApp.",
+  "en": "Amieva Cleaning Service is a cleaning and construction company in Southwest Florida. We built them a bilingual landing page with services, gallery, service area, quotes and WhatsApp."
  },
  {
   "id": "opiniones",

@@ -28,7 +28,7 @@ a('quienes',['quienes sois','quienes son','que es lumen','que hace lumen','que h
 a('donde',['donde estan','donde estais','ubicados','ubicacion','bogota','colombia','de donde son','pais','where are you','located','based','location','city'],
   'Estamos en Bogotá, Colombia, y trabajamos en remoto con clientes de cualquier país.','We are in Bogotá, Colombia, and work remotely with clients in any country.')
 a('remoto',['remoto','a distancia','otro pais','fuera de colombia','espana','mexico','internacional','remote','another country','abroad','international','usa','australia'],
-  'Sí, trabajamos en remoto con clientes de cualquier país. Por ejemplo, Althaya está en Perth (Australia) y California en España.','Yes, we work remotely with clients anywhere. For example, Althaya is in Perth (Australia) and California is in Spain.')
+  'Sí, trabajamos en remoto con clientes de cualquier país. Por ejemplo, Althaya está en Perth (Australia), Amieva en Florida (Estados Unidos) y California en España.','Yes, we work remotely with clients anywhere. For example, Althaya is in Perth (Australia), Amieva is in Florida (USA) and California is in Spain.')
 a('idiomas',['idioma','idiomas','ingles','espanol','hablan ingles','language','languages','english','spanish','speak english'],
   'Trabajamos en español y en inglés, y podemos hacer tu web o tu app en los dos idiomas.','We work in Spanish and English, and we can build your site or app in both languages.')
 a('presencial',['presencial','oficina','visitar','reunion en persona','en persona','office','in person','visit you','meet in person'],
@@ -46,7 +46,7 @@ a('servicios',['servicios','que ofrecen','que hacen ustedes','que pueden hacer',
 a('web',['web','pagina web','sitio web','pagina','website','site','webpage'],
   'Hacemos landings, webs corporativas y tiendas online, rápidas y a medida. Mira Vitrales Perafán o Althaya en Proyectos.','We build landing pages, business sites and online stores, fast and tailor-made. Check out Vitrales Perafán or Althaya in Projects.')
 a('landing',['landing','una sola pagina','pagina de aterrizaje','one page','landing page','single page'],
-  'Una landing es una web de una sola página para presentar tu negocio o un producto y que te contacten. Suele estar en unas 2 semanas.','A landing page is a one-page site to present your business or a product and get people to contact you. It usually takes about 2 weeks.')
+  'Una landing es una web de una sola página para presentar tu negocio y que te contacten, como la de Amieva Cleaning Service. Suele estar en unas 2 semanas.','A landing page is a one-page site to present your business and get people to contact you, like Amieva Cleaning Service’s. It usually takes about 2 weeks.')
 a('tienda',['tienda online','tienda virtual','ecommerce','e-commerce','vender por internet','vender online','carrito','online store','sell online','shop'],
   'Sí, hacemos tiendas online a medida. Una tienda va de US$ 3.000 a 6.000 según lo que necesites, y suele estar en unas 6 semanas.','Yes, we build custom online stores. A store runs US$ 3,000–6,000 depending on what you need, and usually takes about 6 weeks.')
 a('corporativa',['corporativa','web de empresa','web corporativa','varias paginas','business site','company website','corporate'],
@@ -62,7 +62,7 @@ a('publicar_tienda',['google play','app store','publicar la app','subir la app',
 a('tpv',['tpv','punto de venta','sistema para restaurante','software para restaurante','kiosco','pos','point of sale','restaurant software'],
   'Nuestro TPV para restaurantes tiene kiosco de autoservicio, pantalla de cocina, caja con tickets y varias sedes, y cumple Verifactu. Puedes probar el real en la sección «Prueba el TPV».','Our restaurant POS has a self-service kiosk, kitchen display, till with receipts and multi-location support, and it complies with Verifactu. You can try the real one in the “Try the POS” section.')
 a('medida',['a medida','software a medida','sistema a medida','herramienta interna','panel','dashboard','saas','plataforma','custom software','internal tool','platform'],
-  'Sí, hacemos software a medida: herramientas internas, paneles con informes, facturación o plataformas SaaS como Archivum.','Yes, we build custom software: internal tools, reporting dashboards, invoicing or SaaS platforms like Archivum.')
+  'Sí, hacemos plataformas a medida: herramientas internas, paneles con informes, facturación o plataformas como EasyClase y Archivum.','Yes, we build custom platforms: internal tools, reporting dashboards, invoicing or platforms like EasyClase and Archivum.')
 a('diseno',['diseno','logo','marca','branding','identidad','prototipo','ui','ux','design','brand','prototype'],
   'Hacemos diseño de marca, pantallas y prototipos antes de programar, para que veas tu producto y lo cambies cuando todavía es barato.','We do brand, screen and prototype design before coding, so you can see your product and change it while it’s still cheap.')
 a('seo',['seo','google','posicionamiento','salir en google','aparecer en google','buscadores','search engine','rank on google'],
@@ -176,7 +176,7 @@ a('tpv_otros',['bar','cafeteria','panaderia','pizzeria','tienda fisica','otro ne
 
 # ---------- proyectos ----------
 a('proyectos',['proyectos','portafolio','portfolio','trabajos','ejemplos','clientes','que han hecho','projects','work','examples','clients'],
-  'Algunos proyectos: el TPV de California, Archivum (facturación), Fendaria (nuestra app), y las webs de Vitrales Perafán y Althaya. Los tienes en la sección Proyectos.','Some projects: California’s POS, Archivum (invoicing), Fendaria (our app), and the websites for Vitrales Perafán and Althaya. They’re in the Projects section.')
+  'Algunos proyectos: el TPV de California, Archivum (facturación), EasyClase (plataforma de clases), Fendaria (nuestra app), las webs de Vitrales Perafán y Althaya, y la landing de Amieva. Los tienes en la sección Proyectos.','Some projects: California’s POS, Archivum (invoicing), EasyClase (a tutoring platform), Fendaria (our app), the websites for Vitrales Perafán and Althaya, and Amieva’s landing page. They’re in the Projects section.')
 a('california',['california','kebab'],
   'California es un restaurante con dos locales en España que usa nuestro TPV: kiosco en dos idiomas, cocina, caja y tickets. Puedes probarlo en la web.','California is a restaurant with two locations in Spain that uses our POS: bilingual kiosk, kitchen, till and receipts. You can try it on the site.')
 a('archivum',['archivum','factura','facturacion','facturas','invoice','invoicing'],
@@ -189,6 +189,10 @@ a('vitrales',['vitrales','perafan','vitral'],
   'Vitrales Perafán es un taller de vitrales fundado en 1976. Le hicimos su web con galería, proceso y presupuesto: vitralesperafan.com.','Vitrales Perafán is a stained-glass workshop founded in 1976. We built their site with gallery, process and quotes: vitralesperafan.com.')
 a('althaya',['althaya','masajes','perth'],
   'Althaya es un centro de masajes en Perth (Australia). Su web es bilingüe, con vídeo, tratamientos y reserva directa: althaya.com.au.','Althaya is a massage studio in Perth (Australia). Its site is bilingual, with video, treatments and direct booking: althaya.com.au.')
+a('easyclase',['easyclase','easy clase','clases particulares','profesores','tutorias','tutoring','teachers'],
+  'EasyClase es una plataforma de clases particulares que conecta estudiantes con profesores verificados: búsqueda, reservas, pagos con Mercado Pago, retiro de ganancias, calificaciones y membresías premium.','EasyClase is a private-lessons platform that connects students with verified teachers: search, bookings, Mercado Pago payments, earnings payouts, ratings and premium memberships.')
+a('amieva',['amieva','limpieza','cleaning','construccion en florida','florida','naples','fort myers'],
+  'Amieva Cleaning Service es una empresa de limpieza y construcción en el suroeste de Florida. Le hicimos una landing bilingüe con servicios, galería, zona de servicio, presupuesto y WhatsApp.','Amieva Cleaning Service is a cleaning and construction company in Southwest Florida. We built them a bilingual landing page with services, gallery, service area, quotes and WhatsApp.')
 a('opiniones',['opiniones','resenas','testimonios','referencias','que dicen','reviews','testimonials','references'],
   'En «Lo que dicen» tienes las opiniones de Hassam (California), Herney (Vitrales Perafán) y Laura (Althaya).','In “What clients say” you’ll find reviews from Hassam (California), Herney (Vitrales Perafán) and Laura (Althaya).')
 

@@ -80,6 +80,8 @@ La mascota y la cara de las redes: la seta de Fendaria, la app del estudio.
   - Fendaria: app de aventuras; llegará pronto a Google Play.
   - Vitrales Perafán: taller de vitrales desde 1976; vitralesperafan.com.
   - Althaya: centro de masajes en Perth; althaya.com.au.
+  - EasyClase: plataforma a medida de clases particulares (profesores verificados, reservas, pagos con Mercado Pago).
+  - Amieva Cleaning Service: landing bilingüe de limpieza y construcción en el suroeste de Florida.
 - **Opiniones aprobadas:** Hassam KB (California), Herney Perafán (Vitrales Perafán) y Laura Mora (Althaya). Se citan tal como están en la web (`index.html`, sección `#opiniones`), sin cambiar palabras.
 
 ## Lo que nunca se hace
