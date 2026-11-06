@@ -9,11 +9,40 @@ const escape = (v) => String(v || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;'
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const TIPOS = ['Web', 'App', 'Videojuego', 'TPV', 'A medida', 'Aún no lo sé'];
 
+// --- protecciones contra abusos (las mismas que Champi) ---
+// 1) solo acepta envíos desde nuestra web: producción, dominio propio, vistas previas de Vercel y pruebas en local
+const EXTRA_ORIGINS = (process.env.ALLOWED_ORIGINS || process.env.CHAMPI_ALLOWED_ORIGINS || '').split(',').map((o) => o.trim()).filter(Boolean);
+const allowedOrigin = (req) => {
+  const src = req.headers.origin || req.headers.referer || '';
+  let host;
+  try { host = new URL(src).host; } catch { return false; }
+  if (host === 'lumen-ruddy-beta.vercel.app' || host === 'lumenestudio.tech' || host === 'www.lumenestudio.tech') return true;
+  if (/^lumen-[a-z0-9-]+-davidpieters12-gmailcoms-projects\.vercel\.app$/.test(host)) return true;
+  if (/^(localhost|127\.0\.0\.1)(:\d+)?$/.test(host)) return true;
+  return EXTRA_ORIGINS.some((o) => { try { return new URL(o).host === host; } catch { return false; } });
+};
+// 2) envíos por visitante (por IP): 5 por hora y 15 por día. Aproximado (cada instancia cuenta por su lado),
+//    pero frena a un bot que intente llenar el correo o agotar el cupo diario de Resend.
+const LIMITS = [{ ms: 3600e3, max: 5 }, { ms: 86400e3, max: 15 }];
+const hits = new Map();
+const tooMany = (ip) => {
+  const now = Date.now();
+  const list = (hits.get(ip) || []).filter((t) => now - t < 86400e3);
+  if (LIMITS.some((l) => list.filter((t) => now - t < l.ms).length >= l.max)) { hits.set(ip, list); return true; }
+  list.push(now); hits.set(ip, list);
+  if (hits.size > 5000) hits.clear();
+  return false;
+};
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Método no permitido' });
   }
+  if (!allowedOrigin(req)) return res.status(403).json({ error: 'forbidden' });
+  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
+  if (tooMany(ip)) return res.status(429).json({ error: 'rate_limited' });
+
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
   body = body || {};

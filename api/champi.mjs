@@ -86,7 +86,7 @@ export default async function handler(req, res) {
 
   const params = {
     model: MODEL,
-    max_tokens: 1024,
+    max_tokens: 300, // Champi responde en 1–3 frases: así cada pregunta (o abuso) cuesta poco
     output_config: { effort: 'low' },
     system: SYSTEM,
     messages,

@@ -73,6 +73,16 @@ Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`). Los eventos
 
 El botón ☀️/🌙 de la barra cambia entre el estilo oscuro (el farol pixelado, principal) y uno claro y moderno: logo de la llama en un círculo (`#lumen-mark` en `index.html`), letra Plus Jakarta Sans, botones de tinta y tarjetas blancas. Las transiciones nacen del centro del farol (`js/main.js`, sección 1c): a claro, bloques redondeados que crecen en ola; a oscuro, la página se agrieta y los pedazos caen. El estilo está al final de `css/styles.css` bajo `[data-theme="light"]`. La web abre en el modo formal (claro), con webs y negocios primero y Fendaria al final; el oscuro pone Fendaria primero. La elección se recuerda en el navegador.
 
+### Seguridad
+
+- `vercel.json` (lo genera `tools/seguridad.py`, que corre solo al final de `tools/build_en.py`): cabeceras de seguridad y una
+  política de contenido que solo deja ejecutar scripts propios; los scripts escritos dentro del HTML se autorizan por su huella.
+  Si cambias uno de esos scripts, vuelve a correr `python3 tools/build_en.py` o la página lo bloqueará.
+- `api/contact.js` y `api/champi.mjs` solo aceptan peticiones desde la web (producción, lumenestudio.tech, vistas previas y local)
+  y limitan los envíos por IP (formulario: 5/hora y 15/día; Champi: 12/hora y 30/día). Dominios extra: `ALLOWED_ORIGINS`
+  o `CHAMPI_ALLOWED_ORIGINS`, separados por comas.
+- Champi responde con un máximo de 300 tokens; el tope real de gasto es el límite mensual de la consola de Anthropic.
+
 ## Pendiente
 
 - Precios de la calculadora: en dólares (USD), en `js/main.js` (objeto `CALC`).

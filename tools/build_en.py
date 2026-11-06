@@ -343,3 +343,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # las huellas de los scripts en línea cambian si cambia el HTML: se recalculan las cabeceras de seguridad
+    import runpy
+    runpy.run_path(str(ROOT / 'tools' / 'seguridad.py'), run_name='__main__')
