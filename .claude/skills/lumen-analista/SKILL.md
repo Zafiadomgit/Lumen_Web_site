@@ -21,7 +21,7 @@ description: Resume cada viernes cómo le fue a las redes y a la web de Lumen St
   | `champi_chat` | se abre el chat de Champi |
   | `champi_pregunta` | pregunta a Champi; `respuesta` dice si fue guardada, ia o sin_ia |
 
-- **Estadísticas de cada red:** las exportaciones o capturas que te pase la persona.
+- **Estadísticas de cada red:** las de Metricool (Instagram y TikTok están conectados allí): pide a la persona el informe o una captura de la semana.
 - **El plan de la semana:** `docs/redes/semanas/<lunes>/plan.md`.
 
 ## Qué entregas

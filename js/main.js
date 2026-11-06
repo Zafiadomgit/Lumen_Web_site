@@ -22,6 +22,7 @@
     var h = a.getAttribute('href') || '';
     if (/wa\.me\//.test(h)) track('whatsapp', { lugar: a.id === 'calcWa' ? 'calculadora' : where(a) });
     else if (/^mailto:/.test(h)) track('email', { lugar: where(a) });
+    else if (/share\.google|g\.page/.test(h)) track('resena_google', { lugar: where(a) });
     else if (/instagram\.com|tiktok\.com/.test(h)) track('redes', { red: /tiktok/.test(h) ? 'tiktok' : 'instagram', lugar: where(a) });
     else if (/archivum\.es|vitralesperafan\.com|althaya\.com\.au|amievacleaning\.com|easyclase(app)?\.com/.test(h)) track('visita_proyecto', { web: a.hostname });
   }, true);

@@ -702,3 +702,8 @@ html[data-theme="light"] {
 .theme-btn.is-hint { color: var(--ink); animation: hint-ring 1.3s ease-out 4; }
 @keyframes hint-ring { 0% { box-shadow: 0 0 0 0 rgba(232, 163, 58, .75); } 100% { box-shadow: 0 0 0 16px rgba(232, 163, 58, 0); } }
 @media (prefers-reduced-motion: reduce) { .theme-btn.is-hint { animation: none; outline: 2px solid var(--accent); outline-offset: 3px; } }
+
+/* reseñas en Google, bajo las opiniones */
+.voices-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 20px; margin-top: 36px; text-align: center; }
+.voices-cta p { margin: 0; color: var(--muted); }
+.btn--google svg { flex: none; }

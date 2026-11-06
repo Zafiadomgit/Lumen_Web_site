@@ -150,6 +150,9 @@ PAIRS = [
     ('<dd>Landing bilingüe con servicios, galería de trabajos, zona de servicio, formulario de presupuesto, WhatsApp y reseñas de Google.</dd>',
      '<dd>A bilingual landing page with services, a gallery of completed work, service area, quote form, WhatsApp and Google reviews.</dd>'),
     ('<dd>Una sola página pensada para que te escriban o te llamen desde el celular.</dd>', '<dd>A single page built so customers message or call straight from their phone.</dd>'),
+    # reseñas en Google
+    ('<p>¿Trabajaste con nosotros? Tu opinión nos ayuda mucho.</p>', '<p>Worked with us? Your review helps us a lot.</p>'),
+    ('Déjanos tu reseña en Google</a>', 'Leave us a Google review</a>'),
     # Althaya
     ('<p class="project-kind">Web · Bienestar</p>', '<p class="project-kind">Website · Wellness</p>'),
     ('<p class="project-lede">Un centro de masajes en Perth, en dos idiomas.</p>', '<p class="project-lede">A massage studio in Perth, in two languages.</p>'),
