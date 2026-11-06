@@ -23,7 +23,7 @@
     if (/wa\.me\//.test(h)) track('whatsapp', { lugar: a.id === 'calcWa' ? 'calculadora' : where(a) });
     else if (/^mailto:/.test(h)) track('email', { lugar: where(a) });
     else if (/instagram\.com|tiktok\.com/.test(h)) track('redes', { red: /tiktok/.test(h) ? 'tiktok' : 'instagram', lugar: where(a) });
-    else if (/archivum\.es|vitralesperafan\.com|althaya\.com\.au|amievacleaning\.com/.test(h)) track('visita_proyecto', { web: a.hostname });
+    else if (/archivum\.es|vitralesperafan\.com|althaya\.com\.au|amievacleaning\.com|easyclaseapp\.com/.test(h)) track('visita_proyecto', { web: a.hostname });
   }, true);
   var T = function (es, en) { return LANG === 'en' ? en : es; };
   var L = function (v) { return Array.isArray(v) ? (LANG === 'en' ? v[1] : v[0]) : v; };
