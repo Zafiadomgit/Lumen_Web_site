@@ -1,15 +1,101 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><title>s1-hola</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../../plantilla/video.css"><style>.cards{left:60px;right:60px;top:560px;display:flex;justify-content:center;gap:28px;opacity:1}
-.cards .card{opacity:0;transform:scale(.8);transition:all .35s cubic-bezier(.2,.8,.2,1)} .cards .card.on{opacity:1;transform:none}</style></head><body><div class="stage">
-<div class="el ch walk" id="ch" style="left:-420px;top:960px"></div>
-<div class="el cards"><div class="card" id="c1">Webs</div><div class="card" id="c2">Apps</div><div class="card" id="c3">TPV</div></div>
-<div class="cap" id="cap"></div>
-<div class="el outro" id="outro"><div class="farol"></div><p>Encendemos<br>tus ideas.</p><small>Lumen Studio · @lumenstudiobog</small></div>
-</div><script src="../../../../plantilla/video.js"></script><script>window.DURATION=12;window.TIMELINE=[
-[0,function(){V.cap('¿Me ves? Soy Champi.');V.move('ch',352,null,2)}],
-[2,function(){V.pose('ch','');V.cap('Vivo en la web de Lumen Studio')}],
-[2.6,function(){V.pose('ch','wave')}],[3.4,function(){V.pose('ch','')}],
-[5,function(){V.cap('Hacemos webs, apps y TPV');V.on('c1')}],[5.4,function(){V.on('c2')}],[5.8,function(){V.on('c3')}],
-[8,function(){V.cap('Ven a buscarme. Link en la bio');V.pose('ch','wave')}],[9,function(){V.pose('ch','')}],
-[10.5,function(){V.cap('');V.on('outro')}]];</script></body></html>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/lumen.js"></script>
+    <link rel="stylesheet" href="assets/css/lumen.css" />
+    <style>
+      #champ { --s: 376px; }
+      #phone { left: 370px; top: 590px; }
+      #ring { position: absolute; left: 0; top: 0; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 26px rgba(232,182,76,.8); opacity: 0; }
+      .card { position: absolute; top: 620px; width: 300px; height: 560px; border-radius: 34px; overflow: hidden; background: #16141b;
+        box-shadow: 0 40px 90px rgba(0,0,0,.6), inset 0 0 0 2px rgba(232,182,76,.3); opacity: 0; }
+      .card .img { position: absolute; left: 14px; right: 14px; top: 14px; height: 440px; border-radius: 22px; background-size: cover; background-position: 50% 0; }
+      .card b { position: absolute; left: 0; right: 0; bottom: 30px; text-align: center; font-weight: 800; font-size: 54px; color: var(--ink); }
+      .card b em { font-style: normal; color: var(--gold); }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="13.4" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="13.4" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
+
+      <div id="kicker" class="kicker clip" data-start="0" data-duration="10.6" data-track-index="1" style="z-index:3"><i></i><span>Mucho gusto</span><i></i></div>
+      <h1 id="h1" class="head clip" data-start="0" data-duration="2.45" data-track-index="2" style="z-index:4"><span class="w">¿Me</span> <span class="w">ves?</span><br /><span class="w">Soy</span> <span class="w"><em>Champi</em></span></h1>
+      <h1 id="h2" class="head clip" data-start="2.45" data-duration="2.9" data-track-index="2" style="z-index:4"><span class="w">Vivo</span> <span class="w">en</span> <span class="w">la</span> <span class="w">web</span> <span class="w">de</span><br /><span class="w"><em>Lumen</em></span> <span class="w"><em>Studio</em></span></h1>
+      <h1 id="h3" class="head clip" data-start="5.35" data-duration="2.95" data-track-index="2" style="z-index:4"><span class="w">Hacemos</span> <span class="w">webs,</span><br /><span class="w">apps</span> <span class="w">y</span> <span class="w"><em>TPV</em></span></h1>
+      <h1 id="h4" class="head clip" data-start="8.3" data-duration="2.3" data-track-index="2" style="z-index:4"><span class="w">Ven</span> <span class="w">a</span> <span class="w"><em>buscarme</em></span><br /><span class="w">link</span> <span class="w">en</span> <span class="w">la</span> <span class="w">bio</span></h1>
+
+      <div id="stage" class="clip" data-start="0" data-duration="10.7" data-track-index="3" data-layout-allow-overlap style="z-index:2">
+        <div class="floor" style="top:1250px"></div>
+        <div class="phone" id="phone"><div class="screen"><div class="sc" style="opacity:1;background-image:url(assets/img/movil-portada.webp)"></div><div class="notch"></div><div id="ring"></div></div></div>
+        <div class="card" id="card1" style="left:60px"><div class="img" style="background-image:url(assets/img/vitrales-movil.webp)"></div><b>Webs</b></div>
+        <div class="card" id="card2" style="left:390px"><div class="img" style="background-image:url(assets/img/easyclase-movil.webp)"></div><b>Apps</b></div>
+        <div class="card" id="card3" style="left:720px"><div class="img" style="background-image:url(assets/img/movil-inicio.webp)"></div><b><em>TPV</em></b></div>
+        <div class="ch" id="champ"><div class="spr walk"></div><div class="spr idle"></div><div class="spr wave"></div></div>
+        <div class="bubble" id="bubble">¡Te espero!</div>
+      </div>
+
+      <div id="outro" class="clip" data-start="10.6" data-duration="2.8" data-track-index="4" style="z-index:5">
+        <div class="farol"></div>
+        <div class="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· link en la bio</span></p>
+      </div>
+    </div>
+    <script>
+      const END = 13.4, S = 376, FLOOR = 1250;
+      const tl = gsap.timeline({ paused: true });
+      const L = Lumen(tl, END);
+
+      // Champi entra caminando y se planta en el centro
+      gsap.set("#champ", { x: 40, y: FLOOR - S, opacity: 1, scale: 1, transformOrigin: "50% 100%" });
+      L.pose("#champ", 0, "walk");
+      L.cycle("#champ .walk", 6, S, 0, 1.6, 10);
+      tl.to("#champ", { x: 352, duration: 1.55, ease: "power1.inOut" }, 0);
+      L.pose("#champ", 1.6, "idle");
+      L.cycle("#champ .idle", 8, S, 1.6, 8.4, 8);
+
+      // se hace pequeño en una esquina: así se ve en la web de verdad
+      tl.to("#champ", { x: -10, scale: 0.55, duration: 0.6, ease: "power3.inOut" }, 2.45);
+      tl.fromTo("#phone", { y: 1300, rotation: 6, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, 2.5);
+      tl.fromTo("#ring", { x: 40, y: 642, opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 3.5);
+      tl.to("#ring", { opacity: 0, duration: 0.2 }, 5.0);
+      tl.to("#phone", { y: 160, opacity: 0, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, 5.1);
+      tl.to("#champ", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.2);
+
+      // webs, apps y TPV, una tarjeta tras otra
+      [1, 2, 3].forEach((n, i) => {
+        tl.fromTo("#card" + n, { opacity: 0, y: 70, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, 5.55 + i * 0.25);
+        tl.to("#card" + n, { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, 8.0 + i * 0.05);
+      });
+
+      // vuelve grande, saluda y te invita
+      L.pose("#champ", 8.35, "wave");
+      L.cycle("#champ .wave", 8, S, 8.35, 10.7, 10);
+      tl.set("#champ", { x: 352, scale: 0.7 }, 8.34).to("#champ", { scale: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, 8.35);
+      tl.fromTo("#bubble", { x: 600, y: 760, opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 8.9);
+      tl.to("#stage", { opacity: 0, filter: "blur(12px)", duration: 0.4, ease: "power3.in" }, 10.25);
+
+      // titulares
+      L.wordsOut("#h1", 2.25);
+      L.wordsIn("#h2", 2.5);  L.wordsOut("#h2", 5.15);
+      L.lineIn("#h3", 5.4);   L.wordsOut("#h3", 8.1);
+      L.wordsIn("#h4", 8.35); L.wordsOut("#h4", 10.4); L.out("#kicker", 10.4);
+
+      L.outro(10.6);
+      L.embers(53);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

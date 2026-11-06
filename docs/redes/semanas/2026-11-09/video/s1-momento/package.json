@@ -1,0 +1,10 @@
+{
+  "name": "s1-momento",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.19 preview",
+    "check": "npx --yes hyperframes@0.9.19 check",
+    "render": "npx --yes hyperframes@0.9.19 render --quality delivery -o s1-momento.mp4"
+  }
+}

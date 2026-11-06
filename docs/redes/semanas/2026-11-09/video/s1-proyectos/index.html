@@ -1,13 +1,105 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><title>s1-proyectos</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../../plantilla/video.css"><style>.shot{top:520px}.label{top:400px}</style></head><body><div class="stage">
-<div class="el ch" id="ch" style="left:352px;top:900px"></div><div class="el title up" id="t0" style="top:420px">5 proyectos<br>en 15 segundos</div>
-<div class="el label" id="l0">California</div><img class="el shot pop" id="s0" src="../../../../../../assets/img/tpv-inicio.webp" alt="">
-<div class="el label" id="l1">Archivum</div><img class="el shot pop" id="s1" src="../../../../../../assets/img/archivum-panel.webp" alt="">
-<div class="el label" id="l2">Fendaria</div><img class="el shot pop" id="s2" src="../../../../../../assets/img/fx-titulo.webp" alt="">
-<div class="el label" id="l3">Vitrales Perafán</div><img class="el shot pop" id="s3" src="../../../../../../assets/img/vitrales-hero.webp" alt="">
-<div class="el label" id="l4">Althaya</div><img class="el shot pop" id="s4" src="../../../../../../assets/img/althaya-hero.webp" alt="">
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/lumen.js"></script>
+    <link rel="stylesheet" href="assets/css/lumen.css" />
+    <style>
+      #champi-intro { --s: 376px; }
+      #tab { left: 60px; top: 640px; width: 960px; height: 615px; }
+      #tab .screen { width: 920px; height: 575px; }
+      .head.two { font-size: 92px; }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15.6" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="15.6" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
 
-<div class="cap" id="cap"></div>
-<div class="el outro" id="outro"><div class="farol"></div><p>Encendemos<br>tus ideas.</p><small>Lumen Studio · @lumenstudiobog</small></div>
-</div><script src="../../../../plantilla/video.js"></script><script>window.DURATION=15;var P=5;window.TIMELINE=[[0,function(){V.on("ch","t0")}],[2.0,function(){V.off("ch","t0");V.on("l0","s0");V.cap("TPV para un restaurante")}],[4.3,function(){V.off("l0","s0");V.on("l1","s1");V.cap("Facturación con Veri*Factu")}],[6.6,function(){V.off("l1","s1");V.on("l2","s2");V.cap("Nuestra app de aventuras")}],[8.9,function(){V.off("l2","s2");V.on("l3","s3");V.cap("Un taller desde 1976")}],[11.2,function(){V.off("l3","s3");V.on("l4","s4");V.cap("Masajes en Perth, en dos idiomas")}],[13.5,function(){V.cap("");V.on("outro")}]];</script></body></html>
+      <!-- 0 · gancho -->
+      <div id="k0" class="kicker clip" data-start="0" data-duration="2.0" data-track-index="1" style="z-index:3"><i></i><span>Hechos por Lumen Studio</span><i></i></div>
+      <h1 id="h0" class="head clip" data-start="0" data-duration="2.0" data-track-index="2" style="z-index:4"><span class="w"><em>7</em></span> <span class="w">proyectos</span><br /><span class="w">en</span> <span class="w"><em>15</em></span> <span class="w"><em>segundos</em></span></h1>
+      <div id="intro" class="clip" data-start="0" data-duration="2.2" data-track-index="3" style="z-index:2">
+        <div class="floor" style="top:1180px"></div>
+        <div class="ch" id="champi-intro" style="left:352px;top:806px"><div class="spr wave" style="opacity:1"></div></div>
+      </div>
+
+      <!-- 1–7 · un proyecto cada 1,55 s -->
+      <div id="k1" class="kicker clip" data-start="2.0" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>01 · California</span><i></i></div>
+      <h1 id="h1" class="head clip" data-start="2.0" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">TPV</span> <span class="w">para</span><br /><span class="w"><em>restaurantes</em></span></h1>
+      <div id="k2" class="kicker clip" data-start="3.55" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>02 · Archivum</span><i></i></div>
+      <h1 id="h2" class="head clip" data-start="3.55" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">Facturar</span><br /><span class="w">y</span> <span class="w"><em>archivar</em></span></h1>
+      <div id="k3" class="kicker clip" data-start="5.1" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>03 · EasyClase</span><i></i></div>
+      <h1 id="h3" class="head clip" data-start="5.1" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">Clases</span><br /><span class="w"><em>particulares</em></span></h1>
+      <div id="k4" class="kicker clip" data-start="6.65" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>04 · Vitrales Perafán</span><i></i></div>
+      <h1 id="h4" class="head clip" data-start="6.65" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">Casi</span> <span class="w"><em>50</em></span> <span class="w"><em>años</em></span><br /><span class="w">de</span> <span class="w">oficio</span></h1>
+      <div id="k5" class="kicker clip" data-start="8.2" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>05 · Althaya</span><i></i></div>
+      <h1 id="h5" class="head clip" data-start="8.2" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">Masajes</span><br /><span class="w">en</span> <span class="w"><em>Perth</em></span></h1>
+      <div id="k6" class="kicker clip" data-start="9.75" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>06 · Amieva</span><i></i></div>
+      <h1 id="h6" class="head clip two" data-start="9.75" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">Limpieza</span> <span class="w">en</span><br /><span class="w"><em>Florida</em></span></h1>
+      <div id="k7" class="kicker clip" data-start="11.3" data-duration="1.55" data-track-index="1" style="z-index:3"><i></i><span>07 · Fendaria</span><i></i></div>
+      <h1 id="h7" class="head clip" data-start="11.3" data-duration="1.55" data-track-index="2" style="z-index:4"><span class="w">Nuestra</span> <span class="w">app</span><br /><span class="w">de</span> <span class="w"><em>aventuras</em></span></h1>
+
+      <div id="device" class="clip" data-start="1.9" data-duration="11.1" data-track-index="3" style="z-index:2">
+        <div class="tab" id="tab">
+          <div class="screen">
+            <div class="sc" id="p1" style="background-image:url(assets/img/tpv-inicio.webp)"></div>
+            <div class="sc" id="p2" style="background-image:url(assets/img/archivum-portada.webp)"></div>
+            <div class="sc" id="p3" style="background-image:url(assets/img/easyclase-portada.webp)"></div>
+            <div class="sc" id="p4" style="background-image:url(assets/img/vitrales-hero.webp)"></div>
+            <div class="sc" id="p5" style="background-image:url(assets/img/althaya-hero.webp)"></div>
+            <div class="sc" id="p6" style="background-image:url(assets/img/amieva-portada.webp)"></div>
+            <div class="sc" id="p7" style="background-image:url(assets/img/fx-titulo.webp);background-position:50% 50%"></div>
+            <div class="gloss"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="outro" class="clip" data-start="12.85" data-duration="2.75" data-track-index="4" style="z-index:5">
+        <div class="farol"></div>
+        <div class="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· el tuyo es el 8</span></p>
+      </div>
+    </div>
+    <script>
+      const END = 15.6;
+      const tl = gsap.timeline({ paused: true });
+      const L = Lumen(tl, END);
+
+      // gancho: Champi saluda y se aparta; entra la tableta
+      L.cycle("#champi-intro .wave", 8, 376, 0, 2.2, 10);
+      L.wordsOut("#h0", 1.8); L.out("#k0", 1.8);
+      tl.to("#champi-intro", { y: 120, opacity: 0, filter: "blur(10px)", duration: 0.35, ease: "power3.in" }, 1.75);
+      tl.fromTo("#tab", { y: 260, opacity: 0, scale: 0.92 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "expo.out" }, 1.95);
+
+      // un proyecto cada 1,55 s, con barrido alternado
+      const show = L.screens();
+      for (let i = 1; i <= 7; i++) {
+        const t = 2.0 + (i - 1) * 1.55;
+        show(t, "#p" + i, i === 1 ? 0 : (i % 2 ? 1 : -1));
+        if (i > 1) { L.wordsIn("#h" + i, t + 0.04); L.lineIn("#k" + i, t + 0.04); }
+        else { L.wordsIn("#h1", t + 0.1); L.lineIn("#k1", t + 0.1); }
+        L.wordsOut("#h" + i, t + 1.36);
+        if (i === 7) L.out("#k7", t + 1.36);
+      }
+
+      // cierre
+      tl.to("#tab", { scale: 0.86, opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, 12.55);
+      L.outro(12.85);
+      L.embers(31);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

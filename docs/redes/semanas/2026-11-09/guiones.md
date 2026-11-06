@@ -4,6 +4,8 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 
 ## s1-hola · Video 12 s
 
+**Rehecho con HyperFrames** el 6 de noviembre (estilo aprobado): `video/s1-hola/`.
+
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
 | 0–2 s | Fondo oscuro, una luz cálida. Champi entra caminando por la izquierda | ¿Me ves? Soy Champi. | pasos |
@@ -18,6 +20,8 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 
 ## s1-farol · Video 10 s
 
+**Rehecho con HyperFrames** el 6 de noviembre (estilo aprobado): `video/s1-farol/`. El contador de golpes sube de ×1 a ×4 y cierra con «Cuéntanos tu récord».
+
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
 | 0–2 s | Primer plano del farol de la portada; un cursor lo golpea y salta una chispa | Golpea el farol | golpe metálico |
@@ -30,6 +34,8 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 **English:** Challenge: visit our site, hit the lantern and tell us in the comments how many times you made it swing.
 
 ## s1-momento · Video 14 s
+
+**Rehecho con HyperFrames** el 6 de noviembre (estilo aprobado): `video/s1-momento/`. El chat que se ve es la respuesta real de Champi en la web.
 
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
@@ -45,6 +51,8 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 **English:** Champi answers you on our website… once he gets to his corner. Ask him about prices, timelines or the POS.
 
 ## s1-proyectos · Video 15 s
+
+**Rehecho con HyperFrames** el 6 de noviembre (estilo aprobado): `video/s1-proyectos/`. Ahora son **7 proyectos** (se añadieron EasyClase y Amieva), con las frases de cada tarjeta de la web.
 
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
