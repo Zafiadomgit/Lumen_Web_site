@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/manrope-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Cinzel"; font-weight: 700; src: url("assets/fonts/cinzel-latin-700-normal.woff2") format("woff2"); }
+      /* Marca Lumen Studio: fondo oscuro, dorado del farol, papel claro */
+      :root { --ground: #0a090d; --gold: #e8b64c; --ink: #f3efe6; --muted: #b9b2a3; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ground); font-family: "Manrope", sans-serif; color: var(--ink); }
+
+      /* luz cálida del farol detrás del kiosco */
+      #glow { position: absolute; inset: 0; background: radial-gradient(820px 720px at 50% 50%, rgba(232,182,76,.17), transparent 70%); }
+      #glow2 { position: absolute; inset: 0; opacity: 0; background: radial-gradient(700px 640px at 50% 34%, rgba(232,182,76,.34), transparent 72%); }
+      .ember { position: absolute; left: 0; top: 0; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(232,182,76,.55); }
+
+      #kicker { position: absolute; left: 0; right: 0; top: 236px; display: flex; align-items: center; justify-content: center; gap: 22px;
+        font-weight: 700; font-size: 30px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+      #kicker i { display: block; width: 56px; height: 2px; background: var(--gold); opacity: .7; }
+
+      .head { position: absolute; left: 70px; right: 70px; top: 300px; text-align: center; font-weight: 800; font-size: 100px; line-height: 1.04; letter-spacing: -0.025em; }
+      .head em { font-style: normal; color: var(--gold); }
+      .w { display: inline-block; }
+
+      #device { position: absolute; left: 60px; top: 594px; width: 960px; height: 730px; }
+      .tab { position: absolute; inset: 0; border-radius: 46px; padding: 20px; background: linear-gradient(160deg, #23212a, #0f0e12 60%);
+        box-shadow: 0 70px 140px rgba(0,0,0,.65), inset 0 0 0 2px rgba(232,182,76,.26); }
+      .screen { position: relative; width: 920px; height: 690px; border-radius: 26px; overflow: hidden; background: #14151a; }
+      .cam { position: absolute; left: 0; top: 0; width: 920px; height: 690px; transform-origin: 0 0; }
+      .sc { position: absolute; inset: 0; opacity: 0; }
+      .sc > div { position: absolute; inset: 0; background-repeat: no-repeat; background-size: 100% auto; background-position: 0 0; }
+      .gloss { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(125deg, rgba(255,255,255,.07), transparent 38%); }
+      .finger { position: absolute; left: 0; top: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; opacity: 0;
+        background: radial-gradient(circle, rgba(255,255,255,.95) 0 30%, rgba(255,255,255,.32) 31% 60%, transparent 61%); filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)); }
+      .hl { position: absolute; left: 0; top: 0; border: 4px solid var(--gold); border-radius: 16px; opacity: 0; box-shadow: 0 0 34px rgba(232,182,76,.65), inset 0 0 20px rgba(232,182,76,.25); }
+
+      /* cierre */
+      #outro { position: absolute; inset: 0; }
+      .farol { position: absolute; left: 218px; top: 444px; width: 384px; height: 384px; background: url("assets/img/farol-tira.webp") 0 0 / 3072px 384px repeat-x; image-rendering: pixelated; }
+      .champi { position: absolute; left: 600px; top: 546px; width: 282px; height: 282px; background: url("assets/img/champi-saludo.webp") 0 0 / 2256px 282px repeat-x; image-rendering: pixelated; }
+      .slogan { position: absolute; left: 60px; right: 60px; top: 900px; text-align: center; font-family: "Cinzel", serif; font-weight: 700; font-size: 112px; line-height: 1.04; }
+      .slogan em { font-style: normal; color: var(--gold); }
+      .sign { position: absolute; left: 0; right: 0; top: 1180px; display: flex; justify-content: center; align-items: center; gap: 18px; font-weight: 700; font-size: 38px; color: var(--muted); }
+      .sign svg { width: 50px; height: 50px; color: #1d1a22; }
+      .sign b { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="19" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="19" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
+
+      <div id="kicker" class="clip" data-start="0" data-duration="15.6" data-track-index="1" style="z-index:3"><i></i><span>El TPV real de un restaurante</span><i></i></div>
+
+      <h1 id="h1" class="head clip" data-start="0" data-duration="2.15" data-track-index="2" style="z-index:4"><span class="w">Pide</span> <span class="w">un</span> <span class="w"><em>kebab</em></span><br /><span class="w">desde</span> <span class="w">nuestra</span> <span class="w">web</span></h1>
+      <h1 id="h2" class="head clip" data-start="2.15" data-duration="3.6" data-track-index="2" style="z-index:4"><span class="w">Eliges</span> <span class="w">tu</span> <span class="w"><em>plato</em></span></h1>
+      <h1 id="h3" class="head clip" data-start="5.75" data-duration="3.15" data-track-index="2" style="z-index:4"><span class="w">Quitas,</span> <span class="w">añades:</span><br /><span class="w"><em>a</em></span> <span class="w"><em>tu</em></span> <span class="w"><em>gusto</em></span></h1>
+      <h1 id="h4" class="head clip" data-start="8.9" data-duration="3.7" data-track-index="2" style="z-index:4"><span class="w">Lo</span> <span class="w">envías</span><br /><span class="w">en</span> <span class="w">un</span> <span class="w"><em>toque</em></span></h1>
+      <h1 id="h5" class="head clip" data-start="12.6" data-duration="3.0" data-track-index="2" style="z-index:4"><span class="w">Y</span> <span class="w">llega</span> <span class="w">directo</span><br /><span class="w">a</span> <span class="w"><em>cocina</em></span></h1>
+
+      <div id="device" class="clip" data-start="0" data-duration="16.1" data-track-index="3" style="z-index:2">
+        <div class="tab" id="tab">
+          <div class="screen">
+            <div class="cam" id="cam">
+              <div class="sc" id="sc-salva"><div id="im-salva" style="background-image:url(assets/img/tpv-salvapantallas.webp)"></div></div>
+              <div class="sc" id="sc-inicio"><div id="im-inicio" style="background-image:url(assets/img/tpv-inicio.webp)"></div></div>
+              <div class="sc" id="sc-cat"><div id="im-cat" style="background-image:url(assets/img/tpv-categorias.webp)"></div></div>
+              <div class="sc" id="sc-carta"><div id="im-carta" style="background-image:url(assets/img/tpv-carta.webp)"></div></div>
+              <div class="sc" id="sc-pers"><div id="im-pers" style="background-image:url(assets/img/tpv-personalizar.webp)"></div></div>
+              <div class="sc" id="sc-ped"><div id="im-ped" style="background-image:url(assets/img/tpv-pedido.webp)"></div></div>
+              <div class="sc" id="sc-pago" style="background:#f3f4f6"><div id="im-pago" style="background-image:url(assets/img/tpv-pago.webp)"></div></div>
+              <div class="sc" id="sc-coc" style="background:#13191d"><div id="im-coc" style="background-image:url(assets/img/tpv-cocina.webp)"></div></div>
+            </div>
+            <div class="hl" id="hl"></div>
+            <div class="finger" id="finger"></div>
+            <div class="gloss"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="outro" class="clip" data-start="15.9" data-duration="3.1" data-track-index="4" style="z-index:5">
+        <div class="farol" id="farol"></div>
+        <div class="champi" id="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· pruébalo en la web</span></p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const END = 19;
+
+      // ---------- cámara del kiosco ----------
+      // Las capturas miden 1366 px de ancho y se ven a 920 px: k pasa de píxel de captura a píxel de pantalla.
+      const W = 920, H = 690, k = W / 1366;
+      const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+      const cam = (s, px, py) => ({ scale: s, x: clamp(W / 2 - s * px * k, W - s * W, 0), y: clamp(H / 2 - s * py * k, H - s * H, 0) });
+      let C = cam(1, 0, 0);
+      gsap.set("#cam", C);
+      const camTo = (t, s, px, py, d) => { C = cam(s, px, py); tl.to("#cam", { ...C, duration: d, ease: "power2.inOut" }, t); };
+      const onScreen = (px, py) => ({ x: C.x + C.scale * px * k, y: C.y + C.scale * py * k });
+
+      // ---------- dedo: llega, toca y se va ----------
+      let fingerIn = false;
+      const tap = (t, px, py) => {
+        const p = onScreen(px, py);
+        if (!fingerIn) { tl.fromTo("#finger", { x: p.x + 160, y: p.y + 220, opacity: 0, scale: 1 }, { x: p.x, y: p.y, opacity: 1, duration: 0.55, ease: "power3.out" }, t - 0.6); fingerIn = true; }
+        else tl.to("#finger", { x: p.x, y: p.y, opacity: 1, duration: 0.45, ease: "power2.inOut" }, t - 0.5);
+        tl.to("#finger", { scale: 0.78, duration: 0.09, ease: "power2.in" }, t)
+          .to("#finger", { scale: 1, duration: 0.22, ease: "power3.out" }, t + 0.09);
+      };
+      const fingerOut = (t) => { tl.to("#finger", { opacity: 0, duration: 0.18, ease: "power1.in" }, t); fingerIn = false; };
+
+      // ---------- corte de pantalla: la nueva entra un poco grande y se asienta ----------
+      let cur = "salva";
+      const cut = (t, next, whip) => {
+        if (fingerIn) fingerOut(t + 0.02);
+        tl.set("#sc-" + cur, { opacity: 0 }, t).set("#sc-" + next, { opacity: 1 }, t);
+        C = cam(1, 0, 0); tl.set("#cam", C, t);
+        if (whip) tl.fromTo("#im-" + next, { x: 260, filter: "blur(14px)" }, { x: 0, filter: "blur(0px)", duration: 0.34, ease: "expo.out" }, t);
+        else tl.fromTo("#im-" + next, { scale: 1.035 }, { scale: 1, duration: 0.42, ease: "expo.out" }, t);
+        cur = next;
+      };
+      tl.set("#sc-salva", { opacity: 1 }, 0);
+
+      // 1 · salvapantallas → «Toca para pedir»
+      tap(1.9, 682, 932); cut(2.15, "inicio");
+      // 2 · comer aquí → categoría kebab → carta
+      tap(2.95, 430, 560); cut(3.2, "cat");
+      tap(3.9, 190, 250); cut(4.15, "carta");
+      camTo(4.35, 1.45, 330, 420, 0.65);
+      tap(5.45, 174, 300); cut(5.75, "pers");
+      // 3 · personalizar: sin cebolla, extra queso, el precio cambia
+      camTo(5.95, 1.85, 650, 560, 0.7);
+      camTo(7.45, 1.6, 780, 640, 0.6);
+      tap(8.6, 760, 740); cut(8.9, "ped");
+      // 4 · el pedido y su total → enviar a cocina
+      camTo(9.1, 1.6, 1120, 820, 0.7);
+      tap(10.35, 1136, 930); cut(10.65, "pago");
+      camTo(10.85, 1.85, 680, 300, 0.7);
+      // 5 · la comanda aparece en la pantalla de cocina
+      cut(12.6, "coc", true);
+      camTo(12.95, 2.25, 230, 230, 0.8);
+      { // marco dorado alrededor de la comanda (en la captura: x 12–212, y 134–300)
+        const a = onScreen(10, 132), b = onScreen(214, 314);
+        gsap.set("#hl", { left: a.x, top: a.y, width: b.x - a.x, height: b.y - a.y });
+        tl.fromTo("#hl", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 13.9);
+      }
+
+      // ---------- titulares: entran palabra a palabra y salen con desenfoque ----------
+      const wordsIn = (sel, t) => tl.fromTo(sel + " .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.075, ease: "power2.out" }, t);
+      const lineIn = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, t);
+      const wordsOut = (sel, t) => tl.to(sel + " .w", { opacity: 0, filter: "blur(8px)", duration: 0.16, stagger: 0.03, ease: "power1.in" }, t);
+      wordsOut("#h1", 1.95);
+      wordsIn("#h2", 2.2);  wordsOut("#h2", 5.55);
+      lineIn("#h3", 5.8);   wordsOut("#h3", 8.7);
+      wordsIn("#h4", 8.95); wordsOut("#h4", 12.4);
+      lineIn("#h5", 12.65); wordsOut("#h5", 15.35);
+      tl.to("#kicker", { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power1.in" }, 15.35);
+
+      // ---------- cierre: el kiosco se aleja y se enciende el farol ----------
+      tl.to("#tab", { scale: 0.86, opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, 15.6);
+      tl.to("#glow2", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 15.8);
+      tl.to("#glow", { opacity: 0.4, duration: 0.5, ease: "power2.inOut" }, 15.8);
+      tl.fromTo("#farol", { opacity: 0, scale: 0.82, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, 15.95);
+      tl.fromTo("#farol", { backgroundPosition: "0px 0px" }, { backgroundPosition: "-3072px 0px", duration: 0.9, ease: "steps(8)", repeat: 3 }, 15.9);
+      tl.fromTo("#champi", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 16.15);
+      tl.fromTo("#champi", { backgroundPosition: "0px 0px" }, { backgroundPosition: "-2256px 0px", duration: 0.8, ease: "steps(8)", repeat: 3 }, 15.9);
+      wordsIn("#slogan", 16.25);
+      tl.fromTo("#sign", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, 16.75);
+
+      // ---------- brasas que suben despacio (posición = función del tiempo) ----------
+      let seed = 7;
+      const rnd = () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      const box = document.getElementById("embers");
+      const embers = Array.from({ length: 18 }, () => {
+        const e = document.createElement("i"); e.className = "ember";
+        const s = 4 + rnd() * 6; e.style.width = e.style.height = s + "px"; box.appendChild(e);
+        return { e, x: 40 + rnd() * 1000, sp: 70 + rnd() * 90, ph: rnd() * 2200, sw: 10 + rnd() * 26, f: 0.6 + rnd() * 1.4 };
+      });
+      const clock = { t: 0 };
+      const draw = () => { const t = clock.t; for (const m of embers) { const y = 2050 - ((m.ph + t * m.sp) % 2200); gsap.set(m.e, { x: m.x + Math.sin(t * m.f + m.ph) * m.sw, y, opacity: 0.25 + 0.45 * (0.5 + 0.5 * Math.sin(t * 2.3 * m.f + m.ph)) }); } };
+      tl.fromTo(clock, { t: 0 }, { t: END, duration: END, ease: "none", onUpdate: draw }, 0);
+      draw();
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/manrope-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Cinzel"; font-weight: 700; src: url("assets/fonts/cinzel-latin-700-normal.woff2") format("woff2"); }
+      :root { --ground: #0a090d; --gold: #e8b64c; --ink: #f3efe6; --muted: #b9b2a3; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ground); font-family: "Manrope", sans-serif; color: var(--ink); }
+      #glow { position: absolute; inset: 0; background: radial-gradient(820px 720px at 50% 50%, rgba(232,182,76,.17), transparent 70%); }
+      #glow2 { position: absolute; inset: 0; opacity: 0; background: radial-gradient(700px 640px at 50% 34%, rgba(232,182,76,.34), transparent 72%); }
+      .ember { position: absolute; left: 0; top: 0; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(232,182,76,.55); }
+      #kicker { position: absolute; left: 0; right: 0; top: 236px; display: flex; align-items: center; justify-content: center; gap: 22px;
+        font-weight: 700; font-size: 30px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+      #kicker i { display: block; width: 56px; height: 2px; background: var(--gold); opacity: .7; }
+      .head { position: absolute; left: 60px; right: 60px; top: 300px; text-align: center; font-weight: 800; font-size: 100px; line-height: 1.04; letter-spacing: -0.025em; }
+      .head em { font-style: normal; color: var(--gold); }
+      .w { display: inline-block; }
+
+      /* pantalla de cocina: 1366×900 vista a 920×606 */
+      #device { position: absolute; left: 60px; top: 630px; width: 960px; height: 646px; }
+      .tab { position: absolute; inset: 0; border-radius: 46px; padding: 20px; background: linear-gradient(160deg, #23212a, #0f0e12 60%);
+        box-shadow: 0 70px 140px rgba(0,0,0,.65), inset 0 0 0 2px rgba(232,182,76,.26); }
+      .screen { position: relative; width: 920px; height: 606px; border-radius: 26px; overflow: hidden; background: #13191d; }
+      .cam { position: absolute; left: 0; top: 0; width: 920px; height: 606px; transform-origin: 0 0; }
+      /* el tablero mide lo mismo que la captura: todo lo de dentro va en píxeles de captura */
+      .board { position: absolute; left: 0; top: 0; width: 1366px; height: 900px; transform: scale(0.67350); transform-origin: 0 0; background: url("assets/img/cocina-base.png") 0 0 / 1366px 900px no-repeat; }
+      .count { position: absolute; top: 118px; width: 30px; text-align: right; font-weight: 800; font-size: 17px; line-height: 22px; color: #15130f; }
+      .empty { position: absolute; width: 114px; height: 28px; background: url("assets/img/sin-comandas.png") 0 0 / 114px 28px; }
+      #card { position: absolute; left: 12px; top: 144px; width: 216px; height: 180px; background: url("assets/img/comanda.png") 0 0 / 216px 180px; border-radius: 10px; }
+      #done { position: absolute; left: 64px; top: 136px; width: 138px; height: 31px; border-radius: 7px; background: #157a41; color: #fff; font-weight: 800; font-size: 15px;
+        display: flex; align-items: center; justify-content: center; gap: 6px; opacity: 0; }
+      #cardglow { position: absolute; inset: -6px; border: 3px solid var(--gold); border-radius: 14px; opacity: 0; box-shadow: 0 0 26px rgba(232,182,76,.7); }
+      .gloss { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(125deg, rgba(255,255,255,.07), transparent 38%); }
+      .finger { position: absolute; left: 0; top: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; opacity: 0;
+        background: radial-gradient(circle, rgba(255,255,255,.95) 0 30%, rgba(255,255,255,.32) 31% 60%, transparent 61%); filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)); }
+
+      #outro { position: absolute; inset: 0; }
+      .farol { position: absolute; left: 218px; top: 444px; width: 384px; height: 384px; background: url("assets/img/farol-tira.webp") 0 0 / 3072px 384px repeat-x; image-rendering: pixelated; }
+      .champi { position: absolute; left: 600px; top: 546px; width: 282px; height: 282px; background: url("assets/img/champi-saludo.webp") 0 0 / 2256px 282px repeat-x; image-rendering: pixelated; }
+      .slogan { position: absolute; left: 60px; right: 60px; top: 900px; text-align: center; font-family: "Cinzel", serif; font-weight: 700; font-size: 112px; line-height: 1.04; }
+      .slogan em { font-style: normal; color: var(--gold); }
+      .sign { position: absolute; left: 0; right: 0; top: 1180px; display: flex; justify-content: center; align-items: center; gap: 18px; font-weight: 700; font-size: 38px; color: var(--muted); }
+      .sign svg { width: 50px; height: 50px; color: #1d1a22; }
+      .sign b { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="14" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
+
+      <div id="kicker" class="clip" data-start="0" data-duration="11.1" data-track-index="1" style="z-index:3"><i></i><span>Pantalla de cocina · TPV</span><i></i></div>
+
+      <h1 id="h1" class="head clip" data-start="0" data-duration="2.4" data-track-index="2" style="z-index:4"><span class="w">¿Y</span> <span class="w">si</span> <span class="w">no</span> <span class="w">hubiera</span><br /><span class="w">papel</span> <span class="w">en</span> <span class="w"><em>cocina?</em></span></h1>
+      <h1 id="h2" class="head clip" data-start="2.4" data-duration="3.4" data-track-index="2" style="z-index:4"><span class="w">Cada</span> <span class="w">pedido</span> <span class="w">llega</span><br /><span class="w"><em>al</em></span> <span class="w"><em>instante</em></span></h1>
+      <h1 id="h3" class="head clip" data-start="5.8" data-duration="3.2" data-track-index="2" style="z-index:4"><span class="w">Listo</span> <span class="w">con</span><br /><span class="w">un</span> <span class="w"><em>toque</em></span></h1>
+      <h1 id="h4" class="head clip" data-start="9.0" data-duration="2.1" data-track-index="2" style="z-index:4"><span class="w">Sin</span> <span class="w">papel.</span><br /><span class="w"><em>Sin</em></span> <span class="w"><em>gritos.</em></span></h1>
+
+      <div id="device" class="clip" data-start="0" data-duration="11.6" data-track-index="3" style="z-index:2">
+        <div class="tab" id="tab">
+          <div class="screen">
+            <div class="cam" id="cam">
+              <div class="board">
+                <span class="count" id="n-prep" style="left:822px">0</span>
+                <span class="count" id="n-prep1" style="left:822px;opacity:0">1</span>
+                <span class="count" id="n-list" style="left:1318px">0</span>
+                <span class="count" id="n-list1" style="left:1318px;opacity:0">1</span>
+                <div class="empty" id="e-prep" style="left:30px;top:172px"></div>
+                <div class="empty" id="e-list" style="left:862px;top:172px"></div>
+                <div id="card"><div id="cardglow"></div><div id="done">✓ Listo</div></div>
+              </div>
+            </div>
+            <div class="finger" id="finger"></div>
+            <div class="gloss"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="outro" class="clip" data-start="11.3" data-duration="2.7" data-track-index="4" style="z-index:5">
+        <div class="farol" id="farol"></div>
+        <div class="champi" id="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· pruébalo en la web</span></p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const END = 14;
+      const W = 920, H = 606, k = W / 1366;
+      const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+      const cam = (s, px, py) => ({ scale: s, x: clamp(W / 2 - s * px * k, W - s * W, 0), y: clamp(H / 2 - s * py * k, H - s * H, 0) });
+      let C = cam(1.3, 525, 260);
+      gsap.set("#cam", C);
+      const camTo = (t, s, px, py, d) => { C = cam(s, px, py); tl.to("#cam", { ...C, duration: d, ease: "power2.inOut" }, t); };
+      const onScreen = (px, py) => ({ x: C.x + C.scale * px * k, y: C.y + C.scale * py * k });
+      gsap.set("#card", { opacity: 0 });
+
+      // 1 · cocina vacía; la cámara se acerca a «Preparando»
+      camTo(1.2, 1.75, 330, 250, 0.9);
+      // 2 · llega la comanda #A-118
+      tl.fromTo("#card", { opacity: 0, y: -70, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, 2.55);
+      tl.to("#e-prep", { opacity: 0, duration: 0.15 }, 2.55);
+      tl.set("#n-prep", { opacity: 0 }, 2.6).set("#n-prep1", { opacity: 1 }, 2.6);
+      tl.fromTo("#cardglow", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.7)
+        .to("#cardglow", { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 4.6);
+      // 3 · un toque en «Marcar listo» y pasa a la columna Listo
+      { const p = onScreen(144, 295);
+        tl.fromTo("#finger", { x: p.x + 170, y: p.y + 230, opacity: 0, scale: 1 }, { x: p.x, y: p.y, opacity: 1, duration: 0.55, ease: "power3.out" }, 5.85);
+        tl.to("#finger", { scale: 0.78, duration: 0.09, ease: "power2.in" }, 6.45).to("#finger", { scale: 1, duration: 0.22, ease: "power3.out" }, 6.54);
+        tl.to("#finger", { opacity: 0, duration: 0.18, ease: "power1.in" }, 6.8); }
+      tl.to("#done", { opacity: 1, duration: 0.2, ease: "power2.out" }, 6.55);
+      camTo(6.75, 1, 683, 300, 0.7);
+      tl.to("#card", { x: 850, duration: 0.75, ease: "power3.inOut" }, 6.95);
+      tl.fromTo("#card", { filter: "blur(0px)" }, { filter: "blur(3px)", duration: 0.37, ease: "power2.in", yoyo: true, repeat: 1 }, 6.95);
+      tl.to("#e-list", { opacity: 0, duration: 0.15 }, 7.3);
+      tl.to("#e-prep", { opacity: 1, duration: 0.25 }, 7.5);
+      tl.set("#n-prep1", { opacity: 0 }, 7.6).set("#n-prep", { opacity: 1 }, 7.6).set("#n-list", { opacity: 0 }, 7.6).set("#n-list1", { opacity: 1 }, 7.6);
+      camTo(7.9, 1.75, 1000, 250, 0.8);
+      // 4 · se aleja para ver la cocina entera
+      camTo(9.15, 1.3, 920, 280, 0.8);
+
+      // titulares
+      const wordsIn = (sel, t) => tl.fromTo(sel + " .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.075, ease: "power2.out" }, t);
+      const lineIn = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, t);
+      const wordsOut = (sel, t) => tl.to(sel + " .w", { opacity: 0, filter: "blur(8px)", duration: 0.16, stagger: 0.03, ease: "power1.in" }, t);
+      wordsOut("#h1", 2.2);
+      wordsIn("#h2", 2.45); wordsOut("#h2", 5.6);
+      lineIn("#h3", 5.85);  wordsOut("#h3", 8.8);
+      wordsIn("#h4", 9.05); wordsOut("#h4", 10.85);
+      tl.to("#kicker", { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power1.in" }, 10.85);
+
+      // cierre
+      tl.to("#tab", { scale: 0.86, opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, 11.0);
+      tl.to("#glow2", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 11.2);
+      tl.to("#glow", { opacity: 0.4, duration: 0.5, ease: "power2.inOut" }, 11.2);
+      tl.fromTo("#farol", { opacity: 0, scale: 0.82, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, 11.35);
+      tl.fromTo("#farol", { backgroundPosition: "0px 0px" }, { backgroundPosition: "-3072px 0px", duration: 0.9, ease: "steps(8)", repeat: 2 }, 11.3);
+      tl.fromTo("#champi", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 11.55);
+      tl.fromTo("#champi", { backgroundPosition: "0px 0px" }, { backgroundPosition: "-2256px 0px", duration: 0.8, ease: "steps(8)", repeat: 3 }, 11.3);
+      wordsIn("#slogan", 11.55);
+      tl.fromTo("#sign", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, 11.85);
+
+      // brasas
+      let seed = 11;
+      const rnd = () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      const box = document.getElementById("embers");
+      const embers = Array.from({ length: 18 }, () => {
+        const e = document.createElement("i"); e.className = "ember";
+        const s = 4 + rnd() * 6; e.style.width = e.style.height = s + "px"; box.appendChild(e);
+        return { e, x: 40 + rnd() * 1000, sp: 70 + rnd() * 90, ph: rnd() * 2200, sw: 10 + rnd() * 26, f: 0.6 + rnd() * 1.4 };
+      });
+      const clock = { t: 0 };
+      const draw = () => { const t = clock.t; for (const m of embers) { const y = 2050 - ((m.ph + t * m.sp) % 2200); gsap.set(m.e, { x: m.x + Math.sin(t * m.f + m.ph) * m.sw, y, opacity: 0.25 + 0.45 * (0.5 + 0.5 * Math.sin(t * 2.3 * m.f + m.ph)) }); } };
+      tl.fromTo(clock, { t: 0 }, { t: END, duration: END, ease: "none", onUpdate: draw }, 0);
+      draw();
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

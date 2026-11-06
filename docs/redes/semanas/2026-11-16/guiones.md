@@ -2,6 +2,8 @@
 
 ## s2-kebab · Video 18 s (grabación de la demo del TPV)
 
+**Producido** con HyperFrames (19 s): `video/s2-kebab/`. En pantalla dice «Lo envías en un toque» en vez de «Pagas y listo», porque el kiosco manda el pedido a cocina y el pago se hace en caja.
+
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
 | 0–2 s | Kiosco de la demo, pantalla de inicio | Pide un kebab desde nuestra web | toque |
@@ -17,6 +19,8 @@
 
 ## s2-cocina · Video 12 s
 
+**Producido** con HyperFrames (14 s): `video/s2-cocina/`. Cierra con «Sin papel. Sin gritos.» en vez de «Y la caja cuadra sola», porque no tenemos captura de la caja.
+
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
 | 0–2 s | Pantalla de cocina vacía | ¿Y si no hubiera papel en cocina? | — |
@@ -29,6 +33,8 @@
 #LumenStudio #TPV #Restaurantes #Cocina
 
 ## s2-champi-kiosco · Video 14 s
+
+**Producido** con HyperFrames (14,6 s): `video/s2-champi-kiosco/`. Las pantallas del celular son capturas reales de `demos/tpv/` a 390 px.
 
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
@@ -54,6 +60,7 @@
 **Descripción:** Si tienes un restaurante en España, tu TPV tiene que cumplir Verifactu. El nuestro ya lo hace, y lo puedes probar en la web.
 #LumenStudio #Verifactu #TPV #Restaurantes
 Revisar con la persona antes de publicar: es un tema legal; no añadir fechas de obligatoriedad.
+**Sin producir**: «Nuestro TPV ya lo cumple» no se puede afirmar todavía (falta la declaración responsable emitida y un envío aceptado por la AEAT). Rehacer el guion sin esa frase o esperar.
 
 ## s2-california · Carrusel 6 láminas
 

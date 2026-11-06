@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/manrope-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/manrope-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Cinzel"; font-weight: 700; src: url("assets/fonts/cinzel-latin-700-normal.woff2") format("woff2"); }
+      :root { --ground: #0a090d; --gold: #e8b64c; --ink: #f3efe6; --muted: #b9b2a3; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ground); font-family: "Manrope", sans-serif; color: var(--ink); }
+      #glow { position: absolute; inset: 0; background: radial-gradient(820px 720px at 50% 50%, rgba(232,182,76,.17), transparent 70%); }
+      #glow2 { position: absolute; inset: 0; opacity: 0; background: radial-gradient(700px 640px at 50% 34%, rgba(232,182,76,.34), transparent 72%); }
+      .ember { position: absolute; left: 0; top: 0; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 14px 4px rgba(232,182,76,.55); }
+      #kicker { position: absolute; left: 0; right: 0; top: 236px; display: flex; align-items: center; justify-content: center; gap: 22px;
+        font-weight: 700; font-size: 30px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+      #kicker i { display: block; width: 56px; height: 2px; background: var(--gold); opacity: .7; }
+      .head { position: absolute; left: 60px; right: 60px; top: 300px; text-align: center; font-weight: 800; font-size: 100px; line-height: 1.04; letter-spacing: -0.025em; }
+      .head em { font-style: normal; color: var(--gold); }
+      .w { display: inline-block; }
+
+      /* el suelo y el kiosco de pie */
+      #floor { position: absolute; left: 0; right: 0; top: 1298px; height: 2px; background: linear-gradient(90deg, transparent, rgba(232,182,76,.35), transparent); }
+      #kiosk { position: absolute; left: 0; top: 0; width: 1080px; height: 1320px; }
+      .k-screen { position: absolute; left: 162px; top: 562px; width: 756px; height: 576px; border-radius: 30px; padding: 18px; background: linear-gradient(160deg, #23212a, #0f0e12 60%);
+        box-shadow: 0 60px 120px rgba(0,0,0,.6), inset 0 0 0 2px rgba(232,182,76,.26); }
+      .k-screen > div { width: 720px; height: 540px; border-radius: 16px; background: #14151a url("assets/img/tpv-inicio.webp") 0 0 / 720px 540px no-repeat; }
+      .k-pole { position: absolute; left: 470px; top: 1138px; width: 140px; height: 150px; background: linear-gradient(90deg, #121116, #24222b 50%, #121116); }
+      .k-base { position: absolute; left: 330px; top: 1282px; width: 420px; height: 22px; border-radius: 50%; background: #1d1b22; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+
+      /* Champi: sprites de 94 px a escala 2,2 */
+      #ch { position: absolute; left: 0; top: 0; width: 207px; height: 207px; }
+      .spr { position: absolute; inset: 0; background-repeat: repeat-x; image-rendering: pixelated; opacity: 0; }
+      #ch-walk { background-image: url("assets/img/walk.webp"); background-size: 1242px 207px; }
+      #ch-idle { background-image: url("assets/img/idle.webp"); background-size: 1656px 207px; }
+      #ch-wave { background-image: url("assets/img/champi-saludo.webp"); background-size: 1656px 207px; }
+      #shadow { position: absolute; left: 0; top: 0; width: 150px; height: 18px; margin-left: -75px; border-radius: 50%; background: rgba(0,0,0,.55); filter: blur(2px); }
+      #bubble { position: absolute; left: 0; top: 0; padding: 18px 28px; border-radius: 30px; background: var(--ink); color: #0a090d; font-weight: 800; font-size: 44px; white-space: nowrap; opacity: 0; }
+      #bubble::after { content: ""; position: absolute; left: 46px; bottom: -20px; border: 14px solid transparent; border-top: 20px solid var(--ink); border-bottom: 0; }
+
+      /* el celular */
+      #phone { position: absolute; left: 370px; top: 590px; width: 340px; height: 703px; border-radius: 52px; padding: 14px; background: linear-gradient(160deg, #2a2731, #111014 60%);
+        box-shadow: 0 60px 120px rgba(0,0,0,.7), inset 0 0 0 2px rgba(232,182,76,.32); }
+      .p-screen { position: relative; width: 312px; height: 675px; border-radius: 40px; overflow: hidden; background: #111; }
+      .p-sc { position: absolute; inset: 0; opacity: 0; background-repeat: no-repeat; background-size: 312px auto; background-position: 0 0; }
+      .notch { position: absolute; left: 50%; top: 10px; width: 92px; height: 24px; margin-left: -46px; border-radius: 14px; background: #050507; }
+      .finger { position: absolute; left: 0; top: 0; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; opacity: 0;
+        background: radial-gradient(circle, rgba(255,255,255,.95) 0 30%, rgba(255,255,255,.32) 31% 60%, transparent 61%); filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)); }
+
+      #outro { position: absolute; inset: 0; }
+      .farol { position: absolute; left: 218px; top: 444px; width: 384px; height: 384px; background: url("assets/img/farol-tira.webp") 0 0 / 3072px 384px repeat-x; image-rendering: pixelated; }
+      .champi { position: absolute; left: 600px; top: 546px; width: 282px; height: 282px; background: url("assets/img/champi-saludo.webp") 0 0 / 2256px 282px repeat-x; image-rendering: pixelated; }
+      .slogan { position: absolute; left: 60px; right: 60px; top: 900px; text-align: center; font-family: "Cinzel", serif; font-weight: 700; font-size: 112px; line-height: 1.04; }
+      .slogan em { font-style: normal; color: var(--gold); }
+      .sign { position: absolute; left: 0; right: 0; top: 1180px; display: flex; justify-content: center; align-items: center; gap: 18px; font-weight: 700; font-size: 38px; color: var(--muted); }
+      .sign svg { width: 50px; height: 50px; color: #1d1a22; }
+      .sign b { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14.6" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="14.6" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
+
+      <div id="kicker" class="clip" data-start="0" data-duration="11.6" data-track-index="1" style="z-index:3"><i></i><span>Champi vs. el kiosco</span><i></i></div>
+
+      <h1 id="h1" class="head clip" data-start="0" data-duration="2.4" data-track-index="2" style="z-index:4"><span class="w">Champi</span> <span class="w">quiere</span><br /><span class="w">un</span> <span class="w"><em>kebab</em></span></h1>
+      <h1 id="h2" class="head clip" data-start="2.4" data-duration="3.9" data-track-index="2" style="z-index:4"><span class="w">Es</span> <span class="w">un</span> <span class="w">poco</span><br /><span class="w"><em>pequeño…</em></span></h1>
+      <h1 id="h3" class="head clip" data-start="6.3" data-duration="3.0" data-track-index="2" style="z-index:4"><span class="w">Mejor</span> <span class="w">desde</span><br /><span class="w">el</span> <span class="w"><em>celular</em></span></h1>
+      <h1 id="h4" class="head clip" data-start="9.3" data-duration="2.3" data-track-index="2" style="z-index:4"><span class="w">Pedido</span> <span class="w">hecho,</span><br /><span class="w"><em>sin</em></span> <span class="w"><em>saltar</em></span></h1>
+
+      <div id="stage" class="clip" data-start="0" data-duration="11.9" data-track-index="3" data-layout-allow-overlap style="z-index:2">
+        <div id="floor"></div>
+        <div id="kiosk"><div class="k-screen"><div></div></div><div class="k-pole"></div><div class="k-base"></div></div>
+        <div id="shadow"></div>
+        <div id="phone">
+          <div class="p-screen">
+            <div class="p-sc" id="p-inicio" style="background-image:url(assets/img/movil-inicio.webp)"></div>
+            <div class="p-sc" id="p-cat" style="background-image:url(assets/img/movil-categorias.webp)"></div>
+            <div class="p-sc" id="p-carta" style="background-image:url(assets/img/movil-carta.webp)"></div>
+            <div class="p-sc" id="p-env" style="background-image:url(assets/img/movil-enviada.webp);background-color:#f3f4f6"></div>
+            <div class="notch"></div>
+            <div class="finger" id="finger"></div>
+          </div>
+        </div>
+        <div id="ch"><div class="spr" id="ch-walk"></div><div class="spr" id="ch-idle"></div><div class="spr" id="ch-wave"></div></div>
+        <div id="bubble">Uff…</div>
+      </div>
+
+      <div id="outro" class="clip" data-start="11.6" data-duration="3.0" data-track-index="4" style="z-index:5">
+        <div class="farol" id="farol"></div>
+        <div class="champi" id="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· pruébalo en la web</span></p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const END = 14.6;
+      const FLOOR = 1300, CH = 207;
+
+      // ---------- Champi: cambia de sprite y de postura ----------
+      const pose = (t, name) => { for (const n of ["walk", "idle", "wave"]) tl.set("#ch-" + n, { opacity: n === name ? 1 : 0 }, t); };
+      const cycle = (sel, frames, w, t0, t1, fps) => { // ciclo de sprite, siempre como función del tiempo
+        const d = frames / fps, reps = Math.max(0, Math.ceil((t1 - t0) / d) - 1);
+        tl.fromTo(sel, { backgroundPosition: "0px 0px" }, { backgroundPosition: -frames * w + "px 0px", duration: d, ease: "steps(" + frames + ")", repeat: reps }, t0);
+      };
+      const chAt = (x) => ({ x: x - CH / 2, y: FLOOR - CH });
+      gsap.set("#ch", { ...chAt(250), transformOrigin: "50% 100%" });
+      gsap.set("#shadow", { x: 250, y: FLOOR - 9 });
+      pose(0, "walk");
+      cycle("#ch-walk", 6, CH, 0, 1.4, 10);
+      cycle("#ch-idle", 8, CH, 1.4, 6.5, 8);
+      // camina hasta el kiosco y mira hacia arriba
+      tl.to("#ch", { x: chAt(410).x, duration: 1.3, ease: "power1.inOut" }, 0.05);
+      tl.to("#shadow", { x: 410, duration: 1.3, ease: "power1.inOut" }, 0.05);
+      pose(1.4, "idle");
+
+      // tres saltos que no llegan a la pantalla (anticipación, estirón, caída y aplastamiento)
+      const jump = (t, h) => {
+        tl.to("#ch", { scaleY: 0.82, scaleX: 1.12, duration: 0.12, ease: "power2.in" }, t)
+          .to("#ch", { y: FLOOR - CH - h, scaleY: 1.1, scaleX: 0.92, duration: 0.3, ease: "power2.out" }, t + 0.12)
+          .to("#ch", { scaleY: 1, scaleX: 1, duration: 0.12, ease: "power1.out" }, t + 0.32)
+          .to("#ch", { y: FLOOR - CH, duration: 0.27, ease: "power2.in" }, t + 0.42)
+          .to("#ch", { scaleY: 0.84, scaleX: 1.1, duration: 0.08, ease: "power2.out" }, t + 0.69)
+          .to("#ch", { scaleY: 1, scaleX: 1, duration: 0.22, ease: "back.out(2)" }, t + 0.77);
+        tl.to("#shadow", { scale: 0.55, opacity: 0.45, duration: 0.3, ease: "power2.out" }, t + 0.12)
+          .to("#shadow", { scale: 1, opacity: 1, duration: 0.27, ease: "power2.in" }, t + 0.42);
+      };
+      jump(2.6, 90); jump(3.55, 110); jump(4.5, 125);
+      tl.fromTo("#bubble", { x: 300, y: 1000, opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 5.45)
+        .to("#bubble", { opacity: 0, duration: 0.18, ease: "power1.in" }, 6.25);
+
+      // el kiosco se va al fondo y sube el celular
+      tl.to("#kiosk", { opacity: 0.22, filter: "blur(10px)", scale: 0.96, duration: 0.5, ease: "power2.inOut" }, 6.3);
+      tl.fromTo("#phone", { y: 1400, rotation: 6, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, 6.35);
+      tl.to("#ch", { x: chAt(215).x, duration: 0.6, ease: "power2.inOut" }, 6.4);
+      tl.to("#shadow", { x: 215, duration: 0.6, ease: "power2.inOut" }, 6.4);
+
+      // en el celular: comer aquí → kebab → un plato → comanda enviada
+      const K = 312 / 780; // capturas de 780 px de ancho
+      let cur = null;
+      const show = (t, id) => { if (cur) tl.set("#p-" + cur, { opacity: 0 }, t); tl.set("#p-" + id, { opacity: 1 }, t); tl.fromTo("#p-" + id, { scale: 1.04 }, { scale: 1, duration: 0.4, ease: "expo.out" }, t); cur = id; };
+      const tap = (t, px, py, first) => {
+        const x = px * K, y = py * K;
+        if (first) tl.fromTo("#finger", { x: x + 110, y: y + 160, opacity: 0 }, { x, y, opacity: 1, duration: 0.45, ease: "power3.out" }, t - 0.5);
+        else tl.to("#finger", { x, y, opacity: 1, duration: 0.4, ease: "power2.inOut" }, t - 0.45);
+        tl.to("#finger", { scale: 0.78, duration: 0.09, ease: "power2.in" }, t).to("#finger", { scale: 1, duration: 0.22, ease: "power3.out" }, t + 0.09);
+      };
+      show(6.35, "inicio");
+      tap(7.15, 390, 880, true); show(7.4, "cat");
+      tap(8.0, 222, 670);        show(8.25, "carta");
+      tap(8.85, 222, 626);       show(9.3, "env");
+      tl.to("#finger", { opacity: 0, duration: 0.18, ease: "power1.in" }, 9.25);
+      // Champi celebra
+      pose(9.45, "wave");
+      cycle("#ch-wave", 8, CH, 9.45, 11.9, 10);
+      tl.to("#ch", { y: FLOOR - CH - 40, duration: 0.18, ease: "power2.out" }, 9.45).to("#ch", { y: FLOOR - CH, duration: 0.2, ease: "power2.in" }, 9.63);
+
+      // titulares
+      const wordsIn = (sel, t) => tl.fromTo(sel + " .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.075, ease: "power2.out" }, t);
+      const lineIn = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, t);
+      const wordsOut = (sel, t) => tl.to(sel + " .w", { opacity: 0, filter: "blur(8px)", duration: 0.16, stagger: 0.03, ease: "power1.in" }, t);
+      wordsOut("#h1", 2.2);
+      wordsIn("#h2", 2.45); wordsOut("#h2", 6.1);
+      lineIn("#h3", 6.35);  wordsOut("#h3", 9.1);
+      wordsIn("#h4", 9.35); wordsOut("#h4", 11.35);
+      tl.to("#kicker", { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power1.in" }, 11.35);
+
+      // cierre
+      tl.to("#stage", { opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, 11.45);
+      tl.to("#glow2", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 11.6);
+      tl.to("#glow", { opacity: 0.4, duration: 0.5, ease: "power2.inOut" }, 11.6);
+      tl.fromTo("#farol", { opacity: 0, scale: 0.82, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, 11.75);
+      cycle("#farol", 8, 384, 11.6, END, 8.9);
+      tl.fromTo("#champi", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 11.95);
+      cycle("#champi", 8, 282, 11.6, END, 10);
+      wordsIn("#slogan", 12.0);
+      tl.fromTo("#sign", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power2.out" }, 12.3);
+
+      // brasas
+      let seed = 23;
+      const rnd = () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      const box = document.getElementById("embers");
+      const embers = Array.from({ length: 18 }, () => {
+        const e = document.createElement("i"); e.className = "ember";
+        const s = 4 + rnd() * 6; e.style.width = e.style.height = s + "px"; box.appendChild(e);
+        return { e, x: 40 + rnd() * 1000, sp: 70 + rnd() * 90, ph: rnd() * 2200, sw: 10 + rnd() * 26, f: 0.6 + rnd() * 1.4 };
+      });
+      const clock = { t: 0 };
+      const draw = () => { const t = clock.t; for (const m of embers) { const y = 2050 - ((m.ph + t * m.sp) % 2200); gsap.set(m.e, { x: m.x + Math.sin(t * m.f + m.ph) * m.sw, y, opacity: 0.25 + 0.45 * (0.5 + 0.5 * Math.sin(t * 2.3 * m.f + m.ph)) }); } };
+      tl.fromTo(clock, { t: 0 }, { t: END, duration: END, ease: "none", onUpdate: draw }, 0);
+      draw();
+
+      gsap.set("#phone", { y: 1400, opacity: 0 });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
