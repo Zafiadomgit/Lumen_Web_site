@@ -8,7 +8,7 @@ Cada carrusel es una lista de láminas en HTML; las clases están en carrusel.cs
 import pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 A = '../../../../../../assets/img/'  # desde docs/redes/semanas/<lunes>/carrusel/<id>/
-IG = '@lumen_studio_tech'
+IG = '@lumenstudiobog'
 
 def foot(n, total):
     return f'<div class="foot"><span><b>Lumen Studio</b> · {IG}</span><span>{n}/{total}</span></div>'

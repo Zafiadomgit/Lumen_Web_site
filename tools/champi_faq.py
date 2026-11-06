@@ -86,7 +86,7 @@ a('mantenimiento',['mantenimiento','soporte','despues de publicar','actualizacio
 a('hosting',['hosting','alojamiento','dominio','servidor','donde se aloja','domain','server','host'],
   'Nosotros publicamos la web en tu dominio. Para los costes de dominio y alojamiento en tu caso, pregúntale al equipo por WhatsApp.','We publish the site on your domain. For domain and hosting costs in your case, ask the team on WhatsApp.')
 a('redes_lumen',['redes','redes sociales','instagram','tiktok','insta','tienen redes','seguirlos','los sigo','social media','follow you','your instagram','your tiktok'],
-  'Síguenos en Instagram como @lumen_studio_tech y en TikTok como @lumenestudiotech. Ahí sale Champi casi siempre.','Follow us on Instagram at @lumen_studio_tech and on TikTok at @lumenestudiotech. Champi shows up there almost every time.')
+  'Síguenos en Instagram como @lumenstudiobog y en TikTok como @lumenestudiotech. Ahí sale Champi casi siempre.','Follow us on Instagram at @lumenstudiobog and on TikTok at @lumenestudiotech. Champi shows up there almost every time.')
 a('redes',['marketing','publicidad','anuncios','community manager','manejo de redes','manejan redes','manejar mis redes','manage my social media','ads','advertising'],
   'Nos centramos en webs, apps y TPV. Para marketing o redes sociales, cuéntale al equipo qué necesitas por WhatsApp.','We focus on websites, apps and POS systems. For marketing or social media, tell the team what you need on WhatsApp.')
 a('juegos',['videojuego','videojuegos','juego para mi','hacer un juego','video game','make a game','game development'],

@@ -67,7 +67,7 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 3. **Apps para Android e iPhone.** De negocio o de entretenimiento, como Fendaria.
 4. **Un TPV que ya vende.** Kiosco, cocina y caja en los dos locales de California.
 5. **Desde Bogotá, para cualquier país.** En español y en inglés.
-6. **¿Qué quieres construir?** Calcula tu proyecto en la web · @lumen_studio_tech
+6. **¿Qué quieres construir?** Calcula tu proyecto en la web · @lumenstudiobog
 
 **Descripción:** Somos Lumen Studio: diseñamos y programamos webs, apps y TPV para restaurantes. Desliza 👉
 #LumenStudio #EncendemosTusIdeas #DiseñoWeb #Bogotá
@@ -79,7 +79,7 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 3. **Web corporativa.** Entre US$ 1.500 y 3.000 · unas 4 semanas.
 4. **Tienda online.** Entre US$ 3.000 y 6.000 · unas 6 semanas.
 5. **Lo exacto, en 1 minuto.** Elige tipo y extras en nuestra calculadora.
-6. **Precios orientativos, sin impuestos.** El precio final te lo damos por escrito · @lumen_studio_tech
+6. **Precios orientativos, sin impuestos.** El precio final te lo damos por escrito · @lumenstudiobog
 
 **Descripción:** ¿Cuánto cuesta una web de verdad? Estos son nuestros rangos. Calcula la tuya en la web (link en la bio).
 #LumenStudio #DiseñoWeb #Emprendedores #Colombia

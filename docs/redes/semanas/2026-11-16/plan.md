@@ -19,7 +19,7 @@ Enlaces UTM, uno por pieza, por ejemplo: https://lumen-ruddy-beta.vercel.app/?ut
 Lo decide el informe del viernes 13.
 
 ## Lo que necesito de ti
-- Pedirle a Hassam que comparta el carrusel de California y etiquete a @lumen_studio_tech.
+- Pedirle a Hassam que comparta el carrusel de California y etiquete a @lumenstudiobog.
 - Confirmar que podemos mostrar el logo de California (ya está en la web).
 
 **Resumen para WhatsApp:** Semana 2, el TPV de California: 4 videos, 2 carruseles y Google. Pídele a Hassam que comparta su caso cuando salga.

@@ -9,9 +9,9 @@ Lumen Studio diseña y programa webs, apps y TPV para restaurantes, desde Bogot�
 ## Cuentas y enlaces
 
 - Web: https://lumen-ruddy-beta.vercel.app (pasará a lumenestudio.tech cuando se compre el dominio)
-- Instagram: @lumen_studio_tech
+- Instagram: @lumenstudiobog
 - TikTok: @lumenestudiotech
-- Perfil de Empresa de Google: Lumen Studio (en verificación)
+- Perfil de Empresa de Google: Lumen Studio (activo)
 - WhatsApp: +57 311 873 9670 · email: pietersd05@gmail.com
 
 Cada enlace que salga en redes lleva etiqueta UTM para saber qué pieza trajo la visita:

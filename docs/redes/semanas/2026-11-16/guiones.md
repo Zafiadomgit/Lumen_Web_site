@@ -62,7 +62,7 @@ Revisar con la persona antes de publicar: es un tema legal; no añadir fechas de
 3. **El kiosco.** Fotos de cada plato, en español e inglés.
 4. **A su gusto.** Quitar ingredientes y añadir extras; el precio se recalcula.
 5. **Cocina y caja.** La comanda llega al instante; turnos y tickets en caja.
-6. **Hoy funciona en Medina de Pomar y Villarcayo.** Pruébalo en nuestra web · @lumen_studio_tech
+6. **Hoy funciona en Medina de Pomar y Villarcayo.** Pruébalo en nuestra web · @lumenstudiobog
 
 **Descripción:** Así funciona el TPV de California, en sus dos locales. Desliza y pruébalo en nuestra web.
 #LumenStudio #TPV #Restaurantes #CasoDeÉxito
@@ -71,7 +71,7 @@ Revisar con la persona antes de publicar: es un tema legal; no añadir fechas de
 
 1. Cita: «Desde que tenemos el kiosco, los clientes piden solos y la comanda sale directa en cocina.»
 2. Cita: «En los dos locales usamos el mismo sistema y la caja cuadra sin líos.» — Hassam KB, dueño de California
-3. **¿Quieres lo mismo en tu restaurante?** Prueba el TPV en nuestra web · @lumen_studio_tech
+3. **¿Quieres lo mismo en tu restaurante?** Prueba el TPV en nuestra web · @lumenstudiobog
 
 ## s2-google · Perfil de Google
 

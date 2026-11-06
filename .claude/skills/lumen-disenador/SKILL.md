@@ -18,5 +18,5 @@ Lee `docs/redes/guia-de-marca.md` (colores, letras y lo que nunca se hace) y la 
 
 ## Reglas
 - Una idea por lámina, con título de 3 a 7 palabras y una línea de apoyo como mucho.
-- Última lámina: llamada a la acción y @lumen_studio_tech.
+- Última lámina: llamada a la acción y @lumenstudiobog.
 - El dorado `#e8b64c` es el acento, no el fondo.
