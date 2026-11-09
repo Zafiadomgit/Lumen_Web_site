@@ -48,10 +48,11 @@ PAIRS = [
     ('<a href="#servicios">Servicios</a>', '<a href="#servicios">Services</a>'),
     ('<a href="#proceso">Proceso</a>', '<a href="#proceso">Process</a>'),
     ('<a href="#presupuesto">Presupuesto</a>', '<a href="#presupuesto">Pricing</a>'),
-    ('<a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>',
-     '<a class="lang" href="../" hreflang="es" lang="es" aria-label="Versión en español">ES</a>'),
+    ('<a class="lang" href="en/" hreflang="en" lang="en" aria-label="EN, English version">EN</a>',
+     '<a class="lang" href="../" hreflang="es" lang="es" aria-label="ES, versión en español">ES</a>'),
     ('<a class="btn btn--s" href="#contacto">Hablemos</a>', '<a class="btn btn--s" href="#contacto">Let’s talk</a>'),
 
+    ('aria-label="Menú"', 'aria-label="Menu"'),
     ('aria-label="Cambiar a modo claro"', 'aria-label="Switch to light mode"'),
 
     # ---------- hero ----------
