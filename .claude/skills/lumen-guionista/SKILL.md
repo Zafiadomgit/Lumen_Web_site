@@ -16,7 +16,8 @@ description: Escribe los guiones de video, los textos de carrusel y las descripc
 - duración total;
 - tabla de tomas, con tiempo, qué se ve, texto en pantalla y voz o sonido;
 - gancho en los 2 primeros segundos;
-- final con «Encendemos tus ideas.» y el farol.
+- final con «Encendemos tus ideas.» y el farol;
+- **música**: el tono que pide la pieza (por ejemplo «alegre, ritmo marcado, 110–125 BPM») y en qué toma conviene que entre el golpe o el *drop*. La canción concreta la elige el estratega para Metricool; el video no lleva música dentro.
 
 **Carrusel**: lámina por lámina, con un título de 3 a 7 palabras y una línea de apoyo. La primera lámina es el gancho y la última lleva la llamada a la acción.
 
