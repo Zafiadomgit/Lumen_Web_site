@@ -27,3 +27,25 @@ Primera semana: aún no hay datos. El viernes 13 el analista mide la base.
 - Todo va con Champi y pantallas, sin voz ni cara.
 
 **Resumen para WhatsApp:** Semana 1, presentamos a Champi: 4 videos, 2 carruseles, el lanzamiento en LinkedIn y la primera publicación de Google. Todo lleva a la web con su enlace medido. Solo falta tu visto bueno y poner la web en la bio.
+
+## Ajustes propuestos
+Revisión del lunes 9: aún no hay informe del analista (es la primera semana; mide la base el viernes 13), así que el plan sigue encajando y no cambio piezas ni mezcla. Solo propongo esto:
+
+1. **Tabla «Para Metricool».** Faltaba. Las horas son sugeridas (hora de Bogotá); la persona del equipo las puede cambiar. Las descripciones completas están en `guiones.md`. Los archivos van en `docs/redes/semanas/2026-11-09/`.
+
+| id | Red | Día | Hora sugerida | Archivo | Descripción y enlace |
+| --- | --- | --- | --- | --- | --- |
+| s1-hola | TikTok | lun 9 | 12:00 | `video/s1-hola/s1-hola.mp4` | Texto en `guiones.md` (sección s1-hola) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-hola |
+| s1-hola | Instagram (Reel) | lun 9 | 12:00 | `video/s1-hola/s1-hola.mp4` | Texto en `guiones.md` (sección s1-hola) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-hola |
+| s1-farol | TikTok | mié 11 | 12:00 | `video/s1-farol/s1-farol.mp4` | Texto en `guiones.md` (sección s1-farol) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-farol |
+| s1-farol | Instagram (Reel) | mié 11 | 12:00 | `video/s1-farol/s1-farol.mp4` | Texto en `guiones.md` (sección s1-farol) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-farol |
+| s1-quienes | Instagram | mié 11 | 18:00 | `carrusel/s1-quienes/01.png–06.png` | Texto en `guiones.md` (sección s1-quienes) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-quienes#proyectos |
+| s1-precios | Instagram | jue 12 | 18:00 | `carrusel/s1-precios/01.png–06.png` | Texto en `guiones.md` (sección s1-precios) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-precios#presupuesto |
+| s1-momento | TikTok | vie 13 | 12:00 | `video/s1-momento/s1-momento.mp4` | Texto en `guiones.md` (sección s1-momento) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-momento#contacto |
+| s1-momento | Instagram (Reel) | vie 13 | 12:00 | `video/s1-momento/s1-momento.mp4` | Texto en `guiones.md` (sección s1-momento) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-momento#contacto |
+| s1-proyectos | TikTok | sáb 14 | 11:00 | `video/s1-proyectos/s1-proyectos.mp4` | Texto en `guiones.md` (sección s1-proyectos) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-proyectos#proyectos |
+| s1-proyectos | Instagram (Reel) | sáb 14 | 11:00 | `video/s1-proyectos/s1-proyectos.mp4` | Texto en `guiones.md` (sección s1-proyectos) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-proyectos#proyectos |
+
+2. **Orden de los días.** `s1-precios` (jue 12) va antes que `s1-momento` (vie 13); es solo el orden de la tabla, las fechas no cambian.
+3. **Promoción.** Sin informe no hay piezas para promocionar esta semana (presupuesto 0 USD). Se decide con el informe del viernes 13.
+4. **`s1-google`** sigue sin fecha: depende de que el Perfil de Google esté verificado.
