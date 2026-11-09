@@ -27,7 +27,7 @@ description: Produce los videos verticales de redes de Lumen Studio (Champi, dem
 6. Render: `npx hyperframes@0.9.19 render --quality delivery -o <id>.mp4`. Saca la portada con ffmpeg (`<id>-portada.png`) y revisa una tira de cuadros del MP4 final.
 
 ## Reglas
-- Sin música dentro del archivo: el sonido se elige en cada red, de su biblioteca.
+- Sin música dentro del archivo: la música se pone al programar en Metricool (canción del catálogo de Instagram en los Reels y «Añadir música automáticamente» en TikTok; ver «Música» en la guía de marca). Los efectos de sonido propios (chispas, clics) sí pueden ir en el archivo, bajos, para que no choquen con la canción.
 - Cierre con el farol encendido, Champi saludando y «Encendemos tus ideas.» (al menos 2 s en pantalla).
 - Nada que no sea cierto: ni frases del guion que la pantalla no muestre, ni «cumple Verifactu» hasta que se pueda afirmar.
 - Entrega el MP4 y la portada junto al `index.html`. Para Metricool, el video tiene que estar en `main` (se sirve desde raw.githubusercontent.com).

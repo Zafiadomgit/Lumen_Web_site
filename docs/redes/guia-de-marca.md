@@ -16,6 +16,11 @@ Lumen Studio diseña y programa webs, apps y TPV para restaurantes, desde Bogot�
 
 **Publicación**: Instagram y TikTok están conectados a **Metricool**, donde la persona del equipo programa las piezas aprobadas. Los agentes no publican: dejan cada pieza lista (archivo, descripción, hashtags y enlace UTM) para subirla a Metricool.
 
+**Música**: los videos se exportan sin música y el sonido se pone al programar en Metricool, con música con licencia de cada red:
+- **Instagram (Reels)**: en Metricool, en las opciones de Instagram, se elige una canción del catálogo de Instagram (campo de audio). El plan sugiere 2 canciones por Reel: una principal y una de reserva. Tienen que ser pegajosas, populares en Latinoamérica en ese momento y acordes al tono de la pieza. Si Metricool no la encuentra, o la canción no está disponible para cuentas de empresa, se usa la de reserva. Volumen sugerido: música 30–40 y video 100 si el video tiene efectos de sonido; si no, música 100.
+- **TikTok**: en Metricool se activa **«Añadir música automáticamente»** (auto add music) y TikTok escoge una canción comercial con licencia acorde al video. No hace falta elegirla a mano.
+- Las cuentas de empresa solo pueden usar música comercial con licencia de cada red; nunca se sube una canción propia dentro del archivo.
+
 Cada enlace que salga en redes lleva etiqueta UTM para saber qué pieza trajo la visita:
 `https://lumen-ruddy-beta.vercel.app/?utm_source=<red>&utm_medium=social&utm_campaign=<pieza>`
 - `<red>`: `tiktok`, `instagram`, `linkedin`, `google`

@@ -25,7 +25,7 @@ Crea `docs/redes/semanas/<AAAA-MM-DD del lunes>/plan.md` con:
    - **llamada a la acción:** a qué parte de la web lleva, con su enlace UTM.
 3. **Qué repetimos y qué cambiamos**, según el informe del analista (máximo 3 puntos).
 4. **Lo que necesito de ti**: permisos de clientes y datos que falten. Nada de grabaciones de voz o cara: todo es con Champi y pantallas.
-5. **Programación**: añade al final una tabla «Para Metricool» con, por cada pieza, red, día y hora sugerida, archivo y descripción lista para pegar.
+5. **Programación**: añade al final una tabla «Para Metricool» con, por cada pieza, red, día y hora sugerida, archivo, descripción lista para pegar y **música**: en los Reels, una canción principal y una de reserva («Título – Artista») para el campo de audio de Instagram en Metricool, pegajosas, populares en Latinoamérica y acordes al tono de la pieza (alegre y con ritmo en Champi y demos, más tranquila en casos y detrás de cámaras); en TikTok, «Música automática: sí». Las canciones son sugerencias: la persona confirma en el buscador de audio de Metricool que existan y estén disponibles para cuentas de empresa (ver «Música» en la guía de marca).
 6. **Promoción**: si el informe marca piezas para promocionar, ponlas aquí con su presupuesto (10–20 USD cada una, máximo 3 al mes).
 
 ## Reglas
