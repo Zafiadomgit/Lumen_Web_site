@@ -23,7 +23,29 @@ Primera semana: aún no hay datos. El viernes 13 el analista mide la base.
 ## Lo que necesito de ti
 - Poner el enlace de la web en la bio de TikTok e Instagram.
 - Aprobar o cambiar el plan.
-- Música: elegirla en cada red al publicar; los videos van sin música.
+- Música: se pone al programar en Metricool. En los Reels, la canción de la columna «Música» va en el campo de audio de Instagram (si no aparece, la de reserva). En TikTok, activar «Añadir música automáticamente».
 - Todo va con Champi y pantallas, sin voz ni cara.
 
 **Resumen para WhatsApp:** Semana 1, presentamos a Champi: 4 videos, 2 carruseles, el lanzamiento en LinkedIn y la primera publicación de Google. Todo lleva a la web con su enlace medido. Solo falta tu visto bueno y poner la web en la bio.
+
+## Ajustes propuestos
+Revisión del lunes 9: aún no hay informe del analista (es la primera semana; mide la base el viernes 13), así que el plan sigue encajando y no cambio piezas ni mezcla. Solo propongo esto:
+
+1. **Tabla «Para Metricool».** Faltaba. Las horas son sugeridas (hora de Bogotá), en la tarde-noche: videos a las 19:00 y carruseles a las 20:00; la persona del equipo las puede cambiar. Las canciones siguen el estilo musical de la marca, aesthetic y elegante (Lana Del Rey, Steve Lacy, Maria the Scientist): antes de programar, confirma en el buscador de audio de Metricool que estén disponibles para cuentas de empresa y que la parte que suena no tenga groserías. Las descripciones completas están en `guiones.md`. Los archivos van en `docs/redes/semanas/2026-11-09/`.
+
+| id | Red | Día | Hora sugerida | Archivo | Descripción y enlace | Música |
+| --- | --- | --- | --- | --- | --- | --- |
+| s1-hola | TikTok | lun 9 | 19:00 | `video/s1-hola/s1-hola.mp4` | Texto en `guiones.md` (sección s1-hola) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-hola | Música automática: sí |
+| s1-hola | Instagram (Reel) | lun 9 | 19:00 | `video/s1-hola/s1-hola.mp4` | Texto en `guiones.md` (sección s1-hola) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-hola | White Mustang – Lana Del Rey · reserva: Art Deco – Lana Del Rey |
+| s1-farol | TikTok | mié 11 | 19:00 | `video/s1-farol/s1-farol.mp4` | Texto en `guiones.md` (sección s1-farol) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-farol | Música automática: sí |
+| s1-farol | Instagram (Reel) | mié 11 | 19:00 | `video/s1-farol/s1-farol.mp4` | Texto en `guiones.md` (sección s1-farol) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-farol | Dark Red – Steve Lacy (que el golpe del farol caiga en el beat) · reserva: Note to Self – Maria the Scientist |
+| s1-quienes | Instagram | mié 11 | 20:00 | `carrusel/s1-quienes/01.png–06.png` | Texto en `guiones.md` (sección s1-quienes) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-quienes#proyectos | — (carrusel, sin audio) |
+| s1-precios | Instagram | jue 12 | 20:00 | `carrusel/s1-precios/01.png–06.png` | Texto en `guiones.md` (sección s1-precios) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-precios#presupuesto | — (carrusel, sin audio) |
+| s1-momento | TikTok | vie 13 | 19:00 | `video/s1-momento/s1-momento.mp4` | Texto en `guiones.md` (sección s1-momento) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-momento#contacto | Música automática: sí |
+| s1-momento | Instagram (Reel) | vie 13 | 19:00 | `video/s1-momento/s1-momento.mp4` | Texto en `guiones.md` (sección s1-momento) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-momento#contacto | Note to Self – Maria the Scientist · reserva: Dark Red – Steve Lacy |
+| s1-proyectos | TikTok | sáb 14 | 19:00 | `video/s1-proyectos/s1-proyectos.mp4` | Texto en `guiones.md` (sección s1-proyectos) · https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-proyectos#proyectos | Música automática: sí |
+| s1-proyectos | Instagram (Reel) | sáb 14 | 19:00 | `video/s1-proyectos/s1-proyectos.mp4` | Texto en `guiones.md` (sección s1-proyectos) · https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s1-proyectos#proyectos | Art Deco – Lana Del Rey · reserva: White Mustang – Lana Del Rey |
+
+2. **Orden de los días.** `s1-precios` (jue 12) va antes que `s1-momento` (vie 13); es solo el orden de la tabla, las fechas no cambian.
+3. **Promoción.** Sin informe no hay piezas para promocionar esta semana (presupuesto 0 USD). Se decide con el informe del viernes 13.
+4. **`s1-google`** sigue sin fecha: depende de que el Perfil de Google esté verificado.
