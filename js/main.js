@@ -281,10 +281,26 @@
   var links = bar ? bar.querySelectorAll('.bar-links a') : [];
   function onScroll() {
     bar.classList.toggle('is-on', scrollY > innerHeight * 0.7);
+    if (!bar.classList.contains('is-on')) setMenu(false);
     if (waFloat) waFloat.classList.toggle('is-on', scrollY > innerHeight * 0.7);
     var here = null;
     links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s && s.getBoundingClientRect().top < innerHeight * 0.4) here = a; });
     links.forEach(function (a) { a.classList.toggle('is-here', a === here); });
+  }
+  // menú desplegable de la barra (tablet y móvil)
+  var menuBtn = $('menuBtn');
+  function setMenu(open) {
+    if (!bar || !menuBtn) return;
+    bar.classList.toggle('is-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (bar && menuBtn) {
+    menuBtn.addEventListener('click', function () { setMenu(!bar.classList.contains('is-open')); });
+    links.forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('click', function (e) { if (!bar.contains(e.target)) setMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && bar.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
+    });
   }
   if (bar) { addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
 
@@ -583,11 +599,19 @@
         var w = cChat.offsetWidth, left = Math.max(12, Math.min(innerWidth - 12 - w, x));
         cChat.style.left = (left - x) + 'px';
       }
+      if (cBubble.classList.contains('is-on')) fitBubble();
+    };
+    var fitBubble = function () { // la burbuja nunca se sale de la pantalla
+      var w = cBubble.offsetWidth, right = champi.classList.contains('is-right');
+      var want = right ? x + size() - 10 - w : x + 10;
+      var left = Math.max(12, Math.min(innerWidth - 12 - w, want));
+      cBubble.style.left = (left - x) + 'px'; cBubble.style.right = 'auto';
     };
     var say = function (text, ms) {
       clearTimeout(bubbleTimer);
       cBubble.textContent = text;
       cBubble.classList.add('is-on');
+      fitBubble();
       bubbleTimer = setTimeout(function () { cBubble.classList.remove('is-on'); }, ms || 4200);
     };
     var walk = function (t) {
