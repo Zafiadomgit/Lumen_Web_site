@@ -89,4 +89,3 @@ El botón ☀️/🌙 de la barra cambia entre el estilo oscuro (el farol pixela
 
 - Páginas legales: añadir el NIT (y la matrícula de la Cámara de Comercio) cuando Lumen esté constituida.
 - Opiniones de clientes: borradores para aprobar en `docs/testimonios-borrador.md`.
-- Al tener dominio propio, cambiar `lumen-ruddy-beta.vercel.app` en `index.html`, `robots.txt` y `sitemap.xml`.

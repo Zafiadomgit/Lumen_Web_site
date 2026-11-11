@@ -95,9 +95,9 @@ Textos en pantalla de máximo 7 palabras. Todos los videos terminan con el farol
 ## s1-lanzamiento · LinkedIn
 
 **Texto:** Abrimos Lumen Studio. Diseñamos y programamos webs, apps y TPV para restaurantes, desde Bogotá y para clientes de cualquier país. Nuestro TPV ya funciona en los dos locales de California, en España, y en nuestra web puedes probarlo desde el navegador. Encendemos tus ideas.
-Adjuntar el carrusel s1-quienes. Enlace: https://lumen-ruddy-beta.vercel.app/?utm_source=linkedin&utm_medium=social&utm_campaign=s1-lanzamiento
+Adjuntar el carrusel s1-quienes. Enlace: https://www.lumenestudio.tech/?utm_source=linkedin&utm_medium=social&utm_campaign=s1-lanzamiento
 
 ## s1-google · Perfil de Google
 
-**Texto:** Prueba nuestro TPV para restaurantes desde el navegador: pide en el kiosco y mira cómo la comanda llega a cocina. Botón: «Más información» → https://lumen-ruddy-beta.vercel.app/?utm_source=google&utm_medium=social&utm_campaign=s1-google#tpv
+**Texto:** Prueba nuestro TPV para restaurantes desde el navegador: pide en el kiosco y mira cómo la comanda llega a cocina. Botón: «Más información» → https://www.lumenestudio.tech/?utm_source=google&utm_medium=social&utm_campaign=s1-google#tpv
 Foto: `assets/img/tpv-inicio.webp` exportada a JPG.

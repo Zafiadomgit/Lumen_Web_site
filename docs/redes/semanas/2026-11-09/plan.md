@@ -14,8 +14,8 @@
 | s1-lanzamiento | LinkedIn | Publicación + carrusel s1-quienes | Casos | «Abrimos Lumen Studio» | Web | jue 12 |
 | s1-google | Perfil de Google | Publicación con foto | Demos | «Prueba nuestro TPV desde el navegador» | #tpv | cuando esté verificado |
 
-Enlaces UTM, uno por pieza: `https://lumen-ruddy-beta.vercel.app/?utm_source=<red>&utm_medium=social&utm_campaign=<id>`
-Por ejemplo, para el reto del farol en TikTok: https://lumen-ruddy-beta.vercel.app/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-farol
+Enlaces UTM, uno por pieza: `https://www.lumenestudio.tech/?utm_source=<red>&utm_medium=social&utm_campaign=<id>`
+Por ejemplo, para el reto del farol en TikTok: https://www.lumenestudio.tech/?utm_source=tiktok&utm_medium=social&utm_campaign=s1-farol
 
 ## Qué repetimos y qué cambiamos
 Primera semana: aún no hay datos. El viernes 13 el analista mide la base.

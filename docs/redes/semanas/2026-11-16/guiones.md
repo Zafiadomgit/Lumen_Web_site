@@ -82,5 +82,5 @@ Revisar con la persona antes de publicar: es un tema legal; no añadir fechas de
 
 ## s2-google · Perfil de Google
 
-**Texto:** Nuestra pantalla de cocina: cada pedido del kiosco llega al instante, con su temporizador. Pruébala en la web. Botón «Más información» → https://lumen-ruddy-beta.vercel.app/?utm_source=google&utm_medium=social&utm_campaign=s2-google#tpv
+**Texto:** Nuestra pantalla de cocina: cada pedido del kiosco llega al instante, con su temporizador. Pruébala en la web. Botón «Más información» → https://www.lumenestudio.tech/?utm_source=google&utm_medium=social&utm_campaign=s2-google#tpv
 Foto: `assets/img/tpv-cocina.webp`.

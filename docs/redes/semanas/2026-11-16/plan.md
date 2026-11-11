@@ -13,7 +13,7 @@
 | s2-verifactu | LinkedIn + Reels | Video 15 s | Casos | «¿Tu TPV cumple Verifactu?» | #tpv | sáb 21 |
 | s2-google | Perfil de Google | Publicación con foto | Demos | Captura de la pantalla de cocina | #tpv | jue 19 |
 
-Enlaces UTM, uno por pieza, por ejemplo: https://lumen-ruddy-beta.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=s2-kebab#tpv
+Enlaces UTM, uno por pieza, por ejemplo: https://www.lumenestudio.tech/?utm_source=instagram&utm_medium=social&utm_campaign=s2-kebab#tpv
 
 ## Qué repetimos y qué cambiamos
 Lo decide el informe del viernes 13.
