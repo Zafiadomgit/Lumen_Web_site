@@ -11,7 +11,7 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = 'https://lumen-ruddy-beta.vercel.app/'
+SITE = 'https://www.lumenestudio.tech/'
 WA = 'https://wa.me/573118739670?text='
 
 PAIRS = [

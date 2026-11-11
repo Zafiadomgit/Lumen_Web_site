@@ -8,7 +8,7 @@ Lumen Studio diseña y programa webs, apps y TPV para restaurantes, desde Bogot�
 
 ## Cuentas y enlaces
 
-- Web: https://lumen-ruddy-beta.vercel.app (pasará a lumenestudio.tech cuando se compre el dominio)
+- Web: https://www.lumenestudio.tech
 - Instagram: @lumenstudiobog
 - TikTok: @lumenestudiotech
 - Perfil de Empresa de Google: Lumen Studio (activo) · https://share.google/3aUXPCRehcFY1Jrfq
@@ -17,7 +17,7 @@ Lumen Studio diseña y programa webs, apps y TPV para restaurantes, desde Bogot�
 **Publicación**: Instagram y TikTok están conectados a **Metricool**, donde la persona del equipo programa las piezas aprobadas. Los agentes no publican: dejan cada pieza lista (archivo, descripción, hashtags y enlace UTM) para subirla a Metricool.
 
 Cada enlace que salga en redes lleva etiqueta UTM para saber qué pieza trajo la visita:
-`https://lumen-ruddy-beta.vercel.app/?utm_source=<red>&utm_medium=social&utm_campaign=<pieza>`
+`https://www.lumenestudio.tech/?utm_source=<red>&utm_medium=social&utm_campaign=<pieza>`
 - `<red>`: `tiktok`, `instagram`, `linkedin`, `google`
 - `<pieza>`: el id corto de la pieza en el plan de la semana, por ejemplo `s1-farol`
 
