@@ -8,7 +8,10 @@
   'use strict';
   var doc = document.documentElement;
   doc.classList.add('js');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // movimiento reducido: se lee al cargar y se sigue si el visitante lo cambia con la página abierta
+  var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = reduceMq.matches;
+  if (reduceMq.addEventListener) reduceMq.addEventListener('change', function (e) { reduce = e.matches; });
   var finePointer = window.matchMedia('(pointer: fine)').matches;
   var $ = function (id) { return document.getElementById(id); };
   // idioma de la página (index.html = es, en/index.html = en) y ruta base para los recursos
@@ -119,13 +122,17 @@
   var themeBtns = document.querySelectorAll('.theme-btn');
   if (themeBtns.length) {
     var metaTheme = document.querySelector('meta[name="theme-color"]');
+    var metaScheme = document.querySelector('meta[name="color-scheme"]');
     var paint = function () {
       var light = doc.getAttribute('data-theme') === 'light';
+      // la etiqueta dice la acción («Cambiar a modo oscuro»), así que no lleva aria-pressed: se leería «pulsado»
       Array.prototype.forEach.call(themeBtns, function (b) {
-        b.setAttribute('aria-pressed', light ? 'true' : 'false');
+        b.removeAttribute('aria-pressed');
         b.setAttribute('aria-label', light ? T('Cambiar a modo oscuro', 'Switch to dark mode') : T('Cambiar a modo claro', 'Switch to light mode'));
       });
       if (metaTheme) metaTheme.setAttribute('content', light ? '#f6f4ef' : '#0a090d');
+      // el lienzo y los controles nativos del navegador (barras de desplazamiento, formularios) siguen al modo
+      if (metaScheme) metaScheme.setAttribute('content', light ? 'light' : 'dark');
     };
     // formal (claro): webs y negocios primero, Fendaria al final; oscuro: Fendaria es lo principal
     var arrange = function (light) {
@@ -273,6 +280,12 @@
       requestAnimationFrame(frame);
     };
     Array.prototype.forEach.call(themeBtns, function (b) { b.addEventListener('click', function () { toggleTheme(b); }); });
+    // si el modo se cambia en otra pestaña, esta lo sigue (sin la animación)
+    addEventListener('storage', function (e) {
+      if (e.key !== 'lumen-theme' || switching) return;
+      var light = e.newValue !== 'dark';
+      if (light !== (doc.getAttribute('data-theme') === 'light')) apply(light);
+    });
     paint();
   }
 
@@ -342,6 +355,9 @@
       });
     }, { threshold: 0.25 });
     document.querySelectorAll('video.autoplay').forEach(function (v) { vo.observe(v); });
+    if (reduceMq.addEventListener) reduceMq.addEventListener('change', function (e) {
+      if (e.matches) document.querySelectorAll('video.autoplay').forEach(function (v) { v.pause(); });
+    });
   }
 
   /* ---------- 5. TPV real ---------- */
@@ -525,6 +541,42 @@
   var form = $('contactForm');
   if (form) {
     var status = $('cfStatus'), send = $('cfSend');
+    // errores accesibles: el borde rojo y el texto del error salen con :user-invalid (CSS, tras tocar el campo);
+    // aquí se copia ese estado a aria-invalid, se enlaza el texto con aria-describedby solo mientras se ve
+    // y se anuncia una vez por una única región «polite» al salir del campo.
+    var announcer = document.createElement('div');
+    announcer.className = 'visually-hidden'; announcer.setAttribute('aria-live', 'polite');
+    document.body.appendChild(announcer);
+    var announceTimer = 0, announcedField = null, flagged = new WeakSet(), announced = new WeakSet();
+    var linkError = function (el, shown) {
+      var id = el.dataset.error; if (!id) return;
+      var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (x) { return x && x !== id; });
+      if (shown) ids.push(id);
+      if (ids.length) el.setAttribute('aria-describedby', ids.join(' ')); else el.removeAttribute('aria-describedby');
+    };
+    var announceError = function (el) {
+      var err = el.dataset.error && $(el.dataset.error); if (!err) return;
+      var label = el.labels && el.labels[0] ? el.labels[0].textContent.trim() + ': ' : '';
+      clearTimeout(announceTimer); announcer.textContent = ''; announcedField = el;
+      announceTimer = setTimeout(function () { announcer.textContent = label + err.textContent.trim(); }, 500); // tras leer el campo siguiente
+    };
+    var syncAria = function (el, announce) {
+      if (!el.matches || !el.matches('input, select, textarea') || el.name === 'web') return;
+      if (el.matches(':user-invalid')) {
+        if (announce && !announced.has(el)) { announceError(el); announced.add(el); }
+        el.setAttribute('aria-invalid', 'true'); linkError(el, true); flagged.add(el);
+      } else if (flagged.has(el) || el.getAttribute('aria-invalid') !== 'true') {
+        el.setAttribute('aria-invalid', 'false'); linkError(el, false); flagged.delete(el); announced.delete(el);
+        if (announcedField === el) { clearTimeout(announceTimer); announcer.textContent = ''; }
+      }
+    };
+    Array.prototype.forEach.call(form.elements, function (el) { syncAria(el); });
+    form.addEventListener('blur', function (e) { syncAria(e.target, true); }, true);
+    form.addEventListener('input', function (e) { if (e.target.hasAttribute('aria-invalid')) syncAria(e.target); });
+    form.addEventListener('change', function (e) { syncAria(e.target, true); }, true);
+    // un envío fallido marca todos los campos mal; el foco va al primero y se lee su error, así que no se anuncian
+    form.addEventListener('invalid', function (e) { announced.add(e.target); syncAria(e.target); }, true);
+    form.addEventListener('reset', function () { setTimeout(function () { Array.prototype.forEach.call(form.elements, function (el) { syncAria(el); }); }); }, true);
     var mailFallback = function (d) {
       var body = T('Nombre: ', 'Name: ') + d.nombre + '\nEmail: ' + d.email + T('\nTipo: ', '\nType: ') + d.tipo + '\n\n' + d.mensaje;
       location.href = 'mailto:pietersd05@gmail.com?subject=' + encodeURIComponent(T('Proyecto: ', 'Project: ') + d.tipo) + '&body=' + encodeURIComponent(body);
@@ -822,7 +874,7 @@
       cChat.hidden = false;
       if (!cLog.childElementCount) {
         add(T('¡Hola! Soy Champi. Pregúntame lo que quieras sobre webs, apps, el TPV o precios.', 'Hi! I’m Champi. Ask me anything about websites, apps, the POS or prices.'), 'bot');
-        cChips.innerHTML = '';
+        cChips.replaceChildren();
         CHIPS.forEach(function (c) { var b = document.createElement('button'); b.type = 'button'; b.textContent = c; b.addEventListener('click', function () { ask(c); }); cChips.appendChild(b); });
       }
       place(); wave();
