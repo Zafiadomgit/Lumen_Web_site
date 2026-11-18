@@ -73,6 +73,8 @@ var sparks = function (x, y, dir) {
 
 ## s3-champi-calculadora · Video 15 s
 
+**Producido** con HyperFrames (15,2 s): `video/s3-champi-calculadora/`. La pantalla dice «Una landing, entre 600 y 1.200 USD · Precio orientativo, sin impuestos», que es lo que muestra la calculadora real (ya abre con «Landing» elegida; el toque la confirma). Sin sonido dentro del archivo.
+
 | Tiempo | Qué se ve | Texto en pantalla | Voz / sonido |
 | --- | --- | --- | --- |
 | 0–2 s | Champi frente a la calculadora de la web (captura real a 390 px) | ¿Cuánto cuesta una web? | — |
@@ -88,6 +90,8 @@ var sparks = function (x, y, dir) {
 **English:** How much does a website cost? Champi already did the math. Work out yours in a minute on our site.
 
 ## s3-codigo-modo-claro · Video de código 18 s
+
+**Producido** con HyperFrames (18 s): `video/s3-codigo-modo-claro/`. Arriba, capturas reales de la web en oscuro y en claro con los bloques y la rotura dibujados con los mismos números de la sección 1c (bloques de 138 px, ola de 900 ms, 16 sectores de grietas) y semilla fija; abajo, tres paneles de `js/main.js` (`toggleTheme`, `blocks`, `shatter`). Hay un tercer toque a 10,6 s para terminar en claro, porque la rotura deja la web en oscuro.
 
 Mismo formato que el farol. Arriba, la web pasando de oscuro a claro con los bloques que nacen del farol; abajo, `js/main.js`, sección 1c. El código exacto se copia de esa sección al producirlo.
 
@@ -122,6 +126,8 @@ Mismo formato que el farol. Arriba, la web pasando de oscuro a claro con los blo
 **English:** Vitrales Perafán: nearly 50 years of stained-glass craft, now on a website with gallery, process and online quotes.
 
 ## s3-fendaria · Video 15 s
+
+**Producido** con HyperFrames (15 s): `video/s3-fendaria/`. Dice «Llegará pronto a Google Play», como la web. Champi dice «¡Vengo de Fendaria!» en una burbuja y los siete héroes aparecen animados en fila.
 
 | Tiempo | Qué se ve | Texto en pantalla |
 | --- | --- | --- |
