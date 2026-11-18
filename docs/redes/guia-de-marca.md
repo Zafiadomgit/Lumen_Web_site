@@ -83,6 +83,8 @@ La mascota y la cara de las redes: la seta de Fendaria, la app del estudio.
 
 ## Lo que podemos decir (datos reales)
 
+- **Quiénes somos:** el estudio trabaja desde 2021, desde Bogotá. Especialidad: React, diseño de landings y UX/UI. No se dice el nombre del dueño ni el tamaño del equipo.
+
 - **Servicios:** webs (landing, corporativa, tienda online), apps para Android e iPhone, TPV para restaurantes, software a medida, diseño de marca y pantallas, y mantenimiento.
 - **Precios orientativos en USD, sin impuestos:**
   - landing: 600–1.200

@@ -15,6 +15,10 @@ Nada de esto inventa cifras: las metas son **hipótesis** que se fijan cuando el
 | Mercado | España y Colombia a la vez |
 | Quién responde WhatsApp | El dueño. Los agentes preparan las respuestas (skill `lumen-community`): el dueño pega el mensaje y recibe el borrador. Hoy no hay conexión directa a WhatsApp desde Claude |
 | Presupuesto de publicidad | Lo propone el equipo (abajo) |
+| Propuestas A, B y C | **Aprobadas** (mantenimiento mensual, paquete «TPV + web», condiciones para los primeros restaurantes caso público). Faltan sus condiciones y precios |
+| Clientes para reseñas y referidos | Todos los clientes actuales |
+| Quiénes somos | Desde 2021; especialidad en React, diseño de landings y UX/UI |
+| Arreglos rápidos de la web | Aprobados el 18 de noviembre |
 
 ### Cómo se llega a 2.000 USD al mes
 
