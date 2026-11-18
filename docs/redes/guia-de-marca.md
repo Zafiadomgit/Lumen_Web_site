@@ -37,7 +37,19 @@ Palabras que no: barato, low cost, «el mejor», «líderes», «soluciones inte
 ## Formato de las piezas
 
 - **Todo con Champi y pantallas**: nunca se graba la voz ni la cara de una persona. Lo que haría falta decir en voz, va en texto en pantalla o en la voz de Champi como texto.
+- **Variedad**: cada semana, máximo 2 piezas del TPV, al menos 2 proyectos distintos del portafolio y 1 pieza de «código en pantalla». No repetir el mismo proyecto dos semanas seguidas.
+- **Mezcla de pilares**: Champi 30 %, código en pantalla 20 %, casos (proyectos del portafolio) 20 %, demos que se tocan (TPV, calculadora, efectos de la web) 15 %, antes y después 15 %.
 - **Promoción pagada**: cada mes se promocionan las 2–3 piezas que mejor funcionaron, con 10–20 USD cada una. Las propone el analista y las aprueba la persona; los agentes nunca pagan nada.
+
+### Código en pantalla
+
+Videos verticales al estilo «así se programa»: arriba se ve un efecto real de nuestra web (o de una app nuestra) en movimiento y abajo, en un editor oscuro con el nombre del archivo, el código que lo hace.
+- **Código real, nunca inventado**: se copia del repositorio tal cual. Se pueden saltar líneas (con `…`) y pasar un comentario a su propia línea para que quepa; nada más.
+- Se resalta una línea a la vez y el texto de arriba explica, sin tecnicismos, qué hace: «un muelle con rozamiento», no «oscilador amortiguado».
+- **Nunca** se muestra código de `api/`, claves, variables de entorno, correos ni nada que sirva para atacar la web.
+- Banco de ideas (`js/main.js`): el farol que se balancea y suelta chispas (1b), el modo claro que nace del farol (1c), las entradas al hacer scroll (3), los héroes de Fendaria (6), la calculadora (8) y Champi paseando por la web (10).
+- Letra del código: JetBrains Mono. Colores del editor: fondo `#141218`, palabras clave en dorado `#e8b64c`, números `#f0a66b`, textos `#9fd39a`, comentarios `#7d776c`.
+- Llamada a la acción: «Pruébalo en nuestra web» (el efecto se puede tocar en lumenestudio.tech).
 
 ## Champi
 
