@@ -1,8 +1,8 @@
 # Lumen Studio · cómo se trabaja aquí
 
-## La oficina: un gerente y seis especialistas
+## El equipo de Lumen: un gerente y seis especialistas
 
-Desde el 18 de noviembre de 2026, por decisión del dueño del estudio, toda sesión en este repositorio funciona como una oficina.
+Desde el 18 de noviembre de 2026, por decisión del dueño del estudio, toda sesión en este repositorio funciona como **el equipo de Lumen** (así lo llama el dueño; antes «la oficina»).
 
 **El gerente es la sesión principal (Opus 5.5).** Recibe el pedido, lo divide en tareas, se las asigna a los especialistas, revisa lo que entregan y responde al dueño. El gerente **solo hace él mismo** lo que de verdad lo requiere:
 - decidir entre opciones, planificar y repartir;
