@@ -22,7 +22,7 @@ https://www.lumenestudio.tech/?utm_source=tiktok&utm_medium=social&utm_campaign=
 3. Champi sigue siendo la cara, pero ahora fuera del TPV: con la calculadora y en su videojuego.
 
 ## Lo que necesito de ti
-- Confirmar que podemos nombrar a EasyClase y a Vitrales Perafán en redes y etiquetarlos (ya salen en la web). Si tienen cuenta de Instagram, pásame el usuario.
+- ✅ EasyClase y Vitrales Perafán se pueden nombrar en las publicaciones (no tienen Instagram, así que no se etiqueta ninguna cuenta).
 - Pedirle a Herney Perafán que comparta el carrusel de Vitrales cuando salga.
 
 ## Programación
@@ -41,4 +41,4 @@ Metricool necesita el archivo publicado: los videos y carruseles se suben cuando
 ## Promoción
 Nada esta semana: el informe del viernes dirá qué promocionar.
 
-**Resumen para WhatsApp:** Semana 3, «lo que programamos»: 2 videos de código (farol y modo claro), Champi con la calculadora y en Fendaria, y carruseles de EasyClase y Vitrales. Cero TPV esta semana. Confírmame si podemos etiquetar a EasyClase y a Vitrales.
+**Resumen para WhatsApp:** Semana 3, «lo que programamos»: 2 videos de código (farol y modo claro), Champi con la calculadora y en Fendaria, y carruseles de EasyClase y Vitrales. Cero TPV esta semana.
