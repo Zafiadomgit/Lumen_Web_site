@@ -300,6 +300,13 @@ PAIRS = [
     ('<a href="aviso-legal.html">Aviso legal</a>', '<a href="../aviso-legal.html" hreflang="es">Legal notice (ES)</a>'),
     ('<a href="privacidad.html">Privacidad</a>', '<a href="../privacidad.html" hreflang="es">Privacy (ES)</a>'),
     ('<a href="cookies.html">Cookies</a>', '<a href="../cookies.html" hreflang="es">Cookies (ES)</a>'),
+    # ---------- aviso de cookies (js/consent.js) y su botón en el pie ----------
+    ('aria-label="Aviso de cookies"', 'aria-label="Cookie notice"'),
+    ('<p class="consent-text">Usamos cookies de Google Analytics para saber qué funciona en la web. ¿Nos dejas? <a href="cookies.html">Política de cookies</a></p>',
+     '<p class="consent-text">We use Google Analytics cookies to learn what works on the site. Is that OK with you? <a href="../cookies.html" hreflang="es">Cookie policy (ES)</a></p>'),
+    ('data-consent="granted">Aceptar</button>', 'data-consent="granted">Accept</button>'),
+    ('data-consent="denied">Rechazar</button>', 'data-consent="denied">Reject</button>'),
+    ('<button class="consent-open" type="button">Cookies: cambiar preferencia</button>', '<button class="consent-open" type="button">Cookies: change preference</button>'),
     ('<a href="en/" hreflang="en" lang="en">English</a>', '<a href="../" hreflang="es" lang="es">Español</a>'),
     ('aria-label="Escríbenos por WhatsApp"', 'aria-label="Message us on WhatsApp"'),
 

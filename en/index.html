@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20261118-1">
+  <link rel="stylesheet" href="../css/styles.css?v=20261118-2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,6 +60,14 @@
     </defs>
   </svg>
   <a class="skip" href="#contenido">Skip to content</a>
+  <!-- aviso de cookies (js/consent.js): GA4 solo se carga si se acepta -->
+  <dialog class="consent" id="consent" popover="manual" aria-label="Cookie notice">
+    <p class="consent-text">We use Google Analytics cookies to learn what works on the site. Is that OK with you? <a href="../cookies.html" hreflang="es">Cookie policy (ES)</a></p>
+    <div class="consent-actions">
+      <button class="btn btn--s" type="button" data-consent="granted">Accept</button>
+      <button class="btn btn--s" type="button" data-consent="denied">Reject</button>
+    </div>
+  </dialog>
   <div class="glow" aria-hidden="true"></div>
 
   <!-- barra fija: aparece al bajar -->
@@ -546,6 +554,7 @@
       <a href="../cookies.html" hreflang="es">Cookies (ES)</a>
       <button class="champi-back" id="champiBack" type="button" hidden>Bring Champi back</button>
       <a href="../" hreflang="es" lang="es">Español</a>
+      <button class="consent-open" type="button">Cookies: change preference</button>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
@@ -575,6 +584,7 @@
 
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
-  <script src="../js/main.js?v=20261118-1" defer></script>
+  <script src="../js/consent.js?v=20261118-2" defer></script>
+  <script src="../js/main.js?v=20261118-2" defer></script>
 </body>
 </html>

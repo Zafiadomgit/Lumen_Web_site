@@ -401,7 +401,7 @@ main, .footer, .hero { position: relative; z-index: 2; }
 
 /* WhatsApp flotante */
 .wa-float {
-  position: fixed; right: 18px; bottom: 18px; z-index: 70; width: 56px; height: 56px; border-radius: 50%;
+  position: fixed; right: 18px; bottom: calc(18px + var(--consent-h, 0px)); z-index: 70; width: 56px; height: 56px; border-radius: 50%;
   display: grid; place-items: center; background: #1f8f4e; color: #fff;
   transition: transform .3s var(--ease), background-color .25s ease;
 }
@@ -412,7 +412,7 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .soon { display: inline-flex; align-items: center; min-height: 32px; padding: 0 14px; border-radius: 999px; background: var(--surface-3); color: var(--muted); font-size: var(--t-xs); font-weight: 700; }
 
 /* Champi, la mascota (la seta de Fendaria) */
-.champi { --cx: -120px; --cy: 0px; --dir: 1; position: fixed; left: 0; bottom: 8px; z-index: 65; transform: translate(var(--cx), var(--cy)); pointer-events: none; }
+.champi { --cx: -120px; --cy: 0px; --dir: 1; position: fixed; left: 0; bottom: calc(8px + var(--consent-h, 0px)); z-index: 65; transform: translate(var(--cx), var(--cy)); pointer-events: none; }
 .champi[hidden] { display: none; }
 .champi::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 54px; height: 9px; margin-left: -27px; border-radius: 50%; background: rgba(0, 0, 0, .45); z-index: -1; }
 .champi-body { pointer-events: auto; display: block; width: 88px; height: 88px; padding: 0; border: 0; background: none; cursor: grab; border-radius: 20px; -webkit-tap-highlight-color: transparent; touch-action: none; transform-origin: 50% 6%; }
@@ -444,7 +444,7 @@ main, .footer, .hero { position: relative; z-index: 2; }
   background: var(--surface-3); color: var(--ink); font: 700 16px/1 var(--text); cursor: pointer; opacity: 0; transition: opacity .2s ease;
 }
 .champi:hover .champi-close, .champi-close:focus-visible { opacity: 1; }
-.champi-back { border: 0; background: none; padding: 0; cursor: pointer; color: var(--muted); font: inherit; font-size: var(--t-xs); min-height: 32px; text-decoration: underline; text-underline-offset: 3px; }
+.champi-back, .consent-open { border: 0; background: none; padding: 0; cursor: pointer; color: var(--muted); font: inherit; font-size: var(--t-xs); min-height: 32px; text-decoration: underline; text-underline-offset: 3px; }
 .champi-back[hidden] { display: none; }
 @media (hover: none) { .champi-close { opacity: .85; } }
 @media (max-width: 680px) {
@@ -537,7 +537,7 @@ main, .footer, .hero { position: relative; z-index: 2; }
   .contact { margin-left: 16px; margin-right: 16px; }
   .form { grid-template-columns: 1fr; }
   .contact-direct, .contact-direct .btn { width: 100%; min-width: 0; }
-  .wa-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+  .wa-float { width: 52px; height: 52px; right: 14px; bottom: calc(14px + var(--consent-h, 0px)); }
   .footer { flex-direction: column; align-items: flex-start; padding-right: var(--m); padding-bottom: 88px; }
 }
 
@@ -719,3 +719,44 @@ html[data-theme="light"] {
 .voices-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 20px; margin-top: 36px; text-align: center; }
 .voices-cta p { margin: 0; color: var(--muted); }
 .btn--google svg { flex: none; }
+
+/* ================= AVISO DE COOKIES (js/consent.js) =================
+   <dialog popover="manual"> no modal, abajo y compacto; Champi y WhatsApp suben con --consent-h */
+.consent {
+  position: fixed; inset: auto 16px 16px 16px; z-index: 90; width: auto; max-width: 860px; height: auto; margin: 0 auto;
+  padding: 14px 14px 14px 20px; border: 0; border-radius: 20px; color: var(--ink); background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--surface-3), 0 18px 40px rgba(0, 0, 0, .45); /* taste-skill-ignore: flota sobre la página */
+  font: 500 15px/1.45 var(--text); overflow: visible;
+}
+.consent:is([open], :popover-open) { display: flex; align-items: center; gap: 10px 20px; }
+.consent-text { margin: 0; flex: 1; }
+.consent-text a { color: inherit; font-weight: 700; text-underline-offset: 3px; text-decoration-color: var(--accent); white-space: nowrap; }
+.consent-actions { display: flex; gap: 8px; flex: none; }
+.consent-actions .btn { min-width: 112px; }
+[data-theme="light"] .consent { background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 18px 40px -16px rgba(40, 30, 10, .3); }
+.consent-open[hidden] { display: none; }
+@media (max-width: 680px) {
+  .consent:is([open], :popover-open) { flex-direction: column; align-items: stretch; }
+  .consent:is([open], :popover-open) { gap: 8px; }
+  .consent { inset: auto 10px 10px 10px; padding: 10px 12px; font-size: 13.5px; line-height: 1.38; border-radius: 16px; }
+  .consent-text a { white-space: normal; }
+  .consent-actions .btn { flex: 1; min-width: 0; min-height: 40px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .consent:is([open], :popover-open) { animation: consent-in .4s var(--ease); }
+}
+@keyframes consent-in { from { opacity: 0; transform: translateY(16px); } }
+
+/* ================= BOTÓN DE PAUSA DE LOS VÍDEOS ================= */
+.evidence, .film { position: relative; }
+.vid-btn {
+  position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 40px; height: 40px;
+  padding: 0; border: 0; border-radius: 999px; cursor: pointer; color: var(--ink); background: rgba(18, 16, 22, .78);
+  transition: background-color .2s ease;
+}
+.vid-btn:hover { background: rgba(37, 33, 43, .92); }
+.vid-btn svg { width: 18px; height: 18px; grid-area: 1 / 1; }
+.vid-btn .i-pause, .vid-btn.is-playing .i-play { display: none; }
+.vid-btn.is-playing .i-pause { display: block; }
+[data-theme="light"] .vid-btn { color: var(--ink); background: rgba(255, 255, 255, .9); box-shadow: 0 0 0 1px var(--line); }
+[data-theme="light"] .vid-btn:hover { background: #fff; }

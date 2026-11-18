@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261118-1">
+  <link rel="stylesheet" href="css/styles.css?v=20261118-2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,6 +60,14 @@
     </defs>
   </svg>
   <a class="skip" href="#contenido">Saltar al contenido</a>
+  <!-- aviso de cookies (js/consent.js): GA4 solo se carga si se acepta -->
+  <dialog class="consent" id="consent" popover="manual" aria-label="Aviso de cookies">
+    <p class="consent-text">Usamos cookies de Google Analytics para saber qué funciona en la web. ¿Nos dejas? <a href="cookies.html">Política de cookies</a></p>
+    <div class="consent-actions">
+      <button class="btn btn--s" type="button" data-consent="granted">Aceptar</button>
+      <button class="btn btn--s" type="button" data-consent="denied">Rechazar</button>
+    </div>
+  </dialog>
   <div class="glow" aria-hidden="true"></div>
 
   <!-- barra fija: aparece al bajar -->
@@ -546,6 +554,7 @@
       <a href="cookies.html">Cookies</a>
       <button class="champi-back" id="champiBack" type="button" hidden>Volver a ver a Champi</button>
       <a href="en/" hreflang="en" lang="en">English</a>
+      <button class="consent-open" type="button">Cookies: cambiar preferencia</button>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
@@ -575,6 +584,7 @@
 
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
-  <script src="js/main.js?v=20261118-1" defer></script>
+  <script src="js/consent.js?v=20261118-2" defer></script>
+  <script src="js/main.js?v=20261118-2" defer></script>
 </body>
 </html>

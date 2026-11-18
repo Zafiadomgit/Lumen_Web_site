@@ -19,11 +19,13 @@
   var BASE = doc.getAttribute('data-base') || '';
   // estadísticas (Vercel Web Analytics): eventos anónimos, sin cookies; si el script no carga, no pasa nada
   var track = function (name, data) { try { if (window.va) window.va('event', { name: name, data: data || {} }); } catch (e) {} };
+  // Google Analytics 4: solo si la persona aceptó las cookies (js/consent.js decide; si no, no hace nada)
+  var ga = function (name, params) { try { if (window.lumenConsent) window.lumenConsent.event(name, params); } catch (e) {} };
   var where = function (el) { var sec = el.closest('section[id], footer, header, #champi'); return sec ? (sec.id || sec.tagName.toLowerCase()) : 'otro'; };
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
     var h = a.getAttribute('href') || '';
-    if (/wa\.me\//.test(h)) track('whatsapp', { lugar: a.id === 'calcWa' ? 'calculadora' : where(a) });
+    if (/wa\.me\//.test(h)) { var lugar = a.id === 'calcWa' ? 'calculadora' : where(a); track('whatsapp', { lugar: lugar }); ga('contact_whatsapp', { lugar: lugar }); }
     else if (/^mailto:/.test(h)) track('email', { lugar: where(a) });
     else if (/share\.google|g\.page/.test(h)) track('resena_google', { lugar: where(a) });
     else if (/instagram\.com|tiktok\.com/.test(h)) track('redes', { red: /tiktok/.test(h) ? 'tiktok' : 'instagram', lugar: where(a) });
@@ -109,12 +111,14 @@
       sparks(x, y, dir);
       if (!swinging) { swinging = true; last = performance.now(); requestAnimationFrame(step); }
     };
+    var lastHitSent = 0;
     lampBtn.addEventListener('click', function (e) {
       var r = lampBtn.getBoundingClientRect();
       // con teclado (sin coordenadas) se golpea desde un lado al azar
       var x = e.clientX || (r.left + r.width / 2 + (Math.random() < 0.5 ? -1 : 1) * r.width * 0.4);
       var y = e.clientY || (r.top + r.height * 0.55);
       hit(x, y);
+      var now = Date.now(); if (now - lastHitSent > 2000) { lastHitSent = now; ga('lamp_hit'); } // como mucho uno cada 2 s
     });
   }
 
@@ -346,19 +350,45 @@
     });
   });
 
-  /* ---------- 4. vídeos ---------- */
+  /* ---------- 4. vídeos: en bucle solo en pantalla, con botón de pausa (WCAG 2.2.2) ---------- */
+  // want: 'auto' (se reproduce solo si se ve y no hay movimiento reducido), 'paused' o 'playing' (lo eligió la persona)
+  var videos = Array.prototype.slice.call(document.querySelectorAll('video.autoplay'));
+  var playV = function (v) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+  var seen = new WeakMap();
+  var shouldPlay = function (v) { return seen.get(v) && (v.dataset.want === 'playing' || (v.dataset.want === 'auto' && !reduce)); };
+  videos.forEach(function (v) {
+    v.dataset.want = 'auto';
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'vid-btn';
+    b.innerHTML = '<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>' +
+      '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>';
+    // la etiqueta dice la acción, así que no lleva aria-pressed (se leería «Reproducir, pulsado»)
+    var label = function () {
+      var on = !v.paused;
+      b.classList.toggle('is-playing', on);
+      b.setAttribute('aria-label', on ? T('Pausar video', 'Pause video') : T('Reproducir video', 'Play video'));
+    };
+    v.addEventListener('play', label); v.addEventListener('pause', label);
+    b.addEventListener('click', function () {
+      if (v.paused) { v.dataset.want = 'playing'; playV(v); } else { v.dataset.want = 'paused'; v.pause(); }
+    });
+    v.insertAdjacentElement('afterend', b);
+    label();
+  });
   if ('IntersectionObserver' in window) {
     var vo = new IntersectionObserver(function (es) {
       es.forEach(function (en) {
         var v = en.target;
-        if (en.isIntersecting && !reduce) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+        seen.set(v, en.isIntersecting);
+        if (shouldPlay(v)) playV(v); else v.pause();
       });
     }, { threshold: 0.25 });
-    document.querySelectorAll('video.autoplay').forEach(function (v) { vo.observe(v); });
-    if (reduceMq.addEventListener) reduceMq.addEventListener('change', function (e) {
-      if (e.matches) document.querySelectorAll('video.autoplay').forEach(function (v) { v.pause(); });
-    });
-  }
+    videos.forEach(function (v) { vo.observe(v); });
+  } else videos.forEach(function (v) { seen.set(v, true); });
+  // si se activa el movimiento reducido con la página abierta, se paran los que iban solos
+  if (reduceMq.addEventListener) reduceMq.addEventListener('change', function (e) {
+    videos.forEach(function (v) { if (e.matches && v.dataset.want === 'auto') v.pause(); else if (shouldPlay(v)) playV(v); });
+  });
 
   /* ---------- 5. TPV real ---------- */
   var screen = $('tpvScreen'), frame = $('tpvFrame'), on = $('tpvOn');
@@ -367,7 +397,7 @@
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(screen); else addEventListener('resize', fit);
     var start = function (route) {
-      if (!frame.src) { frame.src = frame.dataset.src + (route || '#/'); track('tpv_demo'); }
+      if (!frame.src) { frame.src = frame.dataset.src + (route || '#/'); track('tpv_demo'); ga('tpv_open'); }
       else if (route) { try { frame.contentWindow.location.hash = route; } catch (e) { frame.src = frame.dataset.src + route; } }
       screen.classList.add('is-on'); frame.tabIndex = 0;
     };
@@ -524,8 +554,10 @@
     };
     var calcUsed = false;
     calcEl.addEventListener('change', function (e) {
+      var firstUse = !calcUsed;
       if (!calcUsed) { calcUsed = true; track('calculadora'); }
       if (e.target.name === 'tipo') { state.type = e.target.value; drawOptions(); } else update();
+      if (firstUse || e.target.name === 'tipo') ga('calculator_use', { tipo: state.type }); // primer uso y cada cambio de tipo
     });
     calcEl.addEventListener('submit', function (e) { e.preventDefault(); });
     $('calcToForm').addEventListener('click', function () {
@@ -594,7 +626,7 @@
       fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (res) {
-          if (res.ok) { track('formulario'); status.className = 'form-status is-ok'; status.textContent = T('¡Recibido! Te respondemos lo antes posible.', 'Got it! We will get back to you soon.'); form.reset(); }
+          if (res.ok) { track('formulario'); ga('generate_lead', { tipo: d.tipo }); status.className = 'form-status is-ok'; status.textContent = T('¡Recibido! Te respondemos lo antes posible.', 'Got it! We will get back to you soon.'); form.reset(); }
           else { status.className = 'form-status is-err'; status.textContent = T('No se pudo enviar desde la web: abrimos tu correo con el mensaje listo.', 'It could not be sent from the site: we are opening your email app with the message ready.'); mailFallback(d); }
         })
         .catch(function () { status.className = 'form-status is-err'; status.textContent = T('Sin conexión con el servidor: abrimos tu correo con el mensaje listo.', 'No connection to the server: we are opening your email app with the message ready.'); mailFallback(d); })
@@ -736,7 +768,8 @@
     var holdAt = function (px, py) {
       var sz = size();
       x = px - sz / 2;
-      cy = Math.min(0, py - innerHeight + sz);   // la argolla de la seta bajo el puntero
+      var lift = parseFloat(getComputedStyle(doc).getPropertyValue('--consent-h')) || 0; // sube si está el aviso de cookies
+      cy = Math.min(0, py - innerHeight + sz + lift);   // la argolla de la seta bajo el puntero
       if (reduce) place();
     };
     var startHold = function () {
@@ -882,7 +915,7 @@
     };
     var openChat = function () {
       if (!cChat || chatting) return;
-      chatting = true; clearTimeout(wanderTimer); track('champi_chat');
+      chatting = true; clearTimeout(wanderTimer); track('champi_chat'); ga('champi_open');
       var dest = maxX();
       if (Math.abs(x - dest) < 24) { showPanel(); return; } // ya está en su rincón
       say(T('¡Dame un momento!', 'Give me a second!'), 1500);
