@@ -19,8 +19,9 @@ Crea `docs/redes/semanas/<AAAA-MM-DD del lunes>/plan.md` con:
 2. **Tabla de piezas.** Unas 4–5 piezas por red y semana, con la mezcla de la guía de marca:
    - columnas: id, red, formato, pilar, gancho, llamada a la acción y día;
    - **id:** corto, por ejemplo `s3-kiosco`;
-   - **formato:** video vertical de 9–20 s, carrusel de 5–7 láminas o publicación de Google;
-   - **pilar:** Champi 35 %, antes y después 20 %, demos que se tocan 20 %, casos 15 %, detrás de cámaras 10 %;
+   - **formato:** video vertical de 9–20 s, video de código en pantalla de 15–20 s, carrusel de 5–7 láminas o publicación de Google;
+   - **pilar:** la mezcla de la guía de marca (Champi, código en pantalla, casos, demos que se tocan, antes y después);
+   - **variedad:** máximo 2 piezas del TPV, al menos 2 proyectos distintos y 1 pieza de código en pantalla por semana;
    - **gancho:** lo que se dice o se ve en los 2 primeros segundos;
    - **llamada a la acción:** a qué parte de la web lleva, con su enlace UTM.
 3. **Qué repetimos y qué cambiamos**, según el informe del analista (máximo 3 puntos).

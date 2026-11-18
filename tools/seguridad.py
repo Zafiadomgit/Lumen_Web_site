@@ -20,14 +20,17 @@ for page in PAGES:
             continue  # los externos se cubren con 'self'; el JSON-LD no se ejecuta
         hashes.add("'sha256-" + base64.b64encode(hashlib.sha256(body.encode('utf-8')).digest()).decode() + "'")
 
+# Google Analytics 4 (solo se carga si la persona acepta las cookies, js/consent.js): lo mínimo que necesita gtag.js
+GA = 'https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com'
+
 csp = '; '.join([
     "default-src 'self'",
-    "script-src 'self' " + ' '.join(sorted(hashes)),
+    "script-src 'self' https://www.googletagmanager.com " + ' '.join(sorted(hashes)),
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data:",
+    "img-src 'self' data: " + GA,
     "media-src 'self'",
-    "connect-src 'self'",
+    "connect-src 'self' " + GA,
     "frame-src 'self'",
     "frame-ancestors 'self'",
     "form-action 'self'",

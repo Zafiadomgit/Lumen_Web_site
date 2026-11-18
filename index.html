@@ -6,8 +6,8 @@
   <title>Lumen Studio — Encendemos tus ideas: webs, apps y TPV</title>
   <meta name="description" content="Lumen Studio diseña y programa webs, apps y TPV para restaurantes. Prueba nuestro TPV real desde el navegador y conoce nuestra app Fendaria.">
   <meta name="theme-color" content="#0a090d">
-  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") document.documentElement.setAttribute("data-theme", "light"); })();</script>
   <meta name="color-scheme" content="dark">
+  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") { document.documentElement.setAttribute("data-theme", "light"); document.querySelector('meta[name="color-scheme"]').content = "light"; document.querySelector('meta[name="theme-color"]').content = "#f6f4ef"; } else { var l = document.createElement("link"); l.rel = "preload"; l.as = "image"; l.href = "/assets/img/farol-tira.webp"; l.fetchPriority = "high"; document.head.appendChild(l); } })();</script>
   <link rel="canonical" href="https://www.lumenestudio.tech/">
   <link rel="alternate" hreflang="es" href="https://www.lumenestudio.tech/">
   <link rel="alternate" hreflang="en" href="https://www.lumenestudio.tech/en/">
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261106-8">
+  <link rel="stylesheet" href="css/styles.css?v=20261118-2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,7 +59,15 @@
       <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)"/><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc"/></symbol>
     </defs>
   </svg>
-  <a class="skip" href="#servicios">Saltar al contenido</a>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <!-- aviso de cookies (js/consent.js): GA4 solo se carga si se acepta -->
+  <dialog class="consent" id="consent" popover="manual" aria-label="Aviso de cookies">
+    <p class="consent-text">Usamos cookies de Google Analytics para saber qué funciona en la web. ¿Nos dejas? <a href="cookies.html">Política de cookies</a></p>
+    <div class="consent-actions">
+      <button class="btn btn--s" type="button" data-consent="granted">Aceptar</button>
+      <button class="btn btn--s" type="button" data-consent="denied">Rechazar</button>
+    </div>
+  </dialog>
   <div class="glow" aria-hidden="true"></div>
 
   <!-- barra fija: aparece al bajar -->
@@ -72,7 +80,7 @@
       <a href="#fendaria">Fendaria</a>
       <a href="#presupuesto">Presupuesto</a>
     </div>
-    <button class="theme-btn" type="button" aria-label="Cambiar a modo claro" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
+    <button class="theme-btn" type="button" aria-label="Cambiar a modo claro"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
     <a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
     <a class="btn btn--s" href="#contacto">Hablemos</a>
   </nav>
@@ -87,7 +95,7 @@
         <a href="#proceso">Proceso</a>
         <a href="#presupuesto">Presupuesto</a>
       </div>
-      <button class="theme-btn" type="button" aria-label="Cambiar a modo claro" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
+      <button class="theme-btn" type="button" aria-label="Cambiar a modo claro"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
       <a class="lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
       <a class="btn btn--s" href="#contacto">Hablemos</a>
     </nav>
@@ -111,7 +119,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="contenido">
     <!-- ============ SERVICIOS ============ -->
     <section class="services" id="servicios" aria-labelledby="services-title">
       <div class="head">
@@ -374,7 +382,7 @@
         <div class="stage">
           <p data-reveal><strong>En la primera semana,</strong> diseño. Marca, pantallas y recorrido completo antes de escribir código, para que veas tu producto y lo cambies cuando todavía es barato.</p>
           <figure class="evidence" data-reveal>
-            <video class="autoplay" width="960" height="540" muted loop playsinline preload="none" poster="assets/img/lumen-intro-poster.webp" aria-label="Animación de entrada de Lumen Studio">
+            <video class="autoplay" width="960" height="540" muted loop playsinline preload="none" loading="lazy" poster="assets/img/lumen-intro-poster.webp" aria-label="Animación de entrada de Lumen Studio">
               <source src="assets/video/lumen-intro.webm" type="video/webm">
               <source src="assets/video/lumen-intro.mp4" type="video/mp4">
             </video>
@@ -442,11 +450,13 @@
       <form class="form" id="contactForm" action="/api/contact" method="post">
         <div class="field">
           <label for="cfName">Nombre</label>
-          <input id="cfName" name="nombre" type="text" autocomplete="name" required maxlength="80">
+          <input id="cfName" name="nombre" type="text" autocomplete="name" required maxlength="80" data-error="cfNameErr">
+          <p class="field-error" id="cfNameErr">Falta tu nombre.</p>
         </div>
         <div class="field">
           <label for="cfEmail">Email</label>
-          <input id="cfEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" spellcheck="false">
+          <input id="cfEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" spellcheck="false" autocapitalize="none" autocorrect="off" data-error="cfEmailErr">
+          <p class="field-error" id="cfEmailErr">Revisa el email: escríbelo como tu@correo.com.</p>
         </div>
         <div class="field">
           <label for="cfType">Tipo de proyecto</label>
@@ -456,7 +466,8 @@
         </div>
         <div class="field field--wide">
           <label for="cfMsg">Mensaje</label>
-          <textarea id="cfMsg" name="mensaje" rows="5" required maxlength="3000" placeholder="Qué necesitas, para cuándo y cualquier enlace que nos sirva…"></textarea>
+          <textarea id="cfMsg" name="mensaje" rows="5" required maxlength="3000" placeholder="Qué necesitas, para cuándo y cualquier enlace que nos sirva…" data-error="cfMsgErr"></textarea>
+          <p class="field-error" id="cfMsgErr">Falta el mensaje: cuéntanos qué necesitas.</p>
         </div>
         <div class="hp" aria-hidden="true"><label for="cfWeb">Web</label><input id="cfWeb" name="web" type="text" tabindex="-1" autocomplete="off"></div>
         <p class="field--wide form-legal">Al enviar autorizas el tratamiento de tus datos según nuestra <a href="privacidad.html">política de privacidad</a>. Solo los usamos para responderte.</p>
@@ -476,7 +487,7 @@
 
       <div class="picker" id="picker">
         <div class="pedestal" data-reveal>
-          <img class="hero-sprite" id="heroSprite" src="assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, la Rompeyelmos">
+          <img class="hero-sprite" id="heroSprite" src="assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, la Rompeyelmos" loading="lazy">
           <div class="moves" role="group" aria-label="Acciones">
             <button type="button" data-move="idle" aria-pressed="true">Reposo</button>
             <button type="button" data-move="attack" aria-pressed="false">Ataque</button>
@@ -501,7 +512,7 @@
 
       <div class="game-media">
         <figure class="film" data-reveal>
-          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" poster="assets/img/fendaria-prologo-poster.webp" aria-label="Cinemática del prólogo de Fendaria">
+          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" loading="lazy" poster="assets/img/fendaria-prologo-poster.webp" aria-label="Cinemática del prólogo de Fendaria">
             <source src="assets/video/fendaria-prologo.webm" type="video/webm">
             <source src="assets/video/fendaria-prologo.mp4" type="video/mp4">
           </video>
@@ -543,6 +554,7 @@
       <a href="cookies.html">Cookies</a>
       <button class="champi-back" id="champiBack" type="button" hidden>Volver a ver a Champi</button>
       <a href="en/" hreflang="en" lang="en">English</a>
+      <button class="consent-open" type="button">Cookies: cambiar preferencia</button>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
@@ -572,6 +584,7 @@
 
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
-  <script src="js/main.js?v=20261106-8" defer></script>
+  <script src="js/consent.js?v=20261118-2" defer></script>
+  <script src="js/main.js?v=20261118-2" defer></script>
 </body>
 </html>

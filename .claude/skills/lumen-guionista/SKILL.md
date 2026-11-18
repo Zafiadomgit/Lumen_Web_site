@@ -18,6 +18,8 @@ description: Escribe los guiones de video, los textos de carrusel y las descripc
 - gancho en los 2 primeros segundos;
 - final con «Encendemos tus ideas.» y el farol.
 
+**Código en pantalla**: además de la tabla de tomas, el bloque de código exacto que se muestra (copiado de `js/main.js` u otro archivo del repositorio, con su número de sección) y qué línea se resalta en cada toma. Lee la sección «Código en pantalla» de la guía.
+
 **Carrusel**: lámina por lámina, con un título de 3 a 7 palabras y una línea de apoyo. La primera lámina es el gancho y la última lleva la llamada a la acción.
 
 **Descripción**: máximo 3 líneas, el enlace UTM de la guía y 3–5 hashtags.
