@@ -16,7 +16,8 @@ description: Escribe los guiones de video, los textos de carrusel y las descripc
 - duración total;
 - tabla de tomas, con tiempo, qué se ve, texto en pantalla y voz o sonido;
 - gancho en los 2 primeros segundos;
-- final con «Encendemos tus ideas.» y el farol.
+- final con «Encendemos tus ideas.» y el farol;
+- **música**: el tono que pide la pieza (por ejemplo «alegre, ritmo marcado, 110–125 BPM») y en qué toma conviene que entre el golpe o el *drop*. La canción concreta la elige el estratega para Metricool; el video no lleva música dentro.
 
 **Código en pantalla**: además de la tabla de tomas, el bloque de código exacto que se muestra (copiado de `js/main.js` u otro archivo del repositorio, con su número de sección) y qué línea se resalta en cada toma. Lee la sección «Código en pantalla» de la guía.
 

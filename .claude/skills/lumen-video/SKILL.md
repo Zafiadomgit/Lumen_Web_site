@@ -30,7 +30,7 @@ description: Produce los videos verticales de redes de Lumen Studio (Champi, dem
 Ejemplo: `semanas/2026-11-23/video/s3-codigo-farol/`. Arriba una tarjeta con el efecto (rehecho en HyperFrames con los mismos sprites y los mismos números que el código: así lo que se ve es lo que el código hace), abajo el editor con `assets/fonts/jetbrains-mono-*.woff2`. Las líneas se escriben o aparecen con la toma y la que se explica se resalta en dorado. Si el efecto usa física o azar, calcúlalo por adelantado en función del tiempo (pasos fijos de 1/60 s y semilla fija), nunca con `requestAnimationFrame` ni `Math.random`.
 
 ## Reglas
-- Sin música dentro del archivo: el sonido se elige en cada red, de su biblioteca.
+- Sin música dentro del archivo: la música se pone al programar en Metricool (canción del catálogo de Instagram en los Reels y «Añadir música automáticamente» en TikTok; ver «Música» en la guía de marca). Los efectos de sonido propios (chispas, clics) sí pueden ir en el archivo, bajos, para que no choquen con la canción.
 - Cierre con el farol encendido, Champi saludando y «Encendemos tus ideas.» (al menos 2 s en pantalla).
 - Nada que no sea cierto: ni frases del guion que la pantalla no muestre, ni «cumple Verifactu» hasta que se pueda afirmar.
 - Entrega el MP4 y la portada junto al `index.html`. Para Metricool, el video tiene que estar en `main` (se sirve desde raw.githubusercontent.com).
