@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/lumen.js"></script>
+    <link rel="stylesheet" href="assets/css/lumen.css" />
+    <style>
+      .kicker { top: 220px; }
+      .head { top: 290px; }
+      #tab { left: 40px; top: 690px; width: 1000px; height: 580px; }
+      #tab .screen { width: 960px; height: 540px; }
+      .sc { background-size: cover; background-position: 50% 50%; }
+      #floor { position: absolute; left: 0; right: 0; top: 1560px; height: 2px; background: linear-gradient(90deg, transparent, rgba(232,182,76,.35), transparent); }
+      .hero { position: absolute; top: 0; left: 0; opacity: 0; background-repeat: repeat-x; image-rendering: pixelated; }
+      #bubble { font-size: 40px; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="15" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
+
+      <div id="kicker" class="kicker clip" data-start="0" data-duration="12.1" data-track-index="1" style="z-index:3"><i></i><span>Champi · la seta de Fendaria</span><i></i></div>
+
+      <h1 id="h1" class="head clip" data-start="0" data-duration="2.4" data-track-index="2" style="z-index:4"><span class="w">Champi</span> <span class="w">viene</span><br /><span class="w">de</span> <span class="w">un</span> <span class="w"><em>videojuego</em></span></h1>
+      <h1 id="h2" class="head clip" data-start="2.4" data-duration="4.0" data-track-index="2" style="z-index:4"><span class="w">Fendaria,</span> <span class="w">nuestra</span><br /><span class="w">app</span> <span class="w">de</span> <span class="w"><em>aventuras</em></span></h1>
+      <h1 id="h3" class="head clip" data-start="6.4" data-duration="3.6" data-track-index="2" style="z-index:4"><span class="w"><em>Siete</em></span> <span class="w">héroes,</span><br /><span class="w"><em>ocho</em></span> <span class="w">mundos</span></h1>
+      <h1 id="h4" class="head clip" data-start="10.0" data-duration="2.1" data-track-index="2" style="z-index:4"><span class="w">Llegará</span> <span class="w">pronto</span><br /><span class="w">a</span> <span class="w"><em>Google</em></span> <span class="w"><em>Play</em></span></h1>
+
+      <div id="stage" class="clip" data-start="0" data-duration="12.3" data-track-index="3" data-layout-allow-overlap style="z-index:2">
+        <div id="floor"></div>
+        <div id="tab" class="tab">
+          <div class="screen">
+            <div class="sc" id="s-web" style="background-image:url(assets/img/web-inicio.webp);background-position:50% 0"></div>
+            <div class="sc" id="s-titulo" style="background-image:url(assets/img/fx-titulo.webp)"></div>
+            <div class="sc" id="s-villa" style="background-image:url(assets/img/fx-villa.webp)"></div>
+            <div class="sc" id="s-combate" style="background-image:url(assets/img/fx-combate.webp)"></div>
+            <div class="sc" id="s-heroes" style="background-image:url(assets/img/fx-heroes.webp)"></div>
+            <div class="sc" id="s-portal" style="background-image:url(assets/img/fx-portal.webp)"></div>
+            <div class="gloss"></div>
+          </div>
+        </div>
+        <div id="heroes"></div>
+        <div class="shadow" id="shadow"></div>
+        <div class="ch" id="ch"><div class="spr walk"></div><div class="spr idle"></div><div class="spr wave"></div></div>
+        <div class="bubble" id="bubble">¡Vengo de Fendaria!</div>
+      </div>
+
+      <div id="outro" class="clip" data-start="12.2" data-duration="2.8" data-track-index="4" style="z-index:5">
+        <div class="farol"></div>
+        <div class="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· lumenestudio.tech</span></p>
+      </div>
+    </div>
+    <script>
+      const END = 15;
+      const tl = gsap.timeline({ paused: true });
+      const L = Lumen(tl, END);
+      const CH = 207, TAB_FLOOR = 1246, FLOOR = 1560;
+
+      // ---------- tableta: la web, tres escenas de Fendaria, héroes, portal y vuelta a la web ----------
+      const show = L.screens();
+      show(0, "#s-web");
+      show(2.4, "#s-titulo", 0);
+      show(3.7, "#s-villa", 0);
+      show(5.0, "#s-combate", 0);
+      show(6.4, "#s-heroes", 0);
+      show(8.2, "#s-portal", 0);
+      show(10.0, "#s-web", 0);
+      gsap.set(".sc", { opacity: 0 });
+      gsap.set("#s-web", { opacity: 1 });
+      // la tableta se mece apenas
+      tl.fromTo("#tab", { y: 0 }, { y: -10, duration: 6.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+
+      // ---------- Champi ----------
+      gsap.set("#ch", { x: 330 - CH / 2, y: TAB_FLOOR - CH, transformOrigin: "50% 100%" });
+      gsap.set("#shadow", { x: 330, y: FLOOR - 9, opacity: 0 });
+      L.pose("#ch", 0, "idle");
+      L.cycle("#ch .idle", 8, CH, 0, 2.4, 8);
+      // burbuja de entrada
+      tl.fromTo("#bubble", { x: 420, y: 1080, opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 0.3)
+        .to("#bubble", { opacity: 0, duration: 0.18, ease: "power1.in" }, 2.0);
+
+      // salto con arco: de (x0,y0) a (x1,y1)
+      const hop = (t, x1, y1, y0, h, d) => {
+        tl.to("#ch", { scaleY: 0.82, scaleX: 1.12, duration: 0.12, ease: "power2.in" }, t)
+          .to("#ch", { scaleY: 1, scaleX: 1, duration: 0.12, ease: "power1.out" }, t + 0.12);
+        const s = t + 0.12;
+        tl.to("#ch", { x: x1 - CH / 2, duration: d, ease: "none" }, s)
+          .to("#ch", { y: Math.min(y0, y1) - CH - h, duration: d * 0.45, ease: "power2.out" }, s)
+          .to("#ch", { y: y1 - CH, duration: d * 0.55, ease: "power2.in" }, s + d * 0.45)
+          .to("#ch", { scaleY: 0.84, scaleX: 1.1, duration: 0.08, ease: "power2.out" }, s + d)
+          .to("#ch", { scaleY: 1, scaleX: 1, duration: 0.22, ease: "back.out(2)" }, s + d + 0.08);
+      };
+      // 2.3: Champi baja de la tableta al suelo
+      hop(2.25, 540, FLOOR, TAB_FLOOR, 90, 0.55);
+      tl.to("#shadow", { opacity: 1, x: 540, duration: 0.55, ease: "none" }, 2.37);
+      L.cycle("#ch .idle", 8, CH, 2.4, 6.0, 8);
+      // 6.0: se va caminando hacia la derecha
+      L.pose("#ch", 6.0, "walk");
+      L.cycle("#ch .walk", 6, CH, 6.0, 7.2, 10);
+      tl.to("#ch", { x: 1180 - CH / 2, duration: 1.1, ease: "power1.in" }, 6.05);
+      tl.to("#shadow", { x: 1180, duration: 1.1, ease: "power1.in" }, 6.05);
+      // 9.9: vuelve caminando desde la izquierda
+      tl.set("#ch", { x: -260 }, 9.3);
+      tl.set("#shadow", { x: -130 }, 9.3);
+      L.cycle("#ch .walk", 6, CH, 9.3, 10.1, 10);
+      L.pose("#ch", 9.3, "walk");
+      tl.to("#ch", { x: 380 - CH / 2, duration: 0.85, ease: "power1.out" }, 9.35);
+      tl.to("#shadow", { x: 380, duration: 0.85, ease: "power1.out" }, 9.35);
+      L.pose("#ch", 10.2, "idle");
+      L.cycle("#ch .idle", 8, CH, 10.2, 10.45, 8);
+      // 10.95: salta de vuelta a la web, sobre la tableta
+      hop(10.45, 330, TAB_FLOOR, FLOOR, 120, 0.5);
+      tl.to("#shadow", { opacity: 0, duration: 0.3, ease: "power1.in" }, 10.5);
+      L.pose("#ch", 11.15, "wave");
+      L.cycle("#ch .wave", 8, CH, 11.15, 12.3, 10);
+
+      // ---------- los siete héroes (reposo, tiras de 8 cuadros hechas con los sprites de la web) ----------
+      const SC = 0.9, GAP = 6;
+      const HEROES = [["kara", 156], ["teo", 156], ["elara", 162], ["nyx", 156], ["ayla", 148], ["brina", 150], ["brann", 174]];
+      const total = HEROES.reduce((a, [, s]) => a + s * SC, 0) + GAP * (HEROES.length - 1);
+      let hx = (1080 - total) / 2;
+      HEROES.forEach(([id, s], i) => {
+        const w = s * SC, el = document.createElement("div");
+        el.className = "hero"; el.id = "hero-" + id;
+        el.style.cssText = `width:${w}px;height:${w}px;background-image:url(assets/img/${id}_idle_tira.webp);background-size:${w * 8}px ${w}px`;
+        document.getElementById("heroes").appendChild(el);
+        const t0 = 6.55 + i * 0.1;
+        gsap.set(el, { x: hx, y: FLOOR - w + 40, opacity: 0 });
+        tl.to(el, { y: FLOOR - w, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, t0);
+        L.cycle("#hero-" + id, 8, w, t0, 9.9, 8);
+        tl.to(el, { opacity: 0, y: FLOOR - w + 30, duration: 0.2, ease: "power1.in" }, 9.2 + i * 0.03);
+        hx += w + GAP;
+      });
+
+      // ---------- titulares (el primero ya está en pantalla en el primer cuadro) ----------
+      L.wordsOut("#h1", 2.2);
+      L.wordsIn("#h2", 2.45); L.wordsOut("#h2", 6.15);
+      L.wordsIn("#h3", 6.65); L.wordsOut("#h3", 9.75);
+      L.wordsIn("#h4", 10.25); L.wordsOut("#h4", 11.85);
+      L.out("#kicker", 11.85);
+
+      // ---------- cierre ----------
+      tl.to("#stage", { opacity: 0, filter: "blur(12px)", duration: 0.4, ease: "power3.in" }, 11.85);
+      L.outro(12.2);
+
+      L.embers(31);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
