@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Política de privacidad — Lumen Studio</title>
   <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#f6f4ef">
-  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") document.documentElement.setAttribute("data-theme", "light"); })();</script>
-  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a090d">
+  <meta name="color-scheme" content="dark">
+  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") { document.documentElement.setAttribute("data-theme", "light"); document.querySelector('meta[name="color-scheme"]').content = "light"; document.querySelector('meta[name="theme-color"]').content = "#f6f4ef"; } })();</script>
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261109-1">
+  <link rel="stylesheet" href="css/styles.css?v=20261118-3">
 </head>
 <body>
   <!-- logo del modo claro: la llama del farol en un círculo -->
@@ -22,13 +22,21 @@
       <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)"/><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc"/></symbol>
     </defs>
   </svg>
+  <!-- aviso de cookies (js/consent.js): GA4 solo se carga si se acepta -->
+  <dialog class="consent" id="consent" popover="manual" aria-label="Aviso de cookies">
+    <p class="consent-text">Usamos cookies de Google Analytics para saber qué funciona en la web. ¿Nos dejas? <a href="cookies.html">Política de cookies</a></p>
+    <div class="consent-actions">
+      <button class="btn btn--s" type="button" data-consent="granted">Aceptar</button>
+      <button class="btn btn--s" type="button" data-consent="denied">Rechazar</button>
+    </div>
+  </dialog>
   <header class="legal-top">
     <a class="wordmark" href="./"><span class="farol farol--s" aria-hidden="true"></span><svg class="mark" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg><span>Lumen <span class="wm-b">Studio</span></span></a>
     <a class="u-link" href="./">Volver a la web</a>
   </header>
   <main class="legal-page">
     <h1>Política de privacidad</h1>
-    <p>Última actualización: 4 de noviembre de 2026.</p>
+    <p>Última actualización: 18 de noviembre de 2026.</p>
 
     <h2>Responsable del tratamiento</h2>
     <p>Zafiadom, que opera con la marca Lumen Studio (razón social Lumen, en proceso de constitución; el NIT se publicará cuando esté constituida), con domicilio en Bogotá, Colombia. Puedes escribirnos a <a href="mailto:pietersd05@gmail.com">pietersd05@gmail.com</a> o por WhatsApp al +57 311 873 9670.</p>
@@ -38,16 +46,19 @@
       <li><strong>Formulario de contacto:</strong> nombre, email, tipo de proyecto y el mensaje que escribas. Los usamos solo para responderte y preparar tu cotización.</li>
       <li><strong>WhatsApp y email:</strong> si nos escribes por ahí, tratamos los datos que nos mandes con la misma finalidad.</li>
       <li><strong>Champi, la mascota:</strong> las preguntas que le escribes. Las frecuentes se responden en tu navegador; las demás se envían a Anthropic (el proveedor de la IA) para contestarlas. No escribas datos personales en el chat.</li>
-      <li><strong>Estadísticas:</strong> visitas y clics en botones, anónimos y agregados, sin cookies (Vercel Web Analytics).</li>
+      <li><strong>Estadísticas básicas:</strong> visitas y clics en botones, anónimos y agregados, sin cookies (Vercel Web Analytics).</li>
+      <li><strong>Google Analytics (solo si aceptas las cookies):</strong> un identificador al azar guardado en cookies, las páginas que ves, de dónde llegas, tu ubicación aproximada, el tipo de dispositivo y navegador, y los clics en WhatsApp, la calculadora, el formulario, la demo del TPV, el chat de Champi o el farol. Los usamos para saber qué funciona en la web y mejorarla. Según Google, Google Analytics 4 no guarda las direcciones IP. Las funciones de publicidad están desactivadas.</li>
       <li><strong>Demostración del TPV:</strong> guarda sus pedidos de prueba en el almacenamiento de tu navegador. Esos datos no nos llegan.</li>
     </ul>
     <p>No pedimos datos sensibles ni datos de menores de edad.</p>
     <h2>Tu autorización</h2>
     <p>Al enviar el formulario o escribirnos, nos autorizas de forma previa, expresa e informada a tratar tus datos para las finalidades de arriba. Puedes retirar esa autorización cuando quieras.</p>
+    <p>Google Analytics solo funciona si lo aceptas en el aviso de cookies: esa es la base para usarlo, tu consentimiento. Si lo rechazas, no se carga. Puedes cambiar de opinión en cualquier momento con «Cookies: cambiar preferencia», al pie de cada página.</p>
     <h2>Cuánto tiempo los guardamos</h2>
     <p>Mientras hablamos de tu proyecto y, si no llegamos a trabajar juntos, un máximo de 12 meses. Si eres cliente, el tiempo que exijan las obligaciones legales, contables y tributarias.</p>
+    <p>Los datos de Google Analytics se guardan el tiempo de conservación configurado en Google Analytics, como máximo 14 meses. Sus cookies duran hasta 2 años si no las borras ni retiras el permiso.</p>
     <h2>Quién más los ve</h2>
-    <p>Nadie más, salvo los proveedores que necesitamos para funcionar: Vercel (alojamiento y estadísticas de la web), Resend (envío del email del formulario) y Anthropic (respuestas de Champi con IA). Están en Estados Unidos, así que tus datos se transfieren a ese país con las garantías que exige la ley colombiana. No vendemos ni cedemos tus datos.</p>
+    <p>Nadie más, salvo los proveedores que necesitamos para funcionar: Vercel (alojamiento y estadísticas de la web), Resend (envío del email del formulario), Anthropic (respuestas de Champi con IA) y, solo si aceptas las cookies, Google LLC (Google Analytics). Todos actúan como encargados: tratan los datos por cuenta nuestra y para lo que les pedimos. Están en Estados Unidos, así que tus datos se transfieren a ese país con las garantías que exige la ley colombiana. No vendemos ni cedemos tus datos, ni los compartimos con Google para publicidad.</p>
     <h2>Tus derechos</h2>
     <p>Puedes conocer, actualizar y rectificar tus datos, pedir prueba de tu autorización, saber cómo los usamos, pedir que los borremos y revocar la autorización, escribiendo a <a href="mailto:pietersd05@gmail.com">pietersd05@gmail.com</a>. Respondemos las consultas en un máximo de 10 días hábiles y los reclamos en un máximo de 15 días hábiles.</p>
     <p>Si no quedas conforme, puedes acudir a la Superintendencia de Industria y Comercio (<a href="https://www.sic.gov.co" target="_blank" rel="noopener">sic.gov.co</a>).</p>
@@ -57,10 +68,12 @@
       <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>
       <a href="cookies.html">Cookies</a>
+      <button class="consent-open" type="button">Cookies: cambiar preferencia</button>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
+  <script src="js/consent.js?v=20261118-3" defer></script>
 </body>
 </html>

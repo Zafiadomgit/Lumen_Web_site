@@ -67,7 +67,16 @@ Activado en el proyecto `lumen` (Analytics). Cuenta visitas sin cookies y estos 
 | `champi_chat` | se abre el chat de Champi | — |
 | `champi_pregunta` | pregunta a Champi | `respuesta`: guardada, ia o sin_ia |
 
-Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`). Los eventos personalizados pueden necesitar el plan Pro de Vercel; las visitas funcionan en el plan gratuito.
+Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`).
+
+### Google Analytics 4 (con consentimiento)
+
+`js/consent.js` (en las 4 páginas) muestra el aviso de cookies y solo carga GA4 (`G-WMW51G27H2`) si la persona pulsa «Aceptar»:
+Consent Mode v2 con todo en `denied` por defecto, y al aceptar solo se concede `analytics_storage` (la publicidad queda siempre denegada).
+La elección se guarda en `localStorage['lumen-consent']` (`granted`/`denied`); «Cookies: cambiar preferencia», en el pie, reabre el aviso
+y, si se retira el permiso, se borran `_ga` y `_ga_*`. `js/main.js` manda los eventos en los mismos puntos que Vercel con `ga()`:
+`contact_whatsapp`, `calculator_use` (`tipo`), `generate_lead`, `lamp_hit` (como mucho uno cada 2 s), `champi_open` y `tpv_open`.
+Los dominios de Google que permite la CSP están en `tools/seguridad.py`. Los eventos personalizados pueden necesitar el plan Pro de Vercel; las visitas funcionan en el plan gratuito.
 
 ### Modo claro (Lumen moderno)
 
@@ -89,4 +98,3 @@ El botón ☀️/🌙 de la barra cambia entre el estilo oscuro (el farol pixela
 
 - Páginas legales: añadir el NIT (y la matrícula de la Cámara de Comercio) cuando Lumen esté constituida.
 - Opiniones de clientes: borradores para aprobar en `docs/testimonios-borrador.md`.
-- Al tener dominio propio, cambiar `lumen-ruddy-beta.vercel.app` en `index.html`, `robots.txt` y `sitemap.xml`.

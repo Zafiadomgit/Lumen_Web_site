@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /demos/
-Sitemap: https://lumen-ruddy-beta.vercel.app/sitemap.xml
+Sitemap: https://www.lumenestudio.tech/sitemap.xml

@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aviso legal — Lumen Studio</title>
   <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#f6f4ef">
-  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") document.documentElement.setAttribute("data-theme", "light"); })();</script>
-  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a090d">
+  <meta name="color-scheme" content="dark">
+  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") { document.documentElement.setAttribute("data-theme", "light"); document.querySelector('meta[name="color-scheme"]').content = "light"; document.querySelector('meta[name="theme-color"]').content = "#f6f4ef"; } })();</script>
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20261109-1">
+  <link rel="stylesheet" href="css/styles.css?v=20261118-3">
 </head>
 <body>
   <!-- logo del modo claro: la llama del farol en un círculo -->
@@ -22,6 +22,14 @@
       <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)"/><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc"/></symbol>
     </defs>
   </svg>
+  <!-- aviso de cookies (js/consent.js): GA4 solo se carga si se acepta -->
+  <dialog class="consent" id="consent" popover="manual" aria-label="Aviso de cookies">
+    <p class="consent-text">Usamos cookies de Google Analytics para saber qué funciona en la web. ¿Nos dejas? <a href="cookies.html">Política de cookies</a></p>
+    <div class="consent-actions">
+      <button class="btn btn--s" type="button" data-consent="granted">Aceptar</button>
+      <button class="btn btn--s" type="button" data-consent="denied">Rechazar</button>
+    </div>
+  </dialog>
   <header class="legal-top">
     <a class="wordmark" href="./"><span class="farol farol--s" aria-hidden="true"></span><svg class="mark" aria-hidden="true" focusable="false"><use href="#lumen-mark"/></svg><span>Lumen <span class="wm-b">Studio</span></span></a>
     <a class="u-link" href="./">Volver a la web</a>
@@ -55,10 +63,12 @@
       <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>
       <a href="cookies.html">Cookies</a>
+      <button class="consent-open" type="button">Cookies: cambiar preferencia</button>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
+  <script src="js/consent.js?v=20261118-3" defer></script>
 </body>
 </html>

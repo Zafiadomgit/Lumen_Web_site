@@ -5,33 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lumen Studio — We light up your ideas: websites, apps and POS</title>
   <meta name="description" content="Lumen Studio designs and builds websites, apps and restaurant POS systems. Try our real POS in your browser and meet our Fendaria app.">
-  <meta name="theme-color" content="#f6f4ef">
-  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") document.documentElement.setAttribute("data-theme", "light"); })();</script>
-  <meta name="color-scheme" content="light dark">
-  <link rel="canonical" href="https://lumen-ruddy-beta.vercel.app/en/">
-  <link rel="alternate" hreflang="es" href="https://lumen-ruddy-beta.vercel.app/">
-  <link rel="alternate" hreflang="en" href="https://lumen-ruddy-beta.vercel.app/en/">
-  <link rel="alternate" hreflang="x-default" href="https://lumen-ruddy-beta.vercel.app/">
-  <meta property="og:url" content="https://lumen-ruddy-beta.vercel.app/en/">
+  <meta name="theme-color" content="#0a090d">
+  <meta name="color-scheme" content="dark">
+  <script>(function () { var t = null; try { t = localStorage.getItem("lumen-theme"); } catch (e) {} if (t !== "dark") { document.documentElement.setAttribute("data-theme", "light"); document.querySelector('meta[name="color-scheme"]').content = "light"; document.querySelector('meta[name="theme-color"]').content = "#f6f4ef"; } else { var l = document.createElement("link"); l.rel = "preload"; l.as = "image"; l.href = "/assets/img/farol-tira.webp"; l.fetchPriority = "high"; document.head.appendChild(l); } })();</script>
+  <link rel="canonical" href="https://www.lumenestudio.tech/en/">
+  <link rel="alternate" hreflang="es" href="https://www.lumenestudio.tech/">
+  <link rel="alternate" hreflang="en" href="https://www.lumenestudio.tech/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.lumenestudio.tech/">
+  <meta property="og:url" content="https://www.lumenestudio.tech/en/">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:title" content="Lumen Studio — We light up your ideas">
   <meta property="og:description" content="We design and build websites, apps and restaurant POS systems.">
-  <meta property="og:image" content="https://lumen-ruddy-beta.vercel.app/assets/img/og.jpg">
+  <meta property="og:image" content="https://www.lumenestudio.tech/assets/img/og.jpg">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20261109-1">
+  <link rel="stylesheet" href="../css/styles.css?v=20261118-3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Lumen Studio",
-    "url": "https://lumen-ruddy-beta.vercel.app/en/",
-    "logo": "https://lumen-ruddy-beta.vercel.app/assets/img/apple-touch-icon.png",
-    "image": "https://lumen-ruddy-beta.vercel.app/assets/img/og.jpg",
+    "url": "https://www.lumenestudio.tech/en/",
+    "logo": "https://www.lumenestudio.tech/assets/img/apple-touch-icon.png",
+    "image": "https://www.lumenestudio.tech/assets/img/og.jpg",
     "description": "Studio that designs and builds websites, apps and restaurant POS systems. We light up your ideas.",
     "email": "pietersd05@gmail.com",
     "telephone": "+57 311 873 9670",
@@ -59,7 +59,15 @@
       <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)"/><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc"/></symbol>
     </defs>
   </svg>
-  <a class="skip" href="#servicios">Skip to content</a>
+  <a class="skip" href="#contenido">Skip to content</a>
+  <!-- aviso de cookies (js/consent.js): GA4 solo se carga si se acepta -->
+  <dialog class="consent" id="consent" popover="manual" aria-label="Cookie notice">
+    <p class="consent-text">We use Google Analytics cookies to learn what works on the site. Is that OK with you? <a href="../cookies.html" hreflang="es">Cookie policy (ES)</a></p>
+    <div class="consent-actions">
+      <button class="btn btn--s" type="button" data-consent="granted">Accept</button>
+      <button class="btn btn--s" type="button" data-consent="denied">Reject</button>
+    </div>
+  </dialog>
   <div class="glow" aria-hidden="true"></div>
 
   <!-- barra fija: aparece al bajar -->
@@ -73,7 +81,7 @@
       <a href="#presupuesto">Pricing</a>
     </div>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="barLinks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-    <button class="theme-btn" type="button" aria-label="Switch to light mode" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
+    <button class="theme-btn" type="button" aria-label="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
     <a class="lang" href="../" hreflang="es" lang="es" aria-label="ES, versión en español">ES</a>
     <a class="btn btn--s" href="#contacto">Let’s talk</a>
   </nav>
@@ -88,7 +96,7 @@
         <a href="#proceso">Process</a>
         <a href="#presupuesto">Pricing</a>
       </div>
-      <button class="theme-btn" type="button" aria-label="Switch to light mode" aria-pressed="false"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
+      <button class="theme-btn" type="button" aria-label="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2 6 6M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg></button>
       <a class="lang" href="../" hreflang="es" lang="es" aria-label="ES, versión en español">ES</a>
       <a class="btn btn--s" href="#contacto">Let’s talk</a>
     </nav>
@@ -112,7 +120,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="contenido">
     <!-- ============ SERVICIOS ============ -->
     <section class="services" id="servicios" aria-labelledby="services-title">
       <div class="head">
@@ -375,7 +383,7 @@
         <div class="stage">
           <p data-reveal><strong>In the first week,</strong> design. Brand, screens and the full journey before writing code, so you see your product and can change it while it is still cheap.</p>
           <figure class="evidence" data-reveal>
-            <video class="autoplay" width="960" height="540" muted loop playsinline preload="none" poster="../assets/img/lumen-intro-poster.webp" aria-label="Lumen Studio intro animation">
+            <video class="autoplay" width="960" height="540" muted loop playsinline preload="none" loading="lazy" poster="../assets/img/lumen-intro-poster.webp" aria-label="Lumen Studio intro animation">
               <source src="../assets/video/lumen-intro.webm" type="video/webm">
               <source src="../assets/video/lumen-intro.mp4" type="video/mp4">
             </video>
@@ -443,11 +451,13 @@
       <form class="form" id="contactForm" action="/api/contact" method="post">
         <div class="field">
           <label for="cfName">Name</label>
-          <input id="cfName" name="nombre" type="text" autocomplete="name" required maxlength="80">
+          <input id="cfName" name="nombre" type="text" autocomplete="name" required maxlength="80" data-error="cfNameErr">
+          <p class="field-error" id="cfNameErr">Your name is missing.</p>
         </div>
         <div class="field">
           <label for="cfEmail">Email</label>
-          <input id="cfEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" spellcheck="false">
+          <input id="cfEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" spellcheck="false" autocapitalize="none" autocorrect="off" data-error="cfEmailErr">
+          <p class="field-error" id="cfEmailErr">Check your email: write it like you@example.com.</p>
         </div>
         <div class="field">
           <label for="cfType">Project type</label>
@@ -457,7 +467,8 @@
         </div>
         <div class="field field--wide">
           <label for="cfMsg">Message</label>
-          <textarea id="cfMsg" name="mensaje" rows="5" required maxlength="3000" placeholder="What you need, by when, and any links that help…"></textarea>
+          <textarea id="cfMsg" name="mensaje" rows="5" required maxlength="3000" placeholder="What you need, by when, and any links that help…" data-error="cfMsgErr"></textarea>
+          <p class="field-error" id="cfMsgErr">Your message is missing: tell us what you need.</p>
         </div>
         <div class="hp" aria-hidden="true"><label for="cfWeb">Web</label><input id="cfWeb" name="web" type="text" tabindex="-1" autocomplete="off"></div>
         <p class="field--wide form-legal">By sending, you authorise us to process your data under our <a href="../privacidad.html" hreflang="es">privacy policy</a> (in Spanish). We only use it to reply to you.</p>
@@ -477,7 +488,7 @@
 
       <div class="picker" id="picker">
         <div class="pedestal" data-reveal>
-          <img class="hero-sprite" id="heroSprite" src="../assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, the Helmbreaker">
+          <img class="hero-sprite" id="heroSprite" src="../assets/img/heroes/kara_idle.webp" width="174" height="174" alt="Kara, the Helmbreaker" loading="lazy">
           <div class="moves" role="group" aria-label="Actions">
             <button type="button" data-move="idle" aria-pressed="true">Idle</button>
             <button type="button" data-move="attack" aria-pressed="false">Attack</button>
@@ -502,7 +513,7 @@
 
       <div class="game-media">
         <figure class="film" data-reveal>
-          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" poster="../assets/img/fendaria-prologo-poster.webp" aria-label="Fendaria prologue cutscene">
+          <video class="autoplay" width="1280" height="604" muted loop playsinline preload="none" loading="lazy" poster="../assets/img/fendaria-prologo-poster.webp" aria-label="Fendaria prologue cutscene">
             <source src="../assets/video/fendaria-prologo.webm" type="video/webm">
             <source src="../assets/video/fendaria-prologo.mp4" type="video/mp4">
           </video>
@@ -544,6 +555,7 @@
       <a href="../cookies.html" hreflang="es">Cookies (ES)</a>
       <button class="champi-back" id="champiBack" type="button" hidden>Bring Champi back</button>
       <a href="../" hreflang="es" lang="es">Español</a>
+      <button class="consent-open" type="button">Cookies: change preference</button>
       <span>© 2026 Lumen Studio</span>
     </nav>
   </footer>
@@ -573,6 +585,7 @@
 
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
-  <script src="../js/main.js?v=20261109-1" defer></script>
+  <script src="../js/consent.js?v=20261118-3" defer></script>
+  <script src="../js/main.js?v=20261118-3" defer></script>
 </body>
 </html>

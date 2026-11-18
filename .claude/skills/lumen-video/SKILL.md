@@ -26,6 +26,9 @@ description: Produce los videos verticales de redes de Lumen Studio (Champi, dem
 5. `npx hyperframes@0.9.19 check --json` sin errores. Después `snapshot --at …` de cada escena, y revisa los cuadros antes de renderizar.
 6. Render: `npx hyperframes@0.9.19 render --quality delivery -o <id>.mp4`. Saca la portada con ffmpeg (`<id>-portada.png`) y revisa una tira de cuadros del MP4 final.
 
+## Código en pantalla
+Ejemplo: `semanas/2026-11-23/video/s3-codigo-farol/`. Arriba una tarjeta con el efecto (rehecho en HyperFrames con los mismos sprites y los mismos números que el código: así lo que se ve es lo que el código hace), abajo el editor con `assets/fonts/jetbrains-mono-*.woff2`. Las líneas se escriben o aparecen con la toma y la que se explica se resalta en dorado. Si el efecto usa física o azar, calcúlalo por adelantado en función del tiempo (pasos fijos de 1/60 s y semilla fija), nunca con `requestAnimationFrame` ni `Math.random`.
+
 ## Reglas
 - Sin música dentro del archivo: la música se pone al programar en Metricool (canción del catálogo de Instagram en los Reels y «Añadir música automáticamente» en TikTok; ver «Música» en la guía de marca). Los efectos de sonido propios (chispas, clics) sí pueden ir en el archivo, bajos, para que no choquen con la canción.
 - Cierre con el farol encendido, Champi saludando y «Encendemos tus ideas.» (al menos 2 s en pantalla).

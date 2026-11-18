@@ -11,7 +11,7 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = 'https://lumen-ruddy-beta.vercel.app/'
+SITE = 'https://www.lumenestudio.tech/'
 WA = 'https://wa.me/573118739670?text='
 
 PAIRS = [
@@ -212,7 +212,7 @@ PAIRS = [
     # ---------- Fendaria ----------
     ('<p class="head-sub" data-reveal>Nuestra app de aventuras para Android: diseño, animación y código hechos en casa. Elige un personaje y míralo en acción.</p>',
      '<p class="head-sub" data-reveal>Our adventure app for Android: design, animation and code made in-house. Pick a character and see it in action.</p>'),
-    ('alt="Kara, la Rompeyelmos">', 'alt="Kara, the Helmbreaker">'),
+    ('alt="Kara, la Rompeyelmos" loading="lazy">', 'alt="Kara, the Helmbreaker" loading="lazy">'),
     ('aria-label="Acciones"', 'aria-label="Actions"'),
     ('data-move="idle" aria-pressed="true">Reposo</button>', 'data-move="idle" aria-pressed="true">Idle</button>'),
     ('data-move="attack" aria-pressed="false">Ataque</button>', 'data-move="attack" aria-pressed="false">Attack</button>'),
@@ -287,6 +287,10 @@ PAIRS = [
      '<option value="Web">Website</option><option value="App">App</option><option value="TPV">POS</option><option value="A medida">Custom</option><option value="Aún no lo sé">Not sure yet</option>'),
     ('<label for="cfMsg">Mensaje</label>', '<label for="cfMsg">Message</label>'),
     ('placeholder="Qué necesitas, para cuándo y cualquier enlace que nos sirva…"', 'placeholder="What you need, by when, and any links that help…"'),
+    # errores del formulario (se ven solo cuando el campo queda mal)
+    ('>Falta tu nombre.</p>', '>Your name is missing.</p>'),
+    ('>Revisa el email: escríbelo como tu@correo.com.</p>', '>Check your email: write it like you@example.com.</p>'),
+    ('>Falta el mensaje: cuéntanos qué necesitas.</p>', '>Your message is missing: tell us what you need.</p>'),
     ('<p class="field--wide form-legal">Al enviar autorizas el tratamiento de tus datos según nuestra <a href="privacidad.html">política de privacidad</a>. Solo los usamos para responderte.</p>',
      '<p class="field--wide form-legal">By sending, you authorise us to process your data under our <a href="../privacidad.html" hreflang="es">privacy policy</a> (in Spanish). We only use it to reply to you.</p>'),
     ('id="cfSend">Enviar mensaje</button>', 'id="cfSend">Send message</button>'),
@@ -297,6 +301,13 @@ PAIRS = [
     ('<a href="aviso-legal.html">Aviso legal</a>', '<a href="../aviso-legal.html" hreflang="es">Legal notice (ES)</a>'),
     ('<a href="privacidad.html">Privacidad</a>', '<a href="../privacidad.html" hreflang="es">Privacy (ES)</a>'),
     ('<a href="cookies.html">Cookies</a>', '<a href="../cookies.html" hreflang="es">Cookies (ES)</a>'),
+    # ---------- aviso de cookies (js/consent.js) y su botón en el pie ----------
+    ('aria-label="Aviso de cookies"', 'aria-label="Cookie notice"'),
+    ('<p class="consent-text">Usamos cookies de Google Analytics para saber qué funciona en la web. ¿Nos dejas? <a href="cookies.html">Política de cookies</a></p>',
+     '<p class="consent-text">We use Google Analytics cookies to learn what works on the site. Is that OK with you? <a href="../cookies.html" hreflang="es">Cookie policy (ES)</a></p>'),
+    ('data-consent="granted">Aceptar</button>', 'data-consent="granted">Accept</button>'),
+    ('data-consent="denied">Rechazar</button>', 'data-consent="denied">Reject</button>'),
+    ('<button class="consent-open" type="button">Cookies: cambiar preferencia</button>', '<button class="consent-open" type="button">Cookies: change preference</button>'),
     ('<a href="en/" hreflang="en" lang="en">English</a>', '<a href="../" hreflang="es" lang="es">Español</a>'),
     ('aria-label="Escríbenos por WhatsApp"', 'aria-label="Message us on WhatsApp"'),
 
