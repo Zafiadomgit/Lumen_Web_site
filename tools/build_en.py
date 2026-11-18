@@ -246,6 +246,11 @@ PAIRS = [
      '<blockquote><p>“The website captures exactly what Althaya is: calm and care. And booking from your phone is effortless, in English or Spanish.”</p></blockquote>'),
     ('<span>CEO de Althaya · Web</span>', '<span>CEO of Althaya · Website</span>'),
 
+    # ---------- quiénes somos ----------
+    ('id="about-title" data-reveal>Quiénes somos</h2>', 'id="about-title" data-reveal>Who we are</h2>'),
+    ('<p class="about-text" data-reveal>Diseñamos y programamos <strong>desde 2021, con base en Bogotá.</strong> Nos especializamos en React, en landings pensadas para que te escriban y en diseño de experiencia (UX/UI): primero entendemos a quién le hablas y después lo construimos. Hoy trabajamos con clientes de <strong>España, Australia, Estados Unidos y Colombia.</strong></p>',
+     '<p class="about-text" data-reveal>We have been designing and building <strong>since 2021, based in Bogotá.</strong> We specialise in React, in landing pages built to get people writing to you, and in experience design (UX/UI): first we understand who you are talking to, then we build it. Today we work with clients in <strong>Spain, Australia, the United States and Colombia.</strong></p>'),
+
     # ---------- proceso ----------
     ('id="process-title" data-reveal>¿Cómo trabajamos?</h2>', 'id="process-title" data-reveal>How do we work?</h2>'),
     ('<p data-reveal><strong>Para empezar,</strong> una llamada. Nos cuentas qué quieres conseguir, no qué tecnología usar, y te mandamos por escrito qué vamos a hacer, cuánto cuesta y cuándo estará.</p>',
@@ -253,8 +258,8 @@ PAIRS = [
     ('alt="Vitrales Perafán en móvil"', 'alt="Vitrales Perafán on mobile"'),
     ('alt="Althaya en móvil"', 'alt="Althaya on mobile"'),
     ('alt="Inicio del kiosco de California"', 'alt="California kiosk start screen"'),
-    ('<p data-reveal><strong>En la primera semana,</strong> diseño. Marca, pantallas y recorrido completo antes de escribir código, para que veas tu producto y lo cambies cuando todavía es barato.</p>',
-     '<p data-reveal><strong>In the first week,</strong> design. Brand, screens and the full journey before writing code, so you see your product and can change it while it is still cheap.</p>'),
+    ('<p data-reveal><strong>En la primera semana,</strong> diseño. Marca, pantallas y recorrido completo antes de escribir código, para que veas tu producto y lo cambies cuando cambiarlo todavía cuesta poco.</p>',
+     '<p data-reveal><strong>In the first week,</strong> design. Brand, screens and the full journey before writing code, so you see your product and can change it while changes still cost little.</p>'),
     ('aria-label="Animación de entrada de Lumen Studio"', 'aria-label="Lumen Studio intro animation"'),
     ('<figcaption>Nuestra intro animada, programada a mano para Fendaria.</figcaption>', '<figcaption>Our animated intro, hand-coded for Fendaria.</figcaption>'),
     ('<p data-reveal><strong>Después,</strong> código propio. Nada de plantillas: cada animación, cada pantalla y cada sonido se escribe para tu proyecto.</p>',
@@ -323,7 +328,7 @@ PAIRS = [
 
 # mensajes de WhatsApp precargados
 WA_PAIRS = [
-    ('Hola%20Lumen%20Studio%2C%20me%20gustar%C3%ADa%20cotizar%20una%20web%20de%20', 'Hi%20Lumen%20Studio%2C%20I%20would%20like%20a%20quote%20for%20'),
+    ('Hola%20Lumen%20Studio%2C%20me%20gustar%C3%ADa%20hablar%20de%20un%20proyecto.', 'Hi%20Lumen%20Studio%2C%20I%27d%20like%20to%20talk%20about%20a%20project.'),
     ('Hola%20Lumen%20Studio%2C%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto%3A%20', 'Hi%20Lumen%20Studio%2C%20I%20would%20like%20a%20quote%20for%20a%20project%3A%20'),
 ]
 

@@ -53,7 +53,12 @@ La API de Anthropic se paga aparte del plan de Claude: con créditos prepagados 
 
 ### Estadísticas (Vercel Web Analytics)
 
-Activado en el proyecto `lumen` (Analytics). Cuenta visitas sin cookies y estos eventos, que envía `js/main.js` con `track()`:
+**Hoy no está activado:** la web ya carga `/_vercel/insights/script.js`, pero Vercel responde 404 hasta que se active, así que no se cuenta nada.
+Para activarlo (lo hace el dueño, 5 minutos): en Vercel, proyecto `lumen` → pestaña **Analytics** → **Enable**, y vuelve a
+publicar (un nuevo despliegue de `main`). Para comprobarlo, abre https://www.lumenestudio.tech/_vercel/insights/script.js: debe
+devolver un script, no un 404. Es lo único que cuenta las visitas de quien rechaza las cookies.
+
+Una vez activado, cuenta visitas sin cookies y estos eventos, que envía `js/main.js` con `track()`:
 
 | Evento | Cuándo | Datos |
 | --- | --- | --- |
@@ -68,6 +73,15 @@ Activado en el proyecto `lumen` (Analytics). Cuenta visitas sin cookies y estos 
 | `champi_pregunta` | pregunta a Champi | `respuesta`: guardada, ia o sin_ia |
 
 Los enlaces de redes llevan UTM (ver `docs/redes/guia-de-marca.md`).
+
+### Origen de cada contacto del formulario
+
+Al llegar, `js/main.js` guarda en `sessionStorage['lumen-origen']` (solo mientras dura la pestaña) el `utm_source`, el
+`utm_campaign` y, si vino desde otra web, solo su dominio (p. ej. `google.com`). Se guarda la primera visita de la sesión;
+cambiar de idioma no la pisa. El formulario lo envía con el mensaje y `api/contact.js` lo añade al correo como
+**«Vino de: tiktok · s1-farol»** (o «web google.com», o «directo o sin datos»). No es un dato personal ni se ve en la página:
+el servidor solo acepta valores cortos con letras, números, punto y guion, y descarta lo demás. El correo de respaldo
+(cuando falla el envío) no lo incluye.
 
 ### Google Analytics 4 (con consentimiento)
 
