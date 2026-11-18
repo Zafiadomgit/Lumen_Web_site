@@ -1,7 +1,7 @@
 # Semana 4 · 30 de noviembre – 6 de diciembre · Lo que no se ve
 
 **Foco:** mostrar lo que hay detrás de una web que funciona (el código, la facturación, el idioma) con proyectos que todavía no salieron, y llevar a la gente a hablar con Champi o a la calculadora.
-**Estado:** borrador para tu aprobación.
+**Estado:** aprobado por el dueño el 18 de noviembre; se produce más adelante.
 
 Base: el informe `semanas/2026-11-16/informe.md` (cuenta nueva, alcance de 2–5 personas por pieza, sin datos de TikTok ni de la web). Con eso, el plan mantiene la mezcla de la guía, mejora los ganchos y mide mejor; no cambia de estrategia sobre números que no existen.
 

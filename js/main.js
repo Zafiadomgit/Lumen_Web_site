@@ -32,6 +32,22 @@
     else if (/archivum\.es|vitralesperafan\.com|althaya\.com\.au|amievacleaning\.com|easyclase(app)?\.com/.test(h)) track('visita_proyecto', { web: a.hostname });
   }, true);
   var T = function (es, en) { return LANG === 'en' ? en : es; };
+  // origen de la visita: al llegar se guarda (solo durante esta pestaña) de dónde vino la persona —utm_source,
+  // utm_campaign o, sin UTM, el dominio de la web que la trajo— y el formulario lo manda con el mensaje.
+  // Nada personal: valores cortos y limpios, nunca la dirección completa de la otra web.
+  var origen = (function () {
+    var KEY = 'lumen-origen';
+    var clean = function (v) { return String(v || '').toLowerCase().replace(/[^a-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60); };
+    try {
+      var saved = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+      if (saved && typeof saved === 'object') return saved;
+    } catch (e) {}
+    var q = new URLSearchParams(location.search), ref = '';
+    try { var rh = document.referrer ? new URL(document.referrer).hostname : ''; rh = rh.replace(/^www\./, ''); if (rh && rh !== location.hostname.replace(/^www\./, '')) ref = clean(rh); } catch (e) {}
+    var o = { fuente: clean(q.get('utm_source')), campana: clean(q.get('utm_campaign')), referer: ref };
+    try { sessionStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+    return o;
+  })();
   var L = function (v) { return Array.isArray(v) ? (LANG === 'en' ? v[1] : v[0]) : v; };
 
   /* ---------- 1. luz ---------- */
@@ -639,7 +655,8 @@
       }
       var d = { nombre: form.nombre.value.trim(), email: form.email.value.trim(), tipo: form.tipo.value, mensaje: form.mensaje.value.trim(), web: form.web.value };
       send.disabled = true; send.textContent = T('Enviando…', 'Sending…');
-      fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+      var payload = Object.assign({ origen: origen }, d); // el origen va solo al correo del estudio, no al correo de respaldo
+      fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (res) {
           if (res.ok) { track('formulario'); ga('generate_lead', { tipo: d.tipo }); status.className = 'form-status is-ok'; status.textContent = T('¡Recibido! Te respondemos lo antes posible.', 'Got it! We will get back to you soon.'); form.reset(); }

@@ -8,6 +8,17 @@
 const escape = (v) => String(v || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const TIPOS = ['Web', 'App', 'Videojuego', 'TPV', 'A medida', 'Aún no lo sé'];
+// origen de la visita (js/main.js): utm_source, utm_campaign y el dominio que la trajo. Opcional; solo letras,
+// números, punto, guion y guion bajo, 60 caracteres como mucho; lo demás se descarta.
+const ORIGEN = /^[a-z0-9._-]{1,60}$/;
+const origenDe = (o) => {
+  if (!o || typeof o !== 'object') return 'sin datos';
+  const pick = (v) => (typeof v === 'string' && ORIGEN.test(v) ? v : '');
+  const fuente = pick(o.fuente), campana = pick(o.campana), referer = pick(o.referer);
+  const partes = [fuente, campana].filter(Boolean).join(' · ');
+  if (partes && referer) return `${partes} (desde ${referer})`;
+  return partes || (referer ? `web ${referer}` : 'directo o sin datos');
+};
 
 // --- protecciones contra abusos (las mismas que Champi) ---
 // 1) solo acepta envíos desde nuestra web: producción, dominio propio, vistas previas de Vercel y pruebas en local
@@ -54,6 +65,7 @@ module.exports = async function handler(req, res) {
   const email = String(body.email || '').trim().slice(0, 120);
   const tipo = TIPOS.includes(body.tipo) ? body.tipo : 'Aún no lo sé';
   const mensaje = String(body.mensaje || '').trim().slice(0, 3000);
+  const origen = origenDe(body.origen);
   if (!nombre || !EMAIL.test(email) || mensaje.length < 5) {
     return res.status(400).json({ error: 'Faltan datos: nombre, un email válido y el mensaje.' });
   }
@@ -62,7 +74,7 @@ module.exports = async function handler(req, res) {
   if (!key) return res.status(503).json({ error: 'not_configured' });
 
   const html = `<h2>Nuevo proyecto desde la web</h2>
-<p><strong>Nombre:</strong> ${escape(nombre)}<br><strong>Email:</strong> ${escape(email)}<br><strong>Tipo:</strong> ${escape(tipo)}</p>
+<p><strong>Nombre:</strong> ${escape(nombre)}<br><strong>Email:</strong> ${escape(email)}<br><strong>Tipo:</strong> ${escape(tipo)}<br><strong>Vino de:</strong> ${escape(origen)}</p>
 <p style="white-space:pre-wrap">${escape(mensaje)}</p>`;
 
   try {

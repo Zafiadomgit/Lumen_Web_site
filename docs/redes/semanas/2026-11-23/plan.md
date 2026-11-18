@@ -26,6 +26,8 @@ https://www.lumenestudio.tech/?utm_source=tiktok&utm_medium=social&utm_campaign=
 - Pedirle a Herney Perafán que comparta el carrusel de Vitrales cuando salga.
 
 ## Programación
+
+**✅ Programado en Metricool el 18 de noviembre** (6 publicaciones de Instagram y TikTok, a las 6:00 p. m. de Bogotá, con su portada). Falta a mano: la canción de cada Reel en Instagram (ver abajo), LinkedIn y el Perfil de Google.
 Para Metricool (hora de Bogotá). Revisado el 18 de nov.: **no hay nada programado del 23 al 29**, así que no hay choques. Horas: 18:00 todos los días (el 18:00 es el mejor horario de la tarde-noche en Instagram y TikTok según Metricool; ver informe). Metricool necesita el archivo publicado: los videos y carruseles se suben cuando estén fusionados en la rama principal. Los enlaces con UTM van en la bio de ese día o, en LinkedIn y Google, en la publicación; en Instagram las descripciones no llevan enlace clicable. No se etiqueta ninguna cuenta: EasyClase y Vitrales Perafán se nombran en el texto.
 
 | Pieza | Red | Día y hora | Archivo | Descripción | Enlace UTM | Música |

@@ -734,6 +734,18 @@ html[data-theme="light"] {
 .voices-cta p { margin: 0; color: var(--muted); }
 .btn--google svg { flex: none; }
 
+/* quiénes somos: franja corta entre las opiniones y el proceso (título a la izquierda, texto a la derecha) */
+.about {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 16px 48px; align-items: baseline;
+  padding: calc(var(--gap) * .6) var(--m); background: var(--bg);
+}
+.about-text { max-width: 62ch; margin: 0; color: var(--muted); font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; }
+.about-text strong { color: var(--ink); }
+[data-theme="light"] .about { border-bottom: 1px solid var(--line); } /* claro: las opiniones son blancas y el proceso comparte su fondo; la línea los separa */
+@media (max-width: 680px) {
+  .about { grid-template-columns: 1fr; gap: 12px; padding-top: 56px; padding-bottom: 56px; }
+}
+
 /* ================= AVISO DE COOKIES (js/consent.js) =================
    <dialog popover="manual"> no modal, abajo y compacto; Champi y WhatsApp suben con --consent-h */
 .consent {
