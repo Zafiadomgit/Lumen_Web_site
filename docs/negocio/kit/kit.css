@@ -1,0 +1,43 @@
+/* Kit de venta de Lumen Studio: tarjeta e historias. Colores y letras de docs/redes/guia-de-marca.md */
+@font-face{font-family:Manrope;font-weight:500;src:url(../../redes/plantilla/hyperframes/assets/fonts/manrope-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:700;src:url(../../redes/plantilla/hyperframes/assets/fonts/manrope-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:800;src:url(../../redes/plantilla/hyperframes/assets/fonts/manrope-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Cinzel;font-weight:700;src:url(../../redes/plantilla/hyperframes/assets/fonts/cinzel-latin-700-normal.woff2) format("woff2")}
+:root{--bg:#0a090d;--gold:#e8b64c;--paper:#ebeae6;--ink:#f3efe6;--muted:#b9b2a3}
+*{box-sizing:border-box;margin:0}
+body{background:#222;font-family:Manrope,system-ui,sans-serif;color:var(--ink)}
+.s{position:relative;width:1080px;overflow:hidden;background:var(--bg);margin:0 0 40px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.s::before{content:'';position:absolute;inset:0;background:radial-gradient(760px 620px at 50% 16%,rgba(232,182,76,.24),transparent 70%)}
+.s>*{position:relative}
+.s.light{background:var(--paper);color:#0a090d}
+.s.light::before{background:radial-gradient(760px 620px at 50% 12%,rgba(232,182,76,.28),transparent 70%)}
+.farol{width:200px;height:200px;background:url(../../../assets/img/farol-tira.webp) 0 0/800% 100% no-repeat;image-rendering:pixelated}
+.name{font-family:Cinzel,serif;font-weight:700;font-variant:small-caps;font-size:104px;line-height:1;letter-spacing:.01em}
+.name b{color:var(--gold)} .light .name b{color:#9a6d12}
+.slogan{font-family:Cinzel,serif;font-weight:700;font-size:46px;color:var(--gold);margin-top:22px}
+.light .slogan{color:#9a6d12}
+.what{font-size:38px;line-height:1.35;color:var(--muted);max-width:30ch;margin-top:26px}
+.light .what{color:#4a463f}
+.since{font-size:28px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:30px}
+.light .since{color:#9a6d12}
+.qr{background:var(--paper);padding:30px;border-radius:32px;box-shadow:0 30px 80px rgba(0,0,0,.45);border:2px solid rgba(232,182,76,.45)}
+.light .qr{background:#fff;box-shadow:0 24px 60px rgba(10,9,13,.18)}
+.qr svg{display:block;width:100%;height:100%}
+.qrlabel{font-size:32px;font-weight:800;margin-top:26px}
+.qrlabel small{display:block;font-size:26px;font-weight:500;color:var(--muted);margin-top:6px}
+.light .qrlabel small{color:#4a463f}
+.links{font-size:32px;font-weight:700;line-height:1.5}
+.links b{color:var(--gold)} .light .links b{color:#9a6d12}
+/* historias */
+.h{height:1920px;justify-content:flex-start}
+.h .kick{font-size:34px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;gap:22px;align-items:center}
+.h .kick i{display:block;width:56px;height:2px;background:var(--gold);opacity:.7}
+.h h2{font-family:Cinzel,serif;font-weight:700;font-variant:small-caps;font-size:84px;line-height:1.05;margin-top:22px}
+.hueco{border:3px dashed rgba(232,182,76,.7);border-radius:36px;display:flex;align-items:center;justify-content:center;color:rgba(232,182,76,.85);font-size:30px;font-weight:700;letter-spacing:.06em;padding:30px;background:rgba(232,182,76,.05)}
+.hueco img{width:100%;height:100%;object-fit:cover;border-radius:34px;display:block}
+.hueco.fill{border:2px solid rgba(232,182,76,.5);padding:0;background:none;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.cta{display:inline-block;background:var(--gold);color:#0a090d;font-weight:800;font-size:38px;padding:24px 46px;border-radius:999px}
+.url{font-size:32px;font-weight:700;color:var(--muted)} .url b{color:var(--ink)}
+.champi{width:564px;height:564px;background:url(../../../assets/img/champi/idle.webp) 0 0/800% auto no-repeat;image-rendering:pixelated}
+.bubble{background:var(--paper);color:#0a090d;border-radius:36px;padding:38px 44px;font-size:48px;font-weight:800;line-height:1.2;max-width:760px;position:relative}
+.bubble::after{content:'';position:absolute;left:50%;bottom:-26px;margin-left:-26px;border:26px solid transparent;border-top-color:var(--paper);border-bottom:0}
