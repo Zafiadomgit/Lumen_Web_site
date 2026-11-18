@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/lumen.js"></script>
+    <link rel="stylesheet" href="assets/css/lumen.css" />
+    <style>
+      .head { top: 290px; }
+      .note { position: absolute; left: 60px; right: 60px; top: 528px; text-align: center; font-weight: 700; font-size: 36px; color: var(--muted); }
+
+      #floor { top: 1300px; }
+      /* celular con la calculadora real (captura de 390 px) */
+      #phone { left: 560px; top: 580px; width: 358px; height: 740px; border-radius: 56px; padding: 15px; }
+      #phone .screen { width: 328px; height: 710px; border-radius: 42px; background: #121016; }
+      #calc-img { position: absolute; inset: 0; background: url("assets/img/calc-tall.png") 0 0 / 328px auto no-repeat; }
+      #price-ring { position: absolute; left: 22px; top: 403px; width: 284px; height: 62px; border-radius: 16px; opacity: 0;
+        box-shadow: 0 0 0 3px #ffd27a, 0 0 34px 8px rgba(255,210,122,.55); }
+      #phone .finger { z-index: 3; }
+
+      #ch { --s: 282px; }
+      #bubble { font-size: 50px; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="llama-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" /><stop offset="1" stop-color="#e8862c" /></linearGradient>
+        <symbol id="lumen-mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor" /><path d="M32 14c8 9 12 15 12 21.5a12 12 0 0 1-24 0C20 29 24 23 32 14z" fill="url(#llama-g)" /><path d="M32 30c3 3.5 4.5 6 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.5 1.5-5 4.5-8.5z" fill="#fff4dc" /></symbol>
+      </defs>
+    </svg>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15.2" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-start="0" data-duration="15.2" data-track-index="0" data-layout-ignore style="position:absolute;inset:0;z-index:1">
+        <div id="glow"></div><div id="glow2"></div><div id="embers"></div>
+      </div>
+
+      <div id="kicker" class="kicker clip" data-start="0" data-duration="12.3" data-track-index="1" style="z-index:3"><i></i><span>La calculadora de Lumen</span><i></i></div>
+
+      <h1 id="h1" class="head clip" data-start="0" data-duration="2.4" data-track-index="2" style="z-index:4"><span class="w">¿Cuánto</span> <span class="w">cuesta</span><br /><span class="w">una</span> <span class="w"><em>web?</em></span></h1>
+      <h1 id="h2" class="head clip" data-start="2.4" data-duration="3.8" data-track-index="2" style="z-index:4"><span class="w">Champi</span> <span class="w">saca</span><br /><span class="w">la</span> <span class="w"><em>cuenta</em></span></h1>
+      <h1 id="h3" class="head clip" data-start="6.2" data-duration="3.8" data-track-index="2" style="z-index:4"><span class="w">Una</span> <span class="w">landing,</span> <span class="w">entre</span><br /><span class="w"><em>600</em></span> <span class="w"><em>y</em></span> <span class="w"><em>1.200</em></span> <span class="w"><em>USD</em></span></h1>
+      <p id="note" class="note clip" data-start="6.5" data-duration="3.5" data-track-index="5" style="z-index:4">Precio orientativo, sin impuestos</p>
+      <h1 id="h4" class="head clip" data-start="10" data-duration="2.3" data-track-index="2" style="z-index:4"><span class="w">Haz</span> <span class="w">la</span> <span class="w"><em>tuya</em></span><br /><span class="w">en</span> <span class="w">la</span> <span class="w"><em>web</em></span></h1>
+
+      <div id="stage" class="clip" data-start="0" data-duration="12.4" data-track-index="3" data-layout-allow-overlap style="position:absolute;inset:0;z-index:2">
+        <div id="floor" class="floor"></div>
+        <div id="phone" class="phone">
+          <div class="screen">
+            <div id="calc-img"></div>
+            <div id="price-ring"></div>
+            <div class="gloss"></div>
+            <div class="notch"></div>
+            <div class="finger" id="finger"></div>
+          </div>
+        </div>
+        <div id="shadow" class="shadow"></div>
+        <div id="ch" class="ch"><div class="spr walk"></div><div class="spr idle"></div><div class="spr wave"></div></div>
+        <div id="bubble" class="bubble">Uff, me cansé…</div>
+      </div>
+
+      <div id="outro" class="clip" data-start="12.4" data-duration="2.8" data-track-index="4" style="z-index:5">
+        <div class="farol"></div>
+        <div class="champi"></div>
+        <p class="slogan" id="slogan"><span class="w">Encendemos</span><br /><span class="w">tus</span> <span class="w"><em>ideas.</em></span></p>
+        <p class="sign" id="sign"><svg aria-hidden="true"><use href="#lumen-mark" /></svg><b>Lumen Studio</b><span>· calcula la tuya en la web</span></p>
+      </div>
+    </div>
+    <script>
+      const END = 15.2, FLOOR = 1300, CH = 282;
+      const tl = gsap.timeline({ paused: true });
+      const L = Lumen(tl, END);
+
+      // ---------- Champi ----------
+      const chAt = (x) => ({ x: x - CH / 2, y: FLOOR - CH });
+      gsap.set("#ch", { ...chAt(250), transformOrigin: "50% 100%" });
+      gsap.set("#shadow", { x: 250, y: FLOOR - 9 });
+      L.pose("#ch", 0, "idle");
+      L.cycle("#ch .idle", 8, CH, 0, 2.4, 8);
+      // camina hacia el celular
+      L.pose("#ch", 2.4, "walk");
+      L.cycle("#ch .walk", 6, CH, 2.4, 3.2, 10);
+      tl.to("#ch", { x: chAt(380).x, duration: 0.8, ease: "power1.inOut" }, 2.4);
+      tl.to("#shadow", { x: 380, duration: 0.8, ease: "power1.inOut" }, 2.4);
+      L.pose("#ch", 3.2, "idle");
+      L.cycle("#ch .idle", 8, CH, 3.2, 10, 8);
+      // saltos hacia las opciones mientras toca «Landing»
+      const jump = (t, h) => {
+        tl.to("#ch", { scaleY: 0.82, scaleX: 1.12, duration: 0.12, ease: "power2.in" }, t)
+          .to("#ch", { y: FLOOR - CH - h, scaleY: 1.1, scaleX: 0.92, duration: 0.3, ease: "power2.out" }, t + 0.12)
+          .to("#ch", { scaleY: 1, scaleX: 1, duration: 0.12, ease: "power1.out" }, t + 0.32)
+          .to("#ch", { y: FLOOR - CH, duration: 0.27, ease: "power2.in" }, t + 0.42)
+          .to("#ch", { scaleY: 0.84, scaleX: 1.1, duration: 0.08, ease: "power2.out" }, t + 0.69)
+          .to("#ch", { scaleY: 1, scaleX: 1, duration: 0.22, ease: "back.out(2)" }, t + 0.77);
+        tl.to("#shadow", { scale: 0.55, opacity: 0.45, duration: 0.3, ease: "power2.out" }, t + 0.12)
+          .to("#shadow", { scale: 1, opacity: 1, duration: 0.27, ease: "power2.in" }, t + 0.42);
+      };
+      jump(3.35, 90); jump(4.4, 120);
+
+      // ---------- calculadora real: toque en «Landing» y baja al rango ----------
+      const K = 328 / 780;               // la captura mide 780 px de ancho
+      const finger = L.finger("#phone .finger");
+      finger.tap(4.0, 236 * K, 588 * K); // chip «Landing de una página»
+      tl.to("#phone .finger", { opacity: 0, duration: 0.18 }, 4.6);
+      const SCROLL = 250;     // hasta el final de la captura
+      tl.to("#calc-img", { backgroundPositionY: -SCROLL + "px", duration: 1.0, ease: "power2.inOut" }, 5.0);
+      // «ding»: el rango se enciende
+      tl.fromTo("#price-ring", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 6.2)
+        .to("#price-ring", { opacity: 0.35, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 3 }, 6.5);
+      tl.to("#phone", { scale: 1.03, duration: 0.2, ease: "power2.out", transformOrigin: "50% 50%" }, 6.2).to("#phone", { scale: 1, duration: 0.3, ease: "power2.in" }, 6.4);
+      // Champi celebra
+      L.pose("#ch", 6.3, "wave");
+      L.cycle("#ch .wave", 8, CH, 6.3, 8.2, 10);
+      tl.to("#ch", { y: FLOOR - CH - 50, duration: 0.18, ease: "power2.out" }, 6.3).to("#ch", { y: FLOOR - CH, duration: 0.2, ease: "power2.in" }, 6.48);
+      L.pose("#ch", 8.2, "idle");
+
+      // se cansa: se agacha y dice «Uff, me cansé…»
+      tl.to("#ch", { scaleY: 0.8, scaleX: 1.1, duration: 0.5, ease: "sine.inOut" }, 9.9);
+      tl.to("#ch", { scaleY: 0.84, scaleX: 1.08, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 3 }, 10.4);
+      tl.fromTo("#bubble", { x: 90, y: 880, opacity: 0, scale: 0.8, transformOrigin: "10% 100%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 10.2)
+        .to("#bubble", { opacity: 0, duration: 0.18, ease: "power1.in" }, 12.1);
+
+      // ---------- titulares ----------
+      L.wordsOut("#h1", 2.2);
+      L.wordsIn("#h2", 2.45); L.wordsOut("#h2", 6.0);
+      L.wordsIn("#h3", 6.25); L.wordsOut("#h3", 9.8);
+      tl.fromTo("#note", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 6.9).to("#note", { opacity: 0, duration: 0.2 }, 9.8);
+      L.wordsIn("#h4", 10.05); L.wordsOut("#h4", 12.1);
+      L.out("#kicker", 12.1);
+
+      // ---------- cierre ----------
+      tl.to("#stage", { opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, 12.0);
+      L.outro(12.4);
+      L.embers(23);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
