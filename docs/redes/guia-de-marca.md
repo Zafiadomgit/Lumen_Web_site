@@ -18,7 +18,8 @@ Lumen Studio diseña y programa webs, apps y TPV para restaurantes, desde Bogot�
 
 **Música**: los videos se exportan sin música y el sonido se pone al programar en Metricool, con música con licencia de cada red:
 - **Instagram (Reels)**: en Metricool, en las opciones de Instagram, se elige una canción del catálogo de Instagram (campo de audio). El plan sugiere 2 canciones por Reel: una principal y una de reserva. Estilo musical de la marca: **aesthetic y elegante**, que proyecte una imagen sofisticada (por ejemplo Lana Del Rey: «White Mustang», «Art Deco» o sus intros; Steve Lacy: «Dark Red» para un toque moody; Maria the Scientist: «Note to Self»). Pegajosas pero con clase: nada de reguetón, corridos ni letras con groserías. Si Metricool no la encuentra, o la canción no está disponible para cuentas de empresa, se usa la de reserva. Volumen sugerido: música 30–40 y video 100 si el video tiene efectos de sonido; si no, música 100.
-- **TikTok**: en Metricool se activa **«Añadir música automáticamente»** (auto add music) y TikTok escoge una canción comercial con licencia acorde al video. No hace falta elegirla a mano.
+- **TikTok**: «Añadir música automáticamente» solo funciona con fotos y carruseles, no con videos (Metricool lo rechaza). En los videos, la canción se añade a mano desde la app de TikTok o en Metricool al revisar la publicación.
+- **Desde las sesiones de Claude** no se puede elegir la canción de Instagram: Metricool no da acceso al catálogo de audio porque la cuenta no está conectada a una página de Facebook. Se programa sin canción y la persona del equipo la elige en Metricool (o conecta la cuenta a una página de Facebook para que funcione).
 - Las cuentas de empresa solo pueden usar música comercial con licencia de cada red; nunca se sube una canción propia dentro del archivo.
 
 Cada enlace que salga en redes lleva etiqueta UTM para saber qué pieza trajo la visita:
