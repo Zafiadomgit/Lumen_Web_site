@@ -5,6 +5,44 @@ Hecho por el equipo de Lumen el 18 de noviembre de 2026. Este resumen une las se
 
 Nada de esto inventa cifras: las metas son **hipótesis** que se fijan cuando el dueño responda las preguntas del final, y todo lo que no existe hoy (precios, paquetes, garantías) está marcado como **propuesta para que el dueño decida**.
 
+## Decisiones del dueño (18 de noviembre)
+
+| Pregunta | Respuesta |
+| --- | --- |
+| Capacidad | 3 o 4 proyectos al mes, según el tamaño |
+| Meta de ingresos | **Mínimo 2.000 USD al mes** |
+| Locales que pagan hoy la cuota del TPV | 1 (39 USD al mes de recurrente hoy) |
+| Mercado | España y Colombia a la vez |
+| Quién responde WhatsApp | El dueño. Los agentes preparan las respuestas (skill `lumen-community`): el dueño pega el mensaje y recibe el borrador. Hoy no hay conexión directa a WhatsApp desde Claude |
+| Presupuesto de publicidad | Lo propone el equipo (abajo) |
+
+### Cómo se llega a 2.000 USD al mes
+
+Con los rangos de la web, 2.000 USD salen con **2 ventas al mes**, por ejemplo:
+- 1 web corporativa (1.500–3.000) + 1 TPV (500–900), o
+- 2 landings (600–1.200 cada una) + 1 TPV, o
+- 1 tienda online (3.000–6.000) sola.
+
+Cabe en tu capacidad (3–4 proyectos) y deja hueco para mantenimiento. Cada TPV nuevo suma además 39 USD al mes que se quedan: con 1 local nuevo al mes, en febrero el recurrente pasa de 39 a unos 156 USD.
+
+**El embudo que hace falta (hipótesis, se corrige con los datos de diciembre):** para cerrar 2 al mes hacen falta unas **6–8 propuestas** enviadas (si cierra 1 de cada 3 o 4), y para eso unas **15–25 conversaciones reales** al mes. Con 10–15 mensajes de prospección por semana más referidos, Google y redes, es alcanzable desde enero.
+
+### Prospección en los dos mercados
+
+Mitad y mitad cada semana:
+- **España**: restaurantes con 1–3 locales; el gancho es el TPV que ya usa California y la facturación de Veri*Factu. Mensajes de 9 a 13 h de Bogotá (tarde en España).
+- **Colombia**: restaurantes de Bogotá para el TPV y pymes y oficios para la web. Mensajes en horario laboral.
+
+### Presupuesto de publicidad recomendado
+
+| Cuándo | Cuánto | En qué |
+| --- | --- | --- |
+| Semanas 1–4 (hasta mediados de diciembre) | **0 USD** | Primero medir: sin datos de visitas se pagaría a ciegas |
+| Desde la semana 5 | **Hasta 60 USD al mes** | 2–3 promociones de 10–20 USD de la pieza que mejor funcionó, a dueños de restaurantes de Bogotá o España (lo que ya dice la guía) |
+| Opcional desde enero | **+100 USD al mes** de prueba | Anuncios en Google para búsquedas como «TPV para restaurantes» en España y Colombia, solo si la página del TPV ya existe y GA4 mide los contactos. Se corta si en 4 semanas no trae conversaciones |
+
+Tope total: **unos 160 USD al mes**, menos de lo que deja una sola landing. Nada se paga sin tu aprobación.
+
 ## La idea en una frase
 
 El producto ya está; lo que falta es que lo vean. Con 3 seguidores, las redes no van a traer clientes solas en 90 días: **los primeros clientes salen de ir a buscarlos** (contactos directos, referidos, Google) y las redes y la web son la vitrina que los convence.
@@ -68,15 +106,10 @@ Cambian texto visible, así que esperan tu visto bueno:
 - **Garantías visibles en la web** (cómo se paga, qué pasa si algo falla, de quién es el código y el dominio): solo las que confirmes.
 - **Correo de empresa** para el material de venta, en lugar del correo personal.
 
-## Preguntas para el dueño
+## Preguntas que siguen abiertas
 
-1. ¿Cuántos proyectos nuevos puedes atender al mes, y cuántos locales de TPV?
-2. ¿Cuánto quieres facturar al mes en 90 días, y cuánto de eso recurrente?
-3. ¿Cuántos locales pagan hoy la cuota del TPV?
-4. ¿Qué presupuesto mensual hay para publicidad y herramientas (aunque sea cero)?
-5. ¿Empezamos la prospección por España, por Colombia o por las dos?
-6. ¿Qué clientes te pueden recomendar o dejar reseña, y aceptan que les escribamos?
-7. ¿Quién responde WhatsApp, en qué horario y en cuánto tiempo?
-8. ¿Cómo llegaron tus clientes hasta hoy (referido, Google, redes)? Dos o tres ejemplos.
-9. Datos reales para «quiénes somos» (desde cuándo trabajas, en qué te especializas).
-10. ¿Las preguntas que más te hacen por WhatsApp? Son los guiones de «Champi responde».
+1. ¿Qué clientes te pueden recomendar o dejar reseña, y aceptan que les escribamos?
+2. ¿Cómo llegaron tus clientes hasta hoy (referido, Google, redes)? Dos o tres ejemplos.
+3. Datos reales para «quiénes somos» (desde cuándo trabajas, en qué te especializas).
+4. ¿Las preguntas que más te hacen por WhatsApp? Son los guiones de «Champi responde».
+5. ¿Apruebas los dos arreglos rápidos de la web y las propuestas A, B y C?
