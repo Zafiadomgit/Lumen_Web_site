@@ -1,0 +1,10 @@
+{
+  "name": "s3-champi-calculadora",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.19 preview",
+    "check": "npx --yes hyperframes@0.9.19 check",
+    "render": "npx --yes hyperframes@0.9.19 render --quality delivery -o s3-champi-calculadora.mp4"
+  }
+}
