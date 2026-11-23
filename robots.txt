@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /demos/
+Disallow: /travels/prototipo/
 Sitemap: https://www.lumenestudio.tech/sitemap.xml
