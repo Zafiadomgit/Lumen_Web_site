@@ -21,7 +21,7 @@
 | Demos del TPV | sin datos | sin datos | sin datos |
 | Conversaciones de proyecto | sin datos | sin datos | sin datos |
 | Piezas publicadas en Instagram | 0 (la primera sale hoy 6:00 p. m.) | 5 (3 reels, 2 carruseles) | 6 (4 reels, 2 carruseles) |
-| Alcance sumado de las piezas de Instagram | sin datos | 11 | 20 |
+| Alcance sumado de las piezas de Instagram | sin datos | 11 | 19 |
 | Vistas sumadas de las piezas de Instagram | sin datos | 19 | 23 |
 | Interacciones de Instagram (likes, comentarios, guardados, compartidos) | sin datos | 5 | 6 |
 | Seguidores de Instagram | sin datos | 3 (último dato: 20 nov.) | 3 (15 nov.) |
