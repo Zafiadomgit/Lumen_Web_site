@@ -38,9 +38,17 @@ csp = '; '.join([
     "object-src 'none'",
     "upgrade-insecure-requests",
 ])
+# Lumen Travels vive en otro proyecto de Vercel y se sirve bajo /travels (reescritura externa: la URL no cambia).
+# Sus respuestas llevan SUS propias cabeceras (CSP con connect-src a Supabase, sin 'unsafe-inline'), así que esta política
+# NO se aplica a /travels: el navegador sumaría las dos CSP y bloquearía su formulario. El patrón excluye /travels y /travels/...
+TRAVELS = "https://lumentravels.vercel.app/travels"
 config = {
+    "rewrites": [
+        {"source": "/travels", "destination": TRAVELS},
+        {"source": "/travels/:path*", "destination": TRAVELS + "/:path*"},
+    ],
     "headers": [{
-        "source": "/(.*)",
+        "source": "/((?!travels(?:/|$)).*)",
         "headers": [
             {"key": "Content-Security-Policy", "value": csp},
             {"key": "X-Content-Type-Options", "value": "nosniff"},
