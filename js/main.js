@@ -29,6 +29,7 @@
     else if (/^mailto:/.test(h)) track('email', { lugar: where(a) });
     else if (/share\.google|g\.page/.test(h)) track('resena_google', { lugar: where(a) });
     else if (/instagram\.com|tiktok\.com/.test(h)) track('redes', { red: /tiktok/.test(h) ? 'tiktok' : 'instagram', lugar: where(a) });
+    else if (/^\/travels/.test(h)) track('travels', { lugar: where(a) });
     else if (/archivum\.es|vitralesperafan\.com|althaya\.com\.au|amievacleaning\.com|easyclase(app)?\.com/.test(h)) track('visita_proyecto', { web: a.hostname });
   }, true);
   var T = function (es, en) { return LANG === 'en' ? en : es; };
@@ -311,7 +312,7 @@
 
   /* ---------- 2. barra fija ---------- */
   var bar = $('bar'), waFloat = document.querySelector('.wa-float');
-  var links = bar ? bar.querySelectorAll('.bar-links a') : [];
+  var links = bar ? bar.querySelectorAll('.bar-links a[href^="#"]') : [];
   function onScroll() {
     bar.classList.toggle('is-on', scrollY > innerHeight * 0.7);
     if (!bar.classList.contains('is-on')) setMenu(false);

@@ -1,7 +1,17 @@
 {
+  "rewrites": [
+    {
+      "source": "/travels",
+      "destination": "https://lumentravels.vercel.app/travels"
+    },
+    {
+      "source": "/travels/:path*",
+      "destination": "https://lumentravels.vercel.app/travels/:path*"
+    }
+  ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/((?!travels(?:/|$)).*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
