@@ -116,7 +116,7 @@ PAIRS = [
     ('<dd>Itinerarios día a día, viajeros verificados, primeros encuentros en lugares públicos y un botón de seguridad. Empezamos por Colombia.</dd>',
      '<dd>Day-by-day itineraries, verified travelers, first meetups in public places and a safety button. We are starting with Colombia.</dd>'),
     ('<dd>Aún no está disponible: déjanos tu correo en la lista de espera y te avisamos cuando lance.</dd>', '<dd>It is not available yet: leave your email on the waitlist and we will tell you when it launches.</dd>'),
-    ('<span class="soon">Pronto</span>', '<span class="soon">Soon</span>'),
+    ('<span class="pronto">Pronto</span>', '<span class="pronto">Soon</span>'),
     ('>Únete a la lista de espera</a>', '>Join the waitlist</a>'),
     ('>Conoce Lumen Travels</a>', '>Discover Lumen Travels</a>'),
     ('href="/travels#waitlist"', 'href="/travels?lang=en#waitlist"'),
