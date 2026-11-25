@@ -113,6 +113,7 @@ main, .footer, .hero { position: relative; z-index: 2; }
 .hero-links { display: flex; gap: 26px; margin-left: auto; }
 .hero-links a { display: inline-flex; align-items: center; min-height: 32px; text-decoration: none; font-weight: 600; font-size: 15px; color: var(--muted); transition: color .2s ease; }
 .hero-links a:hover { color: var(--ink); }
+.soon { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; line-height: 1.5; white-space: nowrap; vertical-align: 1px; }
 .hero-stage { display: grid; justify-items: center; align-content: center; gap: 12px; padding: 12px var(--m) 0; }
 .lamp {
   position: relative; transform-origin: 50% 6%; animation: vaiven 6s ease-in-out infinite;
